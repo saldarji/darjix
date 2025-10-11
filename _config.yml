@@ -7,11 +7,14 @@ url: "https://darijx.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+
+# GitHub Pages specific settings
+# Note: 'theme' is commented out since we're using custom layouts
+# theme: minima
 
 # Exclude from processing
 exclude:
