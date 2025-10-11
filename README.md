@@ -2,11 +2,19 @@
 
 A modern static website built with Jekyll, Tailwind CSS, and hosted on GitHub Pages.
 
-## ⚠️ Important Note for macOS ARM Users
+## 💡 Development Approach
 
-If you're on an Apple Silicon Mac (M1/M2/M3) and macOS 15.0+, you may encounter issues installing Jekyll dependencies locally. **This is completely normal** and doesn't affect deployment. See `KNOWN_ISSUES.md` for details.
+**Recommended for this project**: Just edit your files and push to GitHub! No need to install Docker or deal with local setup.
 
-**Recommended**: Use Docker for local development (see below) or deploy directly to GitHub Pages where everything works perfectly.
+Since this is a small 3-page site, you can use the **Deploy-and-Preview** workflow:
+1. Edit files locally in your favorite editor
+2. `git push` to GitHub
+3. Wait ~1-2 minutes for GitHub Actions to build
+4. Preview your changes live!
+
+See `DEVELOPMENT.md` for details on this and other workflows.
+
+*Note: If you want full local development with live reload, Docker is available (see below), but it's optional for a site this size.*
 
 ## Prerequisites
 
@@ -20,45 +28,44 @@ Choose one of the following:
 - Node.js (14 or higher)
 - Bundler (`gem install bundler`)
 
-## Local Development
+## Quick Start
 
-### Using Docker (Recommended)
+### 1. Install Node.js Dependencies (One-time)
 
-1. **First-time setup**: Just have Docker installed
+```bash
+npm install
+```
 
-2. **Run the site**:
-   ```bash
-   docker-compose up
-   ```
+### 2. Development Workflow
 
-3. **Visit**: http://localhost:4000
+**Option A: Deploy-and-Preview (Simplest - No Setup!)**
+```bash
+# Edit your files, then:
+git add .
+git commit -m "Your changes"
+git push origin main
 
-That's it! Docker handles all dependencies automatically.
+# Wait ~1-2 minutes, view at https://darijx.com
+```
 
-### Using Native Installation
+**Option B: Preview Tailwind CSS Changes Locally**
+```bash
+# Rebuild CSS after making style changes
+npm run build:css
 
-**Note**: May not work on macOS ARM. See `KNOWN_ISSUES.md` for workarounds.
+# Open files in browser or use Python server
+python3 -m http.server 4000
+```
 
-1. Install Ruby dependencies:
-   ```bash
-   bundle install
-   ```
+**Option C: Full Local Development with Docker** (Optional)
+```bash
+docker-compose up
+# Visit http://localhost:4000
+```
 
-2. Install Node.js dependencies:
-   ```bash
-   npm install
-   ```
+See `DEVELOPMENT.md` for detailed workflow information.
 
-3. Run both Jekyll and Tailwind in watch mode:
-   ```bash
-   npm run dev
-   ```
-
-This will:
-- Start Jekyll server at `http://localhost:4000`
-- Watch for Tailwind CSS changes and rebuild automatically
-
-### Individual Commands
+### Build Commands
 
 - Build Tailwind CSS: `npm run build:css`
 - Watch Tailwind CSS: `npm run watch:css`

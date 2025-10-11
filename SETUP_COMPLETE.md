@@ -71,14 +71,23 @@ darjix/
 
 ## Next Steps
 
-### 1. Test Locally (Optional)
+### 1. Choose Your Development Workflow
 
-Using Docker (recommended for macOS ARM):
+**Recommended: Deploy-and-Preview** (No local setup needed!)
+- Edit files → Push to GitHub → Preview live in 1-2 minutes
+- Perfect for a 3-page site like this
+- See `DEVELOPMENT.md` for details
+
+**Alternative: Docker** (Optional)
 ```bash
-docker-compose up
+docker-compose up  # Full local development
 ```
 
-Then visit: http://localhost:4000
+**Alternative: Quick CSS Preview** (Lightest option)
+```bash
+npm run build:css
+python3 -m http.server 4000
+```
 
 ### 2. Deploy to GitHub Pages
 
