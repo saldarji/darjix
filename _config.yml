@@ -1,0 +1,40 @@
+# Site settings
+title: Darijx
+description: >-
+  Welcome to Darijx.com - a modern static site built with Jekyll and Tailwind CSS.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://darijx.com" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - tailwind.config.js
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+# Collections (optional - uncomment if you need them)
+# collections:
+#   posts:
+#     output: true
+#     permalink: /blog/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
