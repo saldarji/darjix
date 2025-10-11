@@ -1,0 +1,27 @@
+{
+  "name": "darijx",
+  "version": "1.0.0",
+  "description": "Darijx.com - Static site with Jekyll and Tailwind CSS",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css",
+    "watch:css": "tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css --watch",
+    "build:jekyll": "bundle exec jekyll build",
+    "serve:jekyll": "bundle exec jekyll serve --livereload",
+    "dev": "concurrently \"npm run watch:css\" \"npm run serve:jekyll\"",
+    "build:production": "NODE_ENV=production tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css --minify && bundle exec jekyll build"
+  },
+  "keywords": [
+    "jekyll",
+    "tailwindcss",
+    "static-site"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
+  }
+}
+
