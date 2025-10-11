@@ -10,8 +10,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Tailwind source (we'll commit the compiled CSS)
-assets/css/tailwind.css
+# We commit the compiled CSS for GitHub Pages compatibility
+# If using GitHub Actions, you can ignore assets/css/style.css instead
 
 # OS files
 .DS_Store
