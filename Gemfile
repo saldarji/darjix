@@ -3,15 +3,18 @@ source "https://rubygems.org"
 # Jekyll
 gem "jekyll", "~> 4.3"
 
-# GitHub Pages compatibility
-gem "github-pages", group: :jekyll_plugins
-
 # Jekyll plugins
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
+  gem "jekyll-feed", "~> 0.17"
+  gem "jekyll-seo-tag", "~> 2.8"
+  gem "jekyll-sitemap", "~> 1.4"
 end
+
+# GitHub Pages - only needed for CI/CD, commented out for local dev
+# gem "github-pages", group: :jekyll_plugins
+
+# Required for Jekyll 4.3+
+gem "webrick", "~> 1.8"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
