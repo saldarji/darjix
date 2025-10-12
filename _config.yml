@@ -1,7 +1,7 @@
 # Site settings
 title: Darjix
 description: >-
-  Welcome to Darjix.com - a modern static site built with Jekyll and Tailwind CSS.
+  A minimalist blog about design, development, and clear thinking.
 baseurl: "/darjix" # the subpath of your site, e.g. /blog
 url: "https://saldarji.github.io" # the base hostname & protocol for your site
 
@@ -28,11 +28,10 @@ exclude:
   - Gemfile.lock
   - vendor/
 
-# Collections (optional - uncomment if you need them)
-# collections:
-#   posts:
-#     output: true
-#     permalink: /blog/:title/
+# Blog settings
+permalink: /:year/:month/:day/:title/
+paginate: 10
+paginate_path: "/page:num/"
 
 # Defaults
 defaults:

@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Typography for blog posts */
+@layer base {
+  .prose {
+    @apply text-gray-800 leading-relaxed;
+  }
+  
+  .prose h1 {
+    @apply text-3xl font-bold text-black mt-8 mb-4;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold text-black mt-8 mb-4;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-bold text-black mt-6 mb-3;
+  }
+  
+  .prose p {
+    @apply mb-4 text-lg;
+  }
+  
+  .prose a {
+    @apply text-black underline;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-4 ml-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 px-2 py-1 text-sm font-mono;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 p-4 overflow-x-auto my-4;
+  }
+  
+  .prose blockquote {
+    @apply border-l-2 border-black pl-6 italic my-6;
+  }
+}
+
 /* Custom styles */
 @layer components {
   /* Add your custom component styles here */
@@ -10,4 +57,3 @@
 @layer utilities {
   /* Add your custom utility classes here */
 }
-
