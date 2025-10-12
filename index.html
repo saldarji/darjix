@@ -38,7 +38,7 @@ title: Home
           <!-- Regular Posts -->
           {% assign regular_posts = site.posts | where: "pinned", nil %}
           {% for post in regular_posts %}
-          <article class="border-b border-gray-200 pb-12">
+          <article class="pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
             </time>
