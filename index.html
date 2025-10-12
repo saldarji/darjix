@@ -3,29 +3,74 @@ layout: default
 title: Home
 ---
 
-<!-- Blog Posts -->
+<!-- Two Column Layout -->
 <section class="py-16 bg-white">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="space-y-12">
-      {% for post in site.posts %}
-      <article class="border-b border-gray-200 pb-12">
-        <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
-          {{ post.date | date: "%B %d, %Y" }}
-        </time>
-        <h2 class="text-2xl md:text-3xl font-bold text-black mt-2 mb-4">
-          {{ post.title }}
-        </h2>
-        <div class="prose prose-lg">
-          {{ post.content }}
-        </div>
-      </article>
-      {% endfor %}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       
-      {% if site.posts.size == 0 %}
-      <p class="text-gray-600 text-center py-12">
-        No posts yet. Check back soon.
-      </p>
-      {% endif %}
+      <!-- Main Content - Left Side -->
+      <div class="lg:col-span-2">
+        <div class="space-y-12">
+          {% for post in site.posts %}
+          <article class="border-b border-gray-200 pb-12">
+            <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+            <h2 class="text-2xl md:text-3xl font-bold text-black mt-2 mb-4">
+              {{ post.title }}
+            </h2>
+            <div class="prose prose-lg">
+              {{ post.content }}
+            </div>
+          </article>
+          {% endfor %}
+          
+          {% if site.posts.size == 0 %}
+          <p class="text-gray-600 text-center py-12">
+            No posts yet. Check back soon.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Sidebar - Right Side -->
+      <aside class="lg:col-span-1">
+        <!-- Recent Posts -->
+        <div class="mb-12">
+          <h3 class="text-lg font-bold text-black mb-4">Recent Posts</h3>
+          <ul class="space-y-3">
+            {% for post in site.posts limit:5 %}
+            <li>
+              <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
+                {{ post.title }}
+              </a>
+              <div class="text-xs text-gray-500 mt-1">
+                {{ post.date | date: "%B %d, %Y" }}
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <!-- Archives -->
+        <div>
+          <h3 class="text-lg font-bold text-black mb-4">Archives</h3>
+          <ul class="space-y-2">
+            {% assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+            {% for year in postsByYear %}
+              {% assign postsByMonth = year.items | group_by_exp: "post", "post.date | date: '%B %Y'" %}
+              {% for month in postsByMonth %}
+              <li>
+                <a href="#{{ month.name | slugify }}" class="text-gray-600 hover:text-black text-sm">
+                  {{ month.name }} ({{ month.items.size }})
+                </a>
+              </li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+      
     </div>
   </div>
 </section>
