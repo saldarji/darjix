@@ -70,17 +70,6 @@ title: Contact
           Send Message
         </button>
       </form>
-      
-      <div class="mt-6 p-4 bg-gray-50 border border-gray-200">
-        <p class="text-sm text-gray-700 font-bold mb-2">Setup Instructions:</p>
-        <ol class="text-sm text-gray-600 space-y-1 list-decimal list-inside">
-          <li>Sign up at <a href="https://www.emailjs.com" target="_blank" rel="noopener" class="text-black underline">emailjs.com</a></li>
-          <li>Create an email service (Gmail, Outlook, etc.)</li>
-          <li>Create an email template with variables: from_name, from_email, message</li>
-          <li>Get your Public Key, Service ID, and Template ID</li>
-          <li>Replace the placeholders in the script below</li>
-        </ol>
-      </div>
     </div>
   </div>
 </section>
@@ -90,7 +79,7 @@ title: Contact
 <script>
   // Initialize EmailJS with your Public Key
   (function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+    emailjs.init("jOuG6ikirNz-xjfu-");
   })();
 
   // Handle form submission
@@ -107,8 +96,8 @@ title: Contact
     
     // Send email using EmailJS
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',    // Replace with your EmailJS Service ID
-      'YOUR_TEMPLATE_ID',   // Replace with your EmailJS Template ID
+      'service_s5rlaev',
+      'template_fquwoyo',
       this
     )
     .then(function() {
