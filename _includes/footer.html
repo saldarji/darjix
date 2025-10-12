@@ -1,57 +1,16 @@
 <footer class="bg-white border-t border-gray-200 mt-12">
   <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- About Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-black tracking-wider uppercase">
-          About
-        </h3>
-        <p class="mt-4 text-base text-gray-600">
-          {{ site.description }}
-        </p>
-      </div>
-      
-      <!-- Links Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-black tracking-wider uppercase">
-          Links
-        </h3>
-        <ul class="mt-4 space-y-4">
-          <li>
-            <a href="{{ '/' | relative_url }}" class="text-base text-gray-600 hover:text-black">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="{{ '/about' | relative_url }}" class="text-base text-gray-600 hover:text-black">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="{{ '/contact' | relative_url }}" class="text-base text-gray-600 hover:text-black">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Social/Contact Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-black tracking-wider uppercase">
-          Connect
-        </h3>
-        <ul class="mt-4 space-y-4">
-          <li>
-            <a href="mailto:hello@darjix.com" class="text-base text-gray-600 hover:text-black">
-              Email
-            </a>
-          </li>
-          <!-- Add more social links as needed -->
-        </ul>
-      </div>
+    <!-- About Section -->
+    <div class="text-center mb-8">
+      <h3 class="text-sm font-semibold text-black tracking-wider uppercase mb-4">
+        About
+      </h3>
+      <p class="text-base text-gray-600 max-w-2xl mx-auto">
+        {{ site.description }}
+      </p>
     </div>
     
-    <div class="mt-8 border-t border-gray-200 pt-8">
+    <div class="border-t border-gray-200 pt-8">
       <p class="text-base text-gray-600 text-center">
         &copy; {{ 'now' | date: "%Y" }} {{ site.title }}
       </p>

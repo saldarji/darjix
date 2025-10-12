@@ -1,7 +1,7 @@
 # Site settings
 title: DARJIX
 description: >-
-  A minimalist blog about design, development, and clear thinking.
+  A site about AI and education technology.
 baseurl: "/darjix" # the subpath of your site, e.g. /blog
 url: "https://saldarji.github.io" # the base hostname & protocol for your site
 
