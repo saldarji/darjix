@@ -14,20 +14,120 @@ title: Contact
       </p>
     </div>
     
+    <!-- Success/Error Messages -->
+    <div id="form-message" class="mb-6 p-4 rounded hidden"></div>
+    
     <!-- Contact Form -->
-    <div class="w-full">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLScaBrd38rNAnKKiW8vDk5YObaJsv2g8D922f5FgrKBvUwpBEA/viewform?embedded=true" 
-        width="100%" 
-        height="800" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        class="border border-gray-200"
-      >
-        Loading…
-      </iframe>
+    <div>
+      <form id="contact-form" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-bold text-black mb-2">
+            Name
+          </label>
+          <input 
+            type="text" 
+            id="name" 
+            name="from_name" 
+            required
+            class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-black"
+            placeholder="Your name"
+          >
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-bold text-black mb-2">
+            Email
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="from_email" 
+            required
+            class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-black"
+            placeholder="your@email.com"
+          >
+        </div>
+        
+        <div>
+          <label for="message" class="block text-sm font-bold text-black mb-2">
+            Message
+          </label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="6" 
+            required
+            class="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-black"
+            placeholder="Your message..."
+          ></textarea>
+        </div>
+        
+        <button 
+          type="submit"
+          id="submit-btn"
+          class="bg-black text-white px-6 py-2 font-medium hover:bg-gray-800 transition disabled:opacity-50"
+        >
+          Send Message
+        </button>
+      </form>
+      
+      <div class="mt-6 p-4 bg-gray-50 border border-gray-200">
+        <p class="text-sm text-gray-700 font-bold mb-2">Setup Instructions:</p>
+        <ol class="text-sm text-gray-600 space-y-1 list-decimal list-inside">
+          <li>Sign up at <a href="https://www.emailjs.com" target="_blank" rel="noopener" class="text-black underline">emailjs.com</a></li>
+          <li>Create an email service (Gmail, Outlook, etc.)</li>
+          <li>Create an email template with variables: from_name, from_email, message</li>
+          <li>Get your Public Key, Service ID, and Template ID</li>
+          <li>Replace the placeholders in the script below</li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- EmailJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your Public Key
+  (function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+  })();
+
+  // Handle form submission
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+    
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formMessage.classList.add('hidden');
+    
+    // Send email using EmailJS
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',    // Replace with your EmailJS Service ID
+      'YOUR_TEMPLATE_ID',   // Replace with your EmailJS Template ID
+      this
+    )
+    .then(function() {
+      // Success
+      formMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+      formMessage.className = 'mb-6 p-4 rounded bg-green-50 border border-green-200 text-green-800';
+      formMessage.classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }, function(error) {
+      // Error
+      formMessage.textContent = 'Failed to send message. Please try again or email me directly.';
+      formMessage.className = 'mb-6 p-4 rounded bg-red-50 border border-red-200 text-red-800';
+      formMessage.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+      console.error('EmailJS error:', error);
+    });
+  });
+</script>
 
