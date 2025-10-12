@@ -32,8 +32,14 @@
     @apply text-black underline;
   }
   
-  .prose ul, .prose ol {
+  .prose ul {
     @apply my-4 ml-6;
+    list-style-type: disc;
+  }
+  
+  .prose ol {
+    @apply my-4 ml-6;
+    list-style-type: decimal;
   }
   
   .prose li {
