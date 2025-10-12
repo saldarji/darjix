@@ -30,15 +30,10 @@ title: Home
           </article>
           {% endfor %}
           
-          <!-- Divider between pinned and regular posts -->
-          {% if pinned_posts.size > 0 %}
-          <hr class="border-t-2 border-gray-300 my-12">
-          {% endif %}
-          
           <!-- Regular Posts -->
           {% assign regular_posts = site.posts | where: "pinned", nil %}
           {% for post in regular_posts %}
-          <article class="pb-12">
+          <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
             </time>
