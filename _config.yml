@@ -1,7 +1,7 @@
 # Site settings
-title: Darijx
+title: Darjix
 description: >-
-  Welcome to Darijx.com - a modern static site built with Jekyll and Tailwind CSS.
+  Welcome to Darjix.com - a modern static site built with Jekyll and Tailwind CSS.
 baseurl: "/darjix" # the subpath of your site, e.g. /blog
 url: "https://saldarji.github.io" # the base hostname & protocol for your site
 

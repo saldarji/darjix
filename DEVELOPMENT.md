@@ -167,5 +167,5 @@ Check your build status:
 
 ---
 
-**Bottom Line**: For a 3-page site like darijx.com, you really don't need Docker. Just edit, push, and preview live! 🚀
+**Bottom Line**: For a 3-page site like darjix.com, you really don't need Docker. Just edit, push, and preview live! 🚀
 

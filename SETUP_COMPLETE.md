@@ -1,6 +1,6 @@
 # 🎉 Setup Complete!
 
-Your Jekyll + Tailwind CSS + GitHub Pages site for **darijx.com** is ready!
+Your Jekyll + Tailwind CSS + GitHub Pages site for **darjix.com** is ready!
 
 ## What's Been Set Up
 
@@ -108,7 +108,7 @@ git push -u origin main
 
 ### 4. Configure Your Domain
 
-If you own darijx.com, add these DNS records:
+If you own darjix.com, add these DNS records:
 
 **A Records (all four):**
 ```
@@ -124,7 +124,7 @@ www → saldarji.github.io
 ```
 
 Then in GitHub repository settings → Pages:
-- Custom domain: `darijx.com`
+- Custom domain: `darjix.com`
 - Enable "Enforce HTTPS"
 
 ## Important Files to Customize
@@ -188,5 +188,5 @@ If you encounter any issues:
 
 **Your site is production-ready and waiting to be deployed! 🎉**
 
-Good luck with darijx.com!
+Good luck with darjix.com!
 

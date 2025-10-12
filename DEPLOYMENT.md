@@ -13,7 +13,7 @@ This guide explains how to deploy your Jekyll + Tailwind CSS site to GitHub Page
 ### Step 1: Create a GitHub Repository
 
 1. Go to [GitHub](https://github.com) and create a new repository
-2. Name it whatever you like (e.g., `darijx`)
+2. Name it whatever you like (e.g., `darjix`)
 3. Make it public (required for free GitHub Pages)
 4. Don't initialize with README (we already have one)
 
@@ -37,7 +37,7 @@ git push -u origin main
 
 ### Step 4: Configure Custom Domain (Optional)
 
-If you own darijx.com:
+If you own darjix.com:
 
 1. In your domain registrar's DNS settings, add these records:
    ```
@@ -63,7 +63,7 @@ If you own darijx.com:
    ```
 
 2. In GitHub repository settings → Pages → Custom domain:
-   - Enter: `darijx.com`
+   - Enter: `darjix.com`
    - Click Save
    - Wait for DNS check to pass (can take up to 48 hours)
    - Enable "Enforce HTTPS" once available
@@ -96,7 +96,7 @@ Check your latest deployment status:
 
 ## Viewing Your Site
 
-- **With custom domain**: https://darijx.com
+- **With custom domain**: https://darjix.com
 - **Without custom domain**: https://saldarji.github.io/darjix/
 
 Note: If using the default GitHub Pages URL (not a custom domain), you'll need to update `baseurl` in `_config.yml`:
