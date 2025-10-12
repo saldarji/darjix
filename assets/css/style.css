@@ -554,6 +554,10 @@ video {
   display: none;
 }
 
+html {
+  font-size: 15px;
+}
+
 .prose {
   line-height: 1.625;
   --tw-text-opacity: 1;
@@ -1206,6 +1210,11 @@ video {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  .sm\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1248,6 +1257,11 @@ video {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 
   .lg\:px-8 {

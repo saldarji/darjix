@@ -4,6 +4,10 @@
 
 /* Typography for blog posts */
 @layer base {
+  html {
+    font-size: 15px;
+  }
+  
   .prose {
     @apply text-gray-800 leading-relaxed;
   }
