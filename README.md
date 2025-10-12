@@ -92,10 +92,10 @@ The site automatically deploys to GitHub Pages when you push to the main branch.
 
 ### Quick Deployment Steps
 
-1. Create a GitHub repository
-2. Push your code: `git push origin main`
+1. Create a GitHub repository at https://github.com/saldarji/darjix
+2. Connect and push: `git remote add origin https://github.com/saldarji/darjix.git && git push -u origin main`
 3. Enable GitHub Pages with "GitHub Actions" as the source
-4. Done! Your site will build and deploy automatically
+4. Done! Your site will build and deploy automatically at https://darijx.com
 
 ## Troubleshooting
 

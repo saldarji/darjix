@@ -21,7 +21,7 @@ This guide explains how to deploy your Jekyll + Tailwind CSS site to GitHub Page
 
 ```bash
 # Add the remote repository
-git remote add origin https://github.com/YOUR-USERNAME/REPO-NAME.git
+git remote add origin https://github.com/saldarji/darjix.git
 
 # Push your code
 git push -u origin main
@@ -59,7 +59,7 @@ If you own darijx.com:
    
    Type: CNAME
    Name: www
-   Value: YOUR-USERNAME.github.io
+   Value: saldarji.github.io
    ```
 
 2. In GitHub repository settings → Pages → Custom domain:
@@ -97,12 +97,12 @@ Check your latest deployment status:
 ## Viewing Your Site
 
 - **With custom domain**: https://darijx.com
-- **Without custom domain**: https://YOUR-USERNAME.github.io/REPO-NAME/
+- **Without custom domain**: https://saldarji.github.io/darjix/
 
 Note: If using the default GitHub Pages URL (not a custom domain), you'll need to update `baseurl` in `_config.yml`:
 
 ```yaml
-baseurl: "/REPO-NAME"
+baseurl: "/darjix"
 ```
 
 ## Troubleshooting

@@ -92,10 +92,10 @@ python3 -m http.server 4000
 ### 2. Deploy to GitHub Pages
 
 ```bash
-# Create a GitHub repository at github.com
+# Create a GitHub repository at github.com/saldarji/darjix
 # Then connect and push:
 
-git remote add origin https://github.com/YOUR-USERNAME/REPO-NAME.git
+git remote add origin https://github.com/saldarji/darjix.git
 git push -u origin main
 ```
 
@@ -120,7 +120,7 @@ If you own darijx.com, add these DNS records:
 
 **CNAME Record:**
 ```
-www → YOUR-USERNAME.github.io
+www → saldarji.github.io
 ```
 
 Then in GitHub repository settings → Pages:
