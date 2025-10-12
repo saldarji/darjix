@@ -1,59 +1,8 @@
 <footer class="bg-white border-t border-gray-200 mt-12">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- About Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-          About
-        </h3>
-        <p class="mt-4 text-base text-gray-600">
-          {{ site.description }}
-        </p>
-      </div>
-      
-      <!-- Links Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-          Links
-        </h3>
-        <ul class="mt-4 space-y-4">
-          <li>
-            <a href="{{ '/' | relative_url }}" class="text-base text-gray-600 hover:text-gray-900">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="{{ '/about' | relative_url }}" class="text-base text-gray-600 hover:text-gray-900">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="{{ '/contact' | relative_url }}" class="text-base text-gray-600 hover:text-gray-900">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Social/Contact Section -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-          Connect
-        </h3>
-        <ul class="mt-4 space-y-4">
-          <li>
-            <a href="mailto:hello@darijx.com" class="text-base text-gray-600 hover:text-gray-900">
-              Email
-            </a>
-          </li>
-          <!-- Add more social links as needed -->
-        </ul>
-      </div>
-    </div>
-    
-    <div class="mt-8 border-t border-gray-200 pt-8">
-      <p class="text-base text-gray-500 text-center">
-        &copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.
+  <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <p class="text-sm text-gray-600">
+        &copy; {{ 'now' | date: "%Y" }} {{ site.title }}
       </p>
     </div>
   </div>
