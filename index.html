@@ -11,28 +11,19 @@ title: Home
       <!-- Main Content - Left Side -->
       <div class="lg:col-span-2">
         <div class="space-y-12">
-          <!-- Pinned Posts -->
-          {% assign pinned_posts = site.posts | where: "pinned", true %}
-          {% for post in pinned_posts %}
-          <article class="border-2 border-black p-6 mb-12">
-            <div class="text-xs font-bold text-black uppercase tracking-wider mb-2">
-              Pinned
+          <!-- Featured Content Box -->
+          <div class="border-2 border-black p-6 mb-12">
+            <div class="text-xs font-bold text-black uppercase tracking-wider mb-4">
+              What I'm Consuming
             </div>
-            <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
-              {{ post.date | date: "%B %d, %Y" }}
-            </time>
-            <h2 class="text-2xl md:text-3xl font-bold text-black mt-2 mb-4">
-              {{ post.title }}
-            </h2>
             <div class="prose prose-lg">
-              {{ post.content }}
+              {% capture featured_content %}{% include featured-content.md %}{% endcapture %}
+              {{ featured_content | markdownify }}
             </div>
-          </article>
-          {% endfor %}
+          </div>
           
-          <!-- Regular Posts -->
-          {% assign regular_posts = site.posts | where: "pinned", nil %}
-          {% for post in regular_posts %}
+          <!-- Blog Posts -->
+          {% for post in site.posts %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
@@ -60,8 +51,7 @@ title: Home
         <div class="mb-12">
           <h3 class="text-lg font-bold text-black mb-4">Recent Posts</h3>
           <ul class="space-y-3">
-            {% assign recent_posts = site.posts | where: "pinned", nil %}
-            {% for post in recent_posts limit:5 %}
+            {% for post in site.posts limit:5 %}
             <li>
               <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
                 {{ post.title }}
