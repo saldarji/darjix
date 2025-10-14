@@ -7,13 +7,12 @@
 - **Top P**: 0.9
 
 ## News API Settings
-- **Keywords**: (edtech OR "educational technology" OR "AI in education" OR "online learning") AND (startup OR funding OR innovation OR platform OR tool)
-- **Keywords in Title**: true
+- **Keywords**: educational technology
+- **Keywords in Title**: false
 - **Days Back**: 7
-- **Max Articles**: 15
+- **Max Articles**: 10
 - **Language**: en
 - **Sort By**: popularity
-- **Domains**: edsurge.com,techcrunch.com,edtechmagazine.com,the74million.org,insidehighered.com
 
 ## Prompt Template
 You are an expert in educational technology. Summarize the following recent news articles about edtech in a concise, engaging bulleted list format. For each item, include:
