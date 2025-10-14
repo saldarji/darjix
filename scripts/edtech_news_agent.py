@@ -128,30 +128,23 @@ def add_article_links(summary, articles):
     
     # Create a mapping of article numbers to URLs
     for i, article in enumerate(articles):
-        article_num = f"[{i+1}]"
-        # Find instances of the article title and make it a link
-        title = article['title']
+        article_num_pattern = f"\\[{i+1}\\]"
         url = article['url']
-        source = article['source']['name']
         
-        # Look for the article title (or significant part of it) and add link
-        # Pattern: Find the title text after the bullet and source reference
-        title_words = title.split()[:5]  # Use first 5 words to match
-        title_pattern = ' '.join(title_words)
-        
-        # Replace "* Title" with "* [Title](url)"
-        # More robust: look for the pattern after bullets
+        # Find lines with this article number and add link
         lines = summary.split('\n')
         updated_lines = []
         
         for line in lines:
-            if article_num in line and '(' not in line:  # Not already linked
-                # Extract the main headline part (usually ends with source in parentheses)
-                match = re.search(r'\*\s*(.+?)\s*\(', line)
-                if match:
-                    headline = match.group(1).strip()
-                    # Replace the headline with a linked version
-                    line = line.replace(headline, f"[{headline}]({url})", 1)
+            # Look for pattern: * [N] Title text
+            if f"[{i+1}]" in line and line.strip().startswith('*'):
+                # Extract everything after [N] until end of line or newline
+                match = re.search(rf'\*\s*\[{i+1}\]\s*(.+)$', line)
+                if match and '](http' not in line:  # Not already linked
+                    title_text = match.group(1).strip()
+                    # Replace the title with a linked version
+                    linked_title = f"* [{i+1}] [{title_text}]({url})"
+                    line = linked_title
             updated_lines.append(line)
         
         summary = '\n'.join(updated_lines)
