@@ -27,6 +27,9 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor/
+  - scripts/
+  - venv/
+  - .github/
 
 # Blog settings
 permalink: /:year/:month/:day/:title/
