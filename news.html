@@ -1,0 +1,52 @@
+---
+layout: default
+title: EdTech News - Darjix
+---
+
+<!-- EdTech News Preview Page -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+    
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-black mb-4">
+        EdTech News
+      </h1>
+      <p class="text-lg text-gray-600">
+        Automatically curated news about educational technology, powered by AI.
+      </p>
+    </div>
+    
+    <!-- News Content Box -->
+    <div class="border-2 border-black p-8">
+      <div class="prose prose-lg max-w-none">
+        {% capture featured_content %}{% include featured-content.md %}{% endcapture %}
+        {{ featured_content | markdownify }}
+      </div>
+    </div>
+    
+    <!-- Info Footer -->
+    <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-sm font-bold text-gray-800 uppercase tracking-wider mb-3">
+        About This Page
+      </h3>
+      <p class="text-sm text-gray-600 mb-3">
+        This page is automatically updated with recent news about educational technology. 
+        The content is fetched from various news sources and summarized using AI.
+      </p>
+      <p class="text-xs text-gray-500">
+        Agent powered by NewsAPI and Replicate (Llama 2 70B) • 
+        Last updated: {% include featured-content.md | split: '*Updated: ' | last | split: '*' | first %}
+      </p>
+    </div>
+    
+    <!-- Back Link -->
+    <div class="mt-8 text-center">
+      <a href="/" class="text-gray-600 hover:text-black text-sm">
+        ← Back to Home
+      </a>
+    </div>
+    
+  </div>
+</section>
+
