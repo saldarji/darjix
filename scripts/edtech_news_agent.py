@@ -41,10 +41,14 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
     # Parse news settings
     if match := re.search(r'\*\*Keywords\*\*:\s*(.+)', content):
         config['keywords'] = match.group(1).strip()
+    if match := re.search(r'\*\*Keywords in Title\*\*:\s*(true|false)', content, re.IGNORECASE):
+        config['keywords_in_title'] = match.group(1).lower() == 'true'
     if match := re.search(r'\*\*Days Back\*\*:\s*(\d+)', content):
         config['days_back'] = int(match.group(1))
     if match := re.search(r'\*\*Max Articles\*\*:\s*(\d+)', content):
         config['max_articles'] = int(match.group(1))
+    if match := re.search(r'\*\*Domains\*\*:\s*(.+)', content):
+        config['domains'] = match.group(1).strip()
     
     # Parse prompt template
     if match := re.search(r'## Prompt Template\n(.+?)(?=\n## )', content, re.DOTALL):
@@ -66,13 +70,25 @@ def fetch_news(config):
     
     from_date = datetime.now() - timedelta(days=config['days_back'])
     
-    articles = newsapi.get_everything(
-        q=config['keywords'],
-        from_param=from_date.strftime('%Y-%m-%d'),
-        language=config['language'],
-        sort_by=config['sort_by'],
-        page_size=config['max_articles']
-    )
+    # Build parameters based on config
+    params = {
+        'from_param': from_date.strftime('%Y-%m-%d'),
+        'language': config['language'],
+        'sort_by': config['sort_by'],
+        'page_size': config['max_articles']
+    }
+    
+    # Use qInTitle if specified, otherwise use q
+    if config.get('keywords_in_title', False):
+        params['qintitle'] = config['keywords']
+    else:
+        params['q'] = config['keywords']
+    
+    # Add domains filter if specified
+    if config.get('domains'):
+        params['domains'] = config['domains']
+    
+    articles = newsapi.get_everything(**params)
     
     return articles['articles']
 
