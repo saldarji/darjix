@@ -22,7 +22,7 @@ You are an expert in educational technology. Summarize the following recent news
 Focus on trends, product launches, funding news, and important developments.
 
 ## Output Settings
-- **Output File**: _includes/featured-content.md
+- **Output File**: _includes/edtech-news.md
 - **Section Title**: EdTech News This Week
 - **Update Frequency**: Weekly (Mondays)
 
