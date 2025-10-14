@@ -78,16 +78,18 @@ def fetch_news(config):
 
 def summarize_with_replicate(articles, config):
     """Summarize articles using Replicate"""
-    # Format articles for the prompt
+    # Format articles for the prompt with numbered references
     articles_text = "\n\n".join([
-        f"Title: {article['title']}\n"
+        f"[{i+1}] Title: {article['title']}\n"
         f"Source: {article['source']['name']}\n"
         f"Description: {article.get('description', 'N/A')}\n"
         f"URL: {article['url']}"
-        for article in articles
+        for i, article in enumerate(articles)
     ])
     
-    prompt = f"{config['prompt_template']}\n\nArticles:\n{articles_text}"
+    prompt = f"{config['prompt_template']}\n\n" \
+             f"IMPORTANT: Include the source article number [1], [2], etc. at the start of each bullet point.\n\n" \
+             f"Articles:\n{articles_text}"
     
     # Run the model - using the streaming format
     try:
@@ -103,6 +105,9 @@ def summarize_with_replicate(articles, config):
         
         # Replicate returns a generator, join the output
         result = "".join(str(item) for item in output)
+        
+        # Add links to the summary
+        result = add_article_links(result, articles)
         return result
     except Exception as e:
         print(f"⚠️  Replicate error: {e}")
@@ -113,7 +118,45 @@ def summarize_with_replicate(articles, config):
             config['model'],
             input={"prompt": prompt}
         )
-        return "".join(str(item) for item in output)
+        result = "".join(str(item) for item in output)
+        result = add_article_links(result, articles)
+        return result
+
+def add_article_links(summary, articles):
+    """Add markdown links to article titles in the summary"""
+    import re
+    
+    # Create a mapping of article numbers to URLs
+    for i, article in enumerate(articles):
+        article_num = f"[{i+1}]"
+        # Find instances of the article title and make it a link
+        title = article['title']
+        url = article['url']
+        source = article['source']['name']
+        
+        # Look for the article title (or significant part of it) and add link
+        # Pattern: Find the title text after the bullet and source reference
+        title_words = title.split()[:5]  # Use first 5 words to match
+        title_pattern = ' '.join(title_words)
+        
+        # Replace "* Title" with "* [Title](url)"
+        # More robust: look for the pattern after bullets
+        lines = summary.split('\n')
+        updated_lines = []
+        
+        for line in lines:
+            if article_num in line and '(' not in line:  # Not already linked
+                # Extract the main headline part (usually ends with source in parentheses)
+                match = re.search(r'\*\s*(.+?)\s*\(', line)
+                if match:
+                    headline = match.group(1).strip()
+                    # Replace the headline with a linked version
+                    line = line.replace(headline, f"[{headline}]({url})", 1)
+            updated_lines.append(line)
+        
+        summary = '\n'.join(updated_lines)
+    
+    return summary
 
 def update_website(summary, config):
     """Update the featured content file"""
