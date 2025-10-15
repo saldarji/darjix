@@ -10,17 +10,19 @@
 - **Keywords**: education OR "AI education" OR edtech
 - **Keywords in Title**: true
 - **Days Back**: 7
-- **Max Articles**: 5
+- **Max Articles**: 10
 - **Language**: en
 - **Sort By**: popularity
 
 ## Prompt Template
-You are an expert in educational technology. Summarize the following recent news articles about edtech in a concise, engaging bulleted list format. For each item, include:
-- A brief headline or key point
-- Why it matters to the edtech community
-- Keep each bullet to 2-3 sentences max
+You are an expert in educational technology. Summarize the following recent news articles about edtech in a concise, engaging ordered list format. For each item, include:
+- The headline for the article
+- Description / summary of the article focusing on why it matters
+- Keep each list item to 2-3 sentences max
 
-Focus on trends, product launches, funding news, and important developments.
+Focus on important developments in the field of education. Do NOT include it in the list if it is an opinion piece. No opinions. 
+
+Do not include any other formatting or text in the list.
 
 ## Output Settings
 - **Output File**: _includes/edtech-news.md
