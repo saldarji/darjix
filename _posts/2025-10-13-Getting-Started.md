@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Making Progress"
-date: 2025-10-11
+title: "Getting Started"
+date: 2025-10-13
 author: "Sal Darji"
 ---
 
