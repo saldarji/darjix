@@ -7,7 +7,7 @@ author: "Sal Darji"
 
 Cursor really takes over. I'm not complaining, I'm just saying it really gets things done. If you ask it a question, you’d better be ready for it to start committing code.
 
-### Info to Implementation
+## Info to Implementation
 
 I was having an issue with a news API pulling garbage. My prompt was purely informational. `What search parameters does this API offer?` I was trying to understand what options there were.
 
@@ -27,7 +27,7 @@ It skips the "do you want me to do this?" step. It sees the goal—getting bette
 
 That is a five-minute debug and optimization cycle completed in about five seconds.
 
-### The Risks
+## The Risks
 
 This bias for action is why I pay for the tool. It's fantastic.
 
