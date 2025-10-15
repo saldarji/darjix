@@ -144,7 +144,6 @@ def add_article_links(summary, articles):
     
     # Create a mapping of article numbers to URLs
     for i, article in enumerate(articles):
-        article_num_pattern = f"\\[{i+1}\\]"
         url = article['url']
         
         # Find lines with this article number and add link
@@ -152,15 +151,25 @@ def add_article_links(summary, articles):
         updated_lines = []
         
         for line in lines:
-            # Look for pattern: * [N] Title text
-            if f"[{i+1}]" in line and line.strip().startswith('*'):
-                # Extract everything after [N] until end of line or newline
-                match = re.search(rf'\*\s*\[{i+1}\]\s*(.+)$', line)
-                if match and '](http' not in line:  # Not already linked
-                    title_text = match.group(1).strip()
-                    # Replace the title with a linked version
-                    linked_title = f"* [{i+1}] [{title_text}]({url})"
-                    line = linked_title
+            # Look for various patterns: 
+            # Pattern 1: * [N] Title
+            # Pattern 2: N. Title [N]
+            # Pattern 3: [N] Title
+            
+            if f"[{i+1}]" in line and '](http' not in line:  # Has reference but not linked yet
+                # Pattern: N. Title [N]
+                match = re.search(rf'^(\d+\.)\s*(.+?)\s*\[{i+1}\]', line)
+                if match:
+                    num = match.group(1)
+                    title_text = match.group(2).strip()
+                    line = f"{num} [{title_text}]({url}) [{i+1}]"
+                else:
+                    # Pattern: * [N] Title
+                    match = re.search(rf'\*\s*\[{i+1}\]\s*(.+)$', line)
+                    if match:
+                        title_text = match.group(1).strip()
+                        line = f"* [{i+1}] [{title_text}]({url})"
+            
             updated_lines.append(line)
         
         summary = '\n'.join(updated_lines)

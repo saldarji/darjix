@@ -10,7 +10,7 @@
 - **Keywords**: educational technology
 - **Keywords in Title**: false
 - **Days Back**: 7
-- **Max Articles**: 10
+- **Max Articles**: 5
 - **Language**: en
 - **Sort By**: popularity
 
