@@ -7,8 +7,8 @@
 - **Top P**: 0.9
 
 ## News API Settings
-- **Keywords**: educational technology
-- **Keywords in Title**: false
+- **Keywords**: education OR "AI education" OR edtech
+- **Keywords in Title**: true
 - **Days Back**: 7
 - **Max Articles**: 5
 - **Language**: en
