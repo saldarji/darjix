@@ -1,11 +1,9 @@
 ---
 layout: post
 title: "Cursor's Bias For Action"
-date: 2025-10-11
+date: 2025-10-15
 author: "Sal Darji"
 ---
-
-## Cursor’s Bias for Action
 
 Cursor really takes over. I'm not complaining, I'm just saying it really gets things done. If you ask it a question, you’d better be ready for it to start committing code.
 
