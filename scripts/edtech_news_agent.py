@@ -180,31 +180,43 @@ def format_news_output(summary, articles):
     """Parse LLM output and format it exactly as requested"""
     import re
     
-    # Clean up the summary - remove any intro text
+    # Clean up the summary - remove intro text and find the numbered list
     lines = summary.split('\n')
     formatted_items = []
+    
+    # Find the start of the numbered list (skip intro text)
+    start_processing = False
     
     for line in lines:
         line = line.strip()
         if not line:
             continue
             
-        # Look for numbered items: "1. AI Analysis" or "1 AI Analysis"
-        match = re.match(r'^(\d+)\.?\s+(.+)$', line)
-        if match:
-            item_num = match.group(1)
-            ai_analysis = match.group(2).strip()
+        # Look for the start of numbered items
+        if re.match(r'^\d+\.?\s+', line):
+            start_processing = True
             
-            # Find the corresponding article
-            article_index = int(item_num) - 1
-            if 0 <= article_index < len(articles):
-                article = articles[article_index]
-                title = article['title']
-                url = article['url']
+        if start_processing:
+            # Look for numbered items: "1. AI Analysis" or "1 AI Analysis"
+            match = re.match(r'^(\d+)\.?\s+(.+)$', line)
+            if match:
+                item_num = match.group(1)
+                ai_analysis = match.group(2).strip()
                 
-                # Format as: #. [title with link] - AI analysis
-                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
-                formatted_items.append(formatted_item)
+                # Clean up the analysis - remove any remaining URL fragments
+                ai_analysis = re.sub(r'\[.*?\]', '', ai_analysis).strip()
+                ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
+                
+                # Find the corresponding article
+                article_index = int(item_num) - 1
+                if 0 <= article_index < len(articles) and ai_analysis:
+                    article = articles[article_index]
+                    title = article['title']
+                    url = article['url']
+                    
+                    # Format as: #. [title with link] - AI analysis
+                    formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
+                    formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
 
@@ -246,6 +258,7 @@ def main():
     print(f"🧠 Summarizing with {config['model']}...")
     summary = summarize_with_replicate(articles, config)
     print("✅ Summary generated")
+    print(f"📝 LLM Output Preview: {summary[:200]}...")
     
     # Update website
     print("💾 Updating website...")

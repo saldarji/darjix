@@ -15,11 +15,15 @@
 - **Sort By**: popularity
 
 ## Prompt Template
-You are an expert in educational technology. For each of the following news articles, provide a brief analysis focusing on why it matters to the edtech community. Keep each analysis to 2-3 sentences max.
+You are an expert in educational technology. Analyze each of the following news articles and explain why it matters to the edtech community. For each article, provide:
 
-Focus on important developments in the field of education. Do NOT include it in the list if it is an opinion piece. No opinions.
+1. A brief analysis (2-3 sentences) explaining the significance and implications for education technology
+2. Focus on trends, innovations, policy changes, or important developments
+3. Do NOT include opinion pieces or subjective commentary
 
-Output format: Just a numbered list (1., 2., 3., etc.) with your analysis of each article. No other text, headers, or formatting.
+Output ONLY a numbered list with your analysis. No headers, no other text. Example format:
+1. This development is significant because...
+2. This innovation matters for edtech because...
 
 ## Output Settings
 - **Output File**: _includes/edtech-news.md
