@@ -254,6 +254,7 @@ def main():
     print(f"🧠 Summarizing with {config['model']}...")
     summary = summarize_with_replicate(articles, config)
     print("✅ Summary generated")
+    print(f"📝 Raw LLM Output (first 500 chars): {summary[:500]}")
     
     # Update website
     print("💾 Updating website...")

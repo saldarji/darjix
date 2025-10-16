@@ -15,16 +15,11 @@
 - **Sort By**: popularity
 
 ## Prompt Template
-Summarize each of the following news articles in a natural, concise way. For each article, provide:
+Summarize each of the following news articles in a natural, concise way. For each article, provide a brief summary (1-2 sentences) of what the article is about. Focus on the key facts, developments, or news. Write as a natural news summary.
 
-1. A brief summary (1-2 sentences) of what the article is about
-2. Focus on the key facts, developments, or news
-3. Write as a natural news summary, not an analysis of significance
-4. Do NOT include opinion pieces or subjective commentary
-
-Output ONLY a numbered list with your summaries. No headers, no other text. Example format:
-1. [Natural summary of what happened]
-2. [Natural summary of what happened]
+Output ONLY a numbered list with your summaries. Do NOT include URLs or references. Example format:
+1. Article about education policy changes in New York City
+2. Study reveals how family size affects education spending
 
 ## Output Settings
 - **Output File**: _includes/edtech-news.md
