@@ -176,12 +176,46 @@ def add_article_links(summary, articles):
     
     return summary
 
-def update_website(summary, config):
-    """Update the featured content file"""
+def format_news_output(summary, articles):
+    """Parse LLM output and format it exactly as requested"""
+    import re
+    
+    # Clean up the summary - remove any intro text
+    lines = summary.split('\n')
+    formatted_items = []
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # Look for numbered items: "1. Title" or "1 Title"
+        match = re.match(r'^(\d+)\.?\s+(.+)$', line)
+        if match:
+            item_num = match.group(1)
+            content = match.group(2).strip()
+            
+            # Find the corresponding article
+            article_index = int(item_num) - 1
+            if 0 <= article_index < len(articles):
+                article = articles[article_index]
+                title = article['title']
+                url = article['url']
+                
+                # Format as: #. [title with link] - description
+                formatted_item = f"{item_num}. [{title}]({url}) - {content}"
+                formatted_items.append(formatted_item)
+    
+    return '\n'.join(formatted_items)
+
+def update_website(summary, articles, config):
+    """Update the featured content file with properly formatted content"""
+    formatted_summary = format_news_output(summary, articles)
+    
     content = f"""# EdTech News This Week
 *Updated: {datetime.now().strftime('%B %d, %Y')}*
 
-{summary}
+{formatted_summary}
 
 ---
 *This summary is automatically generated from recent edtech news sources.*
@@ -215,7 +249,7 @@ def main():
     
     # Update website
     print("💾 Updating website...")
-    update_website(summary, config)
+    update_website(summary, articles, config)
     
     print("🎉 Done!")
 

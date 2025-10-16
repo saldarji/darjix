@@ -15,14 +15,13 @@
 - **Sort By**: popularity
 
 ## Prompt Template
-You are an expert in educational technology. Summarize the following recent news articles about edtech in a concise, engaging ordered list format. For each item, include:
-- The headline for the article
-- Description / summary of the article focusing on why it matters
-- Keep each list item to 2-3 sentences max
+You are an expert in educational technology. Summarize the following recent news articles about edtech in a numbered list format. For each item, provide:
+- A brief description/summary of the article focusing on why it matters
+- Keep each description to 2-3 sentences max
 
-Focus on important developments in the field of education. Do NOT include it in the list if it is an opinion piece. No opinions. 
+Focus on important developments in the field of education. Do NOT include it in the list if it is an opinion piece. No opinions.
 
-Do not include any other formatting or text in the list.
+Output format: Just a numbered list (1., 2., 3., etc.) with descriptions only. No other text, headers, or formatting.
 
 ## Output Settings
 - **Output File**: _includes/edtech-news.md

@@ -1,20 +1,16 @@
 # EdTech News This Week
 *Updated: October 15, 2025*
 
- Here are the top 10 recent news articles about edtech, summarized in a concise and engaging format:
-
-1. [Vox] The real lesson of Zohran Mamdani’s education controversy: Mamdani's proposal to end New York City's "gifted and talented" program for kindergartners sparked debate, highlighting the importance of equity in education.
-2. [Phys.Org] How family size shapes education spending: A new study reveals that family size influences education spending, with implications for policymakers and educators.
-3. [TMZ] Twitch Star Fandy & Husband Discuss Live Stream Birth, Say It's Good Education: The couple's live stream of their child's birth sparked conversation about the role of technology in education and the importance of accessible educational content.
-4. [The Indian Express] Govts not spending enough on higher education: AICTE chairman: The chairman of the All India Council for Technical Education emphasized the importance of investing in higher education to drive economic growth.
-5. [Forbes] Can AI Help Make Education More Inclusive?: AI has the potential to enhance inclusion and close learning gaps in education, creating a more equitable future for all learners.
-6. [Project Syndicate] Afghanistan’s Ban on Girls’ Education Goes Online: Afghan girls and women are using online courses to evade the Taliban's ban on female secondary education, highlighting the potential of technology to overcome barriers to education.
-7. [Forbes] The World’s Teachers Are Quietly Redesigning Education From Within: A global survey of educators reveals their dedication to their students and craft, despite lacking recognition, and their efforts to redesign education from within.
-8. [Forbes] Brainly ClarityPods Add Mindfulness To An Education-First AI Platform: Brainly's ClarityPods integrate mindfulness into an education-first AI platform, providing micro-interventions, tutoring notes, and plans to keep students learning.
-9. [Thoughtcatalog.com] The Viral TikTok Bunny Turtle Dance, Is Actually A Satire About The Education System: The popular children's dance recital combining bunnies, turtles, and tortoises has a deeper meaning, shining a light on the flaws in the education system.
-10. [The Indian Express] In the grief over my father’s death, I found the relevance of my education: The author reflects on how their education helped them cope with grief and understand the networks of care and attention that sustain us.
-
-These articles highlight various aspects of edtech, including equity, accessibility, innovation, and the importance of investing in education. They also underscore the role of technology in enhancing inclusion, redesigning education, and providing meaningful learning experiences.
+1. [The real lesson of Zohran Mamdani’s education controversy](https://www.vox.com/politics/464138/zohran-mamdani-gifted-programs-education) - [](https://www.vox.com/politics/464138/zohran-mamdani-gifted-programs-education) [1]
+2. [How family size shapes education spending](https://phys.org/news/2025-10-family-size.html) - [](https://phys.org/news/2025-10-family-size.html) [2]
+3. [Twitch Star Fandy & Husband Discuss Live Stream Birth, Say It's Good Education](https://www.tmz.com/2025/10/08/fandy-bryan-hoffman-live-stream-birth-twitch/) - [](https://www.tmz.com/2025/10/08/fandy-bryan-hoffman-live-stream-birth-twitch/) [3]
+4. [Govts not spending enough on higher education: AICTE chairman](https://indianexpress.com/article/cities/pune/govts-not-spending-enough-on-higher-education-aicte-chairman-10298086/) - [](https://indianexpress.com/article/cities/pune/govts-not-spending-enough-on-higher-education-aicte-chairman-10298086/) [4]
+5. [Can AI Help Make Education More Inclusive?](https://www.forbes.com/sites/danfitzpatrick/2025/10/10/can-ai-help-make-education-more-inclusive/) - [](https://www.forbes.com/sites/danfitzpatrick/2025/10/10/can-ai-help-make-education-more-inclusive/) [5]
+6. [Afghanistan’s Ban on Girls’ Education Goes Online](https://www.project-syndicate.org/commentary/afghanistan-internet-shutdown-expanding-ban-on-girls-education-by-gordon-brown-2025-10) - [](https://www.project-syndicate.org/commentary/afghanistan-internet-shutdown-expanding-ban-on-girls-education-by-gordon-brown-2025-10) [6]
+7. [The World’s Teachers Are Quietly Redesigning Education From Within](https://www.forbes.com/sites/vickiphillips/2025/10/10/the-worlds-teachers-are-quietly-redesigning-education-from-within/) - [](https://www.forbes.com/sites/vickiphillips/2025/10/10/the-worlds-teachers-are-quietly-redesigning-education-from-within/) [7]
+8. [Brainly ClarityPods Add Mindfulness To An Education-First AI Platform](https://www.forbes.com/sites/rayravaglia/2025/10/10/brainly-claritypods-add-mindfulness-to-an-education-first-ai-platform/) - [](https://www.forbes.com/sites/rayravaglia/2025/10/10/brainly-claritypods-add-mindfulness-to-an-education-first-ai-platform/) [8]
+9. [The Viral TikTok Bunny Turtle Dance, Is Actually A Satire About The Education System](https://thoughtcatalog.com/nicole-stawiarski/2025/10/the-viral-tiktok-bunny-turtle-dance-is-actually-a-satire-about-the-education-system/) - [](https://thoughtcatalog.com/nicole-stawiarski/2025/10/the-viral-tiktok-bunny-turtle-dance-is-actually-a-satire-about-the-education-system/) [9]
+10. [In the grief over my father’s death, I found the relevance of my education](https://indianexpress.com/article/opinion/columns/fathers-death-grief-mourning-sociology-of-grief-education-10300655/) - [](https://indianexpress.com/article/opinion/columns/fathers-death-grief-mourning-sociology-of-grief-education-10300655/) [10]
 
 ---
 *This summary is automatically generated from recent edtech news sources.*
