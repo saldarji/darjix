@@ -227,9 +227,6 @@ def update_website(summary, articles, config):
 *Updated: {datetime.now().strftime('%B %d, %Y')}*
 
 {formatted_summary}
-
----
-*This summary is automatically generated from recent edtech news sources.*
 """
     
     with open(config['output_file'], 'w') as f:
