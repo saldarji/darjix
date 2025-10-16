@@ -209,9 +209,10 @@ def format_news_output(summary, articles):
                 article = articles[article_index]
                 title = article['title']
                 url = article['url']
+                source = article['source']['name']
                 
-                # Format as: #. [title with link] - AI analysis
-                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
+                # Format as: #. [title with link] - AI analysis [Source]
+                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis} [{source}]"
                 formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
