@@ -183,39 +183,36 @@ def format_news_output(summary, articles):
     lines = summary.split('\n')
     formatted_items = []
     
-    # Find the start of the numbered list (skip intro text)
-    start_processing = False
-    
     for line in lines:
         line = line.strip()
         if not line:
             continue
             
-        # Look for the start of numbered items
-        if re.match(r'^\d+\.?\s+', line):
-            start_processing = True
+        # Look for numbered items in various formats:
+        # Format 1: "1. Summary text"
+        # Format 2: "[1] Summary text"
+        match = re.match(r'^(\d+)\.?\s+(.+)$', line)
+        if not match:
+            match = re.match(r'^\[(\d+)\]\s+(.+)$', line)
+        
+        if match:
+            item_num = match.group(1)
+            ai_analysis = match.group(2).strip()
             
-        if start_processing:
-            # Look for numbered items: "1. AI Analysis" or "1 AI Analysis"
-            match = re.match(r'^(\d+)\.?\s+(.+)$', line)
-            if match:
-                item_num = match.group(1)
-                ai_analysis = match.group(2).strip()
+            # Clean up the analysis - remove any remaining URL fragments or references
+            ai_analysis = re.sub(r'\[.*?\]', '', ai_analysis).strip()
+            ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
+            
+            # Find the corresponding article
+            article_index = int(item_num) - 1
+            if 0 <= article_index < len(articles) and ai_analysis:
+                article = articles[article_index]
+                title = article['title']
+                url = article['url']
                 
-                # Clean up the analysis - remove any remaining URL fragments
-                ai_analysis = re.sub(r'\[.*?\]', '', ai_analysis).strip()
-                ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
-                
-                # Find the corresponding article
-                article_index = int(item_num) - 1
-                if 0 <= article_index < len(articles) and ai_analysis:
-                    article = articles[article_index]
-                    title = article['title']
-                    url = article['url']
-                    
-                    # Format as: #. [title with link] - AI analysis
-                    formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
-                    formatted_items.append(formatted_item)
+                # Format as: #. [title with link] - AI analysis
+                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
+                formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
 
