@@ -189,11 +189,11 @@ def format_news_output(summary, articles):
         if not line:
             continue
             
-        # Look for numbered items: "1. Title" or "1 Title"
+        # Look for numbered items: "1. AI Analysis" or "1 AI Analysis"
         match = re.match(r'^(\d+)\.?\s+(.+)$', line)
         if match:
             item_num = match.group(1)
-            content = match.group(2).strip()
+            ai_analysis = match.group(2).strip()
             
             # Find the corresponding article
             article_index = int(item_num) - 1
@@ -202,8 +202,8 @@ def format_news_output(summary, articles):
                 title = article['title']
                 url = article['url']
                 
-                # Format as: #. [title with link] - description
-                formatted_item = f"{item_num}. [{title}]({url}) - {content}"
+                # Format as: #. [title with link] - AI analysis
+                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis}"
                 formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
