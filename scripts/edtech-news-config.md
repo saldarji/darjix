@@ -1,8 +1,8 @@
 # EdTech News Agent Configuration
 
 ## Replicate Model Settings
-- **Model**: meta/llama-2-70b-chat
-- **Max Tokens**: 1024
+- **Model**: deepseek-ai/deepseek-r1
+- **Max Tokens**: 2048
 - **Temperature**: 0.7
 - **Top P**: 0.9
 

@@ -107,20 +107,19 @@ def summarize_with_replicate(articles, config):
              f"IMPORTANT: Include the source article number [1], [2], etc. at the start of each bullet point.\n\n" \
              f"Articles:\n{articles_text}"
     
-    # Run the model - using the streaming format
+    # Run the model - using the streaming format for Deepseek
     try:
-        output = replicate.run(
+        output = ""
+        for event in replicate.stream(
             config['model'],
             input={
                 "prompt": prompt,
-                "max_new_tokens": config['max_tokens'],
-                "temperature": config['temperature'],
-                "top_p": config['top_p'],
+                "max_tokens": config['max_tokens'],
             }
-        )
+        ):
+            output += str(event)
         
-        # Replicate returns a generator, join the output
-        result = "".join(str(item) for item in output)
+        result = output
         
         # Add links to the summary
         result = add_article_links(result, articles)
@@ -258,7 +257,6 @@ def main():
     print(f"🧠 Summarizing with {config['model']}...")
     summary = summarize_with_replicate(articles, config)
     print("✅ Summary generated")
-    print(f"📝 LLM Output Preview: {summary[:200]}...")
     
     # Update website
     print("💾 Updating website...")
