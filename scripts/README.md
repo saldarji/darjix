@@ -25,9 +25,21 @@ pip install -r scripts/requirements.txt
 
 Edit `scripts/edtech-news-config.md` to customize:
 - Model selection (Llama, Mistral, etc.)
-- Keywords to search for
+- **Multiple query strategies** - run different searches and combine results
+- Keywords and domains to search for
 - Output format and location
 - Prompt template
+
+**Multi-Query Feature:**
+The agent now supports multiple query strategies to get comprehensive coverage. For example:
+- **Query 1**: Policy & institutional news from education-focused domains
+- **Query 2**: Commercial & M&A news from business and education domains
+
+The agent automatically:
+- Runs each query strategy separately
+- Deduplicates articles by URL
+- Combines the best results
+- Sends them to the LLM for final selection
 
 ### 4. Run Locally
 

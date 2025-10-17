@@ -20,12 +20,13 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
         'max_tokens': 1024,
         'temperature': 0.7,
         'top_p': 0.9,
-        'keywords': 'edtech, educational technology, online learning',
         'days_back': 7,
-        'max_articles': 10,
+        'max_articles_per_query': 10,
+        'total_max_articles': 15,
         'language': 'en',
         'sort_by': 'relevancy',
         'output_file': '_includes/featured-content.md',
+        'query_strategies': []
     }
     
     # Parse model settings
@@ -39,16 +40,39 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
         config['top_p'] = float(match.group(1))
     
     # Parse news settings
-    if match := re.search(r'\*\*Keywords\*\*:\s*(.+)', content):
-        config['keywords'] = match.group(1).strip()
-    if match := re.search(r'\*\*Keywords in Title\*\*:\s*(true|false)', content, re.IGNORECASE):
-        config['keywords_in_title'] = match.group(1).lower() == 'true'
     if match := re.search(r'\*\*Days Back\*\*:\s*(\d+)', content):
         config['days_back'] = int(match.group(1))
-    if match := re.search(r'\*\*Max Articles\*\*:\s*(\d+)', content):
-        config['max_articles'] = int(match.group(1))
-    if match := re.search(r'\*\*Domains\*\*:\s*(.+)', content):
-        config['domains'] = match.group(1).strip()
+    if match := re.search(r'\*\*Max Articles Per Query\*\*:\s*(\d+)', content):
+        config['max_articles_per_query'] = int(match.group(1))
+    if match := re.search(r'\*\*Total Max Articles\*\*:\s*(\d+)', content):
+        config['total_max_articles'] = int(match.group(1))
+    if match := re.search(r'\*\*Sort By\*\*:\s*(.+)', content):
+        config['sort_by'] = match.group(1).strip()
+    
+    # Parse query strategies
+    strategy_pattern = r'## Query Strategy \d+:(.+?)(?=\n## Query Strategy \d+:|## Prompt Template|## Output Settings)'
+    strategies = re.findall(strategy_pattern, content, re.DOTALL)
+    
+    for strategy_text in strategies:
+        strategy = {}
+        if match := re.search(r'\*\*Domains\*\*:\s*(.+)', strategy_text):
+            strategy['domains'] = match.group(1).strip()
+        if match := re.search(r'\*\*Keywords\*\*:\s*(.+)', strategy_text):
+            strategy['keywords'] = match.group(1).strip()
+        if match := re.search(r'\*\*Keywords in Title\*\*:\s*(true|false)', strategy_text, re.IGNORECASE):
+            strategy['keywords_in_title'] = match.group(1).lower() == 'true'
+        if match := re.search(r'\*\*Focus\*\*:\s*(.+)', strategy_text):
+            strategy['focus'] = match.group(1).strip()
+        config['query_strategies'].append(strategy)
+    
+    # Fallback to single query if no strategies found
+    if not config['query_strategies']:
+        # Legacy single query support
+        if match := re.search(r'\*\*Keywords\*\*:\s*(.+)', content):
+            config['query_strategies'] = [{'keywords': match.group(1).strip()}]
+        if match := re.search(r'\*\*Domains\*\*:\s*(.+)', content):
+            if config['query_strategies']:
+                config['query_strategies'][0]['domains'] = match.group(1).strip()
     
     # Parse prompt template
     if match := re.search(r'## Prompt Template\n(.+?)(?=\n## )', content, re.DOTALL):
@@ -61,36 +85,62 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
     return config
 
 def fetch_news(config):
-    """Fetch news articles using NewsAPI"""
+    """Fetch news articles using NewsAPI with multiple query strategies"""
     api_key = os.environ.get('NEWS_API_KEY')
     if not api_key:
         raise ValueError("NEWS_API_KEY environment variable not set")
     
     newsapi = NewsApiClient(api_key=api_key)
-    
     from_date = datetime.now() - timedelta(days=config['days_back'])
     
-    # Build parameters based on config
-    params = {
-        'from_param': from_date.strftime('%Y-%m-%d'),
-        'language': config['language'],
-        'sort_by': config['sort_by'],
-        'page_size': config['max_articles']
-    }
+    all_articles = []
+    seen_urls = set()
     
-    # Use qInTitle if specified, otherwise use q
-    if config.get('keywords_in_title', False):
-        params['qintitle'] = config['keywords']
-    else:
-        params['q'] = config['keywords']
+    # Run each query strategy
+    for i, strategy in enumerate(config['query_strategies'], 1):
+        print(f"🔍 Running Query Strategy {i}: {strategy.get('focus', 'General search')}")
+        
+        # Build parameters based on strategy
+        params = {
+            'from_param': from_date.strftime('%Y-%m-%d'),
+            'language': config['language'],
+            'sort_by': config['sort_by'],
+            'page_size': config['max_articles_per_query']
+        }
+        
+        # Use qInTitle if specified, otherwise use q
+        if strategy.get('keywords_in_title', False):
+            params['qintitle'] = strategy['keywords']
+        else:
+            params['q'] = strategy['keywords']
+        
+        # Add domains filter if specified
+        if strategy.get('domains'):
+            params['domains'] = strategy['domains']
+        
+        try:
+            articles = newsapi.get_everything(**params)
+            
+            # Deduplicate by URL
+            new_count = 0
+            for article in articles['articles']:
+                url = article['url']
+                if url not in seen_urls:
+                    seen_urls.add(url)
+                    all_articles.append(article)
+                    new_count += 1
+            
+            print(f"   ✅ Found {len(articles['articles'])} articles ({new_count} new)")
+            
+        except Exception as e:
+            print(f"   ⚠️  Error in query {i}: {e}")
+            continue
     
-    # Add domains filter if specified
-    if config.get('domains'):
-        params['domains'] = config['domains']
+    # Sort by popularity and limit to total max articles
+    # Note: NewsAPI already returns sorted results, so we just take the first N
+    all_articles = all_articles[:config['total_max_articles']]
     
-    articles = newsapi.get_everything(**params)
-    
-    return articles['articles']
+    return all_articles
 
 def summarize_with_replicate(articles, config):
     """Summarize articles using Replicate"""
@@ -238,27 +288,28 @@ def main():
     # Parse configuration
     config = parse_config()
     print(f"📋 Config loaded: Using {config['model']}")
+    print(f"📊 Query Strategies: {len(config['query_strategies'])}")
     
     # Fetch news
-    print(f"📰 Fetching news articles...")
+    print(f"\n📰 Fetching news articles...")
     articles = fetch_news(config)
-    print(f"✅ Found {len(articles)} articles")
+    print(f"\n✅ Total unique articles found: {len(articles)}")
     
     if not articles:
         print("⚠️  No articles found. Exiting.")
         return
     
     # Summarize with Replicate
-    print(f"🧠 Summarizing with {config['model']}...")
+    print(f"\n🧠 Summarizing with {config['model']}...")
     summary = summarize_with_replicate(articles, config)
     print("✅ Summary generated")
     print(f"📝 Raw LLM Output (first 500 chars): {summary[:500]}")
     
     # Update website
-    print("💾 Updating website...")
+    print("\n💾 Updating website...")
     update_website(summary, articles, config)
     
-    print("🎉 Done!")
+    print("\n🎉 Done!")
 
 if __name__ == '__main__':
     main()
