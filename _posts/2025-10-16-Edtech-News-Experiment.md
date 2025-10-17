@@ -5,7 +5,7 @@ date: 2025-10-16
 author: "Sal Darji"
 ---
 
-I built n AI-powered news aggregator using Cursor. It automatically finds and summarizes the latest education technology news every week.
+I built an AI-powered news aggregator using Cursor. It automatically finds and summarizes the latest education technology news every week.
 
 ## How does it work?
 
