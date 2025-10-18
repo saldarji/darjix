@@ -325,7 +325,8 @@ def main():
             print(f"\n{i}. {article['title']}")
             print(f"   Source: {article['source']['name']}")
             print(f"   URL: {article['url']}")
-            print(f"   Description: {article.get('description', 'N/A')[:150]}...")
+            desc = article.get('description') or 'N/A'
+            print(f"   Description: {desc[:150]}{'...' if len(desc) > 150 else ''}")
         
         print("\n" + "="*80)
         print("✅ Test complete! Review articles above.")
