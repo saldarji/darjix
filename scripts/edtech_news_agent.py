@@ -283,7 +283,14 @@ def update_website(summary, articles, config):
     print(f"✅ Updated {config['output_file']}")
 
 def main():
+    import sys
+    
+    # Check for test mode
+    test_mode = '--test' in sys.argv or '-t' in sys.argv
+    
     print("🤖 EdTech News Agent Starting...")
+    if test_mode:
+        print("🧪 TEST MODE: Will fetch articles but NOT send to LLM")
     
     # Parse configuration
     config = parse_config()
@@ -297,6 +304,33 @@ def main():
     
     if not articles:
         print("⚠️  No articles found. Exiting.")
+        return
+    
+    # TEST MODE: Just display articles without LLM
+    if test_mode:
+        print("\n" + "="*80)
+        print("📋 ARTICLES FETCHED (Test Mode - No LLM Processing)")
+        print("="*80)
+        print(f"\nTotal Articles: {len(articles)}")
+        print(f"\nSources Breakdown:")
+        sources = {}
+        for article in articles:
+            source = article['source']['name']
+            sources[source] = sources.get(source, 0) + 1
+        for source, count in sorted(sources.items(), key=lambda x: x[1], reverse=True):
+            print(f"  - {source}: {count}")
+        
+        print(f"\n\nArticle List:")
+        for i, article in enumerate(articles, 1):
+            print(f"\n{i}. {article['title']}")
+            print(f"   Source: {article['source']['name']}")
+            print(f"   URL: {article['url']}")
+            print(f"   Description: {article.get('description', 'N/A')[:150]}...")
+        
+        print("\n" + "="*80)
+        print("✅ Test complete! Review articles above.")
+        print("Run without --test flag to process with LLM and update website.")
+        print("="*80)
         return
     
     # Summarize with Replicate
