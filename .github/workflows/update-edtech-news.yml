@@ -40,6 +40,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _includes/edtech-news.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech News - $(date +'%B %d, %Y')" && git push)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech News - $(date +'%B %d, %Y')" && git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main)
