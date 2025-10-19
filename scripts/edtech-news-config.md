@@ -14,7 +14,7 @@
 - **Sort By**: popularity
 
 ## Query Strategy 1: Policy & Institutional News
-- **Keywords**: "higher education" OR "education policy" OR "education funding" OR "edtech" OR "education reform" OR "college" OR "university" OR "student loans" OR "academic" OR "campus" OR "tuition" OR "enrollment" OR "student debt"
+- **Keywords**: "higher education" OR "education policy" OR "education funding" OR "edtech" OR "education reform" OR "student loans" OR "academic" OR "tuition" OR "enrollment" OR "student debt" OR "Department of Education" OR "federal education" OR "education legislation"
 - **Keywords in Title**: true
 - **Focus**: Major policy changes, funding announcements, institutional changes, significant edtech developments
 
@@ -37,10 +37,12 @@ REJECT articles that:
 - Mention education only tangentially or in passing
 - Are about other topics (government shutdowns, natural disasters, general politics) that happen to mention education
 - Are local news about specific schools or districts (unless nationally significant)
-- Are personal essays or opinion pieces
+- Are personal essays, opinion pieces, or first-person narratives ("I went to college...")
 - Are minor product updates or company announcements
 - Are routine obituaries or personnel changes
 - Are purely promotional content
+- Are personal finance stories about individual students
+- Are course listings or product reviews
 
 PRIORITIZE articles about:
 - Major US policy changes, funding announcements, and institutional changes

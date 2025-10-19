@@ -10,6 +10,13 @@ import replicate
 from datetime import datetime, timedelta
 from newsapi import NewsApiClient
 
+# Load environment variables from .env file if it exists
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not installed, use environment variables directly
+
 def parse_config(config_path='scripts/edtech-news-config.md'):
     """Parse configuration from markdown file"""
     with open(config_path, 'r') as f:
@@ -191,38 +198,8 @@ def add_article_links(summary, articles):
     """Add markdown links to article titles in the summary"""
     import re
     
-    # Create a mapping of article numbers to URLs
-    for i, article in enumerate(articles):
-        url = article['url']
-        
-        # Find lines with this article number and add link
-        lines = summary.split('\n')
-        updated_lines = []
-        
-        for line in lines:
-            # Look for various patterns: 
-            # Pattern 1: * [N] Title
-            # Pattern 2: N. Title [N]
-            # Pattern 3: [N] Title
-            
-            if f"[{i+1}]" in line and '](http' not in line:  # Has reference but not linked yet
-                # Pattern: N. Title [N]
-                match = re.search(rf'^(\d+\.)\s*(.+?)\s*\[{i+1}\]', line)
-                if match:
-                    num = match.group(1)
-                    title_text = match.group(2).strip()
-                    line = f"{num} [{title_text}]({url}) [{i+1}]"
-                else:
-                    # Pattern: * [N] Title
-                    match = re.search(rf'\*\s*\[{i+1}\]\s*(.+)$', line)
-                    if match:
-                        title_text = match.group(1).strip()
-                        line = f"* [{i+1}] [{title_text}]({url})"
-            
-            updated_lines.append(line)
-        
-        summary = '\n'.join(updated_lines)
-    
+    # Don't add links here - let format_news_output handle it
+    # This function was causing issues by trying to reformat LLM output
     return summary
 
 def format_news_output(summary, articles):
@@ -239,8 +216,9 @@ def format_news_output(summary, articles):
             continue
             
         # Look for numbered items in various formats:
-        # Format 1: "1. Summary text"
-        # Format 2: "[1] Summary text"
+        # Format 1: "1. [N] Summary text"
+        # Format 2: "1. Summary text [N]"
+        # Format 3: "[1] Summary text"
         match = re.match(r'^(\d+)\.?\s+(.+)$', line)
         if not match:
             match = re.match(r'^\[(\d+)\]\s+(.+)$', line)
@@ -249,21 +227,30 @@ def format_news_output(summary, articles):
             item_num = match.group(1)
             ai_analysis = match.group(2).strip()
             
-            # Clean up the analysis - remove any remaining URL fragments or references
-            ai_analysis = re.sub(r'\[.*?\]', '', ai_analysis).strip()
-            ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
+            # Extract article number from within the summary (e.g., [1], [11], [12])
+            article_num_match = re.search(r'\[(\d+)\]', ai_analysis)
+            if article_num_match:
+                article_index = int(article_num_match.group(1)) - 1
+            else:
+                # Fallback to using the list number
+                article_index = int(item_num) - 1
             
             # Find the corresponding article
-            article_index = int(item_num) - 1
-            if 0 <= article_index < len(articles) and ai_analysis:
+            if 0 <= article_index < len(articles):
                 article = articles[article_index]
                 title = article['title']
                 url = article['url']
                 source = article['source']['name']
                 
-                # Format as: #. [title with link] - AI analysis [Source]
-                formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis} [{source}]"
-                formatted_items.append(formatted_item)
+                # Remove the article number from the summary
+                ai_analysis = re.sub(r'\[(\d+)\]', '', ai_analysis).strip()
+                ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
+                
+                # Only add if there's actual summary text
+                if ai_analysis:
+                    # Format as: #. [title with link] - AI analysis [Source]
+                    formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis} [{source}]"
+                    formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
 
