@@ -25,7 +25,7 @@ We've built an entire system around pass/fail, A-F grades, but do they actually 
 
 # Other Highlights
 
-**Duet / SNHU** showed how they're using Google Meet transcripts with custom Gems to analyze student context, background, and mindset shifts. They're connecting with systems like Salesforce to track student performance throughout the term.
+[Duet / SNHU](https://www.duet.org) showed how they're using Google Meet transcripts with custom Gems to analyze student context, background, and mindset shifts. They're connecting with systems like Salesforce to track student performance throughout the term.
 
 Instructors are building their own AI agents since he can't integrate them into Moodle or Canvas. They are also developing their own content because they can't find suitable AI content elsewhere.
 

@@ -11,16 +11,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-paginate-v2
-
-# Pagination v2 configuration
-pagination:
-  enabled: true
-  per_page: 5
-  permalink: '/page/:num/'
-  title: ':title - page :num'
-  sort_field: 'date'
-  sort_reverse: true
 
 # GitHub Pages specific settings
 # Note: 'theme' is commented out since we're using custom layouts
