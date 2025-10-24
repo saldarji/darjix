@@ -1,6 +1,10 @@
 ---
 layout: default
 title: DARJIX
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
 ---
 
 <!-- Two Column Centered Layout -->
@@ -23,15 +27,7 @@ title: DARJIX
           </div>
           
           <!-- Blog Posts -->
-          {% assign posts_per_page = 5 %}
-          {% assign total_posts = site.posts.size %}
-          {% assign total_pages = total_posts | divided_by: posts_per_page | plus: 1 %}
-          {% assign current_page = 1 %}
-          
-          {% assign start_index = 0 %}
-          {% assign end_index = posts_per_page | minus: 1 %}
-          
-          {% for post in site.posts limit: posts_per_page offset: start_index %}
+          {% for post in paginator.posts %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
@@ -45,21 +41,48 @@ title: DARJIX
           </article>
           {% endfor %}
           
-          {% if site.posts.size == 0 %}
+          {% if paginator.posts.size == 0 %}
           <p class="text-gray-600 text-center py-12">
             No posts yet. Check back soon.
           </p>
           {% endif %}
           
-          <!-- Simple Pagination for GitHub Pages -->
-          {% if total_posts > posts_per_page %}
+          <!-- Pagination Navigation -->
+          {% if paginator.total_pages > 1 %}
           <nav class="flex justify-center items-center space-x-4 mt-12 pt-8 border-t border-gray-200">
-            <div class="text-sm text-gray-600">
-              Showing {{ start_index | plus: 1 }}-{{ end_index | plus: 1 }} of {{ total_posts }} posts
+            {% if paginator.previous_page %}
+              <a href="{{ paginator.previous_page_path | relative_url }}" 
+                 class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-black transition-colors">
+                ← Previous
+              </a>
+            {% endif %}
+            
+            <div class="flex space-x-2">
+              {% for page in (1..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                  <span class="px-3 py-2 text-sm font-medium text-white bg-black rounded-md">
+                    {{ page }}
+                  </span>
+                {% elsif page == 1 %}
+                  <a href="{{ '/' | relative_url }}" 
+                     class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-black transition-colors">
+                    {{ page }}
+                  </a>
+                {% else %}
+                  <a href="{{ site.paginate_path | replace: ':num', page | relative_url }}" 
+                     class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-black transition-colors">
+                    {{ page }}
+                  </a>
+                {% endif %}
+              {% endfor %}
             </div>
-            <div class="text-sm text-gray-500">
-              (Pagination coming soon)
-            </div>
+            
+            {% if paginator.next_page %}
+              <a href="{{ paginator.next_page_path | relative_url }}" 
+                 class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-black transition-colors">
+                Next →
+              </a>
+            {% endif %}
           </nav>
           {% endif %}
         </div>

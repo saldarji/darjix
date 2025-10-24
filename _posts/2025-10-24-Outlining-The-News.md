@@ -10,7 +10,7 @@ I asked Gemini to summarize an article I was looking at: [Joseph Aoun's Thoughts
 
 ## I. The Context: Major Challenges and the Need for a New Social Compact
 
-### A. The Age of Artificial Intelligence (AI) 🤖
+### A. The Age of Artificial Intelligence (AI)
 1.  AI is the "fourth transformational force" in history (after fire, steam, and electricity).
 2.  It threatens to automate both low- and high-skilled labor (e.g., legal research, data analysis, medical image interpretation).
 3.  The rise of AI is making knowledge itself a commodity that can be easily accessed.
@@ -51,7 +51,7 @@ I asked Gemini to summarize an article I was looking at: [Joseph Aoun's Thoughts
 1.  Co-operative education (co-op) and hands-on experience are more important than ever to hone human skills.
 2.  Learning in context (outside the classroom) is essential for integrating knowledge with real-world challenges.
 
-### B. Shifting to Lifelong Learning 💡
+### B. Shifting to Lifelong Learning
 1.  Universities must broaden their reach beyond undergraduate and graduate students to become engines for continuous learning throughout a person's life.
 2.  Educational offerings must be customized and personalized to meet the evolving needs of adult learners and employers.
 3.  The focus shifts from a single degree to providing continuous access to education over an entire lifetime.
