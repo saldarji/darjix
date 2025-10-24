@@ -4,7 +4,6 @@ title: "Outlining The News"
 date: 2025-10-24
 author: "Sal Darji"
 ---
-# Gemini Fail Leads to a Win
 I asked Gemini to summarize an article I was looking at: [Joseph Aoun's Thoughts on Higher Education](https://www.forbes.com/sites/johnwerner/2025/10/22/joseph-aouns-thoughts-on-higher-education-in-america-today/). Because it was behind a paywall, it declined to do so. However, it offered to look across the web and to create an outline based on other remarks that Dr. Aoun has made in the past. I thought the output was extremely useful, and I plan on using this approach more often.
 
 # Outline of Joseph Aoun's Thoughts on Higher Education in America Today
