@@ -10,8 +10,8 @@ group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"
 end
 
-# GitHub Pages - only needed for CI/CD, commented out for local dev
-# gem "github-pages", group: :jekyll_plugins
+# GitHub Pages compatibility (includes jekyll-paginate)
+gem "github-pages", group: :jekyll_plugins
 
 # Required for Jekyll 4.3+
 gem "webrick", "~> 1.8"
