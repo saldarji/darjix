@@ -8,20 +8,38 @@
 
 ## News API Settings
 - **Days Back**: 7
-- **Max Articles Per Query**: 15
-- **Total Max Articles**: 30
+- **Max Articles Per Query**: 8
+- **Total Max Articles**: 40
 - **Language**: en
 - **Sort By**: popularity
 
-## Query Strategy 1: Policy & Institutional News
-- **Keywords**: "higher education" OR "education policy" OR "education funding" OR "edtech" OR "education reform" OR "student loans" OR "academic" OR "tuition" OR "enrollment" OR "student debt" OR "Department of Education" OR "federal education" OR "education legislation"
-- **Keywords in Title**: true
-- **Focus**: Major policy changes, funding announcements, institutional changes, significant edtech developments
+## Blacklisted Sources
+- **Sources to Exclude**: fox news, foxnews.com, breitbart.com, infowars.com, theblaze.com, newsmax.com
 
-## Query Strategy 2: Commercial & M&A News
-- **Keywords**: "education company" OR "edtech" OR "Cengage" OR "McGraw Hill" OR "Blackboard" OR "2U" OR "Chegg" OR "Coursera" OR "Khan Academy" OR "Udemy" OR "edX" OR "education acquisition" OR "education merger" OR "education bankruptcy" OR "education IPO" OR "education investment" OR "education startup"
+## Query Strategy 1: AI in Education
+- **Keywords**: "AI education" OR "artificial intelligence" OR "machine learning" OR "ChatGPT" OR "AI tutoring" OR "intelligent tutoring" OR "adaptive learning" OR "AI assessment" OR "AI classroom" OR "AI teaching"
 - **Keywords in Title**: true
-- **Focus**: M&A activity, bankruptcies, private equity deals, commercial partnerships, company financials
+- **Focus**: AI applications, tools, and implementations in education
+
+## Query Strategy 2: EdTech Innovation
+- **Keywords**: "edtech" OR "education technology" OR "digital learning" OR "online learning platform" OR "learning management system" OR "educational software" OR "virtual reality education" OR "augmented reality learning" OR "learning app" OR "education software"
+- **Keywords in Title**: true
+- **Focus**: Technology tools and platforms for education
+
+## Query Strategy 3: Digital Learning & Outcomes
+- **Keywords**: "online education" OR "remote learning" OR "hybrid learning" OR "learning analytics" OR "educational data" OR "student engagement technology" OR "personalized learning" OR "digital classroom" OR "e-learning"
+- **Keywords in Title**: true
+- **Focus**: Digital learning methods and their effectiveness
+
+## Query Strategy 4: Education Technology Policy
+- **Keywords**: "education technology policy" OR "digital education funding" OR "AI education regulation" OR "edtech standards" OR "technology in schools" OR "digital divide education" OR "education data privacy" OR "AI ethics education"
+- **Keywords in Title**: true
+- **Focus**: Policy affecting technology adoption in education
+
+## Query Strategy 5: EdTech Market & Innovation
+- **Keywords**: "edtech startup" OR "education technology investment" OR "learning technology company" OR "educational AI" OR "edtech acquisition" OR "education software" OR "Khan Academy" OR "Coursera" OR "Udemy" OR "edX" OR "education technology funding"
+- **Keywords in Title**: true
+- **Focus**: Commercial developments in education technology
 
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.

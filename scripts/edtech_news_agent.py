@@ -89,6 +89,12 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
     if match := re.search(r'\*\*Output File\*\*:\s*(.+)', content):
         config['output_file'] = match.group(1).strip()
     
+    # Parse blacklisted sources
+    if match := re.search(r'\*\*Sources to Exclude\*\*:\s*(.+)', content):
+        config['blacklisted_sources'] = [s.strip() for s in match.group(1).split(',')]
+    else:
+        config['blacklisted_sources'] = []
+    
     return config
 
 def fetch_news(config):
@@ -128,10 +134,17 @@ def fetch_news(config):
         try:
             articles = newsapi.get_everything(**params)
             
-            # Deduplicate by URL
+            # Deduplicate by URL and filter blacklisted sources
             new_count = 0
             for article in articles['articles']:
                 url = article['url']
+                source_domain = article['source']['name'].lower()
+                
+                # Check if source is blacklisted (check both domain and name)
+                is_blacklisted = any(blacklisted in source_domain or blacklisted in article['source']['name'].lower() for blacklisted in config['blacklisted_sources'])
+                if is_blacklisted:
+                    continue
+                
                 if url not in seen_urls:
                     seen_urls.add(url)
                     all_articles.append(article)
@@ -269,6 +282,159 @@ def update_website(summary, articles, config):
     
     print(f"✅ Updated {config['output_file']}")
 
+def select_top_stories_batched(articles, config):
+    """Select top stories using batched LLM processing"""
+    
+    # Split articles into batches if too many
+    MAX_BATCH_SIZE = 15
+    if len(articles) <= MAX_BATCH_SIZE:
+        batches = [articles]
+    else:
+        batches = [articles[i:i+MAX_BATCH_SIZE] for i in range(0, len(articles), MAX_BATCH_SIZE)]
+    
+    all_selected = []
+    all_oddballs = []
+    
+    for i, batch in enumerate(batches):
+        print(f"🔍 Processing batch {i+1}/{len(batches)} ({len(batch)} articles)...")
+        
+        # Format articles for LLM
+        articles_text = ""
+        for j, article in enumerate(batch, 1):
+            articles_text += f"[{j}] {article['title']}\n"
+            articles_text += f"    Source: {article['source']['name']}\n"
+            articles_text += f"    Description: {article.get('description', 'N/A')}\n\n"
+        
+        selection_prompt = f"""Select the top 5-8 most relevant and interesting US education stories from the following articles.
+
+CRITICAL REQUIREMENTS:
+1. US-ONLY: Reject ALL international news (UK universities, Irish edtech, etc.)
+2. EDUCATION + TECHNOLOGY FOCUS: Prioritize articles about:
+   - AI/ML applications in education (ChatGPT, AI tutoring, adaptive learning)
+   - EdTech innovation (digital learning platforms, educational software, VR/AR in education)
+   - Technology's impact on teaching/learning outcomes
+   - Education technology policy and funding
+   - EdTech market developments (M&A, funding, startups)
+
+3. DIVERSITY: Avoid selecting multiple articles on the same topic/event. If there are multiple articles about the same story (e.g., ChatGPT Atlas), select only the BEST one.
+
+REJECT articles that:
+- Are about non-US education
+- Are course listings or product reviews
+- Are purely promotional content
+- Are routine obituaries or personnel changes
+- Lack clear education + technology focus
+- Are duplicates of already selected topics
+
+OUTPUT FORMAT:
+For each selected article, provide:
+[Article Number] [Title] - [1-2 sentence explanation of why it's relevant to US education + technology]
+
+Also identify any "oddball" stories (unusual AI applications, controversial tech implementations, unexpected education-tech partnerships) by adding "ODDBALL:" before the explanation.
+
+Articles:
+{articles_text}
+
+Selected Stories:"""
+
+        try:
+            output = replicate.run(
+                config['model'],
+                input={"prompt": selection_prompt, "max_tokens": 1024, "temperature": 0.3}
+            )
+            
+            result = "".join(str(item) for item in output)
+            selected, oddballs = parse_batched_selection(result, batch)
+            all_selected.extend(selected)
+            all_oddballs.extend(oddballs)
+            
+            print(f"  ✅ Selected {len(selected)} stories from batch")
+            if oddballs:
+                print(f"  🎯 Found {len(oddballs)} oddball stories")
+                
+        except Exception as e:
+            print(f"  ❌ Error processing batch: {e}")
+            # Fallback: select first few articles
+            fallback = batch[:5]
+            all_selected.extend([{'article': article, 'reason': 'Fallback selection'} for article in fallback])
+    
+    # Limit to top 8 total
+    final_selected = all_selected[:8]
+    final_oddball = all_oddballs[0] if all_oddballs else None
+    
+    return final_selected, final_oddball
+
+def parse_batched_selection(llm_output, articles):
+    """Parse LLM output to extract selected articles and oddballs"""
+    selected = []
+    oddballs = []
+    
+    lines = llm_output.split('\n')
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # Look for [N] format or N. format
+        match = re.match(r'^\[(\d+)\]\s+(.+?)(?:\s*-\s*(.+))?$', line)
+        if not match:
+            match = re.match(r'^(\d+)\.?\s+(.+?)(?:\s*-\s*(.+))?$', line)
+        
+        if not match:
+            continue
+            
+        article_num = int(match.group(1))
+        title = match.group(2).strip()
+        reason = match.group(3).strip() if match.group(3) else "Selected for relevance"
+        
+        # Check if it's an oddball
+        is_oddball = 'ODDBALL:' in reason
+        if is_oddball:
+            reason = reason.replace('ODDBALL:', '').strip()
+        
+        # Find the corresponding article
+        if 1 <= article_num <= len(articles):
+            article = articles[article_num - 1]
+            
+            # Verify title matches (fuzzy match)
+            if title.lower() in article['title'].lower() or article['title'].lower() in title.lower():
+                item = {'article': article, 'reason': reason}
+                
+                if is_oddball:
+                    oddballs.append(item)
+                else:
+                    selected.append(item)
+    
+    return selected, oddballs
+
+
+def update_website_with_scoring(top_stories, oddball_story, config):
+    """Update with top stories and oddball highlight"""
+    
+    content = f"""# EdTech News This Week
+*Updated: {datetime.now().strftime('%B %d, %Y')}*
+
+"""
+    
+    # Add top stories
+    for i, item in enumerate(top_stories, 1):
+        article = item['article']
+        reason = item['reason']
+        content += f"{i}. [{article['title']}]({article['url']}) - {reason} [{article['source']['name']}]\n"
+    
+    # Add oddball section if present
+    if oddball_story:
+        article = oddball_story['article']
+        reason = oddball_story['reason']
+        content += f"\n## Also Worth Noting\n\n"
+        content += f"[{article['title']}]({article['url']}) - {reason} [{article['source']['name']}]\n"
+    
+    with open(config['output_file'], 'w') as f:
+        f.write(content)
+    
+    print(f"✅ Updated {config['output_file']}")
+
 def main():
     import sys
     
@@ -321,15 +487,16 @@ def main():
         print("="*80)
         return
     
-    # Summarize with Replicate
-    print(f"\n🧠 Summarizing with {config['model']}...")
-    summary = summarize_with_replicate(articles, config)
-    print("✅ Summary generated")
-    print(f"📝 Raw LLM Output (first 500 chars): {summary[:500]}")
+    # Select top stories using batched approach
+    print(f"\n🔍 Selecting top stories with {config['model']}...")
+    top_stories, oddball_story = select_top_stories_batched(articles, config)
+    print(f"✅ Selected {len(top_stories)} top stories")
+    if oddball_story:
+        print(f"🎯 Found oddball story: {oddball_story['article']['title'][:50]}...")
     
     # Update website
     print("\n💾 Updating website...")
-    update_website(summary, articles, config)
+    update_website_with_scoring(top_stories, oddball_story, config)
     
     print("\n🎉 Done!")
 
