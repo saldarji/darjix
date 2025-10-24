@@ -1,3 +1,3 @@
-- Joseph Aoun’s Thoughts On Higher Education In America Today (https://www.forbes.com/sites/johnwerner/2025/10/22/joseph-aouns-thoughts-on-higher-education-in-america-today/) [Forbes]
-- [AI Playbook: Comprehensive Strategy for Higher Education](https://edtechmagazine.com/higher/article/2025/10/ai-playbook-comprehensive-strategy-higher-education-perfcon)[Edtech Magazine]
-- [How America's Elite Colleges Breed High-Status Careers- and Misery](https://apple.news/ASvJgD9XNRqm8TQ-V9GZJZw)[Mother Jones]
+- [Joseph Aoun’s Thoughts On Higher Education In America Today](https://www.forbes.com/sites/johnwerner/2025/10/22/joseph-aouns-thoughts-on-higher-education-in-america-today/) [Forbes]
+- [AI Playbook: Comprehensive Strategy for Higher Education](https://edtechmagazine.com/higher/article/2025/10/ai-playbook-comprehensive-strategy-higher-education-perfcon) [Edtech Magazine]
+- [How America's Elite Colleges Breed High-Status Careers- and Misery](https://apple.news/ASvJgD9XNRqm8TQ-V9GZJZw) [Mother Jones]
