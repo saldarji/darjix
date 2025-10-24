@@ -328,9 +328,9 @@ REJECT articles that:
 
 OUTPUT FORMAT:
 For each selected article, provide:
-[Article Number] [Title] - [1-2 sentence explanation of why it's relevant to US education + technology]
+[Article Number] [Title]
 
-Also identify any "oddball" stories (unusual AI applications, controversial tech implementations, unexpected education-tech partnerships) by adding "ODDBALL:" before the explanation.
+Also identify any "oddball" stories (unusual AI applications, controversial tech implementations, unexpected education-tech partnerships) by adding "ODDBALL:" before the title.
 
 Articles:
 {articles_text}
@@ -377,21 +377,20 @@ def parse_batched_selection(llm_output, articles):
             continue
             
         # Look for [N] format or N. format
-        match = re.match(r'^\[(\d+)\]\s+(.+?)(?:\s*-\s*(.+))?$', line)
+        match = re.match(r'^\[(\d+)\]\s+(.+)$', line)
         if not match:
-            match = re.match(r'^(\d+)\.?\s+(.+?)(?:\s*-\s*(.+))?$', line)
+            match = re.match(r'^(\d+)\.?\s+(.+)$', line)
         
         if not match:
             continue
             
         article_num = int(match.group(1))
         title = match.group(2).strip()
-        reason = match.group(3).strip() if match.group(3) else "Selected for relevance"
         
         # Check if it's an oddball
-        is_oddball = 'ODDBALL:' in reason
+        is_oddball = 'ODDBALL:' in title
         if is_oddball:
-            reason = reason.replace('ODDBALL:', '').strip()
+            title = title.replace('ODDBALL:', '').strip()
         
         # Find the corresponding article
         if 1 <= article_num <= len(articles):
@@ -399,7 +398,7 @@ def parse_batched_selection(llm_output, articles):
             
             # Verify title matches (fuzzy match)
             if title.lower() in article['title'].lower() or article['title'].lower() in title.lower():
-                item = {'article': article, 'reason': reason}
+                item = {'article': article}
                 
                 if is_oddball:
                     oddballs.append(item)
@@ -420,15 +419,15 @@ def update_website_with_scoring(top_stories, oddball_story, config):
     # Add top stories
     for i, item in enumerate(top_stories, 1):
         article = item['article']
-        reason = item['reason']
-        content += f"{i}. [{article['title']}]({article['url']}) - {reason} [{article['source']['name']}]\n"
+        description = article.get('description', 'No description available')
+        content += f"{i}. [{article['title']}]({article['url']}) - {description} [{article['source']['name']}]\n"
     
     # Add oddball section if present
     if oddball_story:
         article = oddball_story['article']
-        reason = oddball_story['reason']
+        description = article.get('description', 'No description available')
         content += f"\n## Also Worth Noting\n\n"
-        content += f"[{article['title']}]({article['url']}) - {reason} [{article['source']['name']}]\n"
+        content += f"[{article['title']}]({article['url']}) - {description} [{article['source']['name']}]\n"
     
     with open(config['output_file'], 'w') as f:
         f.write(content)
