@@ -13,15 +13,15 @@
   }
   
   .prose h1 {
-    @apply text-2xl font-bold text-black mt-8 mb-4;
+    @apply text-2xl font-semibold text-black mt-8 mb-4;
   }
   
   .prose h2 {
-    @apply text-xl font-bold text-black mt-8 mb-4;
+    @apply text-xl font-semibold text-black mt-8 mb-4;
   }
   
   .prose h3 {
-    @apply text-lg font-bold text-black mt-6 mb-3;
+    @apply text-lg font-semibold text-black mt-6 mb-3;
   }
   
   .prose p {
