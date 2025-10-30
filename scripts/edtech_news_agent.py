@@ -163,7 +163,7 @@ def fetch_news(config):
     
     return all_articles
 
-def summarize_with_replicate(articles, config):
+def summarize_with_replicate(articles, config, use_selection_prompt=False):
     """Summarize articles using Replicate"""
     # Format articles for the prompt with numbered references
     articles_text = "\n\n".join([
@@ -174,9 +174,25 @@ def summarize_with_replicate(articles, config):
         for i, article in enumerate(articles)
     ])
     
-    prompt = f"{config['prompt_template']}\n\n" \
-             f"IMPORTANT: Include the source article number [1], [2], etc. at the start of each bullet point.\n\n" \
-             f"Articles:\n{articles_text}"
+    # Use selection prompt for automatic selection, but summarization prompt for selected articles
+    if use_selection_prompt:
+        prompt = f"{config['prompt_template']}\n\n" \
+                 f"IMPORTANT: Include the source article number [1], [2], etc. at the start of each bullet point.\n\n" \
+                 f"Articles:\n{articles_text}"
+    else:
+        # Summarization prompt for pre-selected articles
+        prompt = f"""Summarize the following education technology news articles. For each article, provide a brief, engaging summary (1-2 sentences) that captures the key news, developments, or insights.
+
+IMPORTANT: 
+- Include the source article number [1], [2], etc. at the start of each summary
+- Write naturally as news summaries
+- Focus on what makes each story relevant and interesting
+- Keep summaries concise but informative
+
+Articles:
+{articles_text}
+
+Provide a numbered list with summaries for ALL articles."""
     
     # Run the model - using the streaming format for Deepseek
     try:
@@ -259,6 +275,8 @@ def format_news_output(summary, articles):
                 # Remove the article number from the summary
                 ai_analysis = re.sub(r'\[(\d+)\]', '', ai_analysis).strip()
                 ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
+                # Remove leading asterisks or other formatting markers
+                ai_analysis = re.sub(r'^\*+\s*', '', ai_analysis).strip()
                 
                 # Only add if there's actual summary text
                 if ai_analysis:
@@ -556,8 +574,15 @@ def load_selected_articles(selection_path, candidates_json_path='scripts/news_ca
                 if idx in idx_to_item:
                     selected.append(idx_to_item[idx])
             else:
+                # Try exact match first
                 if token in url_to_item:
                     selected.append(url_to_item[token])
+                else:
+                    # Try partial URL matching (in case of query params or trailing slashes)
+                    for url, item in url_to_item.items():
+                        if token in url or url in token:
+                            selected.append(item)
+                            break
 
     # Convert to the article shape expected by summarization/formatters
     articles = [
@@ -596,7 +621,24 @@ def main():
     print(f"📋 Config loaded: Using {config['model']}")
     print(f"📊 Query Strategies: {len(config['query_strategies'])}")
     
-    # Fetch news
+    # SUMMARIZE SELECTED: Use selection file to choose articles, then summarize
+    # Do this BEFORE fetching news to avoid unnecessary API calls
+    if summarize_from:
+        print("\n🧭 Loading selected articles...")
+        selected_articles = load_selected_articles(summarize_from)
+        if not selected_articles:
+            print("⚠️  No matching selections found. Exiting.")
+            return
+        print(f"✅ Loaded {len(selected_articles)} selected articles")
+
+        print(f"\n🧠 Summarizing with {config['model']}...")
+        summary = summarize_with_replicate(selected_articles, config, use_selection_prompt=False)
+        print("\n💾 Updating website...")
+        update_website(summary, selected_articles, config)
+        print("\n🎉 Done!")
+        return
+    
+    # Fetch news (only if not in summarize mode)
     print(f"\n📰 Fetching news articles...")
     articles = fetch_news(config)
     print(f"\n✅ Total unique articles found: {len(articles)}")
@@ -640,21 +682,6 @@ def main():
         print("\n🎉 Done!")
         return
 
-    # SUMMARIZE SELECTED: Use selection file to choose articles, then summarize
-    if summarize_from:
-        print("\n🧭 Loading selected articles...")
-        selected_articles = load_selected_articles(summarize_from)
-        if not selected_articles:
-            print("⚠️  No matching selections found. Exiting.")
-            return
-        print(f"✅ Loaded {len(selected_articles)} selected articles")
-
-        print(f"\n🧠 Summarizing with {config['model']}...")
-        summary = summarize_with_replicate(selected_articles, config)
-        print("\n💾 Updating website...")
-        update_website(summary, selected_articles, config)
-        print("\n🎉 Done!")
-        return
     
     # Default behavior (legacy): automatic selection + update
     print(f"\n🔍 Selecting top stories with {config['model']}...")

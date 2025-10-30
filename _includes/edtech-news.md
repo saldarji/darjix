@@ -1,25 +1,9 @@
 # EdTech News This Week
-*Updated: October 27, 2025*
+*Updated: October 30, 2025*
 
-1. [OpenAI Launches ChatGPT Atlas, Challenging Google Chrome With an AI-First Browser](https://www.cnet.com/tech/services-and-software/openai-launches-chatgpt-atlas-challenging-google-chrome-with-an-ai-first-browser/) - The browser is available now for MacOS users, with versions for Windows, iOS and Android coming later. [CNET]
-2. [Lingokids Named to 2026 GSV 150: Recognized Among the World’s Most Transformational Growth Companies in Digital Learning & Workforce Skills](https://www.globenewswire.com/news-release/2025/10/20/3169080/0/en/Lingokids-Named-to-2026-GSV-150-Recognized-Among-the-World-s-Most-Transformational-Growth-Companies-in-Digital-Learning-Workforce-Skills.html) - Lingokids has been named to the 2026 GSV 150, earning milestone recognition as one of the world’s most transformational growth companies in the sector....... [GlobeNewswire]
-3. [Universities (still) suck at learning analytics](https://beerc.wordpress.com/2025/10/22/universities-still-suck-at-learning-analytics/) - Colin Beer, 
-Col's Weblog, 
-Oct 24, 2025
-
-
- 
- 
-Why are universities are almost universally poor at implementing learning analytics? asks Colin Beer. To get at the answer he appeals to the theory of situational awareness (SA), and specifically, how "SA is cor… [Wordpress.com]
-4. [Coursera Is Just Not That Into You](https://onedtech.philhillaa.com/p/coursera-is-just-not-that-into-you) - Phil Hill, 
-On EdTech, 
-Oct 24, 2025
-
-
- 
- 
-The 'you' in question in the heading of this post is 'universities' (revealing an interesting designation of audience, but I digress). It comes on the heels of "the new 15% 'platform fee' (that) comes on top of de-e… [Philhillaa.com]
-
-## Also Worth Noting
-
-[DHS Asks OpenAI to Unmask User Behind ChatGPT Prompts, Possibly the First Such Case](https://gizmodo.com/dhs-asks-openai-to-unmask-user-behind-chatgpt-prompts-possibly-the-first-such-case-2000674472) - ChatGPT conversations are being probed as part of a child abuse case, a report says. [Gizmodo.com]
+- 2025-10-30: [EdTech Giant Chegg Slashes 45% of Workforce as AI Upends Business — But Its Stock Still Struggles](https://www.ibtimes.com/edtech-giant-chegg-slashes-45-workforce-ai-upends-business-its-stock-still-struggles-3788659) - Edtech leader Chegg lays off 45% of its workforce as AI-driven study tools disrupt its traditional homework-help model, sparking investor anxiety over its viability despite efforts to pivot—its stock remains mired in a slump. [International Business Times]
+- 2025-10-30: [Edtech platform Profential to sign with 600 institutions in the next 18 months](https://www.thehindubusinessline.com/info-tech/edtech-platform-profential-to-sign-with-600-institutions-in-the-next-18-months/article70204563.ece) - India-based Profential plans rapid expansion, targeting partnerships with 600 schools and universities in 18 months to scale its digital credentialing platform, aiming to boost employability through a unified skills-tracking ecosystem. [BusinessLine]
+- 2025-10-30: [Byju’s crisis timeline: From edtech giant to fighting legal battles](https://economictimes.indiatimes.com/tech/technology/byjus-crisis-timeline-from-edtech-giant-to-fighting-legal-battles/articleshow/124806544.cms) - Once a $22B Edtech darling, Byju’s faces a dramatic collapse—legal disputes, mass layoffs, and financial mismanagement allegations mark its fall, underscoring the volatility of pandemic-era Edtech booms. [The Times of India]
+- 2025-10-30: [Universities (still) suck at learning analytics](https://beerc.wordpress.com/2025/10/22/universities-still-suck-at-learning-analytics/) - Universities’ chronic failure to leverage learning analytics stems from fragmented situational awareness, argues Colin Beer, as institutional silos and poor data integration hinder actionable insights despite available tech. [Wordpress.com]
+- 2025-10-30: [Fear on the school route: Chicago moves to consider remote learning amid ICE raids](https://timesofindia.indiatimes.com/education/news/fear-on-the-school-route-chicago-moves-to-consider-remote-learning-amid-ice-raids/articleshow/124802750.cms) - Chicago schools push for remote learning options amid escalating fear over ICE raids, triggered by a student’s detention—educators cite safety concerns and trauma disrupting education for immigrant communities. [The Times of India]
+- 2025-10-30: [Coursera Is Just Not That Into You](https://onedtech.philhillaa.com/p/coursera-is-just-not-that-into-you) - Coursera’s new 15% platform fee and shift toward corporate clients alienate universities, signaling a broader strategic pivot away from higher ed partnerships—and raising questions about its evolving priorities. [Philhillaa.com]
