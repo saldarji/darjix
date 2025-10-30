@@ -6,6 +6,7 @@ Configuration is centralized in edtech-news-config.md
 
 import os
 import re
+import json
 import replicate
 from datetime import datetime, timedelta
 from newsapi import NewsApiClient
@@ -268,19 +269,9 @@ def format_news_output(summary, articles):
     return '\n'.join(formatted_items)
 
 def update_website(summary, articles, config):
-    """Update the featured content file with properly formatted content"""
+    """Update rolling include with dated items (keep last 7 days)."""
     formatted_summary = format_news_output(summary, articles)
-    
-    content = f"""# EdTech News This Week
-*Updated: {datetime.now().strftime('%B %d, %Y')}*
-
-{formatted_summary}
-"""
-    
-    with open(config['output_file'], 'w') as f:
-        f.write(content)
-    
-    print(f"✅ Updated {config['output_file']}")
+    update_rolling_include(formatted_summary, config['output_file'])
 
 def select_top_stories_batched(articles, config):
     """Select top stories using batched LLM processing"""
@@ -409,40 +400,196 @@ def parse_batched_selection(llm_output, articles):
 
 
 def update_website_with_scoring(top_stories, oddball_story, config):
-    """Update with top stories and oddball highlight"""
-    
-    content = f"""# EdTech News This Week
-*Updated: {datetime.now().strftime('%B %d, %Y')}*
-
-"""
-    
-    # Add top stories
+    """Update rolling include from selected stories (keep last 7 days)."""
+    lines = []
     for i, item in enumerate(top_stories, 1):
-        article = item['article']
-        description = article.get('description', 'No description available')
-        content += f"{i}. [{article['title']}]({article['url']}) - {description} [{article['source']['name']}]\n"
-    
-    # Add oddball section if present
-    if oddball_story:
-        article = oddball_story['article']
-        description = article.get('description', 'No description available')
-        content += f"\n## Also Worth Noting\n\n"
-        content += f"[{article['title']}]({article['url']}) - {description} [{article['source']['name']}]\n"
-    
-    with open(config['output_file'], 'w') as f:
-        f.write(content)
-    
-    print(f"✅ Updated {config['output_file']}")
+        a = item['article']
+        desc = a.get('description', 'No description available')
+        lines.append(f"{i}. [{a['title']}]({a['url']}) - {desc} [{a['source']['name']}]")
+    formatted = "\n".join(lines)
+    update_rolling_include(formatted, config['output_file'])
+
+def write_candidates_page(articles, config):
+    """Write candidates to scripts/potential_articles.txt and export JSON mapping."""
+    today = datetime.now().strftime('%Y-%m-%d')
+    os.makedirs('scripts', exist_ok=True)
+    with open('scripts/potential_articles.txt', 'w') as tf:
+        tf.write(f"Updated: {today}\n")
+        tf.write("Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.\n\n")
+        for i, article in enumerate(articles, 1):
+            title = article['title']
+            url = article['url']
+            source = article['source']['name']
+            desc = (article.get('description') or 'N/A').strip()
+            tf.write(f"{i}. {title} [{source}]\n")
+            tf.write(f"   {url}\n")
+            if desc:
+                tf.write(f"   {desc}\n")
+            tf.write("\n")
+
+    mapping = [
+        {
+            'index': i + 1,
+            'title': a['title'],
+            'url': a['url'],
+            'source': a['source']['name'],
+            'description': a.get('description') or ''
+        }
+        for i, a in enumerate(articles)
+    ]
+    with open('scripts/news_candidates.json', 'w') as jf:
+        json.dump(mapping, jf, indent=2)
+
+    print(f"✅ Wrote candidates to scripts/potential_articles.txt and scripts/news_candidates.json")
+
+def _parse_existing_dated_items(lines):
+    items = []
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith('#') or line.startswith('*Updated:'):
+            continue
+        m = re.match(r'^-\s+(\d{4}-\d{2}-\d{2}):\s+(.*)$', line)
+        if m:
+            items.append({'date': m.group(1), 'text': m.group(2), 'raw': line})
+    return items
+
+def _extract_url(text):
+    m = re.search(r'\((https?://[^)]+)\)', text)
+    return m.group(1) if m else None
+
+def update_rolling_include(formatted_text, include_path):
+    today_str = datetime.now().strftime('%Y-%m-%d')
+
+    # Convert formatted numbered lines to dated bullets
+    new_lines = []
+    for line in formatted_text.split('\n'):
+        line = line.strip()
+        if not line:
+            continue
+        m = re.match(r'^(?:\d+\.|-)\s+(.*)$', line)
+        payload = m.group(1) if m else line
+        new_lines.append(f"- {today_str}: {payload}")
+
+    existing_lines = []
+    if os.path.exists(include_path):
+        with open(include_path, 'r') as f:
+            existing_lines = f.readlines()
+
+    # Preserve header lines and split body
+    header = []
+    body = []
+    after_header = False
+    for l in existing_lines:
+        if not after_header and (l.startswith('#') or l.startswith('*Updated:') or l.strip() == ''):
+            header.append(l)
+        else:
+            after_header = True
+            body.append(l)
+
+    if not header:
+        header = [f"# EdTech News This Week\n", f"*Updated: {datetime.now().strftime('%B %d, %Y')}*\n", "\n"]
+
+    existing_items = _parse_existing_dated_items(body)
+
+    combined = []
+    for nl in new_lines:
+        combined.append({'date': today_str, 'text': nl.split(': ', 1)[1], 'raw': nl})
+    combined.extend(existing_items)
+
+    seen = set()
+    deduped = []
+    for item in combined:
+        url = _extract_url(item['text'])
+        key = url or item['text']
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+
+    cutoff = datetime.now() - timedelta(days=7)
+    pruned = []
+    for item in deduped:
+        try:
+            d = datetime.strptime(item['date'], '%Y-%m-%d')
+        except Exception:
+            continue
+        if d >= cutoff:
+            pruned.append(item)
+
+    # Refresh the Updated line in header
+    refreshed_header = []
+    updated_line_written = False
+    for h in header:
+        if h.startswith('*Updated:'):
+            refreshed_header.append(f"*Updated: {datetime.now().strftime('%B %d, %Y')}*\n")
+            updated_line_written = True
+        else:
+            refreshed_header.append(h)
+    if not updated_line_written:
+        refreshed_header = [f"# EdTech News This Week\n", f"*Updated: {datetime.now().strftime('%B %d, %Y')}*\n", "\n"]
+
+    body_lines = [f"- {item['date']}: {item['text']}\n" for item in pruned]
+    with open(include_path, 'w') as f:
+        f.writelines(refreshed_header)
+        f.writelines(body_lines)
+    print(f"✅ Updated rolling include: {include_path} ({len(body_lines)} items)")
+
+def load_selected_articles(selection_path, candidates_json_path='scripts/news_candidates.json'):
+    """Load selected articles from a text file of numbers or URLs."""
+    with open(candidates_json_path, 'r') as jf:
+        candidates = json.load(jf)
+
+    url_to_item = {c['url']: c for c in candidates}
+    idx_to_item = {int(c['index']): c for c in candidates}
+
+    if not os.path.exists(selection_path):
+        raise FileNotFoundError(f"Selection file not found: {selection_path}")
+
+    selected = []
+    with open(selection_path, 'r') as sf:
+        for line in sf:
+            token = line.strip()
+            if not token or token.startswith('#'):
+                continue
+            if token.isdigit():
+                idx = int(token)
+                if idx in idx_to_item:
+                    selected.append(idx_to_item[idx])
+            else:
+                if token in url_to_item:
+                    selected.append(url_to_item[token])
+
+    # Convert to the article shape expected by summarization/formatters
+    articles = [
+        {
+            'title': item['title'],
+            'url': item['url'],
+            'source': {'name': item['source']},
+            'description': item.get('description') or ''
+        }
+        for item in selected
+    ]
+    return articles
 
 def main():
     import sys
     
-    # Check for test mode
+    # Flags
     test_mode = '--test' in sys.argv or '-t' in sys.argv
+    candidates_mode = '--candidates' in sys.argv
+    summarize_from = None
+    if '--summarize-from' in sys.argv:
+        i = sys.argv.index('--summarize-from')
+        if i + 1 < len(sys.argv):
+            summarize_from = sys.argv[i + 1]
     
     print("🤖 EdTech News Agent Starting...")
     if test_mode:
         print("🧪 TEST MODE: Will fetch articles but NOT send to LLM")
+    if candidates_mode:
+        print("📝 CANDIDATES MODE: Will fetch and write candidates only (no AI)")
+    if summarize_from:
+        print(f"🧾 SUMMARIZE MODE: Will summarize articles listed in {summarize_from}")
     
     # Parse configuration
     config = parse_config()
@@ -485,8 +632,31 @@ def main():
         print("Run without --test flag to process with LLM and update website.")
         print("="*80)
         return
+
+    # CANDIDATES MODE: Write list for manual selection, then exit
+    if candidates_mode:
+        print("\n💾 Writing candidates page...")
+        write_candidates_page(articles, config)
+        print("\n🎉 Done!")
+        return
+
+    # SUMMARIZE SELECTED: Use selection file to choose articles, then summarize
+    if summarize_from:
+        print("\n🧭 Loading selected articles...")
+        selected_articles = load_selected_articles(summarize_from)
+        if not selected_articles:
+            print("⚠️  No matching selections found. Exiting.")
+            return
+        print(f"✅ Loaded {len(selected_articles)} selected articles")
+
+        print(f"\n🧠 Summarizing with {config['model']}...")
+        summary = summarize_with_replicate(selected_articles, config)
+        print("\n💾 Updating website...")
+        update_website(summary, selected_articles, config)
+        print("\n🎉 Done!")
+        return
     
-    # Select top stories using batched approach
+    # Default behavior (legacy): automatic selection + update
     print(f"\n🔍 Selecting top stories with {config['model']}...")
     top_stories, oddball_story = select_top_stories_batched(articles, config)
     print(f"✅ Selected {len(top_stories)} top stories")
