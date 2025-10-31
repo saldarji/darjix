@@ -1,37 +1,37 @@
-Updated: 2025-10-30
+Updated: 2025-10-31
 Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.
 
-1. The ChatGPT Atlas browser still feels like Googling with extra steps [The Verge]
-   https://www.theverge.com/ai-artificial-intelligence/804931/openai-chatgpt-atlas-hands-on-google-search
-   This week, OpenAI debuted its long-rumored AI browser that aims to put its AI chatbot at the center of the internet. The browser, called ChatGPT Atlas, is entering a space that's already occupied by Perplexity's Comet and Google Gemini in Chrome. OpenAI is li…
-
-2. Watch out, ChatGPT! Google's Gemini is catching up. [Business Insider]
+1. Watch out, ChatGPT! Google's Gemini is catching up. [Business Insider]
    https://www.businessinsider.com/google-is-closing-the-gap-on-chatgpt-2025-10
    Google just gave us an update on its Gemini user numbers — and they're just one eye-popping number in the company's Q3 earnings.
 
-3. ChatGPT came up with a 'Game of Thrones' sequel idea. Now, a judge is letting George RR Martin sue for copyright infringement. [Business Insider]
+2. ChatGPT came up with a 'Game of Thrones' sequel idea. Now, a judge is letting George RR Martin sue for copyright infringement. [Business Insider]
    https://www.businessinsider.com/open-ai-chatgpt-microsoft-copyright-infringement-lawsuit-authors-rr-martin-2025-10
    The ruling greenlights lawsuits against OpenAI and Microsoft by authors Martin, Michael Chabon, Ta-Nehisi Coates, Sarah Silverman, and others.
 
-4. Prediction: Artificial Intelligence (AI) Powerhouse Palantir Technologies Will Disappoint Wall Street on Nov. 3 [Yahoo Entertainment]
+3. Prediction: Artificial Intelligence (AI) Powerhouse Palantir Technologies Will Disappoint Wall Street on Nov. 3 [Yahoo Entertainment]
    https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_330019f7-c5d5-487f-a614-9f5328fa4b57
    N/A
 
-5. Chanel’s CEO went to Microsoft HQ and asked ChatGPT to show her a picture of her company’s leadership. They were all men in suits [Yahoo Entertainment]
+4. Chanel’s CEO went to Microsoft HQ and asked ChatGPT to show her a picture of her company’s leadership. They were all men in suits [Yahoo Entertainment]
    https://www.yahoo.com/news/articles/chanel-ceo-went-microsoft-hq-135100113.html
    Leena Nair said more than 75% of her company’s employees are female.
 
-6. Art in the Age of Artificial Intelligence [The New Yorker]
-   https://www.newyorker.com/podcast/critics-at-large/art-in-the-age-of-artificial-intelligence
-   A.I. tools are getting better at producing convincing images, text, and videos. Does that mean they can make art?
-
-7. ChatGPT Launches 'Company Knowledge' [Openai.com]
+5. ChatGPT Launches 'Company Knowledge' [Openai.com]
    https://openai.com/index/introducing-company-knowledge/
    A new way to bring together context from all your connected tools for answers that know your business.
 
-8. ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts [BBC News]
+6. ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts [BBC News]
    https://www.bbc.com/news/articles/c5yd90g0q43o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D
    The figure could mean potentially hundreds of thousands of users show signs of mental health distress weekly.
+
+7. Parental Control for ChatGPT, AI Tilly Norwood Stuns Hollywood, Digital Safety for Halloween Night | Tech Today video [CNET]
+   https://www.cnet.com/videos/parental-control-for-chatgpt-ai-tilly-norwood-stuns-hollywood-digital-safety-for-halloween-night-tech-today/
+   Kara Tsuboi covers the top tech stories. OpenAI released new parental controls allowing adults to monitor the safety of teen accounts. The debut of the AI-generated actor Tilly Norwood sparked widespread outrage in Hollywood. Parents are relying on GPS-enable…
+
+8. OpenAI's staggering mental health crisis revealed — Millions use ChatGPT like a therapist, but that's about to change [Windows Central]
+   https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/openai-mental-health-millions-users-update
+   OpenAI has provided some internal numbers related to users who seek help from GPT-5, and they're a lot bigger than I was expecting. The AI firm has laid out details as to how it's combating the issue.
 
 9. EdTech Giant Chegg Slashes 45% of Workforce as AI Upends Business — But Its Stock Still Struggles [International Business Times]
    https://www.ibtimes.com/edtech-giant-chegg-slashes-45-workforce-ai-upends-business-its-stock-still-struggles-3788659
@@ -96,11 +96,7 @@ Why are universities are almost universally poor at implementing learning analyt
    https://pubs.rsc.org/en/content/articlelanding/2026/rp/d5rp00328h
    Chem. Educ. Res. Pract., 2026, Accepted ManuscriptDOI: 10.1039/D5RP00328H, PaperColomba Sanchez-Marsetti, Jiho Ahn, Eric Dao, Angie Lopez, Jack EichlerThere is an ongoing effort in the chemistry education community to promote instructional reform in undergrad…
 
-22. Coursera, Inc. (COUR): A Bull Case Theory [Yahoo Entertainment]
-   https://finance.yahoo.com/news/coursera-inc-cour-bull-case-000256990.html
-   We came across a bullish thesis on Coursera, Inc. on Saadiyat Capital’s Substack by Shehroz Babar. In this article, we will summarize the bulls’ thesis on...
-
-23. Coursera Is Just Not That Into You [Philhillaa.com]
+22. Coursera Is Just Not That Into You [Philhillaa.com]
    https://onedtech.philhillaa.com/p/coursera-is-just-not-that-into-you
    Phil Hill, 
 On EdTech, 
@@ -111,33 +107,37 @@ Oct 24, 2025
  
 The 'you' in question in the heading of this post is 'universities' (revealing an interesting designation of audience, but I digress). It comes on the heels of "the new 15% 'platform fee' (that) comes on top of de-e…
 
-24. Udemy reports Q3 EPS 1c, consensus 9c [Thefly.com]
+23. Udemy reports Q3 EPS 1c, consensus 9c [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-25. Udemy sees Q4 revenue $191M-$194M, consensus $196.49M [Thefly.com]
+24. Udemy sees Q4 revenue $191M-$194M, consensus $196.49M [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-26. Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M [Thefly.com]
+25. Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-27. edx-enterprise-data 10.21.12 [Pypi.org]
+26. edx-enterprise-data 10.21.12 [Pypi.org]
    https://pypi.org/project/edx-enterprise-data/10.21.12/
    Enterprise Reporting
 
-28. edx-username-changer 0.5.0 [Pypi.org]
+27. edx-username-changer 0.5.0 [Pypi.org]
    https://pypi.org/project/edx-username-changer/0.5.0/
    An edX plugin to change username of edx accounts through admin panel
 
-29. edx-release-notes 0.1.1 [Pypi.org]
+28. edx-release-notes 0.1.1 [Pypi.org]
    https://pypi.org/project/edx-release-notes/0.1.1/
    Edx Release Notes Backend.
+
+29. Udemy – Getting Started With Blender [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-getting-started-with-blender-200916.html
+   Duration 5h 45m MP4 Title: Udemy – Getting Started With Blender Info: What you’ll learn The most fundamental concepts of 3D art and Blender. Quick Start sections to quickly get you comfortable with the software. All the essential tools for 3D modeling, textur…
 

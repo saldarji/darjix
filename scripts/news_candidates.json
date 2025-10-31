@@ -1,59 +1,59 @@
 [
   {
     "index": 1,
-    "title": "The ChatGPT Atlas browser still feels like Googling with extra steps",
-    "url": "https://www.theverge.com/ai-artificial-intelligence/804931/openai-chatgpt-atlas-hands-on-google-search",
-    "source": "The Verge",
-    "description": "This week, OpenAI debuted its long-rumored AI browser that aims to put its AI chatbot at the center of the internet. The browser, called ChatGPT Atlas, is entering a space that's already occupied by Perplexity's Comet and Google Gemini in Chrome. OpenAI is li\u2026"
-  },
-  {
-    "index": 2,
     "title": "Watch out, ChatGPT! Google's Gemini is catching up.",
     "url": "https://www.businessinsider.com/google-is-closing-the-gap-on-chatgpt-2025-10",
     "source": "Business Insider",
     "description": "Google just gave us an update on its Gemini user numbers \u2014 and they're just one eye-popping number in the company's Q3 earnings."
   },
   {
-    "index": 3,
+    "index": 2,
     "title": "ChatGPT came up with a 'Game of Thrones' sequel idea. Now, a judge is letting George RR Martin sue for copyright infringement.",
     "url": "https://www.businessinsider.com/open-ai-chatgpt-microsoft-copyright-infringement-lawsuit-authors-rr-martin-2025-10",
     "source": "Business Insider",
     "description": "The ruling greenlights lawsuits against OpenAI and Microsoft by authors Martin, Michael Chabon, Ta-Nehisi Coates, Sarah Silverman, and others."
   },
   {
-    "index": 4,
+    "index": 3,
     "title": "Prediction: Artificial Intelligence (AI) Powerhouse Palantir Technologies Will Disappoint Wall Street on Nov. 3",
     "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_330019f7-c5d5-487f-a614-9f5328fa4b57",
     "source": "Yahoo Entertainment",
     "description": ""
   },
   {
-    "index": 5,
+    "index": 4,
     "title": "Chanel\u2019s CEO went to Microsoft HQ and asked ChatGPT to show her a picture of her company\u2019s leadership. They were all men in suits",
     "url": "https://www.yahoo.com/news/articles/chanel-ceo-went-microsoft-hq-135100113.html",
     "source": "Yahoo Entertainment",
     "description": "Leena Nair said more than 75% of her company\u2019s employees are female."
   },
   {
-    "index": 6,
-    "title": "Art in the Age of Artificial Intelligence",
-    "url": "https://www.newyorker.com/podcast/critics-at-large/art-in-the-age-of-artificial-intelligence",
-    "source": "The New Yorker",
-    "description": "A.I. tools are getting better at producing convincing images, text, and videos. Does that mean they can make art?"
-  },
-  {
-    "index": 7,
+    "index": 5,
     "title": "ChatGPT Launches 'Company Knowledge'",
     "url": "https://openai.com/index/introducing-company-knowledge/",
     "source": "Openai.com",
     "description": "A new way to bring together context from all your connected tools for answers that know your business."
   },
   {
-    "index": 8,
+    "index": 6,
     "title": "ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts",
     "url": "https://www.bbc.com/news/articles/c5yd90g0q43o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D",
     "source": "BBC News",
     "description": "The figure could mean potentially hundreds of thousands of users show signs of mental health distress weekly."
+  },
+  {
+    "index": 7,
+    "title": "Parental Control for ChatGPT, AI Tilly Norwood Stuns Hollywood, Digital Safety for Halloween Night | Tech Today video",
+    "url": "https://www.cnet.com/videos/parental-control-for-chatgpt-ai-tilly-norwood-stuns-hollywood-digital-safety-for-halloween-night-tech-today/",
+    "source": "CNET",
+    "description": "Kara Tsuboi covers the top tech stories. OpenAI released new parental controls allowing adults to monitor the safety of teen accounts. The debut of the AI-generated actor Tilly Norwood sparked widespread outrage in Hollywood. Parents are relying on GPS-enable\u2026"
+  },
+  {
+    "index": 8,
+    "title": "OpenAI's staggering mental health crisis revealed \u2014 Millions use ChatGPT like a therapist, but that's about to change",
+    "url": "https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/openai-mental-health-millions-users-update",
+    "source": "Windows Central",
+    "description": "OpenAI has provided some internal numbers related to users who seek help from GPT-5, and they're a lot bigger than I was expecting. The AI firm has laid out details as to how it's combating the issue."
   },
   {
     "index": 9,
@@ -148,58 +148,58 @@
   },
   {
     "index": 22,
-    "title": "Coursera, Inc. (COUR): A\u00a0Bull\u00a0Case Theory",
-    "url": "https://finance.yahoo.com/news/coursera-inc-cour-bull-case-000256990.html",
-    "source": "Yahoo Entertainment",
-    "description": "We came across a bullish thesis on Coursera, Inc. on Saadiyat Capital\u2019s Substack by Shehroz Babar. In this article, we will summarize the bulls\u2019 thesis on..."
-  },
-  {
-    "index": 23,
     "title": "Coursera Is Just Not That Into You",
     "url": "https://onedtech.philhillaa.com/p/coursera-is-just-not-that-into-you",
     "source": "Philhillaa.com",
     "description": "Phil Hill, \nOn EdTech, \nOct 24, 2025\n\n\n \n \r\nThe 'you' in question in the heading of this post is 'universities' (revealing an interesting designation of audience, but I digress). It comes on the heels of \"the new 15% 'platform fee' (that) comes on top of de-e\u2026"
   },
   {
-    "index": 24,
+    "index": 23,
     "title": "Udemy reports Q3 EPS 1c, consensus 9c",
     "url": "https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 25,
+    "index": 24,
     "title": "Udemy sees Q4 revenue $191M-$194M, consensus $196.49M",
     "url": "https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 26,
+    "index": 25,
     "title": "Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M",
     "url": "https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 27,
+    "index": 26,
     "title": "edx-enterprise-data 10.21.12",
     "url": "https://pypi.org/project/edx-enterprise-data/10.21.12/",
     "source": "Pypi.org",
     "description": "Enterprise Reporting"
   },
   {
-    "index": 28,
+    "index": 27,
     "title": "edx-username-changer 0.5.0",
     "url": "https://pypi.org/project/edx-username-changer/0.5.0/",
     "source": "Pypi.org",
     "description": "An edX plugin to change username of edx accounts through admin panel"
   },
   {
-    "index": 29,
+    "index": 28,
     "title": "edx-release-notes 0.1.1",
     "url": "https://pypi.org/project/edx-release-notes/0.1.1/",
     "source": "Pypi.org",
     "description": "Edx Release Notes Backend."
+  },
+  {
+    "index": 29,
+    "title": "Udemy \u2013 Getting Started With Blender",
+    "url": "https://cgpersia.com/2025/10/udemy-getting-started-with-blender-200916.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 5h 45m MP4 Title: Udemy \u2013 Getting Started With Blender Info: What you\u2019ll learn The most fundamental concepts of 3D art and Blender. Quick Start sections to quickly get you comfortable with the software. All the essential tools for 3D modeling, textur\u2026"
   }
 ]
