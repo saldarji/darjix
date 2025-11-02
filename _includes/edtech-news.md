@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: October 30, 2025*
+*Updated: November 2, 2025*
 
 - 2025-10-30: [EdTech Giant Chegg Slashes 45% of Workforce as AI Upends Business — But Its Stock Still Struggles](https://www.ibtimes.com/edtech-giant-chegg-slashes-45-workforce-ai-upends-business-its-stock-still-struggles-3788659) - Edtech leader Chegg lays off 45% of its workforce as AI-driven study tools disrupt its traditional homework-help model, sparking investor anxiety over its viability despite efforts to pivot—its stock remains mired in a slump. [International Business Times]
 - 2025-10-30: [Edtech platform Profential to sign with 600 institutions in the next 18 months](https://www.thehindubusinessline.com/info-tech/edtech-platform-profential-to-sign-with-600-institutions-in-the-next-18-months/article70204563.ece) - India-based Profential plans rapid expansion, targeting partnerships with 600 schools and universities in 18 months to scale its digital credentialing platform, aiming to boost employability through a unified skills-tracking ecosystem. [BusinessLine]
