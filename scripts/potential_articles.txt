@@ -1,4 +1,4 @@
-Updated: 2025-11-01
+Updated: 2025-11-02
 Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.
 
 1. Watch out, ChatGPT! Google's Gemini is catching up. [Business Insider]
@@ -21,17 +21,17 @@ Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selec
    https://gizmodo.com/chatgpt-bill-de-blasio-is-a-sign-of-things-to-come-2000679477
    The de Blasio "impersonator" was profiled in 2020. But he didn't have AI back then.
 
-6. Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts [9to5Mac]
+6. Mosyle helps IT prepare for the agentic AI browser era with ChatGPT Atlas [9to5Mac]
+   https://9to5mac.com/2025/10/31/mosyle-helps-it-prepare-for-the-agentic-ai-browser-era-with-chatgpt-atlas/
+   Agentic AI is a term that every IT team should become familiar with, as it will impact every aspect of their work. As SaaS apps continue to dominate, the browser has become more than just a window to the web. A new generation of browsers is emerging that brin…
+
+7. Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts [9to5Mac]
    https://9to5mac.com/2025/10/30/security-bite-beware-sketchy-chatgpt-clones-slipping-back-into-the-app-store-charts/
    9to5Mac Security Bite is exclusively brought to you by Mosyle, the only Apple Unified Platform. Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specifi…
 
-7. ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts [BBC News]
+8. ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts [BBC News]
    https://www.bbc.com/news/articles/c5yd90g0q43o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D
    The figure could mean potentially hundreds of thousands of users show signs of mental health distress weekly.
-
-8. OpenAI's staggering mental health crisis revealed — Millions use ChatGPT like a therapist, but that's about to change [Windows Central]
-   https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/openai-mental-health-millions-users-update
-   OpenAI has provided some internal numbers related to users who seek help from GPT-5, and they're a lot bigger than I was expecting. The AI firm has laid out details as to how it's combating the issue.
 
 9. EdTech Giant Chegg Slashes 45% of Workforce as AI Upends Business — But Its Stock Still Struggles [International Business Times]
    https://www.ibtimes.com/edtech-giant-chegg-slashes-45-workforce-ai-upends-business-its-stock-still-struggles-3788659
@@ -57,13 +57,13 @@ Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selec
    https://biztoc.com/x/c9c3f02d37da07dd
    N/A
 
-15. Byju’s crisis timeline: From edtech giant to fighting legal battles [The Times of India]
-   https://economictimes.indiatimes.com/tech/technology/byjus-crisis-timeline-from-edtech-giant-to-fighting-legal-battles/articleshow/124806544.cms
-   Byju’s, the once celebrated edtech giant, has found itself embroiled in a prolonged legal and financial crisis. Here’s a look at the events that led to this downfall.
-
-16. Edtech Byju’s parent, US lenders move NCLAT to halt Aakash Educational Services EGM [The Times of India]
+15. Edtech Byju’s parent, US lenders move NCLAT to halt Aakash Educational Services EGM [The Times of India]
    https://economictimes.indiatimes.com/tech/technology/edtech-byjus-parent-us-lenders-move-nclat-to-halt-aakash-educational-services-egm/articleshow/124864829.cms
    This comes after the Bengaluru bench of the National Company Law Tribunal (NCLT) dismissed Think and Learn’s plea for an interim stay on the EGM. According to the counsel representing Glas Trust, the proposed rights issue would reduce Think and Learn’s stake …
+
+16. JVNDB-2025-017792:Beakon の Beakon Learning Management System Sharable Content Object Reference Model (SCORM) におけるクロスサイトスクリプティングの脆弱性 [Jpcert.or.jp]
+   http://vrda.jpcert.or.jp/feed/ja/JVNiPedia_JVNDB-2025-017792_AD_1.html
+   N/A
 
 17. The Power Duo: Personalized Learning And Microlearning For Modern Workplaces [Elearningindustry.com]
    https://elearningindustry.com/the-power-duo-personalized-learning-and-microlearning-for-modern-workplaces
@@ -77,45 +77,41 @@ This post was first published on eLearning Industry.
 
 [画像1: https://prcdn.freetls.fastly.net/release_image/40622/458/40622-458-6f4898765af9472cd5835920b0a59185-550x450.jpg?width=536&quality=85%2C75&forma...
 
-19. Fear on the school route: Chicago moves to consider remote learning amid ICE raids [The Times of India]
-   https://timesofindia.indiatimes.com/education/news/fear-on-the-school-route-chicago-moves-to-consider-remote-learning-amid-ice-raids/articleshow/124802750.cms
-   Amid rising ICE activity in Chicago, students and educators are experiencing heightened fear, prompting urgent calls for virtual learning from the Chicago Board of Education. Following the detention of a Benito Juarez High School student, teachers, board memb…
-
-20. Udemy reports Q3 EPS 1c, consensus 9c [Thefly.com]
+19. Udemy reports Q3 EPS 1c, consensus 9c [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-21. Udemy sees Q4 revenue $191M-$194M, consensus $196.49M [Thefly.com]
+20. Udemy sees Q4 revenue $191M-$194M, consensus $196.49M [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-22. Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M [Thefly.com]
+21. Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M [Thefly.com]
    https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM
    See the rest of the story here.
 
 thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
 
-23. edx-enterprise-data 10.21.12 [Pypi.org]
+22. edx-enterprise-data 10.21.12 [Pypi.org]
    https://pypi.org/project/edx-enterprise-data/10.21.12/
    Enterprise Reporting
 
-24. edx-username-changer 0.5.0 [Pypi.org]
+23. edx-username-changer 0.5.0 [Pypi.org]
    https://pypi.org/project/edx-username-changer/0.5.0/
    An edX plugin to change username of edx accounts through admin panel
 
-25. Udemy – Getting Started With Blender [Cgpersia.com]
-   https://cgpersia.com/2025/10/udemy-getting-started-with-blender-200916.html
-   Duration 5h 45m MP4 Title: Udemy – Getting Started With Blender Info: What you’ll learn The most fundamental concepts of 3D art and Blender. Quick Start sections to quickly get you comfortable with the software. All the essential tools for 3D modeling, textur…
-
-26. Udemy – Blender and Substance Painter – Game Asset Creation [Cgpersia.com]
-   https://cgpersia.com/2025/10/udemy-blender-and-substance-painter-game-asset-creation-200911.html
-   Duration 8h 5m Project Files Included MP4 Title: Udemy – Blender and Substance Painter – Game Asset Creation Info: What you’ll learn ● Blender Basics: Navigating the Viewport – Master the essential techniques to efficiently move around Blender’s viewport. ● R…
-
-27. Udemy – Complete Blender beginner workflow for Cinematic Art 2025 [Cgpersia.com]
+24. Udemy – Complete Blender beginner workflow for Cinematic Art 2025 [Cgpersia.com]
    https://cgpersia.com/2025/10/udemy-complete-blender-beginner-workflow-for-cinematic-art-2025-200977.html
    Duration 4h 33m Project Files Included MP4 What you’ll learn Learn my complete workflow in this step-by-step tutorial Title: Udemy – Complete Blender beginner workflow for Cinematic Art 2025 Info: What you’ll learn Learn my complete workflow in this step-by-s…
+
+25. Udemy – Create a 3D Endless Runner Game in Unity From Scratch [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-create-a-3d-endless-runner-game-in-unity-from-scratch-201051.html
+   Duration 9h 35m Project Files Included MP4 Title: Udemy – Create a 3D Endless Runner Game in Unity From Scratch Info: What you’ll learn A complete 3D endless runner ready for Android Working unlock system, missions, coins, and UI Professional understanding of…
+
+26. Udemy – Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-premiere-pro-masterclass-edit-videos-like-a-pro-from-scratch-200948.html
+   Duration 1h 38m MP4 Title: Udemy – Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch Info: What you’ll learn Navigate and customize the Premiere Pro interface Import, organize, and manage media efficiently Edit videos using the timeline, tools, an…
 

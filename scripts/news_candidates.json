@@ -36,24 +36,24 @@
   },
   {
     "index": 6,
+    "title": "Mosyle helps IT prepare for the agentic AI browser era with ChatGPT Atlas",
+    "url": "https://9to5mac.com/2025/10/31/mosyle-helps-it-prepare-for-the-agentic-ai-browser-era-with-chatgpt-atlas/",
+    "source": "9to5Mac",
+    "description": "Agentic AI is a term that every IT team should become familiar with, as it will impact every aspect of their work. As SaaS apps continue to dominate, the browser has become more than just a window to the web. A new generation of browsers is emerging that brin\u2026"
+  },
+  {
+    "index": 7,
     "title": "Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts",
     "url": "https://9to5mac.com/2025/10/30/security-bite-beware-sketchy-chatgpt-clones-slipping-back-into-the-app-store-charts/",
     "source": "9to5Mac",
     "description": "9to5Mac Security Bite is exclusively brought to you by Mosyle,\u00a0the only Apple Unified Platform. Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specifi\u2026"
   },
   {
-    "index": 7,
+    "index": 8,
     "title": "ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts",
     "url": "https://www.bbc.com/news/articles/c5yd90g0q43o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D",
     "source": "BBC News",
     "description": "The figure could mean potentially hundreds of thousands of users show signs of mental health distress weekly."
-  },
-  {
-    "index": 8,
-    "title": "OpenAI's staggering mental health crisis revealed \u2014 Millions use ChatGPT like a therapist, but that's about to change",
-    "url": "https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/openai-mental-health-millions-users-update",
-    "source": "Windows Central",
-    "description": "OpenAI has provided some internal numbers related to users who seek help from GPT-5, and they're a lot bigger than I was expecting. The AI firm has laid out details as to how it's combating the issue."
   },
   {
     "index": 9,
@@ -99,17 +99,17 @@
   },
   {
     "index": 15,
-    "title": "Byju\u2019s crisis timeline: From edtech giant to fighting legal battles",
-    "url": "https://economictimes.indiatimes.com/tech/technology/byjus-crisis-timeline-from-edtech-giant-to-fighting-legal-battles/articleshow/124806544.cms",
-    "source": "The Times of India",
-    "description": "Byju\u2019s, the once celebrated edtech giant, has found itself embroiled in a prolonged legal and financial crisis. Here\u2019s a look at the events that led to this downfall."
-  },
-  {
-    "index": 16,
     "title": "Edtech Byju\u2019s parent, US lenders move NCLAT to halt Aakash Educational Services EGM",
     "url": "https://economictimes.indiatimes.com/tech/technology/edtech-byjus-parent-us-lenders-move-nclat-to-halt-aakash-educational-services-egm/articleshow/124864829.cms",
     "source": "The Times of India",
     "description": "This comes after the Bengaluru bench of the National Company Law Tribunal (NCLT) dismissed Think and Learn\u2019s plea for an interim stay on the EGM. According to the counsel representing Glas Trust, the proposed rights issue would reduce Think and Learn\u2019s stake \u2026"
+  },
+  {
+    "index": 16,
+    "title": "JVNDB-2025-017792:Beakon \u306e Beakon Learning Management System Sharable Content Object Reference Model (SCORM) \u306b\u304a\u3051\u308b\u30af\u30ed\u30b9\u30b5\u30a4\u30c8\u30b9\u30af\u30ea\u30d7\u30c6\u30a3\u30f3\u30b0\u306e\u8106\u5f31\u6027",
+    "url": "http://vrda.jpcert.or.jp/feed/ja/JVNiPedia_JVNDB-2025-017792_AD_1.html",
+    "source": "Jpcert.or.jp",
+    "description": ""
   },
   {
     "index": 17,
@@ -127,65 +127,58 @@
   },
   {
     "index": 19,
-    "title": "Fear on the school route: Chicago moves to consider remote learning amid ICE raids",
-    "url": "https://timesofindia.indiatimes.com/education/news/fear-on-the-school-route-chicago-moves-to-consider-remote-learning-amid-ice-raids/articleshow/124802750.cms",
-    "source": "The Times of India",
-    "description": "Amid rising ICE activity in Chicago, students and educators are experiencing heightened fear, prompting urgent calls for virtual learning from the Chicago Board of Education. Following the detention of a Benito Juarez High School student, teachers, board memb\u2026"
-  },
-  {
-    "index": 20,
     "title": "Udemy reports Q3 EPS 1c, consensus 9c",
     "url": "https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 21,
+    "index": 20,
     "title": "Udemy sees Q4 revenue $191M-$194M, consensus $196.49M",
     "url": "https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 22,
+    "index": 21,
     "title": "Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M",
     "url": "https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM",
     "source": "Thefly.com",
     "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
   },
   {
-    "index": 23,
+    "index": 22,
     "title": "edx-enterprise-data 10.21.12",
     "url": "https://pypi.org/project/edx-enterprise-data/10.21.12/",
     "source": "Pypi.org",
     "description": "Enterprise Reporting"
   },
   {
-    "index": 24,
+    "index": 23,
     "title": "edx-username-changer 0.5.0",
     "url": "https://pypi.org/project/edx-username-changer/0.5.0/",
     "source": "Pypi.org",
     "description": "An edX plugin to change username of edx accounts through admin panel"
   },
   {
-    "index": 25,
-    "title": "Udemy \u2013 Getting Started With Blender",
-    "url": "https://cgpersia.com/2025/10/udemy-getting-started-with-blender-200916.html",
-    "source": "Cgpersia.com",
-    "description": "Duration 5h 45m MP4 Title: Udemy \u2013 Getting Started With Blender Info: What you\u2019ll learn The most fundamental concepts of 3D art and Blender. Quick Start sections to quickly get you comfortable with the software. All the essential tools for 3D modeling, textur\u2026"
-  },
-  {
-    "index": 26,
-    "title": "Udemy \u2013 Blender and Substance Painter \u2013 Game Asset Creation",
-    "url": "https://cgpersia.com/2025/10/udemy-blender-and-substance-painter-game-asset-creation-200911.html",
-    "source": "Cgpersia.com",
-    "description": "Duration 8h 5m Project Files Included MP4 Title: Udemy \u2013 Blender and Substance Painter \u2013 Game Asset Creation Info: What you\u2019ll learn \u25cf Blender Basics: Navigating the Viewport \u2013 Master the essential techniques to efficiently move around Blender\u2019s viewport. \u25cf R\u2026"
-  },
-  {
-    "index": 27,
+    "index": 24,
     "title": "Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025",
     "url": "https://cgpersia.com/2025/10/udemy-complete-blender-beginner-workflow-for-cinematic-art-2025-200977.html",
     "source": "Cgpersia.com",
     "description": "Duration 4h 33m Project Files Included MP4 What you\u2019ll learn Learn my complete workflow in this step-by-step tutorial Title: Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025 Info: What you\u2019ll learn Learn my complete workflow in this step-by-s\u2026"
+  },
+  {
+    "index": 25,
+    "title": "Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch",
+    "url": "https://cgpersia.com/2025/10/udemy-create-a-3d-endless-runner-game-in-unity-from-scratch-201051.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 9h 35m Project Files Included MP4 Title: Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch Info: What you\u2019ll learn A complete 3D endless runner ready for Android Working unlock system, missions, coins, and UI Professional understanding of\u2026"
+  },
+  {
+    "index": 26,
+    "title": "Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch",
+    "url": "https://cgpersia.com/2025/10/udemy-premiere-pro-masterclass-edit-videos-like-a-pro-from-scratch-200948.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 1h 38m MP4 Title: Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch Info: What you\u2019ll learn Navigate and customize the Premiere Pro interface Import, organize, and manage media efficiently Edit videos using the timeline, tools, an\u2026"
   }
 ]
