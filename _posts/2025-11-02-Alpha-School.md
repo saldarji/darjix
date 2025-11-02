@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Alpha School"
-date: 2025-10-15
+date: 2025-11-02
 author: "Sal Darji"
 ---
 
