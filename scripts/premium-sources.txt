@@ -1,0 +1,26 @@
+# Premium EdTech News Sources
+# Use these sources to filter high-quality, relevant articles
+
+Gizmodo.com
+Forbes
+Scientific American
+Inside Higher Ed
+Elearningindustry.com
+EdSurge
+EdTech Magazine
+The Chronicle of Higher Education
+Education Week
+eSchool News
+TechCrunch
+The Verge
+Wired
+MIT Technology Review
+CNET
+Fast Company
+The New York Times
+Washington Post
+The Atlantic
+Bloomberg
+Nature
+Science
+Harvard Business Review

@@ -8,38 +8,19 @@
 
 ## News API Settings
 - **Days Back**: 7
-- **Max Articles Per Query**: 8
-- **Total Max Articles**: 40
+- **Max Articles Per Query**: 100
+- **Total Max Articles**: 100
 - **Language**: en
-- **Sort By**: popularity
+- **Sort By**: relevancy
 
 ## Blacklisted Sources
 - **Sources to Exclude**: fox news, foxnews.com, breitbart.com, infowars.com, theblaze.com, newsmax.com
 
-## Query Strategy 1: AI in Education
-- **Keywords**: "AI education" OR "artificial intelligence" OR "machine learning" OR "ChatGPT" OR "AI tutoring" OR "intelligent tutoring" OR "adaptive learning" OR "AI assessment" OR "AI classroom" OR "AI teaching"
-- **Keywords in Title**: true
-- **Focus**: AI applications, tools, and implementations in education
-
-## Query Strategy 2: EdTech Innovation
-- **Keywords**: "edtech" OR "education technology" OR "digital learning" OR "online learning platform" OR "learning management system" OR "educational software" OR "virtual reality education" OR "augmented reality learning" OR "learning app" OR "education software"
-- **Keywords in Title**: true
-- **Focus**: Technology tools and platforms for education
-
-## Query Strategy 3: Digital Learning & Outcomes
-- **Keywords**: "online education" OR "remote learning" OR "hybrid learning" OR "learning analytics" OR "educational data" OR "student engagement technology" OR "personalized learning" OR "digital classroom" OR "e-learning"
-- **Keywords in Title**: true
-- **Focus**: Digital learning methods and their effectiveness
-
-## Query Strategy 4: Education Technology Policy
-- **Keywords**: "education technology policy" OR "digital education funding" OR "AI education regulation" OR "edtech standards" OR "technology in schools" OR "digital divide education" OR "education data privacy" OR "AI ethics education"
-- **Keywords in Title**: true
-- **Focus**: Policy affecting technology adoption in education
-
-## Query Strategy 5: EdTech Market & Innovation
-- **Keywords**: "edtech startup" OR "education technology investment" OR "learning technology company" OR "educational AI" OR "edtech acquisition" OR "education software" OR "Khan Academy" OR "Coursera" OR "Udemy" OR "edX" OR "education technology funding"
-- **Keywords in Title**: true
-- **Focus**: Commercial developments in education technology
+## Query Strategy 1: EdTech News
+- **Keywords**: "AI education" OR "AI tutoring" OR "AI assessment" OR "AI classroom" OR "AI teaching" OR "Edtech" OR "Education Technology" OR "Learning Platform" OR "Learning Management System" OR "Educational Software"
+- **Keywords in Title**: false
+- **Domains**: gizmodo.com,forbes.com,scientificamerican.com,insidehighered.com,elearningindustry.com,edsurge.com,edtechmagazine.com,chronicle.com,edweek.org,eschoolnews.com,techcrunch.com,theverge.com,wired.com,technologyreview.com,cnet.com,fastcompany.com,nytimes.com,washingtonpost.com,theatlantic.com,bloomberg.com,nature.com,science.org,hbr.org
+- **Focus**: AI and education technology news from premium sources
 
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.

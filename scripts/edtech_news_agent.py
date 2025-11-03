@@ -164,15 +164,27 @@ def fetch_news(config):
     return all_articles
 
 def summarize_with_replicate(articles, config, use_selection_prompt=False):
-    """Summarize articles using Replicate"""
-    # Format articles for the prompt with numbered references
-    articles_text = "\n\n".join([
-        f"[{i+1}] Title: {article['title']}\n"
-        f"Source: {article['source']['name']}\n"
-        f"Description: {article.get('description', 'N/A')}\n"
-        f"URL: {article['url']}"
-        for i, article in enumerate(articles)
-    ])
+    """Summarize articles using Replicate with full NewsAPI response data"""
+    # Format articles for the prompt with full NewsAPI data
+    articles_text_parts = []
+    for i, article in enumerate(articles, 1):
+        article_text = f"[{i}] {article.get('title', 'N/A')}\n"
+        article_text += f"    Source: {article.get('source', {}).get('name', 'Unknown') if isinstance(article.get('source'), dict) else article.get('source', 'Unknown')}\n"
+        article_text += f"    URL: {article.get('url', 'N/A')}\n"
+        if article.get('author'):
+            article_text += f"    Author: {article['author']}\n"
+        if article.get('publishedAt'):
+            article_text += f"    Published: {article['publishedAt']}\n"
+        article_text += f"    Description: {article.get('description', 'N/A')}\n"
+        # Include content field if available (NewsAPI may provide truncated content)
+        if article.get('content'):
+            # Remove [Removed] or [Subscription required] markers that NewsAPI sometimes adds
+            content = article['content'].replace('[Removed]', '').replace('[+X chars]', '').strip()
+            if content and len(content) > 50:  # Only include if substantial content
+                article_text += f"    Content: {content}\n"
+        articles_text_parts.append(article_text)
+    
+    articles_text = "\n\n".join(articles_text_parts)
     
     # Use selection prompt for automatic selection, but summarization prompt for selected articles
     if use_selection_prompt:
@@ -307,12 +319,24 @@ def select_top_stories_batched(articles, config):
     for i, batch in enumerate(batches):
         print(f"🔍 Processing batch {i+1}/{len(batches)} ({len(batch)} articles)...")
         
-        # Format articles for LLM
+        # Format articles for LLM with full NewsAPI response data
         articles_text = ""
         for j, article in enumerate(batch, 1):
-            articles_text += f"[{j}] {article['title']}\n"
-            articles_text += f"    Source: {article['source']['name']}\n"
-            articles_text += f"    Description: {article.get('description', 'N/A')}\n\n"
+            articles_text += f"[{j}] {article.get('title', 'N/A')}\n"
+            articles_text += f"    Source: {article.get('source', {}).get('name', 'Unknown')}\n"
+            articles_text += f"    URL: {article.get('url', 'N/A')}\n"
+            if article.get('author'):
+                articles_text += f"    Author: {article['author']}\n"
+            if article.get('publishedAt'):
+                articles_text += f"    Published: {article['publishedAt']}\n"
+            articles_text += f"    Description: {article.get('description', 'N/A')}\n"
+            # Include content field if available (NewsAPI may provide truncated content)
+            if article.get('content'):
+                # Remove [Removed] or [Subscription required] markers that NewsAPI sometimes adds
+                content = article['content'].replace('[Removed]', '').replace('[+X chars]', '').strip()
+                if content and len(content) > 50:  # Only include if substantial content
+                    articles_text += f"    Content: {content}\n"
+            articles_text += "\n"
         
         selection_prompt = f"""Select the top 5-8 most relevant and interesting US education stories from the following articles.
 
@@ -428,37 +452,31 @@ def update_website_with_scoring(top_stories, oddball_story, config):
     update_rolling_include(formatted, config['output_file'])
 
 def write_candidates_page(articles, config):
-    """Write candidates to scripts/potential_articles.txt and export JSON mapping."""
+    """Write candidates to scripts/news_candidates.json with full NewsAPI response data."""
     today = datetime.now().strftime('%Y-%m-%d')
     os.makedirs('scripts', exist_ok=True)
-    with open('scripts/potential_articles.txt', 'w') as tf:
-        tf.write(f"Updated: {today}\n")
-        tf.write("Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.\n\n")
-        for i, article in enumerate(articles, 1):
-            title = article['title']
-            url = article['url']
-            source = article['source']['name']
-            desc = (article.get('description') or 'N/A').strip()
-            tf.write(f"{i}. {title} [{source}]\n")
-            tf.write(f"   {url}\n")
-            if desc:
-                tf.write(f"   {desc}\n")
-            tf.write("\n")
 
-    mapping = [
-        {
+    # Save full NewsAPI response data for each article
+    mapping = []
+    for i, a in enumerate(articles):
+        article_data = {
             'index': i + 1,
-            'title': a['title'],
-            'url': a['url'],
-            'source': a['source']['name'],
-            'description': a.get('description') or ''
+            'title': a.get('title', ''),
+            'url': a.get('url', ''),
+            'source': a.get('source', {}).get('name', 'Unknown'),
+            'description': a.get('description') or '',
+            # Include all available NewsAPI fields
+            'author': a.get('author', ''),
+            'publishedAt': a.get('publishedAt', ''),
+            'content': a.get('content', ''),  # May be truncated or None
+            'urlToImage': a.get('urlToImage', '')
         }
-        for i, a in enumerate(articles)
-    ]
+        mapping.append(article_data)
+    
     with open('scripts/news_candidates.json', 'w') as jf:
         json.dump(mapping, jf, indent=2)
 
-    print(f"✅ Wrote candidates to scripts/potential_articles.txt and scripts/news_candidates.json")
+    print(f"✅ Wrote candidates to scripts/news_candidates.json ({len(mapping)} articles)")
 
 def _parse_existing_dated_items(lines):
     items = []
@@ -585,15 +603,25 @@ def load_selected_articles(selection_path, candidates_json_path='scripts/news_ca
                             break
 
     # Convert to the article shape expected by summarization/formatters
-    articles = [
-        {
-            'title': item['title'],
-            'url': item['url'],
-            'source': {'name': item['source']},
+    # Preserve all NewsAPI fields from JSON
+    articles = []
+    for item in selected:
+        article = {
+            'title': item.get('title', ''),
+            'url': item.get('url', ''),
+            'source': {'name': item.get('source', 'Unknown')},
             'description': item.get('description') or ''
         }
-        for item in selected
-    ]
+        # Include all other NewsAPI fields if available
+        if item.get('author'):
+            article['author'] = item['author']
+        if item.get('publishedAt'):
+            article['publishedAt'] = item['publishedAt']
+        if item.get('content'):
+            article['content'] = item['content']
+        if item.get('urlToImage'):
+            article['urlToImage'] = item['urlToImage']
+        articles.append(article)
     return articles
 
 def main():
