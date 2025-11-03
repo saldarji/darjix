@@ -1,0 +1,114 @@
+Updated: 2025-11-03
+Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.
+
+1. Watch out, ChatGPT! Google's Gemini is catching up. [Business Insider]
+   https://www.businessinsider.com/google-is-closing-the-gap-on-chatgpt-2025-10
+   Google just gave us an update on its Gemini user numbers — and they're just one eye-popping number in the company's Q3 earnings.
+
+2. ChatGPT came up with a 'Game of Thrones' sequel idea. Now, a judge is letting George RR Martin sue for copyright infringement. [Business Insider]
+   https://www.businessinsider.com/open-ai-chatgpt-microsoft-copyright-infringement-lawsuit-authors-rr-martin-2025-10
+   The ruling greenlights lawsuits against OpenAI and Microsoft by authors Martin, Michael Chabon, Ta-Nehisi Coates, Sarah Silverman, and others.
+
+3. Prediction: Artificial Intelligence (AI) Powerhouse Palantir Technologies Will Disappoint Wall Street on Nov. 3 [Yahoo Entertainment]
+   https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_330019f7-c5d5-487f-a614-9f5328fa4b57
+   N/A
+
+4. Chanel’s CEO went to Microsoft HQ and asked ChatGPT to show her a picture of her company’s leadership. They were all men in suits [Yahoo Entertainment]
+   https://www.yahoo.com/news/articles/chanel-ceo-went-microsoft-hq-135100113.html
+   Leena Nair said more than 75% of her company’s employees are female.
+
+5. ChatGPT Bill de Blasio Is a Sign of Things to Come [Gizmodo.com]
+   https://gizmodo.com/chatgpt-bill-de-blasio-is-a-sign-of-things-to-come-2000679477
+   The de Blasio "impersonator" was profiled in 2020. But he didn't have AI back then.
+
+6. Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts [9to5Mac]
+   https://9to5mac.com/2025/10/30/security-bite-beware-sketchy-chatgpt-clones-slipping-back-into-the-app-store-charts/
+   9to5Mac Security Bite is exclusively brought to you by Mosyle, the only Apple Unified Platform. Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specifi…
+
+7. Mosyle helps IT prepare for the agentic AI browser era with ChatGPT Atlas [9to5Mac]
+   https://9to5mac.com/2025/10/31/mosyle-helps-it-prepare-for-the-agentic-ai-browser-era-with-chatgpt-atlas/
+   Agentic AI is a term that every IT team should become familiar with, as it will impact every aspect of their work. As SaaS apps continue to dominate, the browser has become more than just a window to the web. A new generation of browsers is emerging that brin…
+
+8. ChatGPT shares data on how many users exhibit psychosis or suicidal thoughts [BBC News]
+   https://www.bbc.com/news/articles/c5yd90g0q43o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bnews%5D-%5Bbizdev%5D-%5Bisapi%5D
+   The figure could mean potentially hundreds of thousands of users show signs of mental health distress weekly.
+
+9. EdTech Giant Chegg Slashes 45% of Workforce as AI Upends Business — But Its Stock Still Struggles [International Business Times]
+   https://www.ibtimes.com/edtech-giant-chegg-slashes-45-workforce-ai-upends-business-its-stock-still-struggles-3788659
+   Chegg cuts nearly half its workforce as AI tools reshape education, leaving investors worried about the company's future and struggling share price.
+
+10. Hit by AI, edtech firm Chegg slashes jobs and names new CEO in major overhaul [CNA]
+   https://www.channelnewsasia.com/business/hit-ai-edtech-firm-chegg-slashes-jobs-and-names-new-ceo-in-major-overhaul-5428466
+   Educational technology company Chegg said on Monday it would cut 388 roles globally, or about 45 per cent of the workforce, to reduce costs and streamline operations as it works to adapt to the growing shift toward AI-powered tools.The company, which offers t…
+
+11. Design, Not Disruption: Reclaiming the Core in Digital Learning #ALTC25 [Dontwasteyourtime.co.uk]
+   https://www.dontwasteyourtime.co.uk/blackboard/reclaiming-the-core-in-digital-learning-altc25/
+   Originally written as a conference proposal for ALTC 2025, this post reflects on a university-wide shift in digital learning practice at BNU, and why sometimes going ‘back to basics’ is the most st…
+
+12. Hit by AI, edtech firm Chegg slashes jobs and names new CEO in major overhaul [Biztoc.com]
+   https://biztoc.com/x/c9c3f02d37da07dd
+   N/A
+
+13. Edtech Byju’s parent, US lenders move NCLAT to halt Aakash Educational Services EGM [The Times of India]
+   https://economictimes.indiatimes.com/tech/technology/edtech-byjus-parent-us-lenders-move-nclat-to-halt-aakash-educational-services-egm/articleshow/124864829.cms
+   This comes after the Bengaluru bench of the National Company Law Tribunal (NCLT) dismissed Think and Learn’s plea for an interim stay on the EGM. According to the counsel representing Glas Trust, the proposed rights issue would reduce Think and Learn’s stake …
+
+14. JVNDB-2025-017792:Beakon の Beakon Learning Management System Sharable Content Object Reference Model (SCORM) におけるクロスサイトスクリプティングの脆弱性 [Jpcert.or.jp]
+   http://vrda.jpcert.or.jp/feed/ja/JVNiPedia_JVNDB-2025-017792_AD_1.html
+   N/A
+
+15. Show HN: Just launched my MVP a language learning app to learn through listening [Hacker News]
+   https://news.ycombinator.com/item?id=45779325
+   Hey everyone, I just launched the MVP of a mobile app I’m building that helps people learn languages through listening. It’s still early — I haven’t uploaded the full lesson content yet — but I’d love to get your feedback on the concept and design.
+https://pr…
+
+16. The Power Duo: Personalized Learning And Microlearning For Modern Workplaces [Elearningindustry.com]
+   https://elearningindustry.com/the-power-duo-personalized-learning-and-microlearning-for-modern-workplaces
+   Personalized learning, together with microlearning, unlocks workforce engagement and skill mastery by delivering relevant, bite-sized training tailored to unique employee needs.
+This post was first published on eLearning Industry.
+
+17. “ClassPad Scoring”が「日本e-Learning大賞 厚生労働大臣賞」を受賞 [Prtimes.jp]
+   https://prtimes.jp/main/html/rd/p/000000458.000040622.html
+   [カシオ計算機株式会社]
+　　　　　　　　　　　　　　　　　　
+
+[画像1: https://prcdn.freetls.fastly.net/release_image/40622/458/40622-458-6f4898765af9472cd5835920b0a59185-550x450.jpg?width=536&quality=85%2C75&forma...
+
+18. Udemy reports Q3 EPS 1c, consensus 9c [Thefly.com]
+   https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c
+   See the rest of the story here.
+
+thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
+
+19. Udemy sees Q4 revenue $191M-$194M, consensus $196.49M [Thefly.com]
+   https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M
+   See the rest of the story here.
+
+thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
+
+20. Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M [Thefly.com]
+   https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM
+   See the rest of the story here.
+
+thefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor…
+
+21. edx-enterprise-data 10.21.12 [Pypi.org]
+   https://pypi.org/project/edx-enterprise-data/10.21.12/
+   Enterprise Reporting
+
+22. edx-username-changer 0.5.0 [Pypi.org]
+   https://pypi.org/project/edx-username-changer/0.5.0/
+   An edX plugin to change username of edx accounts through admin panel
+
+23. Udemy – Complete Blender beginner workflow for Cinematic Art 2025 [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-complete-blender-beginner-workflow-for-cinematic-art-2025-200977.html
+   Duration 4h 33m Project Files Included MP4 What you’ll learn Learn my complete workflow in this step-by-step tutorial Title: Udemy – Complete Blender beginner workflow for Cinematic Art 2025 Info: What you’ll learn Learn my complete workflow in this step-by-s…
+
+24. Udemy – Create a 3D Endless Runner Game in Unity From Scratch [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-create-a-3d-endless-runner-game-in-unity-from-scratch-201051.html
+   Duration 9h 35m Project Files Included MP4 Title: Udemy – Create a 3D Endless Runner Game in Unity From Scratch Info: What you’ll learn A complete 3D endless runner ready for Android Working unlock system, missions, coins, and UI Professional understanding of…
+
+25. Udemy – Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch [Cgpersia.com]
+   https://cgpersia.com/2025/10/udemy-premiere-pro-masterclass-edit-videos-like-a-pro-from-scratch-200948.html
+   Duration 1h 38m MP4 Title: Udemy – Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch Info: What you’ll learn Navigate and customize the Premiere Pro interface Import, organize, and manage media efficiently Edit videos using the timeline, tools, an…
+

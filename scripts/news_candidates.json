@@ -56,6 +56,7 @@
   },
   {
     "index": 6,
+<<<<<<< HEAD
     "title": "Meet America\u2019s Best Employers For Engineers 2026",
     "url": "https://www.forbes.com/sites/rachelpeachman/2025/10/28/meet-americas-best-employers-for-engineers-2026/",
     "source": "Forbes",
@@ -75,6 +76,19 @@
     "publishedAt": "2025-10-31T07:00:00Z",
     "content": "NASHVILLE, Tenn.Talk of whats possible with AI permeated conversations this week among the 7,000 attendees at Educause, the sectors leading education-technology conference. But amid the product demos\u2026 [+7553 chars]",
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-10/MarkMcCormack_Educause.jpg?itok=4ndCBGHU"
+=======
+    "title": "Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts",
+    "url": "https://9to5mac.com/2025/10/30/security-bite-beware-sketchy-chatgpt-clones-slipping-back-into-the-app-store-charts/",
+    "source": "9to5Mac",
+    "description": "9to5Mac Security Bite is exclusively brought to you by Mosyle,\u00a0the only Apple Unified Platform. Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specifi\u2026"
+>>>>>>> b528b88438beb73896ef91a6900b476cef62ca6f
+  },
+  {
+    "index": 7,
+    "title": "Mosyle helps IT prepare for the agentic AI browser era with ChatGPT Atlas",
+    "url": "https://9to5mac.com/2025/10/31/mosyle-helps-it-prepare-for-the-agentic-ai-browser-era-with-chatgpt-atlas/",
+    "source": "9to5Mac",
+    "description": "Agentic AI is a term that every IT team should become familiar with, as it will impact every aspect of their work. As SaaS apps continue to dominate, the browser has become more than just a window to the web. A new generation of browsers is emerging that brin\u2026"
   },
   {
     "index": 8,
@@ -122,6 +136,7 @@
   },
   {
     "index": 12,
+<<<<<<< HEAD
     "title": "Future-Proofing Compliance: Strategic Training Priorities For Business Leaders In 2026",
     "url": "https://elearningindustry.com/future-proofing-compliance-strategic-training-priorities-for-business-leaders",
     "source": "Elearningindustry.com",
@@ -196,5 +211,102 @@
     "publishedAt": "2025-10-28T22:17:50Z",
     "content": "As companies push to increase efficiency and stay competitive, theyre encouraging, or in some cases outright requiring, workers to know how to use AI tools. However, the push for AI use has exposed a\u2026 [+6440 chars]",
     "urlToImage": "https://techcrunch.com/wp-content/uploads/2025/10/Screenshot-2025-10-24-at-11.39.53AM.png?resize=1200,673"
+=======
+    "title": "Hit by AI, edtech firm Chegg slashes jobs and names new CEO in major overhaul",
+    "url": "https://biztoc.com/x/c9c3f02d37da07dd",
+    "source": "Biztoc.com",
+    "description": ""
+  },
+  {
+    "index": 13,
+    "title": "Edtech Byju\u2019s parent, US lenders move NCLAT to halt Aakash Educational Services EGM",
+    "url": "https://economictimes.indiatimes.com/tech/technology/edtech-byjus-parent-us-lenders-move-nclat-to-halt-aakash-educational-services-egm/articleshow/124864829.cms",
+    "source": "The Times of India",
+    "description": "This comes after the Bengaluru bench of the National Company Law Tribunal (NCLT) dismissed Think and Learn\u2019s plea for an interim stay on the EGM. According to the counsel representing Glas Trust, the proposed rights issue would reduce Think and Learn\u2019s stake \u2026"
+  },
+  {
+    "index": 14,
+    "title": "JVNDB-2025-017792:Beakon \u306e Beakon Learning Management System Sharable Content Object Reference Model (SCORM) \u306b\u304a\u3051\u308b\u30af\u30ed\u30b9\u30b5\u30a4\u30c8\u30b9\u30af\u30ea\u30d7\u30c6\u30a3\u30f3\u30b0\u306e\u8106\u5f31\u6027",
+    "url": "http://vrda.jpcert.or.jp/feed/ja/JVNiPedia_JVNDB-2025-017792_AD_1.html",
+    "source": "Jpcert.or.jp",
+    "description": ""
+  },
+  {
+    "index": 15,
+    "title": "Show HN: Just launched my MVP a language learning app to learn through listening",
+    "url": "https://news.ycombinator.com/item?id=45779325",
+    "source": "Hacker News",
+    "description": "Hey everyone, I just launched the MVP of a mobile app I\u2019m building that helps people learn languages through listening. It\u2019s still early \u2014 I haven\u2019t uploaded the full lesson content yet \u2014 but I\u2019d love to get your feedback on the concept and design.\nhttps://pr\u2026"
+  },
+  {
+    "index": 16,
+    "title": "The Power Duo: Personalized Learning And Microlearning For Modern Workplaces",
+    "url": "https://elearningindustry.com/the-power-duo-personalized-learning-and-microlearning-for-modern-workplaces",
+    "source": "Elearningindustry.com",
+    "description": "Personalized learning, together with microlearning, unlocks workforce engagement and skill mastery by delivering relevant, bite-sized training tailored to unique employee needs.\nThis post was first published on eLearning Industry."
+  },
+  {
+    "index": 17,
+    "title": "\u201cClassPad Scoring\u201d\u304c\u300c\u65e5\u672ce-Learning\u5927\u8cde \u539a\u751f\u52b4\u50cd\u5927\u81e3\u8cde\u300d\u3092\u53d7\u8cde",
+    "url": "https://prtimes.jp/main/html/rd/p/000000458.000040622.html",
+    "source": "Prtimes.jp",
+    "description": "[\u30ab\u30b7\u30aa\u8a08\u7b97\u6a5f\u682a\u5f0f\u4f1a\u793e]\n\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\n\n[\u753b\u50cf1: https://prcdn.freetls.fastly.net/release_image/40622/458/40622-458-6f4898765af9472cd5835920b0a59185-550x450.jpg?width=536&quality=85%2C75&forma..."
+  },
+  {
+    "index": 18,
+    "title": "Udemy reports Q3 EPS 1c, consensus 9c",
+    "url": "https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c",
+    "source": "Thefly.com",
+    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
+  },
+  {
+    "index": 19,
+    "title": "Udemy sees Q4 revenue $191M-$194M, consensus $196.49M",
+    "url": "https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M",
+    "source": "Thefly.com",
+    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
+  },
+  {
+    "index": 20,
+    "title": "Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M",
+    "url": "https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM",
+    "source": "Thefly.com",
+    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
+  },
+  {
+    "index": 21,
+    "title": "edx-enterprise-data 10.21.12",
+    "url": "https://pypi.org/project/edx-enterprise-data/10.21.12/",
+    "source": "Pypi.org",
+    "description": "Enterprise Reporting"
+  },
+  {
+    "index": 22,
+    "title": "edx-username-changer 0.5.0",
+    "url": "https://pypi.org/project/edx-username-changer/0.5.0/",
+    "source": "Pypi.org",
+    "description": "An edX plugin to change username of edx accounts through admin panel"
+  },
+  {
+    "index": 23,
+    "title": "Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025",
+    "url": "https://cgpersia.com/2025/10/udemy-complete-blender-beginner-workflow-for-cinematic-art-2025-200977.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 4h 33m Project Files Included MP4 What you\u2019ll learn Learn my complete workflow in this step-by-step tutorial Title: Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025 Info: What you\u2019ll learn Learn my complete workflow in this step-by-s\u2026"
+  },
+  {
+    "index": 24,
+    "title": "Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch",
+    "url": "https://cgpersia.com/2025/10/udemy-create-a-3d-endless-runner-game-in-unity-from-scratch-201051.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 9h 35m Project Files Included MP4 Title: Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch Info: What you\u2019ll learn A complete 3D endless runner ready for Android Working unlock system, missions, coins, and UI Professional understanding of\u2026"
+  },
+  {
+    "index": 25,
+    "title": "Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch",
+    "url": "https://cgpersia.com/2025/10/udemy-premiere-pro-masterclass-edit-videos-like-a-pro-from-scratch-200948.html",
+    "source": "Cgpersia.com",
+    "description": "Duration 1h 38m MP4 Title: Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch Info: What you\u2019ll learn Navigate and customize the Premiere Pro interface Import, organize, and manage media efficiently Edit videos using the timeline, tools, an\u2026"
+>>>>>>> b528b88438beb73896ef91a6900b476cef62ca6f
   }
 ]
