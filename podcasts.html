@@ -8,22 +8,22 @@ title: EdTech Podcasts - DARJIX
   <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
     
     <!-- Page Title -->
-    <h1 class="text-3xl md:text-4xl font-bold text-black mb-8">Education Technology Podcasts</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-black mb-8">Education Technology Podcast Episodes</h1>
     
     <!-- Loading State -->
     <div id="loading" class="text-center py-12">
-      <p class="text-gray-600">Loading podcasts...</p>
+      <p class="text-gray-600">Loading episodes...</p>
     </div>
     
     <!-- Error State -->
     <div id="error" class="hidden p-6 bg-red-50 border border-red-200 rounded mb-6">
-      <p class="text-red-800 text-sm">Failed to load podcasts. Please try again later.</p>
+      <p class="text-red-800 text-sm">Failed to load episodes. Please try again later.</p>
     </div>
     
-    <!-- Podcasts Content -->
+    <!-- Episodes Content -->
     <div id="podcasts-container" class="hidden">
       <div class="space-y-6">
-        <!-- Podcasts will be inserted here by JavaScript -->
+        <!-- Episodes will be inserted here by JavaScript -->
       </div>
     </div>
     
@@ -33,8 +33,8 @@ title: EdTech Podcasts - DARJIX
         About This Page
       </h3>
       <p class="text-sm text-gray-600 mb-3">
-        This page displays podcasts and episodes related to educational technology from Apple Podcasts.
-        Results are fetched from the iTunes Search API and updated on each page load.
+        This page displays recent podcast episodes related to educational technology from Apple Podcasts.
+        Results are sorted by relevance and fetched from the iTunes Search API on each page load.
       </p>
       <p class="text-xs text-gray-500">
         Powered by iTunes Search API
@@ -57,9 +57,10 @@ title: EdTech Podcasts - DARJIX
   const errorEl = document.getElementById('error');
   const containerEl = document.getElementById('podcasts-container');
   
-  // Search for education technology podcasts
+  // Search for education technology podcast episodes
+  // Try relevance search first (default sort), then fallback to recent
   const searchTerm = encodeURIComponent('education technology');
-  const apiUrl = `https://itunes.apple.com/search?term=${searchTerm}&media=podcast&entity=podcast&limit=10&country=us`;
+  const apiUrl = `https://itunes.apple.com/search?term=${searchTerm}&media=podcast&entity=podcastEpisode&limit=10&country=us`;
   
   // Try fetch first (CORS may work)
   fetch(apiUrl)
@@ -73,11 +74,13 @@ title: EdTech Podcasts - DARJIX
       loadingEl.classList.add('hidden');
       
       if (data.results && data.results.length > 0) {
-        displayPodcasts(data.results);
+        // Sort by release date (most recent first) if available, otherwise use as-is
+        const sortedResults = sortEpisodesByRelevance(data.results);
+        displayEpisodes(sortedResults);
         containerEl.classList.remove('hidden');
       } else {
         errorEl.classList.remove('hidden');
-        errorEl.querySelector('p').textContent = 'No podcasts found.';
+        errorEl.querySelector('p').textContent = 'No episodes found.';
       }
     })
     .catch(error => {
@@ -99,11 +102,13 @@ title: EdTech Podcasts - DARJIX
       loadingEl.classList.add('hidden');
       
       if (data.results && data.results.length > 0) {
-        displayPodcasts(data.results);
+        // Sort by release date (most recent first) if available, otherwise use as-is
+        const sortedResults = sortEpisodesByRelevance(data.results);
+        displayEpisodes(sortedResults);
         containerEl.classList.remove('hidden');
       } else {
         errorEl.classList.remove('hidden');
-        errorEl.querySelector('p').textContent = 'No podcasts found.';
+        errorEl.querySelector('p').textContent = 'No episodes found.';
       }
       
       // Clean up
@@ -130,35 +135,81 @@ title: EdTech Podcasts - DARJIX
     return div.innerHTML;
   }
   
-  function displayPodcasts(podcasts) {
+  function sortEpisodesByRelevance(episodes) {
+    // Sort by release date (most recent first) to prioritize recent episodes
+    // If no release date, keep original order
+    return episodes.sort((a, b) => {
+      const dateA = a.releaseDate ? new Date(a.releaseDate) : null;
+      const dateB = b.releaseDate ? new Date(b.releaseDate) : null;
+      
+      if (!dateA && !dateB) return 0;
+      if (!dateA) return 1;
+      if (!dateB) return -1;
+      
+      return dateB - dateA; // Most recent first
+    });
+  }
+  
+  function formatDuration(milliseconds) {
+    if (!milliseconds) return '';
+    const minutes = Math.floor(milliseconds / 60000);
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    
+    if (hours > 0) {
+      return `${hours}h ${mins}m`;
+    }
+    return `${minutes}m`;
+  }
+  
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  }
+  
+  function displayEpisodes(episodes) {
     const container = containerEl.querySelector('.space-y-6');
     container.innerHTML = '';
     
-    if (podcasts.length === 0) {
-      container.innerHTML = '<p class="text-gray-600 text-center py-12">No podcasts found.</p>';
+    // Limit to top 10 episodes
+    const topEpisodes = episodes.slice(0, 10);
+    
+    if (topEpisodes.length === 0) {
+      container.innerHTML = '<p class="text-gray-600 text-center py-12">No episodes found.</p>';
       return;
     }
     
-    podcasts.forEach((podcast, index) => {
-      const podcastEl = document.createElement('div');
-      podcastEl.className = 'border-b border-gray-200 pb-6 last:border-b-0';
+    topEpisodes.forEach((episode, index) => {
+      const episodeEl = document.createElement('div');
+      episodeEl.className = 'border-b border-gray-200 pb-6 last:border-b-0';
       
-      const hasArtwork = podcast.artworkUrl100;
-      const description = podcast.description || '';
-      const truncatedDescription = description.length > 200 
-        ? description.substring(0, 200) + '...' 
+      const hasArtwork = episode.artworkUrl100 || episode.artworkUrl60;
+      const artworkUrl = episode.artworkUrl100 || episode.artworkUrl60 || '';
+      
+      // Use full description, show more of it
+      const description = episode.description || '';
+      const truncatedDescription = description.length > 400 
+        ? description.substring(0, 400) + '...' 
         : description;
       
-      const title = escapeHtml(podcast.collectionName || podcast.trackName || 'Untitled');
-      const artist = podcast.artistName ? escapeHtml(podcast.artistName) : '';
-      const viewUrl = podcast.collectionViewUrl || podcast.trackViewUrl || '#';
+      const episodeTitle = escapeHtml(episode.trackName || 'Untitled Episode');
+      const podcastName = escapeHtml(episode.collectionName || '');
+      const artist = episode.artistName ? escapeHtml(episode.artistName) : '';
+      const viewUrl = episode.trackViewUrl || episode.collectionViewUrl || '#';
+      const releaseDate = formatDate(episode.releaseDate);
+      const duration = formatDuration(episode.trackTimeMillis);
       
-      podcastEl.innerHTML = `
+      episodeEl.innerHTML = `
         <div class="flex flex-col sm:flex-row gap-4">
           ${hasArtwork ? `
           <div class="flex-shrink-0">
-            <img src="${escapeHtml(podcast.artworkUrl100)}" 
-                 alt="${title}" 
+            <img src="${escapeHtml(artworkUrl)}" 
+                 alt="${episodeTitle}" 
                  class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded"
                  onerror="this.style.display='none'">
           </div>
@@ -169,18 +220,23 @@ title: EdTech Podcasts - DARJIX
                  target="_blank" 
                  rel="noopener noreferrer"
                  class="hover:underline">
-                ${title}
+                ${episodeTitle}
               </a>
             </h2>
-            ${artist ? `
-            <p class="text-sm text-gray-600 mb-2">
-              by ${artist}
+            ${podcastName ? `
+            <p class="text-sm font-medium text-gray-800 mb-1">
+              ${podcastName}
             </p>
             ` : ''}
+            <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-3">
+              ${artist ? `<span>by ${artist}</span>` : ''}
+              ${releaseDate ? `<span>•</span><span>${releaseDate}</span>` : ''}
+              ${duration ? `<span>•</span><span>${duration}</span>` : ''}
+            </div>
             ${truncatedDescription ? `
-            <p class="text-sm text-gray-700 mb-3">
+            <div class="text-sm text-gray-700 mb-3 leading-relaxed">
               ${escapeHtml(truncatedDescription)}
-            </p>
+            </div>
             ` : ''}
             <a href="${escapeHtml(viewUrl)}" 
                target="_blank" 
@@ -192,7 +248,7 @@ title: EdTech Podcasts - DARJIX
         </div>
       `;
       
-      container.appendChild(podcastEl);
+      container.appendChild(episodeEl);
     });
   }
 })();
