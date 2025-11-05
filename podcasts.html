@@ -57,43 +57,105 @@ title: EdTech Podcasts - DARJIX
   const errorEl = document.getElementById('error');
   const containerEl = document.getElementById('podcasts-container');
   
-  // Search for education technology podcast episodes
-  // Try relevance search first (default sort), then fallback to recent
-  const searchTerm = encodeURIComponent('education technology');
-  const apiUrl = `https://itunes.apple.com/search?term=${searchTerm}&media=podcast&entity=podcastEpisode&limit=10&country=us`;
+  // Multi-strategy search for EdTech podcast episodes
+  // Search multiple related terms and known EdTech podcasts to get better coverage
+  const searchStrategies = [
+    'education technology',
+    'edtech',
+    'learning technology',
+    'educational technology',
+    'EdTech Podcast',
+    'Higher Ed',
+    'Teaching in Higher Ed',
+    'EdSurge',
+    'Cult of Pedagogy'
+  ];
   
-  // Try fetch first (CORS may work)
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      loadingEl.classList.add('hidden');
-      
-      if (data.results && data.results.length > 0) {
-        // Sort by release date (most recent first) if available, otherwise use as-is
-        const sortedResults = sortEpisodesByRelevance(data.results);
-        displayEpisodes(sortedResults);
-        containerEl.classList.remove('hidden');
-      } else {
-        errorEl.classList.remove('hidden');
-        errorEl.querySelector('p').textContent = 'No episodes found.';
-      }
-    })
-    .catch(error => {
-      // Fallback to JSONP if fetch fails
-      console.log('Fetch failed, trying JSONP:', error);
-      loadWithJSONP();
+  // Fetch episodes from multiple search strategies
+  fetchMultipleSearches(searchStrategies);
+  
+  function fetchMultipleSearches(terms) {
+    const allEpisodes = [];
+    const seenEpisodes = new Set();
+    let completedSearches = 0;
+    const totalSearches = terms.length;
+    
+    terms.forEach((term, index) => {
+      // Add delay between searches to avoid rate limiting (20 calls/minute)
+      setTimeout(() => {
+        const searchTerm = encodeURIComponent(term);
+        const apiUrl = `https://itunes.apple.com/search?term=${searchTerm}&media=podcast&entity=podcastEpisode&limit=25&country=us`;
+        
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.results && data.results.length > 0) {
+              // Filter episodes from last 30 days and deduplicate
+              const oneMonthAgo = new Date();
+              oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+              
+              data.results.forEach(episode => {
+                const episodeDate = episode.releaseDate ? new Date(episode.releaseDate) : null;
+                const episodeId = episode.trackId || episode.trackName;
+                
+                // Only include episodes from last month and not already seen
+                if (episodeDate && episodeDate >= oneMonthAgo && !seenEpisodes.has(episodeId)) {
+                  seenEpisodes.add(episodeId);
+                  allEpisodes.push(episode);
+                }
+              });
+            }
+            
+            completedSearches++;
+            if (completedSearches === totalSearches) {
+              finishLoading(allEpisodes);
+            }
+          })
+          .catch(error => {
+            console.log(`Search failed for "${term}":`, error);
+            completedSearches++;
+            if (completedSearches === totalSearches) {
+              finishLoading(allEpisodes);
+            }
+          });
+      }, index * 3500); // 3.5 second delay between searches (20 calls/minute = 3 seconds between, add buffer)
     });
+    
+    // If all searches fail, try JSONP fallback with first term
+    setTimeout(() => {
+      if (completedSearches === 0 && allEpisodes.length === 0) {
+        console.log('All fetch requests failed, trying JSONP fallback');
+        loadWithJSONP(terms[0]);
+      }
+    }, 10000);
+  }
   
-  function loadWithJSONP() {
+  function finishLoading(episodes) {
+    loadingEl.classList.add('hidden');
+    
+    if (episodes.length > 0) {
+      // Sort by release date (most recent first)
+      const sortedResults = sortEpisodesByRelevance(episodes);
+      displayEpisodes(sortedResults);
+      containerEl.classList.remove('hidden');
+    } else {
+      errorEl.classList.remove('hidden');
+      errorEl.querySelector('p').textContent = 'No recent episodes found.';
+    }
+  }
+  
+  function loadWithJSONP(term = 'education technology') {
     // Create a unique callback name
     const callbackName = 'itunesCallback_' + Date.now();
     
     // Create script element
+    const searchTerm = encodeURIComponent(term);
+    const apiUrl = `https://itunes.apple.com/search?term=${searchTerm}&media=podcast&entity=podcastEpisode&limit=25&country=us`;
     const script = document.createElement('script');
     script.src = `${apiUrl}&callback=${callbackName}`;
     
@@ -102,10 +164,24 @@ title: EdTech Podcasts - DARJIX
       loadingEl.classList.add('hidden');
       
       if (data.results && data.results.length > 0) {
-        // Sort by release date (most recent first) if available, otherwise use as-is
-        const sortedResults = sortEpisodesByRelevance(data.results);
-        displayEpisodes(sortedResults);
-        containerEl.classList.remove('hidden');
+        // Filter episodes from last 30 days
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        
+        const recentEpisodes = data.results.filter(episode => {
+          if (!episode.releaseDate) return false;
+          const episodeDate = new Date(episode.releaseDate);
+          return episodeDate >= oneMonthAgo;
+        });
+        
+        if (recentEpisodes.length > 0) {
+          const sortedResults = sortEpisodesByRelevance(recentEpisodes);
+          displayEpisodes(sortedResults);
+          containerEl.classList.remove('hidden');
+        } else {
+          errorEl.classList.remove('hidden');
+          errorEl.querySelector('p').textContent = 'No recent episodes found.';
+        }
       } else {
         errorEl.classList.remove('hidden');
         errorEl.querySelector('p').textContent = 'No episodes found.';
@@ -210,7 +286,7 @@ title: EdTech Podcasts - DARJIX
           <div class="flex-shrink-0">
             <img src="${escapeHtml(artworkUrl)}" 
                  alt="${episodeTitle}" 
-                 class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded"
+                 class="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded"
                  onerror="this.style.display='none'">
           </div>
           ` : ''}
