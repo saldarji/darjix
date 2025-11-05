@@ -33,7 +33,7 @@ exclude:
 
 # Blog settings
 permalink: /:year/:month/:day/:title/
-paginate: 10
+paginate: 5
 paginate_path: "/page:num/"
 
 # Defaults
