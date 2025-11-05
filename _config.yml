@@ -12,11 +12,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Blog settings
-permalink: /:year/:month/:day/:title/
-paginate: 5
-paginate_path: "/page:num/"
-
 # GitHub Pages specific settings
 # Note: 'theme' is commented out since we're using custom layouts
 # theme: minima

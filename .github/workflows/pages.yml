@@ -45,7 +45,7 @@ jobs:
         run: npm ci
           
       - name: Build Tailwind CSS
-        run: npm run build:production
+        run: NODE_ENV=production tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css --minify
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
