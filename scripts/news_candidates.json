@@ -1,312 +1,167 @@
 [
   {
     "index": 1,
-    "title": "Is AI Leading to Layoffs or Does the Economy Just Suck?",
-    "url": "https://gizmodo.com/is-ai-leading-to-layoffs-or-does-the-economy-just-suck-2000679535",
-    "source": "Gizmodo.com",
-    "description": "Does the AI-ification of the economy mean less jobs, or does a faulty economy mean more AI?",
-    "author": "Lucas Ropek",
-    "publishedAt": "2025-10-30T19:40:43Z",
-    "content": "It\u2019s not a particularly good time to be a (human) worker in America. Tens of thousands of people have been laid off over the past several days, and the general outlook for job-seekers appears grim, t\u2026 [+5534 chars]",
-    "urlToImage": "https://gizmodo.com/app/uploads/2020/04/yhvhqe6lxteenu0kbaiu.jpg"
+    "title": "Tech companies don\u2019t care that students use their AI agents to cheat",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/812906/ai-agents-cheating-school-students",
+    "source": "The Verge",
+    "description": "AI companies know that children are the future - of their business model. The industry doesn't hide their attempts to hook the youth on their products through well-timed promotional offers, discounts, and referral programs. \"Here to help you through finals,\" \u2026",
+    "author": "Elissa Welle",
+    "publishedAt": "2025-11-04T13:20:33Z",
+    "content": "<ul><li></li><li></li><li></li></ul>\r\nCheating just got a lot easier with AI agents.\r\nCheating just got a lot easier with AI agents.\r\nby\r\nElissa WelleClose\r\nElissa Welle\r\nPosts from this author will \u2026 [+9721 chars]",
+    "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/11/258048_AI_CHEATING_STUDENTS.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
   },
   {
     "index": 2,
-    "title": "When 3D Goes Mainstream: How AI Education Shapes Next Visual Culture",
-    "url": "https://www.forbes.com/sites/viviantoh/2025/10/27/when-3d-goes-mainstream-how-ai-education-shapes-next-visual-culture/",
-    "source": "Forbes",
-    "description": "AI-generated 3D modeling belonged to research labs and Hollywood studios. Today, it\u2019s seeping into classrooms, social media memes, and mainstream creative tools.",
-    "author": "Vivian Toh, Contributor, \n Vivian Toh, Contributor\n https://www.forbes.com/sites/viviantoh/",
-    "publishedAt": "2025-10-27T11:28:41Z",
-    "content": "The Nubia Pad 3D, a tablet developed by the Chinese manufacturer Nubia, a former ZTE subsidiary, is showcasing its 3D technology for creating 3D models at the Mobile World Congress 2024 in Barcelona,\u2026 [+6922 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/68ff55490dfa8166ffab82c0/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+    "title": "Breaking Up With Edtech Is Hard to Do",
+    "url": "https://www.edsurge.com/news/2025-11-07-breaking-up-with-edtech-is-hard-to-do",
+    "source": "Edsurge.com",
+    "description": "Shedding old edtech is a real pain, district experts say. Worse, student privacy may be at risk.",
+    "author": "Ellen Ullman",
+    "publishedAt": "2025-11-07T09:00:00Z",
+    "content": "When Kerri Walls school district decided not to renew its five-year contract with an edtech company last spring, she didnt expect the hardest part to come after the breakup.\r\nAs the senior digital in\u2026 [+7823 chars]",
+    "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16523/shutterstock_1481233058-1762370569.jpg?auto=compress%2Cformat&w=1024&h=512&fit=crop"
   },
   {
     "index": 3,
-    "title": "Can Duolingo Stock Crash 30%",
-    "url": "https://www.forbes.com/sites/greatspeculations/2025/10/30/can-duolingo-stock-crash-30/",
-    "source": "Forbes",
-    "description": "The recent drop raises a key question for investors: is this a healthy pullback or the start of a deeper correction?",
-    "author": "Trefis Team, Contributor, \n Trefis Team, Contributor\n https://www.forbes.com/sites/greatspeculations/people/trefis/",
-    "publishedAt": "2025-10-30T14:17:51Z",
-    "content": "CHONGQING, CHINA - FEBRUARY 23: In this photo illustration, the Duolingo logo is displayed on a smartphone screen (Photo by Cheng Xin/Getty Images)\r\nGetty Images\r\nDuolingo (DUOL) has been a top perfo\u2026 [+2995 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/69031d33d279f735cfdc6219/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+    "title": "Colleges Are Running Out of Time on Digital Accessibility",
+    "url": "https://www.insidehighered.com/opinion/columns/editors-note/2025/11/06/colleges-are-running-out-time-digital-accessibility",
+    "source": "Inside Higher Ed",
+    "description": "Colleges Are Running Out of Time on Digital Accessibility\n\nsara.custer@in\u2026\n\nThu, 11/06/2025 - 03:00 AM\n\nNew federal rules require all college web content to be accessible by spring 2026. Most institutions are far from ready.\n \n Byline(s)\r\n\n \n Sara Custer",
+    "author": "sara.custer@insidehighered.com",
+    "publishedAt": "2025-11-06T08:00:00Z",
+    "content": "By the spring of next year, public colleges and universities will be required to make sure all their webpages, online course content and anything in a mobile app is accessible to people with disabili\u2026 [+2396 chars]",
+    "urlToImage": "https://www.insidehighered.com/modules/custom/ihe_custom/img/ihe-logo-no-wordmark.png"
   },
   {
     "index": 4,
-    "title": "How One Mom Used Vibe Coding to Build an AI Tutor for Her Dyslexic Son",
-    "url": "https://www.scientificamerican.com/article/how-one-mom-used-vibe-coding-to-build-an-ai-tutor-for-her-dyslexic-son/",
-    "source": "Scientific American",
-    "description": "Faced with her son\u2019s struggle with dyslexia, one mom built an AI platform to help kids learn their own way",
-    "author": "Deni Ellis B\u00e9chard",
-    "publishedAt": "2025-10-31T10:30:00Z",
-    "content": "A dyslexia diagnosis was supposed to offer solutions for a boy named Tobey. His learning difference was first identified in a routine school screening and led to tutors, speech therapy, a neuropsycho\u2026 [+11175 chars]",
-    "urlToImage": "https://static.scientificamerican.com/dam/m/60996d7aa80fe281/original/GettyImages-2220842873-boy-robot-web.jpeg?m=1761856753.579&w=1200"
+    "title": "Hari Gopalkrishnan On Building Bank Of America\u2019s AI And Tech Engine",
+    "url": "https://www.forbes.com/sites/peterhigh/2025/11/03/hari-gopalkrishnan-on-building-bank-of-americas-ai-and-tech-engine/",
+    "source": "Forbes",
+    "description": "Hari Gopalkrishnan's perch and purview at Bank of America offer his team and him one of the broadest and most innovative instantiations of artificial intelligence.",
+    "author": "Peter High, Contributor, \n Peter High, Contributor\n https://www.forbes.com/sites/peterhigh/",
+    "publishedAt": "2025-11-03T14:00:00Z",
+    "content": "Bank of America building in Los Angeles\r\ngetty\r\nBank of America is the second largest U.S. bank by assets, with roughly $2.6 trillion on its balance sheet and $192 billion in 2024 revenue. As chief t\u2026 [+9323 chars]",
+    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/6903f96e73a402d1ff3a33fe/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
   },
   {
     "index": 5,
-    "title": "China Market Update: \u201cBuy The Rumor, Sell The News\u201d, Week In Review",
-    "url": "https://www.forbes.com/sites/brendanahern/2025/10/31/china-market-update-buy-the-rumor-sell-the-news-week-in-review/",
-    "source": "Forbes",
-    "description": "Asian equities were mixed, as Japan and South Korea outperformed, while Mainland China and Hong Kong underperformed.",
-    "author": "Brendan Ahern, Senior Contributor, \n Brendan Ahern, Senior Contributor\n https://www.forbes.com/sites/brendanahern/",
-    "publishedAt": "2025-10-31T15:39:12Z",
-    "content": "<ul><li>Asian equities were mostly lower for the week as Japan and Korea outperformed, while Mainland Chinas STAR Board and Vietnam underperformed.</li><li>Presidents Trump and Xi met held a closed-d\u2026 [+5444 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/6904d72cfd64267162450285/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+    "title": "5 Reasons Why Organizations Insist On Investing In Failed Learning Strategies",
+    "url": "https://elearningindustry.com/reasons-why-organizations-insist-on-investing-in-failed-learning-strategies",
+    "source": "Elearningindustry.com",
+    "description": "Why do businesses keep investing in failed learning programs? Read on to explore the psychology behind clinging to learning \"dead horses.\"\nThis post was first published on eLearning Industry.",
+    "author": "Christopher Pappas",
+    "publishedAt": "2025-11-04T20:00:35Z",
+    "content": "The Psychology Behind Persisting On Learning \"Dead Horses\"\r\nIt is often not that hard to identify a \"dead horse\" within an organization, whether it is an onboarding system that doesn't set up new hir\u2026 [+7394 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/10/5-Reasons-Why-Organizations-Insist-On-Investing-In-Failed-Learning-Strategies.jpg"
   },
   {
     "index": 6,
-<<<<<<< HEAD
-    "title": "Meet America\u2019s Best Employers For Engineers 2026",
-    "url": "https://www.forbes.com/sites/rachelpeachman/2025/10/28/meet-americas-best-employers-for-engineers-2026/",
-    "source": "Forbes",
-    "description": "The top companies on this second annual ranking offer engineers skills training, career development, competitive pay and opportunities to be a part of innovative work.",
-    "author": "Shefali Kapadia, Contributor, \n Shefali Kapadia, Contributor\n https://www.forbes.com/sites/shefalikapadia/",
-    "publishedAt": "2025-10-28T13:45:00Z",
-    "content": "Google's Borregas office in Sunnyvale, California, is an all-electric, low-carbon building made from sustainable mass timber and featuring high ceilings, natural light and \"neighborhood\" work spaces.\u2026 [+8066 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/690024899f26e7b9489aa27f/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+    "title": "Learning Tech Benchmarks: What High-Performing Companies Are Doing",
+    "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/learning-tech-benchmarks-what-high-performing-companies-are-doing",
+    "source": "Elearningindustry.com",
+    "description": "Education is the global epicenter of growth for companies across all industries, including eLearning, L&D, and HR tech. As learning tech is quietly becoming a winning ingredient, are you investing time and money in your teams' development and upskilling?\nThis\u2026",
+    "author": "Christopher Pappas",
+    "publishedAt": "2025-11-07T14:00:02Z",
+    "content": "The Current State Of Learning Technology\r\nThe global education technology market is projected to reach $348 billion by 2030. And that's no surprise if you think that 47% of L&amp;D professionals say \u2026 [+18057 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Learning-Tech-Benchmarks_What-High-Performing-Companies-Are-Doing.png"
   },
   {
     "index": 7,
-    "title": "Higher Ed Tech Leaders Pursue Consolidation and Savings",
-    "url": "https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2025/10/31/higher-ed-tech-leaders-pursue-consolidation",
-    "source": "Inside Higher Ed",
-    "description": "Higher Ed Tech Leaders Pursue Consolidation and Savings\n\n \n\n\n \nsara.custer@in\u2026\n\nFri, 10/31/2025 - 03:00 AM\n\nEducause\u2019s latest top 10 survey shows economic and political uncertainty are putting pressure on colleges to streamline their tech environments while k\u2026",
-    "author": "sara.custer@insidehighered.com",
-    "publishedAt": "2025-10-31T07:00:00Z",
-    "content": "NASHVILLE, Tenn.Talk of whats possible with AI permeated conversations this week among the 7,000 attendees at Educause, the sectors leading education-technology conference. But amid the product demos\u2026 [+7553 chars]",
-    "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-10/MarkMcCormack_Educause.jpg?itok=4ndCBGHU"
-=======
-    "title": "Security Bite: Beware sketchy ChatGPT-clones slipping back into App Store charts",
-    "url": "https://9to5mac.com/2025/10/30/security-bite-beware-sketchy-chatgpt-clones-slipping-back-into-the-app-store-charts/",
-    "source": "9to5Mac",
-    "description": "9to5Mac Security Bite is exclusively brought to you by Mosyle,\u00a0the only Apple Unified Platform. Making Apple devices work-ready and enterprise-safe is all we do. Our unique integrated approach to management and security combines state-of-the-art Apple-specifi\u2026"
->>>>>>> b528b88438beb73896ef91a6900b476cef62ca6f
-  },
-  {
-    "index": 7,
-    "title": "Mosyle helps IT prepare for the agentic AI browser era with ChatGPT Atlas",
-    "url": "https://9to5mac.com/2025/10/31/mosyle-helps-it-prepare-for-the-agentic-ai-browser-era-with-chatgpt-atlas/",
-    "source": "9to5Mac",
-    "description": "Agentic AI is a term that every IT team should become familiar with, as it will impact every aspect of their work. As SaaS apps continue to dominate, the browser has become more than just a window to the web. A new generation of browsers is emerging that brin\u2026"
+    "title": "The Science Of Learning Meets AI: How Cognitive Principles Can Transform eLearning Platforms",
+    "url": "https://elearningindustry.com/the-science-of-learning-meets-ai-how-cognitive-principles-can-transform-elearning-platforms",
+    "source": "Elearningindustry.com",
+    "description": "How cognitive science and AI transform eLearning into lasting knowledge.\nThis post was first published on eLearning Industry.",
+    "author": "Ruslan Makarsky",
+    "publishedAt": "2025-11-07T18:00:20Z",
+    "content": "Why Most Platforms Ignore The Science Of Memory\r\nHow do you make knowledge stay? That's what our client, a professional learning platform owner, wanted to solve. Their goal was simple: help learners \u2026 [+6296 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2658490435.jpg"
   },
   {
     "index": 8,
-    "title": "Student Mental Health Challenges Persist",
-    "url": "https://www.insidehighered.com/news/student-success/health-wellness/2025/10/30/college-student-mental-health-remains-wicked",
-    "source": "Inside Higher Ed",
-    "description": "Student Mental Health Challenges Persist\n\n \n\n\n \ncolleen.flaherty\n\nThu, 10/30/2025 - 03:00 AM\n\nStudents\u2019 mental health and overall well-being continue to lag, finds Inside Higher Ed\u2019s Student Voice survey, even as campuses expand support services.\n \n Byline(s)\u2026",
-    "author": "colleen.flaherty",
-    "publishedAt": "2025-10-30T07:00:00Z",
-    "content": "Just 27 percent of undergraduates describe their mental health as above average or excellent, according to new data from\u00a0Inside Higher Eds main annual Student Voice survey of more than 5,000 undergra\u2026 [+15699 chars]",
-    "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-10/Student_group_talk_GettyImages-1418536857.jpg?itok=wTR_JKB5"
+    "title": "Degradable cyclic amino alcohol ionizable lipids as vectors for potent influenza mRNA vaccines",
+    "url": "https://www.nature.com/articles/s41565-025-02044-6",
+    "source": "Nature.com",
+    "description": "This work presents a degradable ionizable lipid, AMG1541, for mRNA vaccines that significantly enhances potency and enables similar protective immunity at doses 100-fold lower than current standards, while also reducing toxicity and improving clearance in viv\u2026",
+    "author": "Arnab Rudra, Akash Gupta, Kaelan Reed, Amy Deik, Jiyeon Min, Hasan Mansour A. Mansour, Quang Trung Chinh Nguyen, Austin Danko, Yizong Hu, Allegra Berger, Michaela Prado, Amira Beck, Clary B. Clish, Jeffery B. Klauda, Robert Langer, Daniel G. Anderson",
+    "publishedAt": "2025-11-07T00:00:00Z",
+    "content": "<li>Pardi, N. &amp; Krammer, F. mRNA vaccines for infectious diseases advances, challenges and opportunities. Nat. Rev. Drug Discov.23, 838861 (2024).\r\nArticle\u00a0\r\n CAS\u00a0\r\n PubMed\u00a0\r\nGoogle Scholar\u00a0\r\n</l\u2026 [+16891 chars]",
+    "urlToImage": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41565-025-02044-6/MediaObjects/41565_2025_2044_Fig1_HTML.png"
   },
   {
     "index": 9,
-    "title": "Listen: Putting AI Tools in the Classroom",
-    "url": "https://www.insidehighered.com/news/student-success/college-experience/2025/10/29/podcast-teaching-alongside-generative-ai-student",
-    "source": "Inside Higher Ed",
-    "description": "Listen: Putting AI Tools in the Classroom\n\n \n\n\n \nAshley Mowreader\n\nWed, 10/29/2025 - 03:00 AM\n\nInside Higher Ed\u2019s Voices of Student Success discusses the role of faculty in embracing and teaching alongside AI tools for career development.\n \n Byline(s)\r\n\n \n As\u2026",
-    "author": "Ashley Mowreader",
-    "publishedAt": "2025-10-29T07:00:00Z",
-    "content": "A growing share of colleges and universities are embedding artificial intelligence tools and AI literacy into the curriculum with the intent of aiding student success. A 2025 Inside Higher Ed survey \u2026 [+22136 chars]",
-    "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2024-09/eidel2-resize.jpg?itok=8qGtOSb6"
+    "title": "From Legacy To Learning Intelligence: Knowing When To Replace Your LMS",
+    "url": "https://elearningindustry.com/from-legacy-to-learning-intelligence-knowing-when-to-replace-your-lms",
+    "source": "Elearningindustry.com",
+    "description": "Your LMS may have served you well, but in the age of AI-driven learning and business agility, legacy systems can hold you back. Here\u2019s how to spot the red flags\u2014and what to look for next.\nThis post was first published on eLearning Industry.",
+    "author": "Nidhi Dubey",
+    "publishedAt": "2025-11-06T18:00:09Z",
+    "content": "Signs It's Time To Replace Your LMS\r\nFor many organizations, the Learning Management System (LMS) has been the backbone of training operationstracking courses, managing enrollments, and storing certi\u2026 [+11678 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2421187407.jpg"
   },
   {
     "index": 10,
-    "title": "How Time And Space Could Be Used To Regulate AI",
-    "url": "https://www.forbes.com/sites/cio/2025/10/30/how-time-and-space-could-be-used-to-regulate-ai/",
-    "source": "Forbes",
-    "description": "Also in the Forbes CIO newsletter: How top growth firms use AI, Nvidia and Apple cross valuation thresholds, OpenAI creates for-profit arm, brain rot infects AI too.",
-    "author": "Megan Poinski, Forbes Staff, \n Megan Poinski, Forbes Staff\n https://www.forbes.com/sites/meganpoinski/",
-    "publishedAt": "2025-10-30T18:15:18Z",
-    "content": "With almost every company using AI nowadays, integration is no longer a differentiator. But some companies are seeing more revenue growth than others, and how they use AI helps them get there.\r\nIn Fo\u2026 [+15891 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/6903aad05bfb02067939c7b9/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+    "title": "How Can eLearning Platforms Ensure Data Safety?",
+    "url": "https://elearningindustry.com/how-can-elearning-platforms-ensure-data-safety",
+    "source": "Elearningindustry.com",
+    "description": "This article explains how eLearning platforms can protect sensitive data from cyberattacks. It details the critical role of encryption technologies like SSL/TLS , S/MIME, Code Signing, and Document Signing in safeguarding communications and ensuring complianc\u2026",
+    "author": "Miles Brown",
+    "publishedAt": "2025-11-03T16:00:04Z",
+    "content": "Data Safety Guide For eLearning Platforms\r\nThe digital learning revolution has transformed education, making it accessible to millions worldwide. From primary schools to corporate training, eLearning\u2026 [+12663 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2364235271.jpg"
   },
   {
     "index": 11,
-    "title": "AI Agent In Education: A Day In The Life Transforming Student Learning",
-    "url": "https://elearningindustry.com/ai-agent-in-education-a-day-in-the-life-transforming-student-learning",
+    "title": "Strategies For Building Faculty Readiness For AI Integration",
+    "url": "https://elearningindustry.com/strategies-for-building-faculty-readiness-for-ai-integration",
     "source": "Elearningindustry.com",
-    "description": "In today's rapidly evolving educational landscape, technology isn't just a helpful tool\u2014it's a game-changer. AI agents are transforming classrooms, reshaping how students learn, teachers teach, and schools operate.\nThis post was first published on eLearning I\u2026",
-    "author": "Alona Nyzova",
-    "publishedAt": "2025-10-27T16:00:15Z",
-    "content": "AI Agent In eLearning Education\r\nFrom personalized learning paths to real-time feedback, the use of an AI agent in education can redefine the student experience. Drawing from our experience, we've se\u2026 [+15213 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/10/Shutterstock_2521264741.jpg"
+    "description": "Colleges are increasingly investing in AI, but no amount of technology can transform learning without faculty readiness.\nThis post was first published on eLearning Industry.",
+    "author": "Joseph Evanick, Ed.D.",
+    "publishedAt": "2025-11-03T18:00:55Z",
+    "content": "Why Faculty Readiness Matters More Than The Technology Itself\r\nArtificial Intelligence (AI) is reshaping higher education at an extraordinary pace. From personalized learning assistants to analytics \u2026 [+11638 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Strategies-For-Building-Faculty-Readiness-For-AI-Integration.jpg"
   },
   {
     "index": 12,
-<<<<<<< HEAD
-    "title": "Future-Proofing Compliance: Strategic Training Priorities For Business Leaders In 2026",
-    "url": "https://elearningindustry.com/future-proofing-compliance-strategic-training-priorities-for-business-leaders",
+    "title": "What Is Project Management In Higher Education (+ 5 Tips For Executing Higher Ed Projects)",
+    "url": "https://elearningindustry.com/what-is-project-management-in-higher-education-tips-for-executing-higher-ed-projects",
     "source": "Elearningindustry.com",
-    "description": "More than 40% of global companies reported at least one compliance failure that led to fines, penalties, or back pay in 2025. Is your organization ready to navigate the compliance challenges in the year ahead?\nThis post was first published on eLearning Indust\u2026",
-    "author": "Liz Jukovsky",
-    "publishedAt": "2025-10-27T18:00:10Z",
-    "content": "SMBs, Mid-Market, And Enterprise Compliance Tips\r\n<table><tr><td>Key Takeaways</td></tr><tr><td>1. Many global companies are experiencing compliance failures that result in fines and penalties, highl\u2026 [+10788 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/10/Future-Proofing-Compliance-Strategic-Compliance-Priorities-For-Business-Leaders-In-2026.jpg"
+    "description": "Effective project management in higher education means increased productivity, enhanced stakeholder satisfaction, improved student outcomes, and greater institutional success. But what does project management look like in practice, and how do higher ed teams \u2026",
+    "author": "Zeniya Cooley",
+    "publishedAt": "2025-11-08T18:00:23Z",
+    "content": "The Need For Project Management In Higher Ed\r\nProject management is applying your knowledge, skills, and resources to plan and execute a project. So, imagine all of the higher education projects that\u2026 [+13531 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2519207001.jpg"
   },
   {
     "index": 13,
-    "title": "Sales Enablement Solutions: A Practical Guide For L&D Professionals",
-    "url": "https://elearningindustry.com/sales-enablement-solutions-a-practical-guide-for-ld-professionals",
-    "source": "Elearningindustry.com",
-    "description": "This\u200b\u200d\u200b\u200c\u200d\u200b\u200d\u200c\u200b\u200d\u200b\u200c\u200d\u200b\u200d\u200c article describes the features of contemporary sales enablement tools, the reasons why they are important for learning departments, and the ways you, as an L&D professional, can create, assess, and grow sales enablement initiatives that l\u2026",
-    "author": "Aman Kumar Singh- SEO, SMO, ORM Specialist",
-    "publishedAt": "2025-11-02T16:00:17Z",
-    "content": "Sales Enablement Solutions\r\nIn the present intricate and competitive business environment, companies are realizing that the success of sales is no longer being led by the salesperson's charming perso\u2026 [+10714 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2553862595.jpg"
-  },
-  {
-    "index": 14,
-    "title": "How President Jimmy Carter Slayed a Dragon and Is Helping to Eradicate an Ancient Disease",
-    "url": "https://www.cnet.com/science/how-president-jimmy-carter-slayed-a-dragon-and-is-helping-to-eradicate-an-ancient-disease/",
+    "title": "I Used an AI Food Scanner App for 6 Weeks. This Is What It Taught Me About Carbs",
+    "url": "https://www.cnet.com/health/nutrition/used-ai-food-scanner-app-6-weeks-what-taught-me-about-carbs/",
     "source": "CNET",
-    "description": "President Jimmy Carter, the Carter Center and LifeStraw have waged a war against Guinea Worm disease since 1986. We're now closer than ever to completely eradicating an ancient disease from the planet.",
-    "author": "Stephen Beacham",
-    "publishedAt": "2025-10-28T12:00:03Z",
-    "content": "Maybe you've used a LifeStraw to safely drink water from a stream while camping, or maybe you have one in your home to filter your drinking water. But did you know that the company behind this popula\u2026 [+2172 chars]",
-    "urlToImage": "https://www.cnet.com/a/img/resize/b90ef0c3f5b9830de7b7c1a4fe10c9f3a8f3e480/hub/2025/10/27/2e562a09-a6b6-4931-b1ab-04fc5b8d3833/p1033048-00-02-20-07-still001.jpg?auto=webp&fit=crop&height=675&width=1200"
-  },
-  {
-    "index": 15,
-    "title": "Thought Leader Q&A: Discussing The Transformative Role Of Artificial Intelligence In L&D With Dr. RK Prasad",
-    "url": "https://elearningindustry.com/thought-leader-qa-discussing-the-transformative-role-of-artificial-intelligence-in-ld-with-dr-rk-prasad",
-    "source": "Elearningindustry.com",
-    "description": "Dr. RK Prasad from CommLab India explores the role of AI in Instructional Design and how AI-powered learning platforms are reshaping workplace L&D. \nThis post was first published on eLearning Industry.",
-    "author": "Christopher Pappas",
-    "publishedAt": "2025-10-31T20:00:05Z",
-    "content": "Dr. RK Prasad founded CommLab India in 2000 and nurtured it from concept to commercial success. He has decades of experience in corporate training, university teaching, and eLearning. Today, he speak\u2026 [+12272 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/10/QA-Transformative-Role-Of-Artificial-Intelligence-Dr.-RK-Prasad.png"
-  },
-  {
-    "index": 16,
-    "title": "Super Teacher is building an AI tutor for elementary schools \u2014 catch it at Disrupt 2025 | TechCrunch",
-    "url": "https://techcrunch.com/2025/10/28/super-teacher-is-building-an-ai-tutor-for-elementary-schools-catch-it-at-disrupt-2025/",
-    "source": "TechCrunch",
-    "description": "Founded by a former math teacher and Googler, Super Teacher's AI tutor is being used in public school in New York, New Jersey, and Hawaii.",
-    "author": "Maxwell Zeff",
-    "publishedAt": "2025-10-28T22:17:52Z",
-    "content": "Tutoring is one of the most effective tools for improving a child\u2019s education, yet very few kids in the U.S. receive it. A 2023 survey of the nation\u2019s largest school districts found that fewer than 1\u2026 [+2739 chars]",
-    "urlToImage": "https://techcrunch.com/wp-content/uploads/2025/09/SJrlH6OgSnq4oZil7k0J_Super20Teacher20Icon.png?w=1024"
-  },
-  {
-    "index": 17,
-    "title": "The 2025 Startup Battlefield Top 20 are here. Let the competition begin. | TechCrunch",
-    "url": "https://techcrunch.com/2025/10/27/the-2025-startup-battlefield-top-20-are-here-let-the-competition-begin/",
-    "source": "TechCrunch",
-    "description": "These 20 companies are more than just early-stage startups \u2014 they\u2019re the architects of what\u2019s next. And they\u2019ll have just six minutes on the Disrupt Stage to prove it.",
-    "author": "Isabelle Johannessen",
-    "publishedAt": "2025-10-27T15:01:42Z",
-    "content": "The Startup Battlefield is the stage where legends are made, and the next 20 contenders have arrived. These are the breakout companies that rose to the top of a fiercely competitive, global applicant\u2026 [+5386 chars]",
-    "urlToImage": "https://techcrunch.com/wp-content/uploads/2024/11/54105085427_2cae9d0502_o.jpg?resize=1200,800"
-  },
-  {
-    "index": 18,
-    "title": "Inside CampusAI's mission to close the AI training gap for everyday workers \u2014 check it out at TechCrunch Disrupt 2025",
-    "url": "https://techcrunch.com/2025/10/28/inside-campusais-mission-to-close-the-ai-training-gap-for-everyday-workers-check-it-out-at-techcrunch-disrupt-2025/",
-    "source": "TechCrunch",
-    "description": "CampusAI is like \u201cCoursera meets GitHub meets Tinder in the metaverse\u201d \u2014 an educational platform focused on making learning accessible to everyday people who want to bring AI into their everyday workflows, and a virtual ecosystem to connect like-minded people.",
-    "author": "Rebecca Bellan",
-    "publishedAt": "2025-10-28T22:17:50Z",
-    "content": "As companies push to increase efficiency and stay competitive, theyre encouraging, or in some cases outright requiring, workers to know how to use AI tools. However, the push for AI use has exposed a\u2026 [+6440 chars]",
-    "urlToImage": "https://techcrunch.com/wp-content/uploads/2025/10/Screenshot-2025-10-24-at-11.39.53AM.png?resize=1200,673"
-=======
-    "title": "Hit by AI, edtech firm Chegg slashes jobs and names new CEO in major overhaul",
-    "url": "https://biztoc.com/x/c9c3f02d37da07dd",
-    "source": "Biztoc.com",
-    "description": ""
-  },
-  {
-    "index": 13,
-    "title": "Edtech Byju\u2019s parent, US lenders move NCLAT to halt Aakash Educational Services EGM",
-    "url": "https://economictimes.indiatimes.com/tech/technology/edtech-byjus-parent-us-lenders-move-nclat-to-halt-aakash-educational-services-egm/articleshow/124864829.cms",
-    "source": "The Times of India",
-    "description": "This comes after the Bengaluru bench of the National Company Law Tribunal (NCLT) dismissed Think and Learn\u2019s plea for an interim stay on the EGM. According to the counsel representing Glas Trust, the proposed rights issue would reduce Think and Learn\u2019s stake \u2026"
+    "description": "The Zoe AI Meal Tracker app features barcode scanning, AI-powered food logging and a processed food risk scale to support healthy eating.",
+    "author": "Anna Gragert",
+    "publishedAt": "2025-11-05T17:01:00Z",
+    "content": "The Zoe Health app can help you learn more about the food you eat with its AI chatbot.\r\nGetty Image/Zooey Liao/CNET\r\nHave you ever picked up an item in a grocery store or looked down at the meal in f\u2026 [+17545 chars]",
+    "urlToImage": "https://www.cnet.com/a/img/resize/687435b7e6268afd4120bd4f469ab6b23afd10e6/hub/2025/11/03/c536caec-d20c-43ee-bb30-9853966e8810/zoe-health.jpg?auto=webp&fit=crop&height=675&width=1200"
   },
   {
     "index": 14,
-    "title": "JVNDB-2025-017792:Beakon \u306e Beakon Learning Management System Sharable Content Object Reference Model (SCORM) \u306b\u304a\u3051\u308b\u30af\u30ed\u30b9\u30b5\u30a4\u30c8\u30b9\u30af\u30ea\u30d7\u30c6\u30a3\u30f3\u30b0\u306e\u8106\u5f31\u6027",
-    "url": "http://vrda.jpcert.or.jp/feed/ja/JVNiPedia_JVNDB-2025-017792_AD_1.html",
-    "source": "Jpcert.or.jp",
-    "description": ""
+    "title": "SEO For AI Search Engines: Optimize Your HR And LMS Content For AI Discovery",
+    "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/seo-for-ai-search-engines-optimize-your-hr-lms-content-for-ai-discovery",
+    "source": "Elearningindustry.com",
+    "description": "AI platforms are on the rise for searches. More and more decision-makers tend to search for LMS solutions on AI platforms. In this article, we will discuss SEO for AI search engines and how to help your content appear on these platforms.\nThis post was first p\u2026",
+    "author": "Christopher Pappas",
+    "publishedAt": "2025-11-05T14:00:50Z",
+    "content": "SEO For AI Search Engines: Enhance Your HR And LMS Content For AI Visibility\r\nAI has been part of our lives for quite some time now. We notice its existence in almost every tool we use in our persona\u2026 [+22243 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/SEO-for-AI-Search-Engines-Optimize-Your-LMS-Content-for-AI-Discovery.png"
   },
   {
     "index": 15,
-    "title": "Show HN: Just launched my MVP a language learning app to learn through listening",
-    "url": "https://news.ycombinator.com/item?id=45779325",
-    "source": "Hacker News",
-    "description": "Hey everyone, I just launched the MVP of a mobile app I\u2019m building that helps people learn languages through listening. It\u2019s still early \u2014 I haven\u2019t uploaded the full lesson content yet \u2014 but I\u2019d love to get your feedback on the concept and design.\nhttps://pr\u2026"
-  },
-  {
-    "index": 16,
-    "title": "The Power Duo: Personalized Learning And Microlearning For Modern Workplaces",
-    "url": "https://elearningindustry.com/the-power-duo-personalized-learning-and-microlearning-for-modern-workplaces",
-    "source": "Elearningindustry.com",
-    "description": "Personalized learning, together with microlearning, unlocks workforce engagement and skill mastery by delivering relevant, bite-sized training tailored to unique employee needs.\nThis post was first published on eLearning Industry."
-  },
-  {
-    "index": 17,
-    "title": "\u201cClassPad Scoring\u201d\u304c\u300c\u65e5\u672ce-Learning\u5927\u8cde \u539a\u751f\u52b4\u50cd\u5927\u81e3\u8cde\u300d\u3092\u53d7\u8cde",
-    "url": "https://prtimes.jp/main/html/rd/p/000000458.000040622.html",
-    "source": "Prtimes.jp",
-    "description": "[\u30ab\u30b7\u30aa\u8a08\u7b97\u6a5f\u682a\u5f0f\u4f1a\u793e]\n\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\n\n[\u753b\u50cf1: https://prcdn.freetls.fastly.net/release_image/40622/458/40622-458-6f4898765af9472cd5835920b0a59185-550x450.jpg?width=536&quality=85%2C75&forma..."
-  },
-  {
-    "index": 18,
-    "title": "Udemy reports Q3 EPS 1c, consensus 9c",
-    "url": "https://thefly.com/permalinks/entry.php/id4224498/UDMY-Udemy-reports-Q-EPS-c-consensus-c",
-    "source": "Thefly.com",
-    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
-  },
-  {
-    "index": 19,
-    "title": "Udemy sees Q4 revenue $191M-$194M, consensus $196.49M",
-    "url": "https://thefly.com/permalinks/entry.php/id4224502/UDMY-Udemy-sees-Q-revenue-MM-consensus-M",
-    "source": "Thefly.com",
-    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
-  },
-  {
-    "index": 20,
-    "title": "Udemy narrows FY25 revenue view to $787M-$790M from $784M-$794M",
-    "url": "https://thefly.com/permalinks/entry.php/id4224507/UDMY-Udemy-narrows-FY-revenue-view-to-MM-from-MM",
-    "source": "Thefly.com",
-    "description": "See the rest of the story here.\n\nthefly.com provides the latest financial news as it breaks. Known as a leader in market intelligence, The Fly's real-time, streaming news feed keeps individual investors, professional money managers, active traders, and corpor\u2026"
-  },
-  {
-    "index": 21,
-    "title": "edx-enterprise-data 10.21.12",
-    "url": "https://pypi.org/project/edx-enterprise-data/10.21.12/",
-    "source": "Pypi.org",
-    "description": "Enterprise Reporting"
-  },
-  {
-    "index": 22,
-    "title": "edx-username-changer 0.5.0",
-    "url": "https://pypi.org/project/edx-username-changer/0.5.0/",
-    "source": "Pypi.org",
-    "description": "An edX plugin to change username of edx accounts through admin panel"
-  },
-  {
-    "index": 23,
-    "title": "Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025",
-    "url": "https://cgpersia.com/2025/10/udemy-complete-blender-beginner-workflow-for-cinematic-art-2025-200977.html",
-    "source": "Cgpersia.com",
-    "description": "Duration 4h 33m Project Files Included MP4 What you\u2019ll learn Learn my complete workflow in this step-by-step tutorial Title: Udemy \u2013 Complete Blender beginner workflow for Cinematic Art 2025 Info: What you\u2019ll learn Learn my complete workflow in this step-by-s\u2026"
-  },
-  {
-    "index": 24,
-    "title": "Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch",
-    "url": "https://cgpersia.com/2025/10/udemy-create-a-3d-endless-runner-game-in-unity-from-scratch-201051.html",
-    "source": "Cgpersia.com",
-    "description": "Duration 9h 35m Project Files Included MP4 Title: Udemy \u2013 Create a 3D Endless Runner Game in Unity From Scratch Info: What you\u2019ll learn A complete 3D endless runner ready for Android Working unlock system, missions, coins, and UI Professional understanding of\u2026"
-  },
-  {
-    "index": 25,
-    "title": "Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch",
-    "url": "https://cgpersia.com/2025/10/udemy-premiere-pro-masterclass-edit-videos-like-a-pro-from-scratch-200948.html",
-    "source": "Cgpersia.com",
-    "description": "Duration 1h 38m MP4 Title: Udemy \u2013 Premiere Pro Masterclass: Edit Videos Like a Pro from Scratch Info: What you\u2019ll learn Navigate and customize the Premiere Pro interface Import, organize, and manage media efficiently Edit videos using the timeline, tools, an\u2026"
->>>>>>> b528b88438beb73896ef91a6900b476cef62ca6f
+    "title": "Ventures Platform, one of Africa\u2019s most active early-stage investors, has raised another $64 million | TechCrunch",
+    "url": "https://techcrunch.com/2025/11/06/nigeria-backs-ventures-platform-as-seed-fund-hits-64m-first-close/",
+    "source": "TechCrunch",
+    "description": "The Lagos-based firm and one of Africa\u2019s most active early-stage investors is targeting a final close of $75 million for its second fund.",
+    "author": "Tage Kene-okafor",
+    "publishedAt": "2025-11-06T09:05:08Z",
+    "content": "Lagos-based Ventures Platform, one of Africas most active early-stage investors, has raised $64 million so far for its second fund, targeting a final close of $75 million, founding partner Kola Aina \u2026 [+4276 chars]",
+    "urlToImage": "https://techcrunch.com/wp-content/uploads/2025/11/IMG_2483.jpeg?resize=1200,857"
   }
 ]
