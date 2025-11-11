@@ -284,6 +284,16 @@ def format_news_output(summary, articles):
                 url = article['url']
                 source = article['source']['name']
                 
+                # Get publication date from article
+                pub_date = None
+                if article.get('publishedAt'):
+                    try:
+                        # Parse ISO format date (e.g., "2025-11-07T12:00:00Z")
+                        pub_datetime = datetime.fromisoformat(article['publishedAt'].replace('Z', '+00:00'))
+                        pub_date = pub_datetime.strftime('%Y-%m-%d')
+                    except Exception:
+                        pass
+                
                 # Remove the article number from the summary
                 ai_analysis = re.sub(r'\[(\d+)\]', '', ai_analysis).strip()
                 ai_analysis = re.sub(r'https?://[^\s]+', '', ai_analysis).strip()
@@ -293,7 +303,10 @@ def format_news_output(summary, articles):
                 # Only add if there's actual summary text
                 if ai_analysis:
                     # Format as: #. [title with link] - AI analysis [Source]
+                    # Include publication date if available
                     formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis} [{source}]"
+                    if pub_date:
+                        formatted_item = f"{pub_date}|{formatted_item}"
                     formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
@@ -502,9 +515,26 @@ def update_rolling_include(formatted_text, include_path):
         line = line.strip()
         if not line:
             continue
+        
+        # Check if line has date prefix (format: "YYYY-MM-DD|content")
+        date_str = None
+        if '|' in line:
+            parts = line.split('|', 1)
+            if len(parts) == 2:
+                # Check if first part looks like a date
+                try:
+                    datetime.strptime(parts[0], '%Y-%m-%d')
+                    date_str = parts[0]
+                    line = parts[1]
+                except ValueError:
+                    pass
+        
         m = re.match(r'^(?:\d+\.|-)\s+(.*)$', line)
         payload = m.group(1) if m else line
-        new_lines.append(f"- {today_str}: {payload}")
+        
+        # Use article publication date if available, otherwise use today
+        date_to_use = date_str if date_str else today_str
+        new_lines.append(f"- {date_to_use}: {payload}")
 
     existing_lines = []
     if os.path.exists(include_path):
