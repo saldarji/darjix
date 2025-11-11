@@ -61,7 +61,113 @@
 
 /* Custom styles */
 @layer components {
-  /* Add your custom component styles here */
+  /* Inset component styles */
+  .inset-container {
+    @apply relative;
+  }
+  
+  .inset-trigger {
+    @apply relative;
+  }
+  
+  .inset-content-wrapper {
+    @apply max-w-full overflow-hidden;
+  }
+  
+  .inset-content-wrapper img {
+    @apply max-w-full h-auto;
+    max-height: 300px;
+    object-fit: contain;
+  }
+  
+  .inset-content-wrapper table {
+    @apply w-full text-sm;
+    max-width: 100%;
+    font-size: 0.875rem;
+  }
+  
+  .inset-content-wrapper table th {
+    @apply text-left py-2 px-3 font-bold text-black border-b-2 border-black;
+  }
+  
+  .inset-content-wrapper table td {
+    @apply text-left py-2 px-3 border-b border-gray-300 text-gray-700;
+  }
+  
+  .inset-content-wrapper table td strong {
+    @apply text-black font-medium;
+  }
+  
+  .inset-content-wrapper table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .inset-caption {
+    @apply text-sm text-gray-600 mt-2 italic;
+  }
+  
+  /* Modal styles */
+  .inset-modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(4px);
+  }
+  
+  .inset-modal-content {
+    @apply relative max-w-[95vw] max-h-[95vh] overflow-auto bg-white p-6;
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .inset-modal-body {
+    @apply w-full;
+  }
+  
+  .inset-modal-body img {
+    @apply max-w-full h-auto;
+    max-height: 85vh;
+    object-fit: contain;
+  }
+  
+  .inset-modal-body table {
+    @apply w-full;
+    font-size: 1rem;
+  }
+  
+  .inset-modal-body table th {
+    @apply text-left py-3 px-4 font-bold text-black border-b-2 border-black;
+  }
+  
+  .inset-modal-body table td {
+    @apply text-left py-3 px-4 border-b border-gray-300 text-gray-700;
+  }
+  
+  .inset-modal-body table td strong {
+    @apply text-black font-medium;
+  }
+  
+  .inset-modal-body table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .inset-modal-caption {
+    @apply text-sm text-gray-600 mt-4 italic text-center;
+  }
+  
+  .inset-modal-close {
+    @apply absolute top-2 left-2 w-8 h-8 flex items-center justify-center bg-black text-white hover:bg-gray-800 transition-colors;
+    z-index: 10;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 @layer utilities {

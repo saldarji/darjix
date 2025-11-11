@@ -1,0 +1,29 @@
+{% comment %}
+  Inset component for blog posts
+  
+  Usage:
+  {% include inset.html 
+     content="<img src='...' alt='...'>" 
+     caption="Optional caption text" 
+  %}
+  
+  Or for tables:
+  {% include inset.html 
+     content="<table>...</table>" 
+     caption="Optional caption text" 
+  %}
+{% endcomment %}
+
+<div class="inset-container my-8" data-inset-content="{{ include.content | escape }}" data-inset-caption="{{ include.caption | escape }}">
+  <div class="inset-trigger cursor-pointer border-2 border-black p-4 bg-white hover:bg-gray-50 transition-colors">
+    <div class="inset-content-wrapper">
+      {{ include.content }}
+    </div>
+    {% if include.caption %}
+    <div class="inset-caption text-sm text-gray-600 mt-2 italic">
+      {{ include.caption }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
