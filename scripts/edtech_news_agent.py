@@ -711,16 +711,29 @@ def main():
         return
 
     
-    # Default behavior (legacy): automatic selection + update
+    # Default behavior: automatic selection + summarization + update
+    # Save candidates for reference/debugging
+    print("\n💾 Writing candidates to JSON...")
+    write_candidates_page(articles, config)
+    
     print(f"\n🔍 Selecting top stories with {config['model']}...")
     top_stories, oddball_story = select_top_stories_batched(articles, config)
     print(f"✅ Selected {len(top_stories)} top stories")
     if oddball_story:
         print(f"🎯 Found oddball story: {oddball_story['article']['title'][:50]}...")
     
-    # Update website
+    # Extract articles from selected stories
+    selected_articles = [item['article'] for item in top_stories]
+    if oddball_story:
+        selected_articles.append(oddball_story['article'])
+    
+    # Summarize selected articles
+    print(f"\n🧠 Summarizing {len(selected_articles)} selected articles with {config['model']}...")
+    summary = summarize_with_replicate(selected_articles, config, use_selection_prompt=False)
+    
+    # Update website with summaries
     print("\n💾 Updating website...")
-    update_website_with_scoring(top_stories, oddball_story, config)
+    update_website(summary, selected_articles, config)
     
     print("\n🎉 Done!")
 

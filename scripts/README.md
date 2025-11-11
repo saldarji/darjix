@@ -57,7 +57,13 @@ Add secrets to your GitHub repository:
 2. Add `REPLICATE_API_TOKEN`
 3. Add `NEWS_API_KEY`
 
-The workflow runs every Monday at 9am UTC, or trigger manually:
+The workflow runs every Monday at 9am UTC and automatically:
+- Fetches news articles from NewsAPI
+- Uses AI to select the top 5-8 most relevant stories
+- Generates AI summaries for each selected article
+- Updates the website with the new summaries
+
+You can also trigger manually:
 - Go to Actions tab → "Update EdTech News" → "Run workflow"
 
 ## Cost Estimate

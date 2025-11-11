@@ -1,5 +1,5 @@
 Updated: 2025-11-03
-Select numbers or URLs in scripts/selected_articles.txt and run 'Summarize Selected EdTech News'.
+NOTE: This file is for reference only. The news agent now runs fully automated - it selects and summarizes articles automatically.
 
 1. Watch out, ChatGPT! Google's Gemini is catching up. [Business Insider]
    https://www.businessinsider.com/google-is-closing-the-gap-on-chatgpt-2025-10
