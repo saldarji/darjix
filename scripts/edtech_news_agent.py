@@ -589,7 +589,22 @@ def update_rolling_include(formatted_text, include_path):
 
     combined = []
     for nl in new_lines:
-        combined.append({'date': today_str, 'text': nl.split(': ', 1)[1], 'raw': nl})
+        # Extract the date from the line (format: "- YYYY-MM-DD: content")
+        line_date = today_str  # default fallback
+        if nl.startswith('- ') and ': ' in nl:
+            # Format: "- YYYY-MM-DD: content"
+            # Split on ": " and take the part after "- "
+            date_part = nl.split(': ', 1)[0].replace('- ', '').strip()
+            try:
+                # Validate it's a date in YYYY-MM-DD format
+                datetime.strptime(date_part, '%Y-%m-%d')
+                line_date = date_part
+            except (ValueError, IndexError):
+                # If date extraction fails, use today as fallback
+                pass
+        # Extract the content part (everything after the date)
+        content = nl.split(': ', 1)[1] if ': ' in nl else nl
+        combined.append({'date': line_date, 'text': content, 'raw': nl})
     combined.extend(existing_items)
 
     seen = set()
@@ -602,9 +617,32 @@ def update_rolling_include(formatted_text, include_path):
         seen.add(key)
         deduped.append(item)
 
-    cutoff = datetime.now() - timedelta(days=7)
+    # Sort by date (newest first) before source deduplication
+    # This ensures we keep the newest articles when limiting per source
+    deduped_sorted = sorted(deduped, key=lambda x: (
+        datetime.strptime(x['date'], '%Y-%m-%d') if x['date'] and len(x['date']) == 10 else datetime.min
+    ), reverse=True)
+    
+    # Deduplicate by source: keep only 1-2 articles per source
+    source_counts = {}
+    source_deduped = []
+    for item in deduped_sorted:
+        # Extract source from text (format: "... [Source Name]")
+        source_match = re.search(r'\[([^\]]+)\]$', item['text'])
+        source = source_match.group(1) if source_match else 'Unknown'
+        
+        # Count articles per source
+        if source not in source_counts:
+            source_counts[source] = 0
+        
+        # Keep up to 2 articles per source (prioritizing newest due to sorting)
+        if source_counts[source] < 2:
+            source_counts[source] += 1
+            source_deduped.append(item)
+    
+    cutoff = datetime.now() - timedelta(days=6)
     pruned = []
-    for item in deduped:
+    for item in source_deduped:
         try:
             d = datetime.strptime(item['date'], '%Y-%m-%d')
         except Exception:
@@ -624,7 +662,11 @@ def update_rolling_include(formatted_text, include_path):
     if not updated_line_written:
         refreshed_header = [f"# EdTech News This Week\n", f"*Updated: {datetime.now().strftime('%B %d, %Y')}*\n", "\n"]
 
-    body_lines = [f"- {item['date']}: {item['text']}\n" for item in pruned]
+    # Sort by date (newest first) for final output
+    pruned_sorted = sorted(pruned, key=lambda x: (
+        datetime.strptime(x['date'], '%Y-%m-%d') if x['date'] and len(x['date']) == 10 else datetime.min
+    ), reverse=True)
+    body_lines = [f"- {item['date']}: {item['text']}\n" for item in pruned_sorted]
     with open(include_path, 'w') as f:
         f.writelines(refreshed_header)
         f.writelines(body_lines)
