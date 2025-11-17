@@ -357,7 +357,7 @@ def select_top_stories_batched(articles, config):
                     articles_text += f"    Content: {content}\n"
             articles_text += "\n"
         
-        selection_prompt = f"""You MUST select AT LEAST 5-8 articles from the following list. Aim for 6-8 articles to provide a comprehensive weekly news roundup.
+        selection_prompt = f"""You MUST select AT LEAST 10-12 articles from the following list. Aim for 10-12 articles to provide a comprehensive weekly news roundup.
 
 CRITICAL REQUIREMENTS:
 1. US-ONLY: Reject ALL international news (UK universities, Irish edtech, etc.)
@@ -370,7 +370,7 @@ CRITICAL REQUIREMENTS:
 
 3. DIVERSITY: Avoid selecting multiple articles on the same topic/event. If there are multiple articles about the same story, select only the BEST one.
 
-4. MINIMUM SELECTION: You MUST select at least 5 articles. If there are fewer than 5 suitable articles, select the best available ones even if they're not perfect matches.
+4. MINIMUM SELECTION: You MUST select at least 10 articles. If there are fewer than 10 suitable articles, select the best available ones even if they're not perfect matches.
 
 REJECT articles that:
 - Are about non-US education (UK, Ireland, Canada, etc.)
@@ -390,7 +390,7 @@ For each selected article, provide:
 
 Also identify any "oddball" stories (unusual AI applications, controversial tech implementations, unexpected education-tech partnerships) by adding "ODDBALL:" before the title.
 
-IMPORTANT: Select 5-8 articles. Do not be overly selective - include articles that are reasonably relevant to education technology.
+IMPORTANT: Select 10-12 articles. Do not be overly selective - include articles that are reasonably relevant to education technology. It's better to include more articles than to be too restrictive.
 
 Articles:
 {articles_text}
@@ -418,15 +418,15 @@ Selected Stories:"""
             fallback = batch[:5]
             all_selected.extend([{'article': article, 'reason': 'Fallback selection'} for article in fallback])
     
-    # Ensure we have at least 5 articles selected
+    # Ensure we have at least 10 articles selected
     # If LLM was too selective, add more from the original articles list
-    if len(all_selected) < 5 and len(articles) >= 5:
-        print(f"  ⚠️  Only {len(all_selected)} articles selected, adding more to reach minimum of 5...")
+    if len(all_selected) < 10 and len(articles) >= 10:
+        print(f"  ⚠️  Only {len(all_selected)} articles selected, adding more to reach minimum of 10...")
         # Get URLs of already selected articles for comparison
         selected_urls = {item.get('article', {}).get('url') for item in all_selected if item.get('article', {}).get('url')}
         # Add articles that weren't selected yet
         for article in articles:
-            if len(all_selected) >= 5:
+            if len(all_selected) >= 10:
                 break
             article_url = article.get('url')
             if article_url and article_url not in selected_urls:
@@ -434,8 +434,8 @@ Selected Stories:"""
                 selected_urls.add(article_url)
         print(f"  ✅ Now have {len(all_selected)} articles selected")
     
-    # Limit to top 8 total
-    final_selected = all_selected[:8]
+    # Limit to top 12 total (to account for filtering)
+    final_selected = all_selected[:12]
     final_oddball = all_oddballs[0] if all_oddballs else None
     
     return final_selected, final_oddball
@@ -635,12 +635,12 @@ def update_rolling_include(formatted_text, include_path):
         if source not in source_counts:
             source_counts[source] = 0
         
-        # Keep up to 2 articles per source (prioritizing newest due to sorting)
-        if source_counts[source] < 2:
+        # Keep up to 4 articles per source (prioritizing newest due to sorting)
+        if source_counts[source] < 4:
             source_counts[source] += 1
             source_deduped.append(item)
     
-    cutoff = datetime.now() - timedelta(days=6)
+    cutoff = datetime.now() - timedelta(days=7)
     pruned = []
     for item in source_deduped:
         try:
@@ -649,6 +649,17 @@ def update_rolling_include(formatted_text, include_path):
             continue
         if d >= cutoff:
             pruned.append(item)
+    
+    # Final guarantee: ensure we have at least 8 articles
+    # If we have fewer, keep the newest articles even if slightly older
+    if len(pruned) < 8:
+        print(f"  ⚠️  Only {len(pruned)} articles after filtering, expanding window to ensure minimum of 8...")
+        # Re-sort all source_deduped items by date and take top 8
+        all_sorted = sorted(source_deduped, key=lambda x: (
+            datetime.strptime(x['date'], '%Y-%m-%d') if x['date'] and len(x['date']) == 10 else datetime.min
+        ), reverse=True)
+        pruned = all_sorted[:8]
+        print(f"  ✅ Now have {len(pruned)} articles (expanded window to ensure minimum)")
 
     # Refresh the Updated line in header
     refreshed_header = []
