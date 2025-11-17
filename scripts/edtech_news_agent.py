@@ -20,6 +20,8 @@ except ImportError:
 
 def parse_config(config_path='scripts/edtech-news-config.md'):
     """Parse configuration from markdown file"""
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Configuration file not found: {config_path}")
     with open(config_path, 'r') as f:
         content = f.read()
     
@@ -224,17 +226,21 @@ Provide a numbered list with summaries for ALL articles."""
         result = add_article_links(result, articles)
         return result
     except Exception as e:
-        print(f"⚠️  Replicate error: {e}")
+        print(f"⚠️  Replicate streaming error: {e}")
         print("Trying with alternative parameters...")
         
         # Fallback with simpler parameters
-        output = replicate.run(
-            config['model'],
-            input={"prompt": prompt}
-        )
-        result = "".join(str(item) for item in output)
-        result = add_article_links(result, articles)
-        return result
+        try:
+            output = replicate.run(
+                config['model'],
+                input={"prompt": prompt}
+            )
+            result = "".join(str(item) for item in output)
+            result = add_article_links(result, articles)
+            return result
+        except Exception as e2:
+            print(f"❌ Replicate fallback also failed: {e2}")
+            raise RuntimeError(f"Both Replicate API calls failed. Streaming error: {e}, Fallback error: {e2}")
 
 def add_article_links(summary, articles):
     """Add markdown links to article titles in the summary"""
@@ -765,8 +771,29 @@ def main():
     print("\n💾 Updating website...")
     update_website(summary, selected_articles, config)
     
+    # Verify the output file was created/updated
+    output_file = config['output_file']
+    if os.path.exists(output_file):
+        file_size = os.path.getsize(output_file)
+        print(f"✅ Output file exists: {output_file} ({file_size} bytes)")
+        with open(output_file, 'r') as f:
+            content = f.read()
+            print(f"   Preview (first 200 chars): {content[:200]}...")
+    else:
+        print(f"⚠️  WARNING: Output file not found: {output_file}")
+    
     print("\n🎉 Done!")
 
 if __name__ == '__main__':
-    main()
+    import sys
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n⚠️  Interrupted by user")
+        sys.exit(1)
+    except Exception as e:
+        print(f"\n❌ Fatal error: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
 
