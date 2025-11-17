@@ -23,7 +23,7 @@
 - **Focus**: AI and education technology news from premium sources
 
 ## Query Strategy 2: Broad Education Technology
-- **Keywords**: education technology OR edtech OR "online learning" OR "digital learning" OR "educational technology" OR "learning management" OR "student technology" OR "classroom technology" OR "higher education technology" OR "K-12 technology"
+- **Keywords**: education technology
 - **Keywords in Title**: false
 - **Domains**: 
 - **Focus**: Broader education technology news from all sources (no domain restriction)

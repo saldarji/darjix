@@ -130,8 +130,8 @@ def fetch_news(config):
         else:
             params['q'] = strategy['keywords']
         
-        # Add domains filter if specified
-        if strategy.get('domains'):
+        # Add domains filter if specified and not empty
+        if strategy.get('domains') and strategy.get('domains').strip():
             params['domains'] = strategy['domains']
         
         try:
