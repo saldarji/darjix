@@ -7,7 +7,7 @@
 - **Top P**: 0.9
 
 ## News API Settings
-- **Days Back**: 7
+- **Days Back**: 10
 - **Max Articles Per Query**: 100
 - **Total Max Articles**: 100
 - **Language**: en
@@ -27,6 +27,12 @@
 - **Keywords in Title**: false
 - **Domains**: 
 - **Focus**: Broader education technology news from all sources (no domain restriction)
+
+## Query Strategy 3: EdTech in Title
+- **Keywords**: Edtech
+- **Keywords in Title**: true
+- **Domains**: 
+- **Focus**: Articles with "Edtech" in the title from all sources
 
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.

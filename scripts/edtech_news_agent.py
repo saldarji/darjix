@@ -624,24 +624,26 @@ def update_rolling_include(formatted_text, include_path):
         datetime.strptime(x['date'], '%Y-%m-%d') if x['date'] and len(x['date']) == 10 else datetime.min
     ), reverse=True)
     
-    # Deduplicate by source: keep only 1-2 articles per source
+    # Deduplicate by source: keep only 1-2 articles per source (case-insensitive)
     source_counts = {}
     source_deduped = []
     for item in deduped_sorted:
         # Extract source from text (format: "... [Source Name]")
         source_match = re.search(r'\[([^\]]+)\]$', item['text'])
         source = source_match.group(1) if source_match else 'Unknown'
+        # Normalize source name (lowercase, remove .com, etc.) for better deduplication
+        source_normalized = source.lower().replace('.com', '').replace('.org', '').replace('.net', '').strip()
         
-        # Count articles per source
-        if source not in source_counts:
-            source_counts[source] = 0
+        # Count articles per source (using normalized name)
+        if source_normalized not in source_counts:
+            source_counts[source_normalized] = 0
         
-        # Keep up to 4 articles per source (prioritizing newest due to sorting)
-        if source_counts[source] < 4:
-            source_counts[source] += 1
+        # Keep up to 2 articles per source (prioritizing newest due to sorting)
+        if source_counts[source_normalized] < 2:
+            source_counts[source_normalized] += 1
             source_deduped.append(item)
     
-    cutoff = datetime.now() - timedelta(days=7)
+    cutoff = datetime.now() - timedelta(days=10)
     pruned = []
     for item in source_deduped:
         try:
