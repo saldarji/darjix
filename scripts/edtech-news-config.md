@@ -22,6 +22,12 @@
 - **Domains**: gizmodo.com,forbes.com,scientificamerican.com,insidehighered.com,elearningindustry.com,edsurge.com,edtechmagazine.com,chronicle.com,edweek.org,eschoolnews.com,techcrunch.com,theverge.com,wired.com,technologyreview.com,cnet.com,fastcompany.com,nytimes.com,washingtonpost.com,theatlantic.com,bloomberg.com,nature.com,science.org,hbr.org
 - **Focus**: AI and education technology news from premium sources
 
+## Query Strategy 2: Broad Education Technology
+- **Keywords**: education technology OR edtech OR "online learning" OR "digital learning" OR "educational technology" OR "learning management" OR "student technology" OR "classroom technology" OR "higher education technology" OR "K-12 technology"
+- **Keywords in Title**: false
+- **Domains**: 
+- **Focus**: Broader education technology news from all sources (no domain restriction)
+
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.
 
