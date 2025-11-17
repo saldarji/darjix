@@ -1,0 +1,46 @@
+name: Update EdTech Podcasts
+
+on:
+  schedule:
+    # Run on Mondays at 10am UTC (1 = Monday in cron, 1 hour after news)
+    - cron: '0 10 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-podcasts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'scripts/requirements.txt'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+      
+      - name: Run EdTech Podcast Agent
+        env:
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          REPLICATE_MODEL: deepseek-ai/deepseek-r1
+        run: |
+          python scripts/edtech_podcast_agent.py
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _includes/edtech-podcasts.md || true
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech Podcasts - $(date +'%B %d, %Y')" && git push origin HEAD:main)
+
