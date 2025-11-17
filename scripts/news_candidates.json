@@ -1,6 +1,17 @@
 [
   {
     "index": 1,
+    "title": "Breaking Up With Edtech Is Hard to Do",
+    "url": "https://www.edsurge.com/news/2025-11-07-breaking-up-with-edtech-is-hard-to-do",
+    "source": "Edsurge.com",
+    "description": "Shedding old edtech is a real pain, district experts say. Worse, student privacy may be at risk.",
+    "author": "Ellen Ullman",
+    "publishedAt": "2025-11-07T09:00:00Z",
+    "content": "When Kerri Walls school district decided not to renew its five-year contract with an edtech company last spring, she didnt expect the hardest part to come after the breakup.\r\nAs the senior digital in\u2026 [+7823 chars]",
+    "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16523/shutterstock_1481233058-1762370569.jpg?auto=compress%2Cformat&w=1024&h=512&fit=crop"
+  },
+  {
+    "index": 2,
     "title": "The Greedy Algorithm And Education's Next AI Mistake",
     "url": "https://elearningindustry.com/the-greedy-algorithm-and-educations-next-ai-mistake",
     "source": "Elearningindustry.com",
@@ -11,7 +22,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/The-Greedy-Algorithm-And-Educations-Next-AI-Mistake.jpg"
   },
   {
-    "index": 2,
+    "index": 3,
     "title": "The Ultimate Guide To Compliance Training For Employees",
     "url": "https://elearningindustry.com/the-ultimate-guide-to-compliance-training-for-employees",
     "source": "Elearningindustry.com",
@@ -22,7 +33,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/db2e6cd561ff4569c56206f372fa6f23.jpeg"
   },
   {
-    "index": 3,
+    "index": 4,
     "title": "Driving Global Sustainability: How EcoVadis Built An Award-Winning Academy",
     "url": "https://elearningindustry.com/driving-global-sustainability-how-ecovadis-built-an-award-winning-academy",
     "source": "Elearningindustry.com",
@@ -33,7 +44,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/How-EcoVadis-Built-An-Award-Winning-Academy.jpg"
   },
   {
-    "index": 4,
+    "index": 5,
     "title": "How To Create SOP-Based Learning Modules",
     "url": "https://elearningindustry.com/how-to-create-sop-based-learning-modules",
     "source": "Elearningindustry.com",
@@ -44,7 +55,18 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2667772725.jpg"
   },
   {
-    "index": 5,
+    "index": 6,
+    "title": "Learning Tech Benchmarks: What High-Performing Companies Are Doing",
+    "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/learning-tech-benchmarks-what-high-performing-companies-are-doing",
+    "source": "Elearningindustry.com",
+    "description": "Education is the global epicenter of growth for companies across all industries, including eLearning, L&D, and HR tech. As learning tech is quietly becoming a winning ingredient, are you investing time and money in your teams' development and upskilling?\nThis\u2026",
+    "author": "Christopher Pappas",
+    "publishedAt": "2025-11-07T14:00:02Z",
+    "content": "The Current State Of Learning Technology\r\nThe global education technology market is projected to reach $348 billion by 2030. And that's no surprise if you think that 47% of L&amp;D professionals say \u2026 [+18057 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Learning-Tech-Benchmarks_What-High-Performing-Companies-Are-Doing.png"
+  },
+  {
+    "index": 7,
     "title": "Schools Turn to AI Translation Tools to Support English Learners",
     "url": "https://www.edsurge.com/news/2025-11-10-schools-turn-to-ai-translation-tools-to-support-english-learners",
     "source": "Edsurge.com",
@@ -55,7 +77,7 @@
     "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16522/IMG_4188-1762373175.jpeg?auto=compress%2Cformat&w=1024&h=512&fit=crop"
   },
   {
-    "index": 6,
+    "index": 8,
     "title": "12 Soft Skills Employees Need To Succeed In The Future Workplace",
     "url": "https://elearningindustry.com/soft-skills-employees-need-to-succeed-in-the-future-workplace",
     "source": "Elearningindustry.com",
@@ -66,7 +88,40 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/12-Soft-Skills-Employees-Need-To-Succeed-In-The-Future-Workplace.jpg"
   },
   {
-    "index": 7,
+    "index": 9,
+    "title": "The Science Of Learning Meets AI: How Cognitive Principles Can Transform eLearning Platforms",
+    "url": "https://elearningindustry.com/the-science-of-learning-meets-ai-how-cognitive-principles-can-transform-elearning-platforms",
+    "source": "Elearningindustry.com",
+    "description": "How cognitive science and AI transform eLearning into lasting knowledge.\nThis post was first published on eLearning Industry.",
+    "author": "Ruslan Makarsky",
+    "publishedAt": "2025-11-07T18:00:20Z",
+    "content": "Why Most Platforms Ignore The Science Of Memory\r\nHow do you make knowledge stay? That's what our client, a professional learning platform owner, wanted to solve. Their goal was simple: help learners \u2026 [+6296 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2658490435.jpg"
+  },
+  {
+    "index": 10,
+    "title": "Degradable cyclic amino alcohol ionizable lipids as vectors for potent influenza mRNA vaccines",
+    "url": "https://www.nature.com/articles/s41565-025-02044-6",
+    "source": "Nature.com",
+    "description": "This work presents a degradable ionizable lipid, AMG1541, for mRNA vaccines that significantly enhances potency and enables similar protective immunity at doses 100-fold lower than current standards, while also reducing toxicity and improving clearance in viv\u2026",
+    "author": "Arnab Rudra, Akash Gupta, Kaelan Reed, Amy Deik, Jiyeon Min, Hasan Mansour A. Mansour, Quang Trung Chinh Nguyen, Austin Danko, Yizong Hu, Allegra Berger, Michaela Prado, Amira Beck, Clary B. Clish, Jeffery B. Klauda, Robert Langer, Daniel G. Anderson",
+    "publishedAt": "2025-11-07T00:00:00Z",
+    "content": "<li>Pardi, N. &amp; Krammer, F. mRNA vaccines for infectious diseases advances, challenges and opportunities. Nat. Rev. Drug Discov.23, 838861 (2024).\r\nArticle\u00a0\r\n CAS\u00a0\r\n PubMed\u00a0\r\nGoogle Scholar\u00a0\r\n</l\u2026 [+16891 chars]",
+    "urlToImage": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41565-025-02044-6/MediaObjects/41565_2025_2044_Fig1_HTML.png"
+  },
+  {
+    "index": 11,
+    "title": "What Is Project Management In Higher Education (+ 5 Tips For Executing Higher Ed Projects)",
+    "url": "https://elearningindustry.com/what-is-project-management-in-higher-education-tips-for-executing-higher-ed-projects",
+    "source": "Elearningindustry.com",
+    "description": "Effective project management in higher education means increased productivity, enhanced stakeholder satisfaction, improved student outcomes, and greater institutional success. But what does project management look like in practice, and how do higher ed teams \u2026",
+    "author": "Zeniya Cooley",
+    "publishedAt": "2025-11-08T18:00:23Z",
+    "content": "The Need For Project Management In Higher Ed\r\nProject management is applying your knowledge, skills, and resources to plan and execute a project. So, imagine all of the higher education projects that\u2026 [+13531 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2519207001.jpg"
+  },
+  {
+    "index": 12,
     "title": "Finding eLearning Content Providers With The Right Features And Solutions",
     "url": "https://elearningindustry.com/finding-elearning-content-providers-with-the-right-features-and-solutions",
     "source": "Elearningindustry.com",
@@ -77,7 +132,18 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Finding-eLearning-Content-Providers-With-The-Right-Features.jpg"
   },
   {
-    "index": 8,
+    "index": 13,
+    "title": "What 6 Weeks of Testing an AI Food and Barcode Scanning App Taught Me About My Diet",
+    "url": "https://www.cnet.com/health/nutrition/what-6-weeks-testing-ai-food-barcode-scanning-app-taught-me-about-my-diet/",
+    "source": "CNET",
+    "description": "A registered dietitian also comments on the Zoe app's processed food risk scale and AI chatbot.",
+    "author": "Anna Gragert",
+    "publishedAt": "2025-11-09T10:47:00Z",
+    "content": "The Zoe Health: AI Meal Tracker has multiple features, and I tested them all.\r\nGetty Image/Zooey Liao/CNET\r\nIt can be difficult to determine the healthiness of a certain food just by looking at it or\u2026 [+17237 chars]",
+    "urlToImage": "https://www.cnet.com/a/img/resize/687435b7e6268afd4120bd4f469ab6b23afd10e6/hub/2025/11/03/c536caec-d20c-43ee-bb30-9853966e8810/zoe-health.jpg?auto=webp&fit=crop&height=675&width=1200"
+  },
+  {
+    "index": 14,
     "title": "Lenskart recovers from tepid open to close first day slightly above IPO price | TechCrunch",
     "url": "https://techcrunch.com/2025/11/10/lenskart-recovers-from-tepid-open-to-close-first-day-slightly-above-ipo-price/",
     "source": "TechCrunch",
