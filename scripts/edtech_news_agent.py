@@ -418,15 +418,16 @@ Selected Stories:"""
             fallback = batch[:5]
             all_selected.extend([{'article': article, 'reason': 'Fallback selection'} for article in fallback])
     
-    # Ensure we have at least 10 articles selected
+    # Ensure we have at least 10 articles selected (or as many as available if fewer)
     # If LLM was too selective, add more from the original articles list
-    if len(all_selected) < 10 and len(articles) >= 10:
-        print(f"  ⚠️  Only {len(all_selected)} articles selected, adding more to reach minimum of 10...")
+    target_min = min(10, len(articles))  # Aim for 10, but use what's available
+    if len(all_selected) < target_min and len(articles) > len(all_selected):
+        print(f"  ⚠️  Only {len(all_selected)} articles selected, adding more to reach minimum of {target_min}...")
         # Get URLs of already selected articles for comparison
         selected_urls = {item.get('article', {}).get('url') for item in all_selected if item.get('article', {}).get('url')}
         # Add articles that weren't selected yet
         for article in articles:
-            if len(all_selected) >= 10:
+            if len(all_selected) >= target_min:
                 break
             article_url = article.get('url')
             if article_url and article_url not in selected_urls:
