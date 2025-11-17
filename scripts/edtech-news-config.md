@@ -25,14 +25,14 @@
 ## Query Strategy 2: Online Learning
 - **Keywords**: "online learning"
 - **Keywords in Title**: false
-- **Domains**: 
-- **Focus**: Articles about online learning from all sources
+- **Domains**: edsurge.com,elearningindustry.com,edweek.org,insidehighered.com,chronicle.com,techcrunch.com,theverge.com
+- **Focus**: Articles about online learning from education and tech sources
 
 ## Query Strategy 3: EdTech Search
 - **Keywords**: edtech
 - **Keywords in Title**: false
-- **Domains**: 
-- **Focus**: Articles about edtech from all sources
+- **Domains**: edsurge.com,elearningindustry.com,edtechmagazine.com,techcrunch.com,theverge.com,wired.com
+- **Focus**: Articles about edtech from education and tech sources
 
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.
