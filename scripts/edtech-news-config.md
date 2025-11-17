@@ -23,16 +23,16 @@
 - **Focus**: AI and education technology news from premium sources
 
 ## Query Strategy 2: Broad Education Technology
-- **Keywords**: education technology
+- **Keywords**: education OR technology OR edtech OR "online learning" OR "digital learning"
 - **Keywords in Title**: false
 - **Domains**: 
 - **Focus**: Broader education technology news from all sources (no domain restriction)
 
-## Query Strategy 3: EdTech in Title
-- **Keywords**: Edtech
-- **Keywords in Title**: true
+## Query Strategy 3: EdTech Search
+- **Keywords**: edtech OR "ed tech" OR "educational technology"
+- **Keywords in Title**: false
 - **Domains**: 
-- **Focus**: Articles with "Edtech" in the title from all sources
+- **Focus**: Articles about edtech from all sources (searches content, not just title)
 
 ## Prompt Template
 Select the top 10 most RELEVANT and INTERESTING US EDUCATION stories from the following articles.

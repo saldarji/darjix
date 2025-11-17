@@ -134,6 +134,11 @@ def fetch_news(config):
         if strategy.get('domains') and strategy.get('domains').strip():
             params['domains'] = strategy['domains']
         
+        # Debug: log the query being sent (but don't log the full params to avoid secrets)
+        query_type = 'qintitle' if strategy.get('keywords_in_title', False) else 'q'
+        query_value = params.get(query_type, 'N/A')
+        print(f"   🔍 Query: {query_type}={query_value[:100]}...")  # Truncate for safety
+        
         try:
             articles = newsapi.get_everything(**params)
             
@@ -654,14 +659,25 @@ def update_rolling_include(formatted_text, include_path):
             pruned.append(item)
     
     # Final guarantee: ensure we have at least 8 articles
-    # If we have fewer, keep the newest articles even if slightly older
+    # If we have fewer, expand the date window to include older articles
     if len(pruned) < 8:
         print(f"  ⚠️  Only {len(pruned)} articles after filtering, expanding window to ensure minimum of 8...")
-        # Re-sort all source_deduped items by date and take top 8
-        all_sorted = sorted(source_deduped, key=lambda x: (
+        # Expand cutoff to 14 days to get more articles
+        expanded_cutoff = datetime.now() - timedelta(days=14)
+        expanded_pruned = []
+        for item in source_deduped:
+            try:
+                d = datetime.strptime(item['date'], '%Y-%m-%d')
+            except Exception:
+                continue
+            if d >= expanded_cutoff:
+                expanded_pruned.append(item)
+        
+        # Sort by date and take top 8
+        expanded_sorted = sorted(expanded_pruned, key=lambda x: (
             datetime.strptime(x['date'], '%Y-%m-%d') if x['date'] and len(x['date']) == 10 else datetime.min
         ), reverse=True)
-        pruned = all_sorted[:8]
+        pruned = expanded_sorted[:8]
         print(f"  ✅ Now have {len(pruned)} articles (expanded window to ensure minimum)")
 
     # Refresh the Updated line in header
