@@ -4,6 +4,8 @@ on:
   schedule:
     # Run on Mondays at 9am UTC (1 = Monday in cron)
     - cron: '0 9 * * 1'
+    # Test run: 1:40 PM ET (18:40 UTC) - can be removed after testing
+    - cron: '40 18 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
