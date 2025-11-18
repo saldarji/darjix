@@ -1,0 +1,101 @@
+{
+  "description": "Education and EdTech domains for NewsAPI domain filtering",
+  "categories": {
+    "education_news": [
+      "edsurge.com",
+      "insidehighered.com",
+      "chronicle.com",
+      "edweek.org",
+      "eschoolnews.com",
+      "edtechmagazine.com",
+      "elearningindustry.com",
+      "edutopia.org",
+      "hechingerreport.org",
+      "chalkbeat.org"
+    ],
+    "higher_education": [
+      "insidehighered.com",
+      "chronicle.com",
+      "higheredjobs.com",
+      "diverseeducation.com",
+      "academicimpressions.com"
+    ],
+    "k12_education": [
+      "edweek.org",
+      "eschoolnews.com",
+      "edutopia.org",
+      "chalkbeat.org",
+      "k12dive.com"
+    ],
+    "edtech_publications": [
+      "edsurge.com",
+      "edtechmagazine.com",
+      "elearningindustry.com",
+      "campustechnology.com",
+      "edtechdigest.com"
+    ],
+    "tech_that_covers_education": [
+      "techcrunch.com",
+      "theverge.com",
+      "wired.com",
+      "arstechnica.com",
+      "engadget.com"
+    ],
+    "general_news_education_coverage": [
+      "nytimes.com",
+      "washingtonpost.com",
+      "theatlantic.com",
+      "bloomberg.com",
+      "forbes.com"
+    ],
+    "research_academic": [
+      "nature.com",
+      "science.org",
+      "scientificamerican.com",
+      "hbr.org"
+    ]
+  },
+  "all_domains": [
+    "edsurge.com",
+    "insidehighered.com",
+    "chronicle.com",
+    "edweek.org",
+    "eschoolnews.com",
+    "edtechmagazine.com",
+    "elearningindustry.com",
+    "edutopia.org",
+    "hechingerreport.org",
+    "chalkbeat.org",
+    "higheredjobs.com",
+    "diverseeducation.com",
+    "academicimpressions.com",
+    "k12dive.com",
+    "campustechnology.com",
+    "edtechdigest.com",
+    "techcrunch.com",
+    "theverge.com",
+    "wired.com",
+    "arstechnica.com",
+    "engadget.com",
+    "nytimes.com",
+    "washingtonpost.com",
+    "theatlantic.com",
+    "bloomberg.com",
+    "forbes.com",
+    "nature.com",
+    "science.org",
+    "scientificamerican.com",
+    "hbr.org",
+    "gizmodo.com",
+    "cnet.com",
+    "fastcompany.com",
+    "technologyreview.com"
+  ],
+  "notes": [
+    "Education-specific domains (edsurge, insidehighered, etc.) are not available as NewsAPI sources",
+    "Use these domains with the 'domains' parameter in NewsAPI queries",
+    "No documented limit on number of domains, but tested successfully with 30+ domains",
+    "Can combine with up to 20 NewsAPI sources for comprehensive coverage"
+  ]
+}
+

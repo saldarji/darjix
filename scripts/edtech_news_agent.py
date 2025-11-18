@@ -7,6 +7,7 @@ Configuration is centralized in edtech-news-config.md
 import os
 import re
 import json
+import requests
 import replicate
 from datetime import datetime, timedelta
 from newsapi import NewsApiClient
@@ -101,50 +102,61 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
     return config
 
 def fetch_news(config):
-    """Fetch news articles using NewsAPI with multiple query strategies"""
+    """Fetch news articles using NewsAPI with domain filtering and expanded keywords"""
     api_key = os.environ.get('NEWS_API_KEY')
     if not api_key:
         raise ValueError("NEWS_API_KEY environment variable not set")
     
-    newsapi = NewsApiClient(api_key=api_key)
     from_date = datetime.now() - timedelta(days=config['days_back'])
+    to_date = datetime.now()
+    
+    # Load EdTech domains from JSON file
+    try:
+        with open('scripts/edtech_domains.json', 'r') as f:
+            domains_data = json.load(f)
+            edtech_domains = domains_data.get('all_domains', [])
+            print(f"✅ Loaded {len(edtech_domains)} EdTech domains")
+    except FileNotFoundError:
+        print("⚠️  edtech_domains.json not found, using default domains")
+        edtech_domains = [
+            'edsurge.com', 'insidehighered.com', 'chronicle.com', 'edweek.org',
+            'eschoolnews.com', 'edtechmagazine.com', 'elearningindustry.com',
+            'techcrunch.com', 'theverge.com', 'wired.com'
+        ]
+    
+    # Expanded query with learning modalities and student-focused terms
+    query = "Education OR Edtech OR \"online learning\" OR \"digital learning\" OR elearning OR \"student success\" OR \"student engagement\""
+    
+    print(f"🔍 Running query: {query[:80]}...")
+    print(f"   Domains: {len(edtech_domains)} EdTech domains")
+    
+    # Use direct HTTP request to support searchIn parameter
+    url = 'https://newsapi.org/v2/everything'
+    headers = {'X-Api-Key': api_key}
+    query_params = {
+        'q': query,
+        'searchIn': 'title,description',  # Search only in title and description
+        'domains': ','.join(edtech_domains),
+        'excludeDomains': ','.join(config.get('blacklisted_sources', [])),
+        'from': from_date.strftime('%Y-%m-%d'),
+        'to': to_date.strftime('%Y-%m-%d'),
+        'language': config['language'],
+        'sortBy': config['sort_by'],
+        'pageSize': config['max_articles_per_query']
+    }
     
     all_articles = []
     seen_urls = set()
     
-    # Run each query strategy
-    for i, strategy in enumerate(config['query_strategies'], 1):
-        print(f"🔍 Running Query Strategy {i}: {strategy.get('focus', 'General search')}")
+    try:
+        response = requests.get(url, headers=headers, params=query_params)
+        response.raise_for_status()
+        articles_data = response.json()
         
-        # Build parameters based on strategy
-        params = {
-            'from_param': from_date.strftime('%Y-%m-%d'),
-            'language': config['language'],
-            'sort_by': config['sort_by'],
-            'page_size': config['max_articles_per_query']
-        }
-        
-        # Use qInTitle if specified, otherwise use q
-        if strategy.get('keywords_in_title', False):
-            params['qintitle'] = strategy['keywords']
-        else:
-            params['q'] = strategy['keywords']
-        
-        # Add domains filter if specified and not empty
-        if strategy.get('domains') and strategy.get('domains').strip():
-            params['domains'] = strategy['domains']
-        
-        # Debug: log the query being sent (but don't log the full params to avoid secrets)
-        query_type = 'qintitle' if strategy.get('keywords_in_title', False) else 'q'
-        query_value = params.get(query_type, 'N/A')
-        print(f"   🔍 Query: {query_type}={query_value[:100]}...")  # Truncate for safety
-        
-        try:
-            articles = newsapi.get_everything(**params)
-            
+        if articles_data.get('status') == 'ok':
             # Deduplicate by URL and filter blacklisted sources
             new_count = 0
-            for article in articles['articles']:
+            for article in articles_data.get('articles', []):
                 url = article['url']
                 source_domain = article['source']['name'].lower()
                 
@@ -158,14 +170,15 @@ def fetch_news(config):
                     all_articles.append(article)
                     new_count += 1
             
-            print(f"   ✅ Found {len(articles['articles'])} articles ({new_count} new)")
+            print(f"   ✅ Found {len(articles_data.get('articles', []))} articles ({new_count} new)")
+        else:
+            print(f"   ⚠️  API returned error: {articles_data.get('message', 'Unknown error')}")
             
-        except Exception as e:
-            print(f"   ⚠️  Error in query {i}: {e}")
-            continue
+    except Exception as e:
+        print(f"   ⚠️  Error fetching news: {e}")
+        raise
     
-    # Sort by popularity and limit to total max articles
-    # Note: NewsAPI already returns sorted results, so we just take the first N
+    # Limit to total max articles
     all_articles = all_articles[:config['total_max_articles']]
     
     return all_articles
