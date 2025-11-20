@@ -188,7 +188,7 @@ def parse_selection(llm_output, episodes):
     return selected
 
 def format_episode_output(episodes):
-    """Format selected episodes for markdown output"""
+    """Format selected episodes for markdown output with thumbnails"""
     lines = []
     
     for episode in episodes:
@@ -199,6 +199,7 @@ def format_episode_output(episodes):
         release_date = episode.get('releaseDate', '')
         duration_ms = episode.get('trackTimeMillis', 0)
         description = episode.get('description') or episode.get('shortDescription') or ''
+        artwork_url = episode.get('artworkUrl160') or episode.get('artworkUrl60') or ''
         
         # Format date
         date_str = ''
@@ -222,24 +223,33 @@ def format_episode_output(episodes):
             else:
                 duration_str = f"{minutes}m"
         
-        # Build markdown line with date prefix
-        episode_line = f"[{title}]({url})"
+        # Build episode entry with thumbnail
+        # Use HTML for better control over layout
+        episode_html = '<div style="display: flex; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">'
         
-        # Add metadata
+        # Add thumbnail if available
+        if artwork_url:
+            episode_html += f'<img src="{artwork_url}" alt="{title}" width="80" height="80" style="flex-shrink: 0; margin-right: 16px; border-radius: 6px; object-fit: cover;">'
+        
+        # Content section
+        episode_html += '<div style="flex: 1;">'
+        
+        # Title and link
+        episode_html += f'<h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600;"><a href="{url}" style="color: #000; text-decoration: none;">{title}</a></h3>'
+        
+        # Metadata (podcast, artist, duration)
         metadata_parts = []
         if podcast:
-            metadata_parts.append(f"from **{podcast}**")
+            metadata_parts.append(f"<strong>{podcast}</strong>")
         if artist:
-            metadata_parts.append(f"by {artist}")
-        if formatted_date:
-            metadata_parts.append(formatted_date)
+            metadata_parts.append(artist)
         if duration_str:
             metadata_parts.append(duration_str)
         
         if metadata_parts:
-            episode_line += f" - {', '.join(metadata_parts)}"
+            episode_html += f'<p style="margin: 0 0 8px 0; font-size: 0.875rem; color: #6b7280;">{" · ".join(metadata_parts)}</p>'
         
-        # Add description if available
+        # Description
         if description:
             # Clean and truncate description
             desc = description.strip()
@@ -247,12 +257,15 @@ def format_episode_output(episodes):
             desc = re.sub(r'<[^>]+>', '', desc)
             if len(desc) > 300:
                 desc = desc[:300] + "..."
-            episode_line += f"\n\n  {desc}"
+            episode_html += f'<p style="margin: 0 0 8px 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">{desc}</p>'
         
-        if date_str:
-            lines.append(f"- {date_str}: {episode_line}")
-        else:
-            lines.append(f"- {episode_line}")
+        # Date at the end
+        if formatted_date:
+            episode_html += f'<p style="margin: 0; font-size: 0.8125rem; color: #9ca3af;">{formatted_date}</p>'
+        
+        episode_html += '</div></div>'
+        
+        lines.append(episode_html)
     
     return '\n'.join(lines)
 
@@ -267,11 +280,12 @@ def update_podcasts_file(episodes, output_file='_includes/edtech-podcasts.md'):
     ]
     
     body = format_episode_output(episodes)
-    body_lines = [line + '\n' for line in body.split('\n') if line.strip()]
+    # Since we're using HTML, write it directly without extra newlines
+    body_content = body + '\n'
     
     with open(output_file, 'w') as f:
         f.writelines(header)
-        f.writelines(body_lines)
+        f.write(body_content)
     
     print(f"✅ Updated podcasts file: {output_file} ({len(episodes)} episodes)")
 
