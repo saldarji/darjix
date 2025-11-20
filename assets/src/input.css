@@ -44,6 +44,13 @@
   
   .prose li {
     @apply mb-2;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .prose a {
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   
   .prose code {
