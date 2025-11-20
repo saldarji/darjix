@@ -9,7 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = gallery.querySelector('.gallery-next');
     const dots = gallery.querySelectorAll('.gallery-dot');
     
-    if (!track || slides.length <= 1) return;
+    if (!track) return;
+    if (slides.length <= 1) {
+      console.log('Gallery has only 1 slide, skipping initialization');
+      return;
+    }
+    console.log(`Initializing gallery with ${slides.length} slides`);
     
     let currentSlide = 0;
     const totalSlides = slides.length;
