@@ -23,13 +23,11 @@ layout: default
 
   <!-- Photo Content -->
   {% if page.image %}
-  <div class="mb-8" style="margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem);">
-    {% if page.image %}
+  <div class="mb-8 -mx-4 sm:-mx-6 lg:-mx-8">
     <div class="w-full">
       <img src="{{ page.image | relative_url }}" 
            alt="{{ page.alt_text | default: page.title | default: 'Photo' }}"
            class="w-full h-auto block"
-           style="width: 100%; display: block;"
            loading="lazy">
       {% if page.caption %}
       <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
@@ -37,7 +35,6 @@ layout: default
       </div>
       {% endif %}
     </div>
-    {% endif %}
   </div>
   {% endif %}
 
