@@ -21,7 +21,7 @@ Photo posts:
 
 ### Step 2: Create the Post File
 
-1. Copy `photo-template.md` to `_posts/YYYY-MM-DD-Photo-Title.md`
+1. Copy `documentation/photo-template.md` to `_posts/YYYY-MM-DD-Photo-Title.md`
 2. Fill in the front matter:
 
 ```yaml
@@ -197,7 +197,7 @@ This was taken during a late evening study session. The colors were incredible t
 ## Technical Details
 
 - **Layout:** `_layouts/photo.html`
-- **Template:** `photo-template.md`
+- **Template:** `documentation/photo-template.md`
 - **Image Storage:** `assets/images/image posts/`
 - **Alt-Text Script:** `scripts/generate_alt_text.py`
 - **Model Used:** Salesforce BLIP (via Replicate API)
