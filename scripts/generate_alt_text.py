@@ -201,13 +201,15 @@ def generate_alt_text(image_path):
         raise
 
 
-def update_post_file(post_path, alt_text):
+def update_post_file(post_path, alt_text, image_path=None):
     """
     Update the alt_text field in a photo post markdown file.
+    Supports both single image and gallery modes.
     
     Args:
         post_path: Path to the post markdown file
         alt_text: The alt-text to insert
+        image_path: Optional path to the image to help identify which image to update in gallery mode
     """
     if not os.path.exists(post_path):
         raise FileNotFoundError(f"Post file not found: {post_path}")
@@ -222,46 +224,114 @@ def update_post_file(post_path, alt_text):
     if 'layout: photo' not in content:
         print("   ⚠️  Warning: This doesn't appear to be a photo post (missing 'layout: photo')")
     
-    # Update alt_text field
-    # Pattern: alt_text: "..." or alt_text: '...'
-    pattern = r'alt_text:\s*["\']([^"\']*)["\']'
+    # Check if it's gallery mode (has images array)
+    is_gallery = 'images:' in content or re.search(r'^\s*images:\s*$', content, re.MULTILINE)
     
-    if re.search(pattern, content):
-        # Replace existing alt_text
-        new_content = re.sub(
-            pattern,
-            f'alt_text: "{alt_text}"',
-            content
-        )
-        print(f"   ✅ Updated existing alt_text field")
-    else:
-        # Add alt_text field after image field
-        image_pattern = r'(image:\s*["\'][^"\']*["\'])'
-        if re.search(image_pattern, content):
-            new_content = re.sub(
-                image_pattern,
-                f'\\1\nalt_text: "{alt_text}"',
-                content
-            )
-            print(f"   ✅ Added new alt_text field")
+    if is_gallery and image_path:
+        # Gallery mode - find the specific image by URL
+        image_filename = os.path.basename(image_path)
+        # Look for the image URL in the images array
+        # Pattern: url: "/path/to/image.jpg" followed by alt_text
+        url_pattern = rf'(url:\s*["\'][^"\']*{re.escape(image_filename)}[^"\']*["\'])'
+        
+        # Find the image entry and update its alt_text
+        # We need to find the url line and then update the alt_text that follows
+        lines = content.split('\n')
+        new_lines = []
+        i = 0
+        updated = False
+        
+        while i < len(lines):
+            line = lines[i]
+            new_lines.append(line)
+            
+            # Check if this is the URL line for our image
+            if re.search(url_pattern, line) and not updated:
+                # Look ahead for alt_text in the next few lines
+                j = i + 1
+                found_alt = False
+                while j < len(lines) and j < i + 5:  # Check next 5 lines
+                    if re.match(r'^\s*alt_text:\s*', lines[j]):
+                        # Update this alt_text line
+                        new_lines.append(f'    alt_text: "{alt_text}"')
+                        found_alt = True
+                        updated = True
+                        j += 1
+                        break
+                    elif re.match(r'^\s*(url|caption):\s*', lines[j]):
+                        # Hit next image field, insert alt_text before it
+                        new_lines.append(f'    alt_text: "{alt_text}"')
+                        found_alt = True
+                        updated = True
+                        break
+                    j += 1
+                
+                # Skip the lines we've already processed
+                if found_alt:
+                    i = j
+                    continue
+                elif not found_alt:
+                    # Insert alt_text after url
+                    new_lines.append(f'    alt_text: "{alt_text}"')
+                    updated = True
+            
+            i += 1
+        
+        if updated:
+            new_content = '\n'.join(new_lines)
+            print(f"   ✅ Updated alt_text for image in gallery")
         else:
-            # Add after title or date
-            title_pattern = r'(title:\s*["\'][^"\']*["\'])'
-            if re.search(title_pattern, content):
+            print(f"   ⚠️  Could not find image in gallery, updating first alt_text")
+            # Fallback: update first alt_text in images array
+            pattern = r'(images:\s*\n(?:\s+- url:.*\n(?:\s+alt_text:.*\n)?(?:\s+caption:.*\n)?)+)'
+            def replace_first_alt(match):
+                content = match.group(1)
+                # Replace first alt_text
+                return re.sub(r'(\s+alt_text:\s*["\'][^"\']*["\'])', f'    alt_text: "{alt_text}"', content, count=1)
+            new_content = re.sub(pattern, replace_first_alt, content, flags=re.MULTILINE | re.DOTALL)
+    else:
+        # Single image mode or no specific image path
+        # Update alt_text field
+        # Pattern: alt_text: "..." or alt_text: '...'
+        pattern = r'alt_text:\s*["\']([^"\']*)["\']'
+        
+        if re.search(pattern, content):
+            # Replace existing alt_text
+            new_content = re.sub(
+                pattern,
+                f'alt_text: "{alt_text}"',
+                content,
+                count=1  # Only replace first occurrence for single image
+            )
+            print(f"   ✅ Updated existing alt_text field")
+        else:
+            # Add alt_text field after image field
+            image_pattern = r'(image:\s*["\'][^"\']*["\'])'
+            if re.search(image_pattern, content):
                 new_content = re.sub(
-                    title_pattern,
+                    image_pattern,
                     f'\\1\nalt_text: "{alt_text}"',
                     content
                 )
-                print(f"   ✅ Added alt_text field after title")
+                print(f"   ✅ Added new alt_text field")
             else:
-                # Just add it at the end of front matter
-                front_matter_end = content.find('---', content.find('---') + 3)
-                if front_matter_end != -1:
-                    new_content = content[:front_matter_end] + f'alt_text: "{alt_text}"\n' + content[front_matter_end:]
-                    print(f"   ✅ Added alt_text field to front matter")
+                # Add after title or date
+                title_pattern = r'(title:\s*["\'][^"\']*["\'])'
+                if re.search(title_pattern, content):
+                    new_content = re.sub(
+                        title_pattern,
+                        f'\\1\nalt_text: "{alt_text}"',
+                        content
+                    )
+                    print(f"   ✅ Added alt_text field after title")
                 else:
-                    raise ValueError("Could not find front matter in post file")
+                    # Just add it at the end of front matter
+                    front_matter_end = content.find('---', content.find('---') + 3)
+                    if front_matter_end != -1:
+                        new_content = content[:front_matter_end] + f'alt_text: "{alt_text}"\n' + content[front_matter_end:]
+                        print(f"   ✅ Added alt_text field to front matter")
+                    else:
+                        raise ValueError("Could not find front matter in post file")
     
     # Write the updated content
     with open(post_path, 'w') as f:
@@ -308,7 +378,7 @@ Examples:
         
         # Update post file if requested
         if args.post_path:
-            update_post_file(args.post_path, alt_text)
+            update_post_file(args.post_path, alt_text, image_path=args.image_path)
             print(f"\n✅ Done! Alt-text has been added to the post file.")
         else:
             print(f"💡 Tip: Use --update-post to automatically update a photo post file")
