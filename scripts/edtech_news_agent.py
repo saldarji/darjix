@@ -327,10 +327,11 @@ def format_news_output(summary, articles):
                 # Only add if there's actual summary text
                 if ai_analysis:
                     # Format as: #. [title with link] - AI analysis [Source]
-                    # Escape pipe characters in title to prevent kramdown table parsing
-                    title_escaped = title.replace('|', '&#124;')
+                    # Replace pipe characters in title with " - " to prevent kramdown table parsing
+                    # Using HTML entity doesn't work well - better to replace with dash
+                    title_clean = title.replace('|', ' - ')
                     # Include publication date if available
-                    formatted_item = f"{item_num}. [{title_escaped}]({url}) - {ai_analysis} [{source}]"
+                    formatted_item = f"{item_num}. [{title_clean}]({url}) - {ai_analysis} [{source}]"
                     if pub_date:
                         # Use ::: as separator instead of | to avoid kramdown table parsing
                         formatted_item = f"{pub_date}:::{formatted_item}"
