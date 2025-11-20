@@ -226,9 +226,14 @@
     transform: scale(1.2);
   }
   
-  .gallery-indicator {
-    @apply z-10;
-  }
+.gallery-indicator {
+  @apply z-10;
+}
+
+.gallery-counter {
+  @apply z-10;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
 }
 
 @layer utilities {

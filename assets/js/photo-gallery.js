@@ -34,6 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
+      // Update photo counter if present
+      const counter = gallery.querySelector('.gallery-counter .gallery-current');
+      if (counter) {
+        counter.textContent = currentSlide + 1;
+      }
+      
       // Show/hide navigation buttons
       if (prevButton) {
         prevButton.style.opacity = currentSlide === 0 ? '0.3' : '1';

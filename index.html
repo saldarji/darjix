@@ -38,33 +38,76 @@ pagination:
               </a>
             </h2>
             {% if post.layout == 'photo' %}
-            <!-- Photo Post Preview -->
+            <!-- Photo Post Gallery - Full Width -->
             <div class="mb-4">
-              <a href="{{ post.url | relative_url }}" class="block">
-                {% if post.images %}
-                  <!-- Gallery preview - show first image -->
-                  <img src="{{ post.images[0].url | relative_url }}" 
-                       alt="{{ post.images[0].alt_text | default: post.title }}"
-                       class="w-full h-auto max-h-96 object-contain"
-                       loading="lazy">
-                  {% if post.images[0].caption %}
-                  <div class="mt-2 text-sm text-gray-600 italic">
-                    {{ post.images[0].caption }}
+              {% if post.images %}
+                <!-- Gallery Mode - Full Gallery on Homepage -->
+                <div class="photo-gallery" data-gallery-id="homepage-gallery-{{ post.date | date: '%Y-%m-%d' }}-{{ post.title | slugify }}" style="margin-left: -1.5rem; margin-right: -1.5rem; width: calc(100% + 3rem);">
+                  <div class="relative" style="width: 100%;">
+                    <div class="gallery-container overflow-hidden" style="width: 100%;">
+                      <div class="gallery-track flex transition-transform duration-300 ease-in-out" style="transform: translateX(0); width: 100%;">
+                        {% for image in post.images %}
+                        <div class="gallery-slide flex-shrink-0" style="width: 100%; min-width: 100%;">
+                          <img src="{{ image.url | relative_url }}" 
+                               alt="{{ image.alt_text | default: post.title }}"
+                               class="w-full h-auto block"
+                               {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
+                               style="width: 100%; max-width: 100%; display: block;">
+                          {% if image.caption %}
+                          <div class="mt-2 text-sm text-gray-600 italic px-6">
+                            {{ image.caption }}
+                          </div>
+                          {% endif %}
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    {% assign image_count = post.images | size %}
+                    {% if image_count > 1 %}
+                    <button class="gallery-nav gallery-prev absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white w-10 h-10 flex items-center justify-center transition-all z-10" aria-label="Previous photo">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                      </svg>
+                    </button>
+                    <button class="gallery-nav gallery-next absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white w-10 h-10 flex items-center justify-center transition-all z-10" aria-label="Next photo">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </button>
+                    
+                    <!-- Photo Counter -->
+                    <div class="gallery-counter absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs px-3 py-1 rounded-full z-10">
+                      Photo <span class="gallery-current">1</span> of {{ image_count }}
+                    </div>
+                    
+                    <!-- Gallery Indicator Dots -->
+                    <div class="gallery-indicator absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                      {% for image in post.images %}
+                      <button class="gallery-dot w-2 h-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-75 transition-all {% if forloop.first %}bg-opacity-100{% endif %}" 
+                              data-slide="{{ forloop.index0 }}" 
+                              aria-label="Go to photo {{ forloop.index }}"></button>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
                   </div>
-                  {% endif %}
-                {% elsif post.image %}
-                  <!-- Single image preview -->
+                </div>
+              {% elsif post.image %}
+                <!-- Single Image Mode -->
+                <div style="margin-left: -1.5rem; margin-right: -1.5rem; width: calc(100% + 3rem);">
                   <img src="{{ post.image | relative_url }}" 
                        alt="{{ post.alt_text | default: post.title }}"
-                       class="w-full h-auto max-h-96 object-contain"
-                       loading="lazy">
+                       class="w-full h-auto block"
+                       loading="lazy"
+                       style="width: 100%; max-width: 100%; display: block;">
                   {% if post.caption %}
-                  <div class="mt-2 text-sm text-gray-600 italic">
+                  <div class="mt-2 text-sm text-gray-600 italic px-6">
                     {{ post.caption }}
                   </div>
                   {% endif %}
-                {% endif %}
-              </a>
+                </div>
+              {% endif %}
             </div>
             {% endif %}
             <div class="prose prose-lg">
