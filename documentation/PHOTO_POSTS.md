@@ -98,15 +98,37 @@ alt_text: "A detailed description of what's in the photograph"
 
 ## Front Matter Fields
 
+### Single Image Mode
+
 | Field | Required | Description |
 |-------|----------|-------------|
 | `layout` | Yes | Must be `"photo"` |
 | `title` | Yes | The title of your photo post |
 | `date` | Yes | Publication date in `YYYY-MM-DD` format |
 | `author` | No | Author name (defaults to "Sal Darji" if not specified) |
-| `image` | Yes | Path to the image file (relative to site root) |
+| `image` | Yes* | Path to the image file (relative to site root) |
 | `alt_text` | Yes | Descriptive text for accessibility |
 | `caption` | No | Optional caption displayed below the image |
+
+*Use `image` for single image posts, or `images` array for gallery mode
+
+### Gallery Mode
+
+When using `images` array instead of `image`, you can create a photo gallery with multiple images:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `images` | Yes* | Array of image objects (use instead of `image`) |
+| `images[].url` | Yes | Path to the image file |
+| `images[].alt_text` | Yes | Descriptive text for accessibility |
+| `images[].caption` | No | Optional caption for each image |
+
+**Gallery Features:**
+- Left/right navigation buttons
+- Dot indicators showing current image
+- Keyboard navigation (arrow keys)
+- Smooth transitions between images
+- Full-width images that fill the column
 
 ## How Photo Posts Appear
 
@@ -131,7 +153,7 @@ alt_text: "A detailed description of what's in the photograph"
 
 ## Examples
 
-### Basic Photo Post
+### Basic Photo Post (Single Image)
 
 ```yaml
 ---
@@ -142,6 +164,27 @@ author: "Sal Darji"
 image: "/assets/images/image posts/speaker.jpg"
 alt_text: "A person standing at a podium addressing an audience"
 caption: "Keynote speaker at AIxED Conference"
+---
+```
+
+### Photo Gallery (Multiple Images)
+
+```yaml
+---
+layout: photo
+title: "Conference Highlights"
+date: 2025-11-18
+author: "Sal Darji"
+images:
+  - url: "/assets/images/image posts/speaker1.jpg"
+    alt_text: "First speaker at podium"
+    caption: "Keynote speaker at AIxED Conference"
+  - url: "/assets/images/image posts/speaker2.jpg"
+    alt_text: "Second speaker during panel"
+    caption: "Panel discussion with industry leaders"
+  - url: "/assets/images/image posts/audience.jpg"
+    alt_text: "Audience during presentation"
+    caption: "Engaged audience at AIxED Conference"
 ---
 ```
 
