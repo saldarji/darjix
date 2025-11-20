@@ -57,6 +57,14 @@
   .prose {
     column-count: 1 !important;
     column-width: auto !important;
+    columns: 1 !important;
+  }
+  
+  /* More specific rule for news page */
+  .prose.prose-lg {
+    column-count: 1 !important;
+    column-width: auto !important;
+    columns: 1 !important;
   }
   
   .prose code {
