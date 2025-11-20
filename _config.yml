@@ -30,6 +30,7 @@ exclude:
   - scripts/
   - venv/
   - .github/
+  - documentation/
 
 # Blog settings
 permalink: /:year/:month/:day/:title/
