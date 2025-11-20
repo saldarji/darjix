@@ -175,6 +175,46 @@
       transform: scale(1);
     }
   }
+  
+  /* Photo Gallery styles */
+  .photo-gallery {
+    @apply relative;
+  }
+  
+  .gallery-container {
+    @apply relative;
+  }
+  
+  .gallery-track {
+    @apply flex;
+    will-change: transform;
+  }
+  
+  .gallery-slide {
+    @apply flex-shrink-0 w-full;
+  }
+  
+  .gallery-nav {
+    @apply z-10;
+    backdrop-filter: blur(2px);
+  }
+  
+  .gallery-nav:disabled,
+  .gallery-nav[style*="pointer-events: none"] {
+    @apply cursor-not-allowed;
+  }
+  
+  .gallery-dot {
+    @apply cursor-pointer transition-all;
+  }
+  
+  .gallery-dot:hover {
+    transform: scale(1.2);
+  }
+  
+  .gallery-indicator {
+    @apply z-10;
+  }
 }
 
 @layer utilities {

@@ -22,19 +22,67 @@ layout: default
   </header>
 
   <!-- Photo Content - Full Width -->
-  {% if page.image %}
-  <div class="mb-8 w-full">
-    <img src="{{ page.image | relative_url }}" 
-         alt="{{ page.alt_text | default: page.title | default: 'Photo' }}"
-         class="w-full h-auto block"
-         loading="lazy"
-         style="width: 100%; max-width: 100%; display: block;">
-    {% if page.caption %}
-    <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
-      {{ page.caption }}
+  {% if page.images %}
+    <!-- Gallery Mode -->
+    <div class="mb-8 w-full photo-gallery" data-gallery-id="photo-gallery-{{ page.date | date: '%Y-%m-%d' }}-{{ page.title | slugify }}">
+      <div class="relative">
+        <div class="gallery-container overflow-hidden">
+          <div class="gallery-track flex transition-transform duration-300 ease-in-out" style="transform: translateX(0);">
+            {% for image in page.images %}
+            <div class="gallery-slide flex-shrink-0 w-full">
+              <img src="{{ image.url | relative_url }}" 
+                   alt="{{ image.alt_text | default: page.title | default: 'Photo' }}"
+                   class="w-full h-auto block"
+                   loading="{{ forloop.first | ternary: 'eager', 'lazy' }}"
+                   style="width: 100%; max-width: 100%; display: block;">
+              {% if image.caption %}
+              <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
+                {{ image.caption }}
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        {% if page.images.size > 1 %}
+        <button class="gallery-nav gallery-prev absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white w-10 h-10 flex items-center justify-center transition-all" aria-label="Previous photo">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button class="gallery-nav gallery-next absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white w-10 h-10 flex items-center justify-center transition-all" aria-label="Next photo">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+        
+        <!-- Gallery Indicator -->
+        <div class="gallery-indicator absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+          {% for image in page.images %}
+          <button class="gallery-dot w-2 h-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-75 transition-all {% if forloop.first %}bg-opacity-100{% endif %}" 
+                  data-slide="{{ forloop.index0 }}" 
+                  aria-label="Go to photo {{ forloop.index }}"></button>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
     </div>
-    {% endif %}
-  </div>
+  {% elsif page.image %}
+    <!-- Single Image Mode -->
+    <div class="mb-8 w-full">
+      <img src="{{ page.image | relative_url }}" 
+           alt="{{ page.alt_text | default: page.title | default: 'Photo' }}"
+           class="w-full h-auto block"
+           loading="lazy"
+           style="width: 100%; max-width: 100%; display: block;">
+      {% if page.caption %}
+      <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
+        {{ page.caption }}
+      </div>
+      {% endif %}
+    </div>
   {% endif %}
 
   <!-- Additional Content (if any) -->
