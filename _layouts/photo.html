@@ -33,7 +33,7 @@ layout: default
               <img src="{{ image.url | relative_url }}" 
                    alt="{{ image.alt_text | default: page.title | default: 'Photo' }}"
                    class="w-full h-auto block"
-                   loading="{{ forloop.first | ternary: 'eager', 'lazy' }}"
+                   {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
                    style="width: 100%; max-width: 100%; display: block;">
               {% if image.caption %}
               <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
@@ -46,7 +46,8 @@ layout: default
         </div>
         
         <!-- Navigation Buttons -->
-        {% if page.images.size > 1 %}
+        {% assign image_count = page.images | size %}
+        {% if image_count > 1 %}
         <button class="gallery-nav gallery-prev absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white w-10 h-10 flex items-center justify-center transition-all" aria-label="Previous photo">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
