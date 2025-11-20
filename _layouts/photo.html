@@ -22,15 +22,15 @@ layout: default
   </header>
 
   <!-- Photo Content -->
-  <div class="mb-8">
+  <div class="mb-8 -mx-4 sm:-mx-6 lg:-mx-8">
     {% if page.image %}
     <div class="w-full">
       <img src="{{ page.image | relative_url }}" 
            alt="{{ page.alt_text | default: page.title | default: 'Photo' }}"
-           class="w-full h-auto object-contain"
+           class="w-full h-auto object-cover"
            loading="lazy">
       {% if page.caption %}
-      <div class="mt-4 text-sm text-gray-600 italic">
+      <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
         {{ page.caption }}
       </div>
       {% endif %}
