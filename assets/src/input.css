@@ -53,6 +53,12 @@
     overflow-wrap: break-word;
   }
   
+  /* Force single column for news page */
+  .prose {
+    column-count: 1 !important;
+    column-width: auto !important;
+  }
+  
   .prose code {
     @apply bg-gray-100 px-2 py-1 text-sm font-mono;
   }
