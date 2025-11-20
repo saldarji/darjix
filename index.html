@@ -37,18 +37,32 @@ pagination:
                 {{ post.title }}
               </a>
             </h2>
-            {% if post.layout == 'photo' and post.image %}
+            {% if post.layout == 'photo' %}
             <!-- Photo Post Preview -->
             <div class="mb-4">
               <a href="{{ post.url | relative_url }}" class="block">
-                <img src="{{ post.image | relative_url }}" 
-                     alt="{{ post.alt_text | default: post.title }}"
-                     class="w-full h-auto max-h-96 object-contain"
-                     loading="lazy">
-                {% if post.caption %}
-                <div class="mt-2 text-sm text-gray-600 italic">
-                  {{ post.caption }}
-                </div>
+                {% if post.images %}
+                  <!-- Gallery preview - show first image -->
+                  <img src="{{ post.images[0].url | relative_url }}" 
+                       alt="{{ post.images[0].alt_text | default: post.title }}"
+                       class="w-full h-auto max-h-96 object-contain"
+                       loading="lazy">
+                  {% if post.images[0].caption %}
+                  <div class="mt-2 text-sm text-gray-600 italic">
+                    {{ post.images[0].caption }}
+                  </div>
+                  {% endif %}
+                {% elsif post.image %}
+                  <!-- Single image preview -->
+                  <img src="{{ post.image | relative_url }}" 
+                       alt="{{ post.alt_text | default: post.title }}"
+                       class="w-full h-auto max-h-96 object-contain"
+                       loading="lazy">
+                  {% if post.caption %}
+                  <div class="mt-2 text-sm text-gray-600 italic">
+                    {{ post.caption }}
+                  </div>
+                  {% endif %}
                 {% endif %}
               </a>
             </div>
