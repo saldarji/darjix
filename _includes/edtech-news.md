@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: November 18, 2025*
+*Updated: November 18, 2025 at 4:15 PM*
 
 - 2025-11-17: [Learning That Feels Human In The Age Of AI](https://elearningindustry.com/learning-that-feels-human-in-the-age-of-ai) - As AI accelerates course creation, L&D teams must prioritize human-centered design—like storytelling and emotional resonance—to maintain authentic learner engagement in training programs.** [Elearningindustry.com]
 - 2025-11-17: [How Simulation-Based Learning Is Shaping Workforce Readiness](https://elearningindustry.com/how-simulation-based-learning-is-shaping-workforce-readiness) - Simulation-based learning is accelerating workforce readiness by letting employees practice high-stakes skills in risk-free virtual environments, bridging the gap between theory and real-world application.** [Elearningindustry.com]
