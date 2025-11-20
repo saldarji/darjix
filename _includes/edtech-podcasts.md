@@ -1,5 +1,26 @@
 # EdTech Podcast Episodes
-*Updated: November 11, 2025*
+*Updated: November 20, 2025*
 
-Episodes will be updated automatically every Monday.
-
+- 2025-11-19: [Using AI Without (Really) Cheating](https://podcasts.apple.com/us/podcast/using-ai-without-really-cheating/id1766357400?i=1000737490699&uo=4) - from **College Matters from The Chronicle**, November 19, 2025, 38m
+  Nearly three years after ChatGPT first came on the scene, college students are using generative AI to help with myriad tasks. Outlining and brainstorming are a breeze. A tough concept, skimmed over by a professor during a lecture, can probably be explained succinctly by a chatbot. This kind of AI us...
+- 2025-11-18: [Behind the Screen Lessons from Hosting AI Webinars for Teachers](https://podcasts.apple.com/us/podcast/behind-the-screen-lessons-from-hosting-ai-webinars/id1454190031?i=1000737224523&uo=4) - from **Easy EdTech Podcast with Monica Burns**, November 18, 2025, 15m
+  In this episode, I share five key lessons I've learned from hosting AI webinars for teachers. You'll also hear practical tips on making your online workshops more interactive, like providing time for hands-on activities and offering low-stakes exploration options. If you're looking for actionable ad...
+- 2025-11-15: [How does GenAI affect trust in teacher-student relationships?](https://podcasts.apple.com/us/podcast/how-does-genai-affect-trust-in-teacher-student-relationships/id1796379245?i=1000736846641&uo=4) - from **Teaching in Higher Education: Critical Conversations**, November 15, 2025, 22m
+  In this episode, Ibrar Bhatt talks with Jiahui (Jess) Luo about her article ‘How does GenAI affect trust in teacher-student relationships? Insights from students’ assessment experiences’.
+And you can read Jess’s article here:
+https://www.tandfonline.com/doi/full/10.1080/13562517.2024.2341005?src=
+- 2025-11-14: [#295 Nicole Ponsford - EdTech, Equity & 26,000 Voices](https://podcasts.apple.com/us/podcast/295-nicole-ponsford-edtech-equity-26-000-voices/id1107282759?i=1000736766225&uo=4) - from **The Edtech Podcast**, November 14, 2025, 46m
+  If you've ever felt that education is changing faster than the systems meant to support you, this podcast gives you a clearer and more human way to understand that shift. You'll explore how inclusion, data literacy, AI and school culture can be viewed through a lens that actually reflects real lived...
+- 2025-11-13: [Teaching the AI Generation with Mireia Torello of Aikreate](https://podcasts.apple.com/us/podcast/teaching-the-ai-generation-with-mireia-torello-of-aikreate/id1592196859?i=1000736594146&uo=4) - from **Edtech Insiders**, November 13, 2025, 1h 8m
+  Send us a text
+Mireia Torello is the CEO and co-founder of Aikreate, an EdTech company revolutionizing AI Literacy for students and educators worldwide. With a PhD in Earth Sciences and an Executive MBA from IESE Business School, Mireia brings a unique mix of scientific and entrepreneurial experienc...
+- 2025-11-13: [The Frontier of Spatial Intelligence with Fei-Fei Li](https://podcasts.apple.com/us/podcast/the-frontier-of-spatial-intelligence-with-fei-fei-li/id842818711?i=1000736574750&uo=4) - from **a16z Podcast**, November 13, 2025, 44m
+  Fei-Fei Li and Justin Johnson are pioneers in AI. While the world has only recently witnessed a surge in consumer AI, they have long been laying the groundwork for the innovations transforming industries today.
+With the recent launch of Marble, the first product from their company World Labs, we are...
+- 2025-11-19: [Proactive Agents for the Web with Devi Parikh](https://podcasts.apple.com/us/podcast/proactive-agents-for-the-web-with-devi-parikh/id1116303051?i=1000737317305&uo=4) - from **The TWIML AI Podcast (formerly This Week in Machine Learning & Artificial Intelligence)**, November 19, 2025, 56m
+  Today, we're joined by Devi Parikh, co-founder and co-CEO of Yutori, to discuss browser use models and a future where we interact with the web through proactive, autonomous agents. We explore the technical challenges of creating reliable web agents, the advantages of visually-grounded models that op...
+- 2025-11-13: [“Godfather of AI” Geoffrey Hinton Rings the Warning Bells](https://podcasts.apple.com/us/podcast/godfather-of-ai-geoffrey-hinton-rings-the-warning-bells/id1643307527?i=1000736569293&uo=4) - from **On with Kara Swisher**, November 13, 2025, 58m
+  Nobel laureate Geoffrey Hinton, known as one of the “godfathers of AI” for his pioneering work in deep learning and neural networks, joins Kara to discuss the technology he helped create — and how to mitigate the existential risks it poses. 
+Hinton explains both the short- and long-term dangers he ...
+- 2025-11-14: [‘Malicious use is already happening’: machine-learning pioneer on making AI safer](https://podcasts.apple.com/us/podcast/malicious-use-is-already-happening-machine-learning/id81934659?i=1000736742860&uo=4) - from **Nature Podcast**, November 14, 2025, 15m
+  Yoshua Bengio, considered by many to be one of the godfathers of AI, has long been at the forefront of machine-learning research . However, his opinions on the technology have shifted in recent years — he joins us to talk about ways to address the risks posed by AI, and his efforts to develop an AI ...

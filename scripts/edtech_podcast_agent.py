@@ -10,7 +10,7 @@ import replicate
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # Load environment variables from .env file if it exists
 try:
@@ -37,8 +37,9 @@ def fetch_all_episodes(keywords, searches_per_keyword=5):
     all_episodes = []
     seen_episodes = set()
     
-    # Filter to episodes from last 30 days
-    one_month_ago = datetime.now() - timedelta(days=30)
+    # Filter to episodes from last 60 days (increased from 30 to catch more episodes)
+    # Use UTC timezone to match iTunes API dates
+    one_month_ago = datetime.now(timezone.utc) - timedelta(days=60)
     
     for keyword in keywords:
         print(f"🔍 Searching for '{keyword}' ({searches_per_keyword} searches)...")
