@@ -40,6 +40,20 @@ document.addEventListener('DOMContentLoaded', function() {
         counter.textContent = currentSlide + 1;
       }
       
+      // Position counter to align with caption first line
+      const counterElement = gallery.querySelector('.gallery-counter');
+      if (counterElement && slides[currentSlide]) {
+        const currentSlideElement = slides[currentSlide];
+        const image = currentSlideElement.querySelector('img');
+        if (image) {
+          // Get image height and add caption margin (mt-2 = 0.5rem)
+          const imageHeight = image.offsetHeight;
+          const captionMargin = 8; // 0.5rem = 8px
+          // Position counter at image bottom + caption margin (aligned with caption first line)
+          counterElement.style.top = `${imageHeight + captionMargin}px`;
+        }
+      }
+      
       // Show/hide navigation buttons
       if (prevButton) {
         prevButton.style.opacity = currentSlide === 0 ? '0.3' : '1';
