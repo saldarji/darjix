@@ -33,8 +33,26 @@ pagination:
               {{ post.date | date: "%B %d, %Y" }}
             </time>
             <h2 class="text-2xl md:text-3xl font-bold text-black mt-2 mb-4">
-              {{ post.title }}
+              <a href="{{ post.url | relative_url }}" class="hover:underline">
+                {{ post.title }}
+              </a>
             </h2>
+            {% if post.layout == 'photo' and post.image %}
+            <!-- Photo Post Preview -->
+            <div class="mb-4">
+              <a href="{{ post.url | relative_url }}" class="block">
+                <img src="{{ post.image | relative_url }}" 
+                     alt="{{ post.alt_text | default: post.title }}"
+                     class="w-full h-auto max-h-96 object-contain"
+                     loading="lazy">
+                {% if post.caption %}
+                <div class="mt-2 text-sm text-gray-600 italic">
+                  {{ post.caption }}
+                </div>
+                {% endif %}
+              </a>
+            </div>
+            {% endif %}
             <div class="prose prose-lg">
               {{ post.content }}
             </div>
