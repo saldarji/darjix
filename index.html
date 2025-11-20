@@ -42,8 +42,8 @@ pagination:
             <div class="mb-4">
               {% if post.images %}
                 <!-- Gallery Mode - Full Gallery on Homepage -->
-                <!-- Aligns with featured content border: container padding (px-6 = 1.5rem) matches gallery negative margin -->
-                <div class="photo-gallery" data-gallery-id="homepage-gallery-{{ post.date | date: '%Y-%m-%d' }}-{{ post.title | slugify }}" style="margin-left: -1.5rem; margin-right: -1.5rem; width: calc(100% + 3rem);">
+                <!-- Aligns with featured content box borders (no negative margins needed) -->
+                <div class="photo-gallery" data-gallery-id="homepage-gallery-{{ post.date | date: '%Y-%m-%d' }}-{{ post.title | slugify }}" style="width: 100%;">
                   <div class="relative" style="width: 100%;">
                     <div class="gallery-container overflow-hidden" style="width: 100%;">
                       <div class="gallery-track flex transition-transform duration-300 ease-in-out" style="transform: translateX(0); width: 100%;">
@@ -96,7 +96,7 @@ pagination:
                 </div>
               {% elsif post.image %}
                 <!-- Single Image Mode -->
-                <div style="margin-left: -1.5rem; margin-right: -1.5rem; width: calc(100% + 3rem);">
+                <div style="width: 100%;">
                   <img src="{{ post.image | relative_url }}" 
                        alt="{{ post.alt_text | default: post.title }}"
                        class="w-full h-auto block"
