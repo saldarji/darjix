@@ -13,8 +13,12 @@ title: EdTech News - DARJIX
       {{ edtech_news | markdownify }}
     </div>
     <style>
-      .prose ul li table { display: block !important; }
-      .prose ul li { break-inside: avoid !important; page-break-inside: avoid !important; }
+      .prose { column-count: 1 !important; columns: 1 !important; }
+      .prose ul li table { display: block !important; width: 100% !important; }
+      .prose ul li table td { display: inline !important; }
+      .prose ul li table tr { display: block !important; }
+      .prose ul li table tbody { display: block !important; }
+      .prose ul li { break-inside: avoid !important; page-break-inside: avoid !important; display: block !important; }
     </style>
     
     <!-- Info Footer -->
