@@ -8,3 +8,5 @@ alt_text: "Description of the photograph for accessibility"
 caption: "Optional caption text for the photograph"
 ---
 
+<!-- Optional: Add markdown content below the image if needed -->
+
