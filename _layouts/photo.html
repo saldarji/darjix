@@ -27,7 +27,7 @@ layout: default
     <div class="w-full">
       <img src="{{ page.image | relative_url }}" 
            alt="{{ page.alt_text | default: page.title | default: 'Photo' }}"
-           class="w-full h-auto object-cover"
+           class="w-full h-auto"
            loading="lazy">
       {% if page.caption %}
       <div class="mt-4 text-sm text-gray-600 italic px-4 sm:px-6 lg:px-8">
