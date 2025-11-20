@@ -12,6 +12,10 @@ images:
     caption: "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
   - url: "/assets/images/image posts/IMG_4358.jpeg"
     alt_text: "a black and white photo of a man speaking at a podium"
+    caption: "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
   - url: "/assets/images/image posts/IMG_4344.jpeg"
     alt_text: "a fire truck parked in front of a tall building"
+    caption: "Outside the conference in the AM"
+  - url: "/assets/images/image posts/IMG_4363.jpeg"
+    alt_text: "a black and white photo of a woman giving a presentation"
 ---
