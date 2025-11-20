@@ -227,9 +227,9 @@ def format_episode_output(episodes):
         # Use HTML for better control over layout
         episode_html = '<div style="display: flex; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">'
         
-        # Add thumbnail if available
+        # Add thumbnail if available (wrap in container to enforce square aspect ratio)
         if artwork_url:
-            episode_html += f'<img src="{artwork_url}" alt="{title}" width="80" height="80" style="flex-shrink: 0; margin-right: 16px; border-radius: 6px; object-fit: cover;">'
+            episode_html += f'<div style="flex-shrink: 0; width: 80px; height: 80px; margin-right: 16px; border-radius: 6px; overflow: hidden;"><img src="{artwork_url}" alt="{title}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>'
         
         # Content section
         episode_html += '<div style="flex: 1;">'
