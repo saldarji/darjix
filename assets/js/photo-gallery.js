@@ -40,17 +40,25 @@ document.addEventListener('DOMContentLoaded', function() {
         counter.textContent = currentSlide + 1;
       }
       
-      // Position counter to align with caption first line
+      // Position counter to align with caption first line (same distance as caption from photo)
       const counterElement = gallery.querySelector('.gallery-counter');
       if (counterElement && slides[currentSlide]) {
         const currentSlideElement = slides[currentSlide];
         const image = currentSlideElement.querySelector('img');
         if (image) {
-          // Get image height and add caption margin (mt-2 = 0.5rem)
-          const imageHeight = image.offsetHeight;
-          const captionMargin = 8; // 0.5rem = 8px
-          // Position counter at image bottom + caption margin (aligned with caption first line)
-          counterElement.style.top = `${imageHeight + captionMargin}px`;
+          // Get the relative container (parent of gallery-container)
+          const relativeContainer = gallery.querySelector('.relative');
+          if (relativeContainer) {
+            const imageRect = image.getBoundingClientRect();
+            const containerRect = relativeContainer.getBoundingClientRect();
+            
+            // Calculate image bottom relative to the relative container top
+            const imageBottomRelative = imageRect.bottom - containerRect.top;
+            
+            // Caption has mt-2 (0.5rem = 8px), so counter should be at same vertical position
+            const captionMargin = 8; // 0.5rem = 8px
+            counterElement.style.top = `${imageBottomRelative + captionMargin}px`;
+          }
         }
       }
       
