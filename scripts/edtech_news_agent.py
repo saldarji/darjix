@@ -327,10 +327,13 @@ def format_news_output(summary, articles):
                 # Only add if there's actual summary text
                 if ai_analysis:
                     # Format as: #. [title with link] - AI analysis [Source]
+                    # Escape pipe characters in title to prevent kramdown table parsing
+                    title_escaped = title.replace('|', '&#124;')
                     # Include publication date if available
-                    formatted_item = f"{item_num}. [{title}]({url}) - {ai_analysis} [{source}]"
+                    formatted_item = f"{item_num}. [{title_escaped}]({url}) - {ai_analysis} [{source}]"
                     if pub_date:
-                        formatted_item = f"{pub_date}|{formatted_item}"
+                        # Use ::: as separator instead of | to avoid kramdown table parsing
+                        formatted_item = f"{pub_date}:::{formatted_item}"
                     formatted_items.append(formatted_item)
     
     return '\n'.join(formatted_items)
@@ -565,9 +568,20 @@ def update_rolling_include(formatted_text, include_path):
         if not line:
             continue
         
-        # Check if line has date prefix (format: "YYYY-MM-DD|content")
+        # Check if line has date prefix (format: "YYYY-MM-DD:::content" or "YYYY-MM-DD|content" for backwards compatibility)
         date_str = None
-        if '|' in line:
+        if ':::' in line:
+            parts = line.split(':::', 1)
+            if len(parts) == 2:
+                # Check if first part looks like a date
+                try:
+                    datetime.strptime(parts[0], '%Y-%m-%d')
+                    date_str = parts[0]
+                    line = parts[1]
+                except ValueError:
+                    pass
+        elif '|' in line:
+            # Backwards compatibility with old format
             parts = line.split('|', 1)
             if len(parts) == 2:
                 # Check if first part looks like a date
