@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: November 20, 2025*
+*Updated: November 21, 2025*
 
 - 2025-11-19: [A Great New Podcast on the Intersection of AI and Education](https://www.insidehighered.com/opinion/columns/just-visiting/2025/11/19/qa-jeff-young-his-learning-curve-podcast) - A new podcast explores AI’s role in reshaping education, advocating for AI as a collaborator in tasks like fact-checking to free up human creativity in teaching. *(Inside Higher Ed)* [Inside Higher Ed]
 - 2025-11-19: [This viral AI pen didn’t help me cheat](https://www.theverge.com/report/822151/ai-smart-pen-for-cheating-tests) - A viral “AI cheating pen” failed miserably in real-world tests, proving ineffective at solving handwritten exam questions despite YouTube hype. *(The Verge)* [The Verge]
