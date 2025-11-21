@@ -12,6 +12,11 @@ title: EdTech Podcasts - DARJIX
     
     <!-- Episodes Content -->
     <div class="prose prose-lg max-w-none">
+      <style>
+        .prose img {
+          filter: grayscale(100%);
+        }
+      </style>
       {% capture edtech_podcasts %}{% include edtech-podcasts.md %}{% endcapture %}
       {{ edtech_podcasts | markdownify }}
     </div>
