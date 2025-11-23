@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: November 22, 2025*
+*Updated: November 23, 2025*
 
 - 2025-11-21: [AI Technology In Higher Education: 7 Ways To Leverage Emerging Tech In Universities](https://elearningindustry.com/ai-technology-in-higher-education-ways-to-leverage-emerging-tech-in-universities) - Universities are leveraging AI beyond chatbots—think adaptive learning, research support, and automating admin tasks—to enhance (not replace) human-driven education. [Elearningindustry.com]
 - 2025-11-21: [Effectively Communicate How Your Campus Connects Education to Careers](https://www.insidehighered.com/opinion/columns/call-action/2025/11/21/communicate-how-your-campus-connects-education-careers) - With students demanding career-ready skills, campuses must better communicate how academic experiences connect to jobs—starting *before* graduation. [Inside Higher Ed]
