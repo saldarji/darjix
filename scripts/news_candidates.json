@@ -23,28 +23,6 @@
   },
   {
     "index": 3,
-    "title": "James Watson obituary: co-discoverer of DNA\u2019s double helix who reshaped modern biology",
-    "url": "https://www.nature.com/articles/d41586-025-03761-7",
-    "source": "Nature.com",
-    "description": "He helped to reveal the structure of life\u2019s code, transformed science education and research, and remained a deeply controversial figure to the end.",
-    "author": "Jan Witkowski",
-    "publishedAt": "2025-11-13T00:00:00Z",
-    "content": "Credit: J. Conrad Williams, Jr/Newsday via Getty\r\nJames D. Watson was one of the most influential and controversial scientists of the twentieth century. He helped to uncover the structure of the DNA \u2026 [+3959 chars]",
-    "urlToImage": "https://media.nature.com/lw1200/magazine-assets/d41586-025-03761-7/d41586-025-03761-7_51702718.jpg"
-  },
-  {
-    "index": 4,
-    "title": "A Microcourse for Sophomore Student Success",
-    "url": "https://www.insidehighered.com/news/student-success/college-experience/2025/11/13/microcourse-sophomore-student-success",
-    "source": "Inside Higher Ed",
-    "description": "A Microcourse for Sophomore Student Success\n\n \n\n\n \nAshley Mowreader\n\nThu, 11/13/2025 - 03:00 AM\n\nDePaul University partnered with an ed-tech company to offer a short course to improve second-year students\u2019 time management, career preparation and sense of belo\u2026",
-    "author": "Ashley Mowreader",
-    "publishedAt": "2025-11-13T08:00:00Z",
-    "content": "Starting college can be a daunting transition for many students, with some moving cities or states and integrating into a new world of learning. Thats why most colleges invest significant time and en\u2026 [+4492 chars]",
-    "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/IMG_1769.jpg?itok=P-ebW8ry"
-  },
-  {
-    "index": 5,
     "title": "Listen: A Liberal Arts College Goes All In on AI",
     "url": "https://www.insidehighered.com/news/student-success/college-experience/2025/11/14/podcast-teaching-alongside-generative-ai-student",
     "source": "Inside Higher Ed",
@@ -55,7 +33,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/20200924_Hannenwolfe_172.JPG?itok=pSoUY0iw"
   },
   {
-    "index": 6,
+    "index": 4,
     "title": "Listen: A Liberal Arts College Goes All In on AI",
     "url": "https://www.insidehighered.com/news/student-success/college-experience/2025/11/14/podcast-colby-college-goes-all-ai",
     "source": "Inside Higher Ed",
@@ -66,18 +44,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/20200924_Hannenwolfe_172.JPG?itok=pSoUY0iw"
   },
   {
-    "index": 7,
-    "title": "The Greedy Algorithm And Education's Next AI Mistake",
-    "url": "https://elearningindustry.com/the-greedy-algorithm-and-educations-next-ai-mistake",
-    "source": "Elearningindustry.com",
-    "description": "Artificial Intelligence is rapidly transforming classrooms, yet without a coherent framework connecting AI, EdTech, and neuroscience, education risks repeating the same short-sighted design patterns that have plagued every \"next big thing.\"\nThis post was firs\u2026",
-    "author": "Joy VerPlanck",
-    "publishedAt": "2025-11-13T16:00:29Z",
-    "content": "AI And EdTech: A Crisis Of Coherence\r\nEvery time UNESCO sets a new priority, the challenge begins to keep up. With its recent focus on AI competencies, educators around the world are being encouraged\u2026 [+7049 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/The-Greedy-Algorithm-And-Educations-Next-AI-Mistake.jpg"
-  },
-  {
-    "index": 8,
+    "index": 5,
     "title": "Combining Instructional Design, Technology, And Creativity In eLearning Development: The Future Of Digital Learning",
     "url": "https://elearningindustry.com/combining-instructional-design-technology-and-creativity-in-elearning-development-the-future-of-digital-learning",
     "source": "Elearningindustry.com",
@@ -88,7 +55,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Combining-Instructional-Design-Technology-And-Creativity-In-eLearning-Development-The-Future-Of-Digital-Learning.jpg"
   },
   {
-    "index": 9,
+    "index": 6,
     "title": "AI Technology In Higher Education: 7 Ways To Leverage Emerging Tech In Universities",
     "url": "https://elearningindustry.com/ai-technology-in-higher-education-ways-to-leverage-emerging-tech-in-universities",
     "source": "Elearningindustry.com",
@@ -99,7 +66,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/06/7-Ways-To-Leverage-AI-In-Higher-Education.jpg"
   },
   {
-    "index": 10,
+    "index": 7,
     "title": "A Great New Podcast on the Intersection of AI and Education",
     "url": "https://www.insidehighered.com/opinion/columns/just-visiting/2025/11/19/qa-jeff-young-his-learning-curve-podcast",
     "source": "Inside Higher Ed",
@@ -110,7 +77,7 @@
     "urlToImage": "https://www.insidehighered.com/modules/custom/ihe_custom/img/ihe-logo-no-wordmark.png"
   },
   {
-    "index": 11,
+    "index": 8,
     "title": "McMahon Planning to Break Up More of the Education Department",
     "url": "https://www.insidehighered.com/news/government/student-aid-policy/2025/11/18/mcmahon-breaks-more-education-department",
     "source": "Inside Higher Ed",
@@ -121,7 +88,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-10/Linda_McMahon_Department_of_Education.jpg?itok=z0tSvGiH"
   },
   {
-    "index": 12,
+    "index": 9,
     "title": "Effectively Communicate How Your Campus Connects Education to Careers",
     "url": "https://www.insidehighered.com/opinion/columns/call-action/2025/11/21/communicate-how-your-campus-connects-education-careers",
     "source": "Inside Higher Ed",
@@ -132,7 +99,7 @@
     "urlToImage": "https://www.insidehighered.com/modules/custom/ihe_custom/img/ihe-logo-no-wordmark.png"
   },
   {
-    "index": 13,
+    "index": 10,
     "title": "A Simplified Overview Of The Evolution Of AI And Its Role In Education",
     "url": "https://elearningindustry.com/a-simplified-overview-of-the-evolution-of-ai-and-its-role-in-education",
     "source": "Elearningindustry.com",
@@ -143,7 +110,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2023/05/The-Evolution-Of-AI-Through-Time-And-Its-Role-In-Education.jpg"
   },
   {
-    "index": 14,
+    "index": 11,
     "title": "World Children's Day 2025: Tips For Parents To Navigate The Use Of AI In K-12",
     "url": "https://elearningindustry.com/world-childrens-day-2025-tips-for-parents-to-navigate-the-use-of-ai-in-k-12",
     "source": "Elearningindustry.com",
@@ -154,7 +121,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/World-Childrens-Day-2025_-Tips-For-Parents-To-Navigate-The-Use-Of-AI-In-K-12.jpg"
   },
   {
-    "index": 15,
+    "index": 12,
     "title": "U.S. Remains Leader in Interdisciplinary Science",
     "url": "https://www.insidehighered.com/news/quick-takes/2025/11/20/us-remains-leader-interdisciplinary-science",
     "source": "Inside Higher Ed",
@@ -165,7 +132,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2024-05/GettyImages-1027139762.jpg?itok=I53t83Wl"
   },
   {
-    "index": 16,
+    "index": 13,
     "title": "How To Confidently Evaluate And Choose Your eLearning Content Provider",
     "url": "https://elearningindustry.com/how-to-confidently-evaluate-and-choose-your-elearning-content-provider",
     "source": "Elearningindustry.com",
@@ -176,18 +143,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/How-To-Evaluate-And-Choose-Your-eLearning-Content-Provider.jpg"
   },
   {
-    "index": 17,
-    "title": "How To Create SOP-Based Learning Modules",
-    "url": "https://elearningindustry.com/how-to-create-sop-based-learning-modules",
-    "source": "Elearningindustry.com",
-    "description": "SOP-based learning modules turn complex procedures into interactive eLearning experiences. By using structured design, multimedia, and microlearning, organizations can make compliance training more engaging, consistent, and accessible.\nThis post was first pub\u2026",
-    "author": "Anand Davda",
-    "publishedAt": "2025-11-13T18:00:27Z",
-    "content": "Transforming Standard Procedures Into Engaging eLearning\r\nStandard operating procedures (SOPs) form the foundation of consistent and compliant work practices in any organization. In regulated sectors\u2026 [+5076 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2667772725.jpg"
-  },
-  {
-    "index": 18,
+    "index": 14,
     "title": "Ky. Professor \u2018Reassigned\u2019 After Call for War on Israel Sues",
     "url": "https://www.insidehighered.com/news/quick-takes/2025/11/17/ky-professor-reassigned-after-call-war-israel-sues",
     "source": "Inside Higher Ed",
@@ -198,7 +154,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/UK%20main%20building%202158755214.jpg?itok=yIuYUeYY"
   },
   {
-    "index": 19,
+    "index": 15,
     "title": "Why Custom eLearning Solutions Outperform Off-The-Shelf Courses",
     "url": "https://elearningindustry.com/why-custom-elearning-solutions-outperform-off-the-shelf-courses",
     "source": "Elearningindustry.com",
@@ -209,7 +165,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2535168949.jpg"
   },
   {
-    "index": 20,
+    "index": 16,
     "title": "How To Optimize eLearning Materials For Faster Load Times And Easy Sharing",
     "url": "https://elearningindustry.com/how-to-optimize-elearning-materials-for-faster-load-times-and-easy-sharing",
     "source": "Elearningindustry.com",
@@ -220,7 +176,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2326197245.jpg"
   },
   {
-    "index": 21,
+    "index": 17,
     "title": "On the Brink of Reinvention",
     "url": "https://www.insidehighered.com/opinion/columns/learning-innovation/2025/11/19/lessons-conversation-about-ai-future-higher-ed",
     "source": "Inside Higher Ed",
@@ -231,7 +187,7 @@
     "urlToImage": "https://www.insidehighered.com/modules/custom/ihe_custom/img/ihe-logo-no-wordmark.png"
   },
   {
-    "index": 22,
+    "index": 18,
     "title": "Why Hackers Are Targeting the Ivy League",
     "url": "https://www.insidehighered.com/news/tech-innovation/administrative-tech/2025/11/20/why-hackers-are-targeting-ivy-league",
     "source": "Inside Higher Ed",
@@ -242,7 +198,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/Penn_princeton_hack.jpg?itok=byb9RQ27"
   },
   {
-    "index": 23,
+    "index": 19,
     "title": "Finding eLearning Content Providers With The Right Features And Solutions",
     "url": "https://elearningindustry.com/finding-elearning-content-providers-with-the-right-features-and-solutions",
     "source": "Elearningindustry.com",
@@ -253,18 +209,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Finding-eLearning-Content-Providers-With-The-Right-Features.jpg"
   },
   {
-    "index": 24,
-    "title": "Artificial Intelligence\u2019s Cognitive Toll",
-    "url": "https://www.forbes.com/sites/williamhaseltine/2025/11/13/artificial-intelligences-cognitive-toll/",
-    "source": "Forbes",
-    "description": "As AI becomes more prevalent in education, work and social life, research is increasingly focused on understanding its nuanced effects on core cognitive functions such as memory, attention and creativity",
-    "author": "William A. Haseltine, Contributor, \n William A. Haseltine, Contributor\n https://www.forbes.com/sites/williamhaseltine/",
-    "publishedAt": "2025-11-13T13:48:08Z",
-    "content": "As AI becomes more prevalent in education, work and social life, research is increasingly focused on understanding its nuanced effects on core cognitive functions such as memory, attention and creati\u2026 [+6351 chars]",
-    "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/6915e0bbe4bc844b8077f628/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
-  },
-  {
-    "index": 25,
+    "index": 20,
     "title": "Course Crash Test: Inside The iSpring Winning Formula",
     "url": "https://elearningindustry.com/elearning-events/course-crash-test-inside-the-ispring-winning-formula-nov-20-2025",
     "source": "Elearningindustry.com",
@@ -275,7 +220,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Course-Crash-Test-Inside-The-iSpring-Winning-Formula.png"
   },
   {
-    "index": 26,
+    "index": 21,
     "title": "Industry-Specific Training: Finding eLearning Content Providers Who Know You Well",
     "url": "https://elearningindustry.com/industry-specific-training-finding-elearning-content-providers-who-know-you-well",
     "source": "Elearningindustry.com",
@@ -286,7 +231,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Finding-eLearning-Content-Providers-Specializing-In-Your-Industry.jpg"
   },
   {
-    "index": 27,
+    "index": 22,
     "title": "What to Know About Crucial Changes to Student Loans",
     "url": "https://www.insidehighered.com/news/government/student-aid-policy/2025/11/18/what-know-about-crucial-changes-student-loans",
     "source": "Inside Higher Ed",
@@ -297,7 +242,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2024-02/Fundrasier_piggy_bank.jpg?itok=paoKFOcO"
   },
   {
-    "index": 28,
+    "index": 23,
     "title": "Public Universities Don\u2019t Want to Discuss the Compact",
     "url": "https://www.insidehighered.com/news/government/politics-elections/2025/11/21/public-universities-dont-want-discuss-compact",
     "source": "Inside Higher Ed",
@@ -308,29 +253,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/Light_on_file_cabinet.jpg?itok=B49tKJhF"
   },
   {
-    "index": 29,
-    "title": "10 Institutions Seek Recognition by New Accreditor",
-    "url": "https://www.insidehighered.com/news/governance/accreditation/2025/11/13/10-universities-seek-recognition-new-accreditor",
-    "source": "Inside Higher Ed",
-    "description": "10 Institutions Seek Recognition by New Accreditor\n\n \n\n\n \nJosh Moody\n\nThu, 11/13/2025 - 03:00 AM\n\nThe Commission for Public Higher Education has received letters of intent from colleges in four Southern states as it works toward federal approval and rebuts al\u2026",
-    "author": "Josh Moody",
-    "publishedAt": "2025-11-13T08:00:00Z",
-    "content": "Just four months after the launch of the Commission for Public Higher Education, the aspiring accreditor has received letters of intent from a cohort of 10 institutions, making them the first potenti\u2026 [+8999 chars]",
-    "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/Accreditation_TX_FL_GA_NC.jpg?itok=XKljAZiY"
-  },
-  {
-    "index": 30,
-    "title": "Gamified Learning: Transforming Employee Training Into An Engaging Experience",
-    "url": "https://elearningindustry.com/gamified-learning-transforming-employee-training-into-an-engaging-experience",
-    "source": "Elearningindustry.com",
-    "description": "Discover how gamified learning transforms employee training into interactive, goal-driven experiences that boost engagement, retention, and performance.\nThis post was first published on eLearning Industry.",
-    "author": "Aman Kumar Singh- SEO, SMO, ORM Specialist",
-    "publishedAt": "2025-11-13T14:00:11Z",
-    "content": "Implement Gamified Learning\r\nTraditional corporate training is usually quite a drag. Typically, long slides, mandatory modules, and standard courses result in employee disengagement as they navigate \u2026 [+5580 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2566005401.jpg"
-  },
-  {
-    "index": 31,
+    "index": 24,
     "title": "Courses Studying Trump Proliferate, Despite Risk of President\u2019s Ire",
     "url": "https://www.insidehighered.com/news/government/politics-elections/2025/11/14/courses-studying-trump-proliferate-risking-presidents",
     "source": "Inside Higher Ed",
@@ -341,18 +264,7 @@
     "urlToImage": "https://www.insidehighered.com/sites/default/files/styles/large/public/2025-11/person-reading-trump-book.jpg?itok=vMU1Bov2"
   },
   {
-    "index": 32,
-    "title": "eBook Launch: 7 Types Of Gameplay And How They Enhance Learning And Skill Development",
-    "url": "https://elearningindustry.com/ebook-launch-types-of-gameplay-and-how-they-enhance-learning-and-skill-development",
-    "source": "Elearningindustry.com",
-    "description": "Want to leverage gameplay in L&D? This guide has all the essential info you need to get started.\nThis post was first published on eLearning Industry.",
-    "author": "Christopher Pappas",
-    "publishedAt": "2025-11-13T20:00:05Z",
-    "content": "Games have the power to engage learners, boost motivation, and provide immediate feedback. But how do you incorporate elements such as matching, spatial reasoning, and decision-making into your learn\u2026 [+1541 chars]",
-    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Types-Of-Gameplay-In-LD-How-They-Enhance-Skill-Development-.png"
-  },
-  {
-    "index": 33,
+    "index": 25,
     "title": "6 Telltale Signs Of Founder Dependence You Need To Know About",
     "url": "https://elearningindustry.com/telltale-signs-of-founder-dependence-you-need-to-know-about",
     "source": "Elearningindustry.com",
@@ -363,7 +275,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/6-Telltale-Signs-Of-Founder-Dependence-You-Need-To-Know-About.jpg"
   },
   {
-    "index": 34,
+    "index": 26,
     "title": "Revolutionizing Learning And Development With No-Code And Agentic AI: 10 Real-World Use Cases",
     "url": "https://elearningindustry.com/revolutionizing-learning-and-development-with-no-code-and-agentic-ai-real-world-use-cases",
     "source": "Elearningindustry.com",
@@ -374,7 +286,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2656252403.jpg"
   },
   {
-    "index": 35,
+    "index": 27,
     "title": "Special Education Services At Risk Under Department of Education Cuts",
     "url": "https://www.edsurge.com/news/2025-11-18-special-education-services-at-risk-under-department-of-education-cuts",
     "source": "Edsurge.com",
@@ -385,7 +297,7 @@
     "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16532/shutterstock_2407335887-1763480622.jpg?auto=compress%2Cformat&w=1024&h=512&fit=crop"
   },
   {
-    "index": 36,
+    "index": 28,
     "title": "The Ultimate Guide To Compliance Training For Employees",
     "url": "https://elearningindustry.com/the-ultimate-guide-to-compliance-training-for-employees",
     "source": "Elearningindustry.com",
@@ -396,7 +308,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/db2e6cd561ff4569c56206f372fa6f23.jpeg"
   },
   {
-    "index": 37,
+    "index": 29,
     "title": "Building Cybersecurity Resilience In A Hyperconnected World",
     "url": "https://elearningindustry.com/building-cybersecurity-resilience-in-a-hyperconnected-world",
     "source": "Elearningindustry.com",
@@ -407,7 +319,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Building-Cybersecurity-Resilience-In-A-Hyperconnected-World.jpg"
   },
   {
-    "index": 38,
+    "index": 30,
     "title": "Hot Off The Virtual Press: An Instructional Designer's Notebook",
     "url": "https://elearningindustry.com/hot-off-the-virtual-press-an-instructional-designers-notebook",
     "source": "Elearningindustry.com",
@@ -418,7 +330,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Hot-Off-The-Virtual-Press-The-Instructional-Designers-Notebook.png"
   },
   {
-    "index": 39,
+    "index": 31,
     "title": "Data Like Hips Don't Lie",
     "url": "https://elearningindustry.com/data-like-hips-dont-lie",
     "source": "Elearningindustry.com",
@@ -429,7 +341,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2558684219.jpg"
   },
   {
-    "index": 40,
+    "index": 32,
     "title": "The Psychology Of Procrastination: Why We Put Off Learning Tasks And What We Can Do About It",
     "url": "https://elearningindustry.com/the-psychology-of-procrastination-why-we-put-off-learning-tasks-and-what-we-can-do-about-it",
     "source": "Elearningindustry.com",
@@ -440,7 +352,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/The-Psychology-Of-Procrastination-Why-We-Put-Off-Learning-Tasks-And-What-We-Can-Do-About-It.jpg"
   },
   {
-    "index": 41,
+    "index": 33,
     "title": "Designing Corporate Training With Adaptive Learning For Maximum Impact",
     "url": "https://elearningindustry.com/designing-corporate-training-with-adaptive-learning-for-maximum-impact",
     "source": "Elearningindustry.com",
@@ -451,7 +363,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Designing-Corporate-Training-With-Adaptive-Learning-For-Maximum-Impact.jpg"
   },
   {
-    "index": 42,
+    "index": 34,
     "title": "How To Build Product Training Courses That Stick",
     "url": "https://elearningindustry.com/how-to-build-product-training-courses-that-stick",
     "source": "Elearningindustry.com",
@@ -462,7 +374,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/10/e3a66f73aa200337a9e1689d92779474.png"
   },
   {
-    "index": 43,
+    "index": 35,
     "title": "10 Human-Centered Ways To Use LLMs In Live Tutoring",
     "url": "https://elearningindustry.com/human-centered-ways-to-use-llms-in-live-tutoring",
     "source": "Elearningindustry.com",
@@ -473,7 +385,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2669702131.jpg"
   },
   {
-    "index": 44,
+    "index": 36,
     "title": "AI's Moment Of Truth: A Field Guide For CEOs",
     "url": "https://elearningindustry.com/ais-moment-of-truth-a-field-guide-for-ceos",
     "source": "Elearningindustry.com",
@@ -484,7 +396,18 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/AIs-Moment-Of-Truth-A-Field-Guide-For-CEOs.jpg"
   },
   {
-    "index": 45,
+    "index": 37,
+    "title": "7 Must-Have Power Skills For L&D In 2026: Talent Transformation Strategy",
+    "url": "https://elearningindustry.com/must-have-power-skills-for-ld-in-2026-talent-transformation-strategy",
+    "source": "Elearningindustry.com",
+    "description": "Explore the 7 must-have Learning and Development power skills. Learn how microlearning, gamified learning, and custom onboarding solutions support a talent transformation strategy that drives real business impact.\nThis post was first published on eLearning In\u2026",
+    "author": "Moumita Bhose",
+    "publishedAt": "2025-11-21T14:00:40Z",
+    "content": "Which Power Skills Do L&amp;D Pros Need?\r\nOnly 10% of L&amp;D professionals worldwide feel confident their workforce has the skills to meet business goals in the next 1224 months [1]. That's not just\u2026 [+5453 chars]",
+    "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Seven-Must-Have-Power-Skills-For-LD-In-2026-Talent-Transformation-Strategy.jpg"
+  },
+  {
+    "index": 38,
     "title": "How AI-Powered LMSs And LXPs Personalize Corporate Learning And Boost Business Growth",
     "url": "https://elearningindustry.com/how-ai-powered-lmss-and-lxps-personalize-corporate-learning-and-boost-business-growth",
     "source": "Elearningindustry.com",
@@ -495,7 +418,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/How-AI-Powered-LMSs-And-LXPs-Personalize-Corporate-Learning-And-Boost-Business-Growth.jpg"
   },
   {
-    "index": 46,
+    "index": 39,
     "title": "Hot Off The Virtual Press: Training Alignment Checklist For Business Leaders",
     "url": "https://elearningindustry.com/hot-off-the-virtual-press-training-alignment-checklist-for-business-leaders",
     "source": "Elearningindustry.com",
@@ -506,7 +429,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Hot-Off-The-Virtual-Press-Training-Alignment-Checklist-For-Leaders.png"
   },
   {
-    "index": 47,
+    "index": 40,
     "title": "Thought Leader Q&A: Exploring Upskilling And Reskilling In The World Of Gen Z With Dana Nehme",
     "url": "https://elearningindustry.com/thought-leader-qa-exploring-upskilling-and-reskilling-in-the-world-of-gen-z-with-dana-nehme",
     "source": "Elearningindustry.com",
@@ -517,7 +440,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/eLearning-Trailblazers_Dana-Nehme.png"
   },
   {
-    "index": 48,
+    "index": 41,
     "title": "12 Soft Skills Employees Need To Succeed In The Future Workplace",
     "url": "https://elearningindustry.com/soft-skills-employees-need-to-succeed-in-the-future-workplace",
     "source": "Elearningindustry.com",
@@ -528,7 +451,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/12-Soft-Skills-Employees-Need-To-Succeed-In-The-Future-Workplace.jpg"
   },
   {
-    "index": 49,
+    "index": 42,
     "title": "8 Best Practices For Effective Banking Compliance Training",
     "url": "https://elearningindustry.com/8-best-practices-for-effective-banking-compliance-training",
     "source": "Elearningindustry.com",
@@ -539,7 +462,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2575780207.jpg"
   },
   {
-    "index": 50,
+    "index": 43,
     "title": "Learning That Feels Human In The Age Of AI",
     "url": "https://elearningindustry.com/learning-that-feels-human-in-the-age-of-ai",
     "source": "Elearningindustry.com",
@@ -550,7 +473,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Learning-That-Feels-Human-In-The-Age-Of-AI.jpg"
   },
   {
-    "index": 51,
+    "index": 44,
     "title": "The New Rules Of Demand Generation For HR Tech CEOs",
     "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/the-new-rules-of-demand-generation-for-hr-tech-ceos",
     "source": "Elearningindustry.com",
@@ -561,7 +484,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/The-New-Rules-of-Demand-Generation-for-HR-Tech-CEOs.png"
   },
   {
-    "index": 52,
+    "index": 45,
     "title": "AI Excellence Awards: Leading AI Innovation For Learning And Skills Development 2026",
     "url": "https://elearningindustry.com/ai-excellence-awards-leading-ai-innovation-for-learning-and-skills-development",
     "source": "Elearningindustry.com",
@@ -572,7 +495,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Leading-AI-Innovation-for-Learning-Skills-Development-2026-social-share-image.png"
   },
   {
-    "index": 53,
+    "index": 46,
     "title": "Best Rank Tracking Tools To Monitor Google, ChatGPT, And AI Overview Mentions",
     "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/best-rank-tracking-tools-to-monitor-google-chatgpt-and-ai-overview-mentions",
     "source": "Elearningindustry.com",
@@ -583,7 +506,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Best-Rank-Tracking-Tools-to-Monitor-Google-ChatGPT-and-AI-Overview-Mentions.png"
   },
   {
-    "index": 54,
+    "index": 47,
     "title": "Brand Positioning Strategy: How To Build A Category Leadership Narrative That Sells",
     "url": "https://elearningindustry.com/advertise/elearning-marketing-resources/blog/brand-positioning-strategy-how-to-build-a-category-leadership-narrative-that-sells",
     "source": "Elearningindustry.com",
@@ -594,7 +517,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Brand-Positioning-Strategy_How-to-Build-a-Category-Leadership-Narrative-That-Sells.png"
   },
   {
-    "index": 55,
+    "index": 48,
     "title": "Gamification: Bridging The Gap Between Learning And Practice",
     "url": "https://elearningindustry.com/gamification-bridging-the-gap-between-learning-and-practice",
     "source": "Elearningindustry.com",
@@ -605,7 +528,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Gamification-Bridging-The-Gap-Between-Learning-And-Practice.jpg"
   },
   {
-    "index": 56,
+    "index": 49,
     "title": "How Simulation-Based Learning Is Shaping Workforce Readiness",
     "url": "https://elearningindustry.com/how-simulation-based-learning-is-shaping-workforce-readiness",
     "source": "Elearningindustry.com",
@@ -616,7 +539,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2611676045.jpg"
   },
   {
-    "index": 57,
+    "index": 50,
     "title": "Beyond The Hype: What Instructional Designers Really Need To Master In 2026",
     "url": "https://elearningindustry.com/beyond-the-hype-what-instructional-designers-really-need-to-master-in-2026",
     "source": "Elearningindustry.com",
@@ -627,7 +550,7 @@
     "urlToImage": "https://cdn.elearningindustry.com/wp-content/uploads/2025/11/Shutterstock_2624716345.jpg"
   },
   {
-    "index": 58,
+    "index": 51,
     "title": "The effectiveness of microlearning-based education on medication adherence and health literacy in elderly individuals: a randomized controlled trial",
     "url": "https://www.nature.com/articles/s41598-025-29769-7",
     "source": "Nature.com",
@@ -638,7 +561,7 @@
     "urlToImage": null
   },
   {
-    "index": 59,
+    "index": 52,
     "title": "Orders, Lawsuits, Rulings: Districts Struggle with DEI Amid a Flurry of Legal Actions",
     "url": "https://www.edsurge.com/news/2025-11-20-orders-lawsuits-rulings-districts-struggle-with-dei-amid-a-flurry-of-legal-actions",
     "source": "Edsurge.com",
@@ -649,7 +572,7 @@
     "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16533/shutterstock_2683456277-1763590320.jpg?auto=compress%2Cformat&w=1024&h=512&fit=crop"
   },
   {
-    "index": 60,
+    "index": 53,
     "title": "After Years Reporting on Early Care and Education, I\u2019m Now Living It",
     "url": "https://www.edsurge.com/news/2025-11-17-after-years-reporting-on-early-care-and-education-i-m-now-living-it",
     "source": "Edsurge.com",
@@ -660,7 +583,7 @@
     "urlToImage": "https://edsurge.imgix.net/uploads/post/image/16528/Childhood_Ed__05__2_-1763090300.JPG?auto=compress%2Cformat&w=1024&h=512&fit=crop"
   },
   {
-    "index": 61,
+    "index": 54,
     "title": "Physics Wallah enjoys a rosy IPO day, bucking the broader slowdown in Indian edtech | TechCrunch",
     "url": "https://techcrunch.com/2025/11/18/physics-wallah-enjoys-a-rosy-ipo-day-bucking-the-broader-slowdown-in-indian-edtech/",
     "source": "TechCrunch",
