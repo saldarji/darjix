@@ -44,7 +44,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _includes/edtech-news.md scripts/news_candidates.json || true
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech News - $(date +'%B %d, %Y')" && git push origin HEAD:main)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech News - $(date +'%B %d, %Y')" && git pull --rebase origin main && git push origin HEAD:main)
       
       - name: Trigger Pages rebuild
         if: success()
