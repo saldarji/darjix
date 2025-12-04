@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Nano Banana, close enough"
+title: "Nano Banana, Close Enough"
 date: 2025-12-04
 author: "Sal Darji"
 ---
