@@ -1,6 +1,6 @@
+- [Why Albright College Is Slashing Econ and Physics Majors](https://apple.news/AY6niU7DaQCKNsNjqdCfCOg) [Bloomberg BusinessWeek]
+- [Professors are turning to oral exams to stop AI use](https://apple.news/AG0Y6W7fpTvmQXDIGOTyvnQ) [Washington Post]
+- [Girls and boys solve math problems differently – with similar short-term results but different long-term outcomes](https://theconversation.com/girls-and-boys-solve-math-problems-differently-with-similar-short-term-results-but-different-long-term-outcomes-269059) [The Conversation]
 - [Six evidence-based use cases to try in Google's latest image-generating AI tool](https://drphilippahardman.substack.com/p/beyond-infographics-how-to-use-nano) [
 Dr Phil's Newsletter on Substack]
 - [Week in Edtech 11/12/2025](https://podcasts.apple.com/us/podcast/edtech-insiders/id1592196859?i=1000737786153) [Edtech Insider Podcast]
-- [The Future is Now: Accelerating Learning through Knowledge Space Theory and AI-Driven Personalization](https://anastasiabetts.medium.com/the-future-is-now-accelerating-learning-through-knowledge-space-theory-and-ai-driven-db4468e43cfd) [Anastasia Betts - Medium]
-- [New research reveals rising adoption among students, growing concerns among educators, and major policy gaps in U.S. high schools ](https://newsroom.collegeboard.org/new-research-majority-high-school-students-use-generative-ai-schoolwork) [College Board]
-- [Cengage to close Boston headquarters, embrace fully remote workplace](https://www.boston.com/news/business/2025/11/05/education-technology-company-to-close-boston-headquarters-embrace-fully-remote-workplace/) [Boston.com]
