@@ -1,3 +1,4 @@
+- [One of Higher Ed’s Emerging Growth Areas Is Rural America](https://apple.news/AjEtd7GoYTaW24kylKgLsWA) [The Chronicle of Higher Education]
 - [Why Albright College Is Slashing Econ and Physics Majors](https://apple.news/AY6niU7DaQCKNsNjqdCfCOg) [Bloomberg BusinessWeek]
 - [Professors are turning to oral exams to stop AI use](https://apple.news/AG0Y6W7fpTvmQXDIGOTyvnQ) [Washington Post]
 - [Girls and boys solve math problems differently – with similar short-term results but different long-term outcomes](https://theconversation.com/girls-and-boys-solve-math-problems-differently-with-similar-short-term-results-but-different-long-term-outcomes-269059) [The Conversation]
