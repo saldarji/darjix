@@ -270,6 +270,9 @@
         // Update water particles from trident attack
         if (this.currentMove === 'trident' && enemy) {
           this.createWaterParticles(enemy);
+        }
+        // Always update water particles (even after attack ends) so they disappear properly
+        if (enemy) {
           this.updateWaterParticles(enemy);
         }
         
@@ -1257,26 +1260,35 @@
               vx: Math.cos(angle) * speed,
               vy: Math.sin(angle) * speed,
               size: 4 + Math.random() * 3,
-              life: 180, // Increased lifetime to ensure particles can complete their journey
+              life: 200 + Math.random() * 200, // Same timer system as other particles (200-400 frames)
               alpha: 0.7 + Math.random() * 0.3
             });
           }
         }
       }
       
-      // Update water particles
+      // Update water particles (using timer-based system like other particles)
       updateWaterParticles(enemy) {
-        const groundLevel = canvas.height - 50; // Actual ground line level
+        const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
         
         for (let i = this.waterParticles.length - 1; i >= 0; i--) {
           const particle = this.waterParticles[i];
           
-          // Continue updating position (let particles complete their journey)
+          // Decrement life timer first (same as other particles)
+          particle.life--;
+          
+          // Update position
           particle.x += particle.vx;
           particle.y += particle.vy;
           particle.vy += 0.3; // Gravity
           particle.vx *= 0.98; // Slow down
-          particle.life--;
+          
+          // Stop particles when they hit ground at character's feet level (but don't remove yet)
+          if (particle.y >= groundLevel - particle.size) {
+            particle.y = groundLevel - particle.size;
+            particle.vy = 0;
+            particle.vx *= 0.95; // Slow down more on ground
+          }
           
           // Check collision with enemy
           if (!enemy.isDead && !enemy.isDrowning) {
@@ -1289,10 +1301,8 @@
             }
           }
           
-          // Remove if hit ground or passed ground level, expired, or out of bounds
-          // Use groundLevel directly (particles should disappear when they reach or pass it)
-          if (particle.y >= groundLevel || 
-              particle.life <= 0 || 
+          // Remove only when timer expires or out of bounds (timer-based removal like other particles)
+          if (particle.life <= 0 || 
               particle.y > canvas.height || 
               particle.x < -100 || 
               particle.x > canvas.width + 100) {
@@ -1305,8 +1315,10 @@
       drawWaterParticles() {
         ctx.save();
         for (const particle of this.waterParticles) {
-          // Fade out as particle ages (life starts at 180, decreases to 0)
-          const fadeProgress = Math.max(0, particle.life / 180); // Fade from 1 to 0
+          // Fade out as particle ages (life starts at 200-400, decreases to 0)
+          // Calculate fade based on remaining life percentage
+          const maxLife = 400; // Maximum possible life
+          const fadeProgress = Math.max(0, particle.life / maxLife); // Fade from 1 to 0
           ctx.globalAlpha = particle.alpha * fadeProgress;
           ctx.fillStyle = '#4A90E2'; // Blue water color
           ctx.beginPath();
