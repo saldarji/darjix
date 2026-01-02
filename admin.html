@@ -21,7 +21,7 @@ title: Admin - DARJIX
           <button
             type="button"
             id="toggle-password"
-            class="absolute right-3 top-2 text-gray-600 hover:text-black transition"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black transition cursor-pointer"
             title="Show/Hide password"
           >
             <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,12 +293,10 @@ title: Admin - DARJIX
 // 3. Copy the GENERATED HASH (a long string of letters/numbers) and paste it below
 // 4. Replace the hash value between the quotes (keep the quotes!)
 //
-// IMPORTANT: You paste the HASH here, NOT your actual password!
-// When logging in, you'll type your actual password, not the hash.
-//
-// Example: If your password is "mypassword123", the hash would be:
-// "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
-// So you'd set: const ADMIN_PASSWORD_HASH = 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f';
+// IMPORTANT: Replace the hash below with your password's SHA-256 hash
+// Generate hash: echo -n "your-password" | shasum -a 256
+// Or use: https://emn178.github.io/online-tools/sha256.html
+// Make sure to remove any spaces or newlines from the hash
 const ADMIN_PASSWORD_HASH = '4759f5710bdae609ddeee7963a5da6f6d6d80832c6fdeb0cb21613bca8a94cc3'; // PASTE YOUR PASSWORD'S HASH HERE (not the password itself!)
 const AUTH_SESSION_KEY = 'admin_authenticated';
 
@@ -358,18 +356,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const hash = await hashPassword(password);
+      // Trim and lowercase both hashes for comparison (in case of whitespace or case issues)
+      const enteredHash = hash.trim().toLowerCase();
+      const storedHash = ADMIN_PASSWORD_HASH.trim().toLowerCase();
       
-      if (hash === ADMIN_PASSWORD_HASH) {
+      if (enteredHash === storedHash) {
         sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
         showAdminContent();
       } else {
-        errorDiv.textContent = 'Incorrect password';
+        errorDiv.textContent = 'Incorrect password. Make sure you typed your password (not the hash) and that the hash in the code matches your password.';
         errorDiv.classList.remove('hidden');
         passwordInput.value = '';
         passwordInput.focus();
       }
     } catch (error) {
-      errorDiv.textContent = 'Error checking password';
+      errorDiv.textContent = 'Error checking password: ' + error.message;
       errorDiv.classList.remove('hidden');
     } finally {
       submitBtn.disabled = false;
