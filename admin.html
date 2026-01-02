@@ -21,9 +21,9 @@ title: Admin - DARJIX
           <button
             type="button"
             id="toggle-password"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black transition cursor-pointer flex items-center justify-center"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black transition cursor-pointer flex items-center justify-center z-10"
             title="Show/Hide password"
-            style="height: 24px; width: 24px;"
+            style="height: 24px; width: 24px; pointer-events: auto;"
           >
             <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -329,15 +329,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const eyeIcon = document.getElementById('eye-icon');
   const eyeOffIcon = document.getElementById('eye-off-icon');
   
-  if (togglePasswordBtn && eyeIcon && eyeOffIcon) {
-    togglePasswordBtn.addEventListener('click', (e) => {
+  if (togglePasswordBtn && eyeIcon && eyeOffIcon && passwordInput) {
+    togglePasswordBtn.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      const currentType = passwordInput.getAttribute('type');
+      const currentType = passwordInput.type || passwordInput.getAttribute('type');
       const newType = currentType === 'password' ? 'text' : 'password';
+      passwordInput.type = newType;
       passwordInput.setAttribute('type', newType);
       eyeIcon.classList.toggle('hidden');
       eyeOffIcon.classList.toggle('hidden');
+    });
+    
+    // Also handle mousedown to ensure it works
+    togglePasswordBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
     });
   }
 
