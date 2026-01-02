@@ -330,8 +330,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const eyeOffIcon = document.getElementById('eye-off-icon');
   
   if (togglePasswordBtn && eyeIcon && eyeOffIcon && passwordInput) {
-    // Use addEventListener with a named function to ensure it persists
-    function togglePasswordVisibility(e) {
+    // Use a simple, direct approach that always works
+    togglePasswordBtn.onclick = function(e) {
       e.preventDefault();
       e.stopPropagation();
       const currentType = passwordInput.type || 'password';
@@ -339,17 +339,19 @@ document.addEventListener('DOMContentLoaded', () => {
       passwordInput.type = newType;
       eyeIcon.classList.toggle('hidden');
       eyeOffIcon.classList.toggle('hidden');
-    }
+      return false;
+    };
     
-    // Remove any existing listeners first, then add new one
-    togglePasswordBtn.removeEventListener('click', togglePasswordVisibility);
-    togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
-    
-    // Also handle touch events for mobile
-    togglePasswordBtn.addEventListener('touchend', function(e) {
+    // Also handle mousedown to catch clicks that might be missed
+    togglePasswordBtn.onmousedown = function(e) {
       e.preventDefault();
-      togglePasswordVisibility(e);
-    });
+      return false;
+    };
+    
+    // Ensure button is always enabled and clickable
+    togglePasswordBtn.disabled = false;
+    togglePasswordBtn.style.pointerEvents = 'auto';
+    togglePasswordBtn.style.cursor = 'pointer';
   }
 
   passwordInput.addEventListener('keypress', (e) => {
