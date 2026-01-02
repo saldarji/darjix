@@ -10,13 +10,29 @@ title: Admin - DARJIX
       <h2 class="text-2xl font-bold text-black mb-4">Admin Access</h2>
       <p class="text-sm text-gray-600 mb-6">Enter password to access the admin panel</p>
       <div>
-        <input 
-          type="password" 
-          id="admin-password" 
-          placeholder="Password"
-          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none mb-4"
-          autocomplete="off"
-        >
+        <div class="relative">
+          <input 
+            type="password" 
+            id="admin-password" 
+            placeholder="Password"
+            class="w-full px-4 py-2 pr-12 border border-gray-300 focus:border-black focus:outline-none mb-4"
+            autocomplete="off"
+          >
+          <button
+            type="button"
+            id="toggle-password"
+            class="absolute right-3 top-2 text-gray-600 hover:text-black transition"
+            title="Show/Hide password"
+          >
+            <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            <svg id="eye-off-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+            </svg>
+          </button>
+        </div>
         <div id="password-error" class="text-sm text-red-600 mb-4 hidden"></div>
         <button 
           id="password-submit-btn"
@@ -269,16 +285,21 @@ title: Admin - DARJIX
 // Password protection - runs before admin.js
 // 
 // SETUP INSTRUCTIONS:
-// 1. Choose a password
+// 1. Choose a password (e.g., "mypassword123")
 // 2. Generate its SHA-256 hash using one of these methods:
 //    - Terminal: echo -n "your-password" | shasum -a 256
 //    - Online: https://emn178.github.io/online-tools/sha256.html
 //    - Node.js: require('crypto').createHash('sha256').update('your-password').digest('hex')
-// 3. Replace 'YOUR_PASSWORD_HASH_HERE' below with the generated hash (lowercase, no spaces)
+// 3. Copy the GENERATED HASH (a long string of letters/numbers) and paste it below
+// 4. Replace the hash value between the quotes (keep the quotes!)
+//
+// IMPORTANT: You paste the HASH here, NOT your actual password!
+// When logging in, you'll type your actual password, not the hash.
 //
 // Example: If your password is "mypassword123", the hash would be:
 // "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
-const ADMIN_PASSWORD_HASH = 'YOUR_PASSWORD_HASH_HERE'; // Replace with your password's SHA-256 hash
+// So you'd set: const ADMIN_PASSWORD_HASH = 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f';
+const ADMIN_PASSWORD_HASH = '4759f5710bdae609ddeee7963a5da6f6d6d80832c6fdeb0cb21613bca8a94cc3'; // PASTE YOUR PASSWORD'S HASH HERE (not the password itself!)
 const AUTH_SESSION_KEY = 'admin_authenticated';
 
 async function hashPassword(password) {
@@ -303,6 +324,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordInput = document.getElementById('admin-password');
   const submitBtn = document.getElementById('password-submit-btn');
   const errorDiv = document.getElementById('password-error');
+
+  // Toggle password visibility
+  const togglePasswordBtn = document.getElementById('toggle-password');
+  const eyeIcon = document.getElementById('eye-icon');
+  const eyeOffIcon = document.getElementById('eye-off-icon');
+  
+  togglePasswordBtn.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    eyeIcon.classList.toggle('hidden');
+    eyeOffIcon.classList.toggle('hidden');
+  });
 
   passwordInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
