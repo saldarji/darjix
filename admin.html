@@ -330,25 +330,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const eyeOffIcon = document.getElementById('eye-off-icon');
   
   if (togglePasswordBtn && eyeIcon && eyeOffIcon && passwordInput) {
-    console.log('Toggle button found, setting up event listener');
-    
-    togglePasswordBtn.onclick = function(e) {
+    // Use addEventListener with a named function to ensure it persists
+    function togglePasswordVisibility(e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Toggle button clicked');
-      const currentType = passwordInput.type;
+      const currentType = passwordInput.type || 'password';
       const newType = currentType === 'password' ? 'text' : 'password';
       passwordInput.type = newType;
       eyeIcon.classList.toggle('hidden');
       eyeOffIcon.classList.toggle('hidden');
-      return false;
-    };
-  } else {
-    console.log('Toggle button or elements not found:', {
-      togglePasswordBtn: !!togglePasswordBtn,
-      eyeIcon: !!eyeIcon,
-      eyeOffIcon: !!eyeOffIcon,
-      passwordInput: !!passwordInput
+    }
+    
+    // Remove any existing listeners first, then add new one
+    togglePasswordBtn.removeEventListener('click', togglePasswordVisibility);
+    togglePasswordBtn.addEventListener('click', togglePasswordVisibility);
+    
+    // Also handle touch events for mobile
+    togglePasswordBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      togglePasswordVisibility(e);
     });
   }
 
