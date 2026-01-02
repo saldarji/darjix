@@ -21,9 +21,9 @@ title: Admin - DARJIX
           <button
             type="button"
             id="toggle-password"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black transition cursor-pointer flex items-center justify-center z-10"
+            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black transition cursor-pointer flex items-center justify-center z-20 bg-white"
             title="Show/Hide password"
-            style="height: 24px; width: 24px; pointer-events: auto;"
+            style="height: 32px; width: 32px; pointer-events: auto;"
           >
             <svg id="eye-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -330,21 +330,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const eyeOffIcon = document.getElementById('eye-off-icon');
   
   if (togglePasswordBtn && eyeIcon && eyeOffIcon && passwordInput) {
-    togglePasswordBtn.addEventListener('click', function(e) {
+    console.log('Toggle button found, setting up event listener');
+    
+    togglePasswordBtn.onclick = function(e) {
       e.preventDefault();
       e.stopPropagation();
-      const currentType = passwordInput.type || passwordInput.getAttribute('type');
+      console.log('Toggle button clicked');
+      const currentType = passwordInput.type;
       const newType = currentType === 'password' ? 'text' : 'password';
       passwordInput.type = newType;
-      passwordInput.setAttribute('type', newType);
       eyeIcon.classList.toggle('hidden');
       eyeOffIcon.classList.toggle('hidden');
-    });
-    
-    // Also handle mousedown to ensure it works
-    togglePasswordBtn.addEventListener('mousedown', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      return false;
+    };
+  } else {
+    console.log('Toggle button or elements not found:', {
+      togglePasswordBtn: !!togglePasswordBtn,
+      eyeIcon: !!eyeIcon,
+      eyeOffIcon: !!eyeOffIcon,
+      passwordInput: !!passwordInput
     });
   }
 
