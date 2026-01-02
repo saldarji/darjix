@@ -10,17 +10,30 @@ const REPLICATE_API_BASE = 'https://api.replicate.com/v1';
 // Initialize on page load
 // Note: This only runs if password authentication succeeds
 document.addEventListener('DOMContentLoaded', () => {
-  // Wait a bit to ensure password check completes first
-  setTimeout(() => {
-    // Only initialize if admin content is visible (password was correct)
-    if (!document.getElementById('admin-content').classList.contains('hidden')) {
+  function initializeAdmin() {
+    const adminContent = document.getElementById('admin-content');
+    // Check if admin content is visible (either not hidden, or doesn't have hidden class)
+    if (adminContent && !adminContent.classList.contains('hidden')) {
       initializeTokenManagement();
       initializeFormHandlers();
       initializeMarkdownToolbar();
       loadSavedToken();
       setDefaultDate();
+      return true;
     }
-  }, 100);
+    return false;
+  }
+  
+  // Try to initialize immediately
+  if (!initializeAdmin()) {
+    // If not ready, wait a bit and try again
+    setTimeout(() => {
+      if (!initializeAdmin()) {
+        // If still not ready, wait a bit more (for cases where password check is in progress)
+        setTimeout(initializeAdmin, 300);
+      }
+    }, 100);
+  }
 });
 
 function setDefaultDate() {
