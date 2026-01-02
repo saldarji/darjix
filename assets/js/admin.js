@@ -8,11 +8,19 @@ const REPLICATE_TOKEN_STORAGE_KEY = 'replicate_token';
 const REPLICATE_API_BASE = 'https://api.replicate.com/v1';
 
 // Initialize on page load
+// Note: This only runs if password authentication succeeds
 document.addEventListener('DOMContentLoaded', () => {
-  initializeTokenManagement();
-  initializeFormHandlers();
-  loadSavedToken();
-  setDefaultDate();
+  // Wait a bit to ensure password check completes first
+  setTimeout(() => {
+    // Only initialize if admin content is visible (password was correct)
+    if (!document.getElementById('admin-content').classList.contains('hidden')) {
+      initializeTokenManagement();
+      initializeFormHandlers();
+      initializeMarkdownToolbar();
+      loadSavedToken();
+      setDefaultDate();
+    }
+  }, 100);
 });
 
 function setDefaultDate() {
@@ -580,5 +588,108 @@ function showStatus(element, message, type) {
       element.className = 'mt-4 text-sm';
     }, 5000);
   }
+}
+
+// Markdown Toolbar Functions
+function initializeMarkdownToolbar() {
+  const toolbarButtons = document.querySelectorAll('.markdown-btn');
+  const textarea = document.getElementById('post-content');
+
+  toolbarButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const action = button.dataset.action;
+      insertMarkdown(action, textarea);
+    });
+  });
+}
+
+function insertMarkdown(action, textarea) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const selectedText = textarea.value.substring(start, end);
+  const beforeText = textarea.value.substring(0, start);
+  const afterText = textarea.value.substring(end);
+
+  let insertText = '';
+  let newCursorPos = start;
+
+  switch (action) {
+    case 'bold':
+      insertText = selectedText || 'bold text';
+      insertText = `**${insertText}**`;
+      newCursorPos = start + (selectedText ? insertText.length : 11);
+      break;
+    
+    case 'italic':
+      insertText = selectedText || 'italic text';
+      insertText = `*${insertText}*`;
+      newCursorPos = start + (selectedText ? insertText.length : 12);
+      break;
+    
+    case 'link':
+      if (selectedText) {
+        insertText = `[${selectedText}](url)`;
+        newCursorPos = start + insertText.length - 1;
+      } else {
+        insertText = '[link text](url)';
+        newCursorPos = start + insertText.length - 4;
+      }
+      break;
+    
+    case 'heading':
+      insertText = selectedText || 'Heading';
+      insertText = `## ${insertText}`;
+      newCursorPos = start + insertText.length;
+      break;
+    
+    case 'ul':
+      if (selectedText) {
+        const lines = selectedText.split('\n').filter(l => l.trim());
+        insertText = lines.map(line => `- ${line}`).join('\n');
+        newCursorPos = start + insertText.length;
+      } else {
+        insertText = '- List item';
+        newCursorPos = start + insertText.length;
+      }
+      break;
+    
+    case 'ol':
+      if (selectedText) {
+        const lines = selectedText.split('\n').filter(l => l.trim());
+        insertText = lines.map((line, i) => `${i + 1}. ${line}`).join('\n');
+        newCursorPos = start + insertText.length;
+      } else {
+        insertText = '1. List item';
+        newCursorPos = start + insertText.length;
+      }
+      break;
+    
+    case 'code':
+      insertText = selectedText || 'code';
+      insertText = `\`${insertText}\``;
+      newCursorPos = start + (selectedText ? insertText.length : 6);
+      break;
+    
+    case 'blockquote':
+      if (selectedText) {
+        const lines = selectedText.split('\n');
+        insertText = lines.map(line => `> ${line}`).join('\n');
+        newCursorPos = start + insertText.length;
+      } else {
+        insertText = '> Quote';
+        newCursorPos = start + insertText.length;
+      }
+      break;
+    
+    case 'hr':
+      insertText = '\n---\n';
+      newCursorPos = start + insertText.length;
+      break;
+  }
+
+  textarea.value = beforeText + insertText + afterText;
+  textarea.focus();
+  textarea.setSelectionRange(newCursorPos, newCursorPos);
 }
 

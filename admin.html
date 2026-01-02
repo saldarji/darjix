@@ -3,7 +3,33 @@ layout: default
 title: Admin - DARJIX
 ---
 
-<section class="py-16 bg-white">
+<!-- Password Protection Overlay -->
+<div id="password-overlay" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+  <div class="max-w-md w-full mx-4">
+    <div class="border-2 border-black p-8">
+      <h2 class="text-2xl font-bold text-black mb-4">Admin Access</h2>
+      <p class="text-sm text-gray-600 mb-6">Enter password to access the admin panel</p>
+      <div>
+        <input 
+          type="password" 
+          id="admin-password" 
+          placeholder="Password"
+          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none mb-4"
+          autocomplete="off"
+        >
+        <div id="password-error" class="text-sm text-red-600 mb-4 hidden"></div>
+        <button 
+          id="password-submit-btn"
+          class="w-full px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition"
+        >
+          Access Admin
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="admin-content" class="py-16 bg-white hidden">
   <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
     <h1 class="text-3xl font-bold text-black mb-8">Create New Post</h1>
     
@@ -109,6 +135,36 @@ title: Admin - DARJIX
         <label for="post-content" class="block text-sm font-medium text-black mb-2">
           Content (Markdown) <span class="text-gray-600">*</span>
         </label>
+        <!-- Markdown Toolbar -->
+        <div class="border border-gray-300 border-b-0 bg-gray-50 p-2 flex flex-wrap gap-2">
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="bold" title="Bold">
+            <strong>B</strong>
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="italic" title="Italic">
+            <em>I</em>
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="link" title="Link">
+            🔗 Link
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="heading" title="Heading">
+            H
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ul" title="Bullet List">
+            • List
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ol" title="Numbered List">
+            1. List
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="code" title="Inline Code">
+            &lt;/&gt;
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="blockquote" title="Quote">
+            " Quote
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="hr" title="Horizontal Rule">
+            ───
+          </button>
+        </div>
         <textarea 
           id="post-content" 
           rows="12"
@@ -209,4 +265,92 @@ title: Admin - DARJIX
 </section>
 
 <script src="{{ '/assets/js/admin.js' | relative_url }}"></script>
+<script>
+// Password protection - runs before admin.js
+// 
+// SETUP INSTRUCTIONS:
+// 1. Choose a password
+// 2. Generate its SHA-256 hash using one of these methods:
+//    - Terminal: echo -n "your-password" | shasum -a 256
+//    - Online: https://emn178.github.io/online-tools/sha256.html
+//    - Node.js: require('crypto').createHash('sha256').update('your-password').digest('hex')
+// 3. Replace 'YOUR_PASSWORD_HASH_HERE' below with the generated hash (lowercase, no spaces)
+//
+// Example: If your password is "mypassword123", the hash would be:
+// "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+const ADMIN_PASSWORD_HASH = 'YOUR_PASSWORD_HASH_HERE'; // Replace with your password's SHA-256 hash
+const AUTH_SESSION_KEY = 'admin_authenticated';
+
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if already authenticated in this session
+  const isAuthenticated = sessionStorage.getItem(AUTH_SESSION_KEY) === 'true';
+  
+  if (isAuthenticated) {
+    showAdminContent();
+    return;
+  }
+
+  // Show password prompt
+  const overlay = document.getElementById('password-overlay');
+  const passwordInput = document.getElementById('admin-password');
+  const submitBtn = document.getElementById('password-submit-btn');
+  const errorDiv = document.getElementById('password-error');
+
+  passwordInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      checkPassword();
+    }
+  });
+
+  submitBtn.addEventListener('click', checkPassword);
+
+  async function checkPassword() {
+    const password = passwordInput.value;
+    if (!password) {
+      errorDiv.textContent = 'Please enter a password';
+      errorDiv.classList.remove('hidden');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Checking...';
+
+    try {
+      const hash = await hashPassword(password);
+      
+      if (hash === ADMIN_PASSWORD_HASH) {
+        sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+        showAdminContent();
+      } else {
+        errorDiv.textContent = 'Incorrect password';
+        errorDiv.classList.remove('hidden');
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    } catch (error) {
+      errorDiv.textContent = 'Error checking password';
+      errorDiv.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Access Admin';
+    }
+  }
+
+  function showAdminContent() {
+    overlay.classList.add('hidden');
+    document.getElementById('admin-content').classList.remove('hidden');
+  }
+
+  // Focus password input
+  passwordInput.focus();
+});
+</script>
 
