@@ -1,0 +1,212 @@
+---
+layout: default
+title: Admin - DARJIX
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+    <h1 class="text-3xl font-bold text-black mb-8">Create New Post</h1>
+    
+    <!-- Token Management Section -->
+    <div class="border-2 border-black p-6 mb-8">
+      <div class="text-xs font-bold text-black uppercase tracking-wider mb-4">
+        GitHub Authentication
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label for="github-token" class="block text-sm font-medium text-black mb-2">
+            GitHub Personal Access Token
+          </label>
+          <input 
+            type="password" 
+            id="github-token" 
+            placeholder="ghp_xxxxxxxxxxxx"
+            class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+          >
+          <p class="text-xs text-gray-600 mt-2">
+            Token is stored in your browser's localStorage. Only accessible on this device.
+          </p>
+        </div>
+        <div>
+          <label for="replicate-token" class="block text-sm font-medium text-black mb-2">
+            Replicate API Token (for alt-text generation)
+          </label>
+          <input 
+            type="password" 
+            id="replicate-token" 
+            placeholder="r8_xxxxxxxxxxxx"
+            class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+          >
+          <p class="text-xs text-gray-600 mt-2">
+            Optional. Used for automatic alt-text generation. <a href="https://replicate.com/account/api-tokens" target="_blank" class="underline">Get token</a>
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <button 
+            id="save-token-btn" 
+            class="px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition"
+          >
+            Save Tokens
+          </button>
+          <button 
+            id="clear-token-btn" 
+            class="px-4 py-2 border-2 border-black text-black text-sm font-medium hover:bg-gray-100 transition"
+          >
+            Clear Tokens
+          </button>
+        </div>
+        <div id="token-status" class="text-sm"></div>
+      </div>
+    </div>
+
+    <!-- Post Creation Form -->
+    <form id="post-form" class="space-y-6">
+      <!-- Post Type -->
+      <div>
+        <label class="block text-sm font-medium text-black mb-2">
+          Post Type
+        </label>
+        <div class="flex gap-4">
+          <label class="flex items-center">
+            <input type="radio" name="post-type" value="post" checked class="mr-2">
+            <span class="text-sm">Regular Post</span>
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="post-type" value="photo" class="mr-2">
+            <span class="text-sm">Photo Post</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label for="post-title" class="block text-sm font-medium text-black mb-2">
+          Title <span class="text-gray-600">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="post-title" 
+          required
+          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none"
+        >
+      </div>
+
+      <!-- Date -->
+      <div>
+        <label for="post-date" class="block text-sm font-medium text-black mb-2">
+          Date <span class="text-gray-600">*</span>
+        </label>
+        <input 
+          type="date" 
+          id="post-date" 
+          required
+          class="px-4 py-2 border border-gray-300 focus:border-black focus:outline-none"
+        >
+      </div>
+
+      <!-- Content (for regular posts) -->
+      <div id="content-section">
+        <label for="post-content" class="block text-sm font-medium text-black mb-2">
+          Content (Markdown) <span class="text-gray-600">*</span>
+        </label>
+        <textarea 
+          id="post-content" 
+          rows="12"
+          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none font-mono text-sm"
+          placeholder="Write your post content in Markdown..."
+        ></textarea>
+      </div>
+
+      <!-- Photo Post Section -->
+      <div id="photo-section" class="hidden space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-black mb-2">
+            Image Mode
+          </label>
+          <div class="flex gap-4 mb-4">
+            <label class="flex items-center">
+              <input type="radio" name="image-mode" value="single" checked class="mr-2">
+              <span class="text-sm">Single Image</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="image-mode" value="gallery" class="mr-2">
+              <span class="text-sm">Gallery</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Single Image Upload -->
+        <div id="single-image-section">
+          <label for="single-image" class="block text-sm font-medium text-black mb-2">
+            Image <span class="text-gray-600">*</span>
+          </label>
+          <input 
+            type="file" 
+            id="single-image" 
+            accept="image/*"
+            class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+          >
+          <div class="mt-2">
+            <label for="single-alt-text" class="block text-sm font-medium text-black mb-2">
+              Alt Text <span class="text-gray-600">*</span>
+            </label>
+            <div class="flex gap-2 mb-2">
+              <input 
+                type="text" 
+                id="single-alt-text" 
+                placeholder="Describe the image for accessibility"
+                class="flex-1 px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+              >
+              <button 
+                type="button" 
+                id="generate-single-alt-btn" 
+                class="px-4 py-2 border-2 border-black text-black text-sm font-medium hover:bg-gray-100 transition whitespace-nowrap"
+              >
+                Generate Alt Text
+              </button>
+            </div>
+            <label for="single-caption" class="block text-sm font-medium text-black mb-2">
+              Caption (optional)
+            </label>
+            <input 
+              type="text" 
+              id="single-caption" 
+              placeholder="Optional caption for the image"
+              class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+            >
+          </div>
+        </div>
+
+        <!-- Gallery Images -->
+        <div id="gallery-section" class="hidden">
+          <label class="block text-sm font-medium text-black mb-2">
+            Images <span class="text-gray-600">*</span>
+          </label>
+          <input 
+            type="file" 
+            id="gallery-images" 
+            accept="image/*"
+            multiple
+            class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm mb-4"
+          >
+          <div id="gallery-preview" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button 
+          type="submit" 
+          id="submit-btn"
+          class="px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition"
+        >
+          Create Post
+        </button>
+        <div id="status-message" class="mt-4 text-sm"></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/admin.js' | relative_url }}"></script>
+
