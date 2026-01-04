@@ -315,25 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (isAuthenticated) {
     showAdminContent();
-    // Initialize admin functionality immediately when already authenticated
-    // admin.js will also try to initialize, but this ensures it happens
-    setTimeout(() => {
-      if (typeof initializeTokenManagement === 'function') {
-        initializeTokenManagement();
-      }
-      if (typeof initializeFormHandlers === 'function') {
-        initializeFormHandlers();
-      }
-      if (typeof initializeMarkdownToolbar === 'function') {
-        initializeMarkdownToolbar();
-      }
-      if (typeof loadSavedToken === 'function') {
-        loadSavedToken();
-      }
-      if (typeof setDefaultDate === 'function') {
-        setDefaultDate();
-      }
-    }, 200);
+    // Don't try to initialize here - let admin.js handle it
+    // admin.js will detect that admin-content is visible and initialize
     return;
   }
 

@@ -8,33 +8,48 @@ const REPLICATE_TOKEN_STORAGE_KEY = 'replicate_token';
 const REPLICATE_API_BASE = 'https://api.replicate.com/v1';
 
 // Initialize on page load
-// Note: This only runs if password authentication succeeds
-document.addEventListener('DOMContentLoaded', () => {
-  function initializeAdmin() {
-    const adminContent = document.getElementById('admin-content');
-    // Check if admin content is visible (either not hidden, or doesn't have hidden class)
-    if (adminContent && !adminContent.classList.contains('hidden')) {
+// Note: This runs when admin content is visible (either immediately if already authenticated, or after password check)
+function initializeAdminIfReady() {
+  const adminContent = document.getElementById('admin-content');
+  // Check if admin content is visible (either not hidden, or doesn't have hidden class)
+  if (adminContent && !adminContent.classList.contains('hidden')) {
+    try {
       initializeTokenManagement();
       initializeFormHandlers();
       initializeMarkdownToolbar();
       loadSavedToken();
       setDefaultDate();
       return true;
+    } catch (error) {
+      console.error('Error initializing admin:', error);
+      return false;
     }
-    return false;
   }
-  
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   // Try to initialize immediately
-  if (!initializeAdmin()) {
-    // If not ready, wait a bit and try again
+  if (!initializeAdminIfReady()) {
+    // If not ready, wait a bit and try again (password check might be in progress)
     setTimeout(() => {
-      if (!initializeAdmin()) {
-        // If still not ready, wait a bit more (for cases where password check is in progress)
-        setTimeout(initializeAdmin, 300);
+      if (!initializeAdminIfReady()) {
+        // If still not ready, wait a bit more
+        setTimeout(() => {
+          initializeAdminIfReady();
+        }, 300);
       }
     }, 100);
   }
 });
+
+// Also try to initialize when the script loads (in case DOMContentLoaded already fired)
+if (document.readyState === 'loading') {
+  // DOM is still loading, wait for DOMContentLoaded
+} else {
+  // DOM is already loaded, try to initialize now
+  setTimeout(initializeAdminIfReady, 50);
+}
 
 function setDefaultDate() {
   const dateInput = document.getElementById('post-date');
