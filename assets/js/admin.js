@@ -9,7 +9,14 @@ const REPLICATE_API_BASE = 'https://api.replicate.com/v1';
 
 // Initialize on page load
 // Note: This runs when admin content is visible (either immediately if already authenticated, or after password check)
+let adminInitialized = false;
+
 function initializeAdminIfReady() {
+  // Don't initialize twice
+  if (adminInitialized) {
+    return true;
+  }
+  
   const adminContent = document.getElementById('admin-content');
   // Check if admin content is visible (either not hidden, or doesn't have hidden class)
   if (adminContent && !adminContent.classList.contains('hidden')) {
@@ -19,6 +26,8 @@ function initializeAdminIfReady() {
       initializeMarkdownToolbar();
       loadSavedToken();
       setDefaultDate();
+      adminInitialized = true;
+      console.log('Admin initialized successfully');
       return true;
     } catch (error) {
       console.error('Error initializing admin:', error);
@@ -28,27 +37,56 @@ function initializeAdminIfReady() {
   return false;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Try to initialize immediately
-  if (!initializeAdminIfReady()) {
-    // If not ready, wait a bit and try again (password check might be in progress)
-    setTimeout(() => {
-      if (!initializeAdminIfReady()) {
-        // If still not ready, wait a bit more
-        setTimeout(() => {
-          initializeAdminIfReady();
-        }, 300);
-      }
-    }, 100);
+// Use MutationObserver to watch for admin-content becoming visible
+function watchForAdminContent() {
+  const adminContent = document.getElementById('admin-content');
+  if (!adminContent) {
+    return;
   }
-});
+  
+  // Try to initialize immediately
+  if (initializeAdminIfReady()) {
+    return;
+  }
+  
+  // Watch for class changes on admin-content
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        if (!adminContent.classList.contains('hidden')) {
+          initializeAdminIfReady();
+          observer.disconnect();
+        }
+      }
+    });
+  });
+  
+  observer.observe(adminContent, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+  
+  // Also poll as a fallback
+  let attempts = 0;
+  const maxAttempts = 20;
+  const pollInterval = setInterval(() => {
+    attempts++;
+    if (initializeAdminIfReady() || attempts >= maxAttempts) {
+      clearInterval(pollInterval);
+    }
+  }, 100);
+}
 
-// Also try to initialize when the script loads (in case DOMContentLoaded already fired)
+// Initialize when DOM is ready
+function startInitialization() {
+  watchForAdminContent();
+}
+
 if (document.readyState === 'loading') {
-  // DOM is still loading, wait for DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', startInitialization);
 } else {
-  // DOM is already loaded, try to initialize now
-  setTimeout(initializeAdminIfReady, 50);
+  // DOM is already loaded
+  startInitialization();
 }
 
 function setDefaultDate() {
