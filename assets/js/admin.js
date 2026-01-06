@@ -79,13 +79,17 @@ function watchForAdminContent() {
   
   // Also poll as a fallback
   let attempts = 0;
-  const maxAttempts = 30;
+  const maxAttempts = 50; // Increased from 30 to give more time
   const pollInterval = setInterval(() => {
     attempts++;
     if (window.initializeAdminIfReady() || attempts >= maxAttempts) {
       clearInterval(pollInterval);
-      if (attempts >= maxAttempts) {
-        console.warn('⚠️ Admin initialization polling timed out');
+      if (attempts >= maxAttempts && !adminInitialized) {
+        console.warn('⚠️ Admin initialization polling timed out. Admin content may not be visible yet.');
+        // Try one more time after a longer delay
+        setTimeout(() => {
+          window.initializeAdminIfReady();
+        }, 500);
       }
     }
   }, 100);

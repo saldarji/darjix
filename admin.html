@@ -332,6 +332,14 @@ async function hashPassword(password) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// Define showAdminContent function outside DOMContentLoaded so it's available immediately
+function showAdminContent() {
+  const overlay = document.getElementById('password-overlay');
+  const adminContent = document.getElementById('admin-content');
+  if (overlay) overlay.classList.add('hidden');
+  if (adminContent) adminContent.classList.remove('hidden');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Check if already authenticated via cookie
   const isAuthenticated = getCookie(AUTH_COOKIE_NAME) === 'true';
@@ -435,11 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Access Admin';
     }
-  }
-
-  function showAdminContent() {
-    overlay.classList.add('hidden');
-    document.getElementById('admin-content').classList.remove('hidden');
   }
 
   // Focus password input
