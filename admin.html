@@ -299,7 +299,30 @@ title: Admin - DARJIX
 // Or use: https://emn178.github.io/online-tools/sha256.html
 // Make sure to remove any spaces or newlines from the hash
 const ADMIN_PASSWORD_HASH = '4759f5710bdae609ddeee7963a5da6f6d6d80832c6fdeb0cb21613bca8a94cc3'; // PASTE YOUR PASSWORD'S HASH HERE (not the password itself!)
-const AUTH_SESSION_KEY = 'admin_authenticated';
+const AUTH_COOKIE_NAME = 'admin_authenticated';
+const AUTH_COOKIE_DURATION = 7; // Days
+
+// Cookie helper functions
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+function deleteCookie(name) {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+}
 
 async function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -310,13 +333,20 @@ async function hashPassword(password) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if already authenticated in this session
-  const isAuthenticated = sessionStorage.getItem(AUTH_SESSION_KEY) === 'true';
+  // Check if already authenticated via cookie
+  const isAuthenticated = getCookie(AUTH_COOKIE_NAME) === 'true';
   
   if (isAuthenticated) {
     showAdminContent();
-    // Don't try to initialize here - let admin.js handle it
-    // admin.js will detect that admin-content is visible and initialize
+    // Trigger admin initialization after a short delay to ensure admin.js is loaded
+    setTimeout(() => {
+      // Force initialization by dispatching a custom event
+      window.dispatchEvent(new CustomEvent('admin-content-visible'));
+      // Also try direct initialization if functions are available
+      if (typeof window.initializeAdminIfReady === 'function') {
+        window.initializeAdminIfReady();
+      }
+    }, 100);
     return;
   }
 
@@ -382,8 +412,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const storedHash = ADMIN_PASSWORD_HASH.trim().toLowerCase();
       
       if (enteredHash === storedHash) {
-        sessionStorage.setItem(AUTH_SESSION_KEY, 'true');
+        // Set cookie for authentication (persists across sessions)
+        setCookie(AUTH_COOKIE_NAME, 'true', AUTH_COOKIE_DURATION);
         showAdminContent();
+        // Trigger admin initialization
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('admin-content-visible'));
+          if (typeof window.initializeAdminIfReady === 'function') {
+            window.initializeAdminIfReady();
+          }
+        }, 100);
       } else {
         errorDiv.textContent = 'Incorrect password. Make sure you typed your password (not the hash) and that the hash in the code matches your password.';
         errorDiv.classList.remove('hidden');

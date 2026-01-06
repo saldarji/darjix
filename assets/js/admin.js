@@ -11,14 +11,15 @@ const REPLICATE_API_BASE = 'https://api.replicate.com/v1';
 // Note: This runs when admin content is visible (either immediately if already authenticated, or after password check)
 let adminInitialized = false;
 
-function initializeAdminIfReady() {
+// Make this function globally accessible
+window.initializeAdminIfReady = function() {
   // Don't initialize twice
   if (adminInitialized) {
     return true;
   }
   
   const adminContent = document.getElementById('admin-content');
-  // Check if admin content is visible (either not hidden, or doesn't have hidden class)
+  // Check if admin content exists and is visible
   if (adminContent && !adminContent.classList.contains('hidden')) {
     try {
       initializeTokenManagement();
@@ -27,25 +28,35 @@ function initializeAdminIfReady() {
       loadSavedToken();
       setDefaultDate();
       adminInitialized = true;
-      console.log('Admin initialized successfully');
+      console.log('✅ Admin initialized successfully');
       return true;
     } catch (error) {
-      console.error('Error initializing admin:', error);
+      console.error('❌ Error initializing admin:', error);
       return false;
     }
   }
   return false;
-}
+};
+
+// Listen for custom event when admin content becomes visible
+window.addEventListener('admin-content-visible', () => {
+  console.log('📢 Admin content visible event received');
+  setTimeout(() => {
+    window.initializeAdminIfReady();
+  }, 50);
+});
 
 // Use MutationObserver to watch for admin-content becoming visible
 function watchForAdminContent() {
   const adminContent = document.getElementById('admin-content');
   if (!adminContent) {
+    // If admin-content doesn't exist yet, wait a bit and try again
+    setTimeout(watchForAdminContent, 100);
     return;
   }
   
   // Try to initialize immediately
-  if (initializeAdminIfReady()) {
+  if (window.initializeAdminIfReady()) {
     return;
   }
   
@@ -54,7 +65,7 @@ function watchForAdminContent() {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
         if (!adminContent.classList.contains('hidden')) {
-          initializeAdminIfReady();
+          window.initializeAdminIfReady();
           observer.disconnect();
         }
       }
@@ -68,11 +79,14 @@ function watchForAdminContent() {
   
   // Also poll as a fallback
   let attempts = 0;
-  const maxAttempts = 20;
+  const maxAttempts = 30;
   const pollInterval = setInterval(() => {
     attempts++;
-    if (initializeAdminIfReady() || attempts >= maxAttempts) {
+    if (window.initializeAdminIfReady() || attempts >= maxAttempts) {
       clearInterval(pollInterval);
+      if (attempts >= maxAttempts) {
+        console.warn('⚠️ Admin initialization polling timed out');
+      }
     }
   }, 100);
 }
