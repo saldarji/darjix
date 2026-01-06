@@ -1,0 +1,62 @@
+name: Auto-generate Alt Text
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '_posts/**'
+      - 'assets/images/image posts/**'
+  workflow_dispatch:  # Allow manual triggering
+
+# Permissions needed to commit changes back
+permissions:
+  contents: write
+
+jobs:
+  generate-alt-text:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Fetch full history for git operations
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv
+      
+      - name: Generate alt-text for images
+        env:
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+        run: |
+          python scripts/auto_generate_alt_text.py
+        continue-on-error: true  # Don't fail the workflow if some images fail
+      
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _posts/
+          git commit -m "Auto-generate alt-text for images in photo posts" || exit 0
+          git push
+
