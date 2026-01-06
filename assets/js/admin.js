@@ -210,7 +210,18 @@ function initializeFormHandlers() {
   galleryInput.addEventListener('change', handleGalleryImages);
 
   // Alt text generation
-  document.getElementById('generate-single-alt-btn').addEventListener('click', generateSingleAltText);
+  const generateAltBtn = document.getElementById('generate-single-alt-btn');
+  if (generateAltBtn) {
+    // Remove any existing listener first
+    const newBtn = generateAltBtn.cloneNode(true);
+    generateAltBtn.parentNode.replaceChild(newBtn, generateAltBtn);
+    newBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      generateSingleAltText();
+    });
+  } else {
+    console.warn('Generate alt text button not found');
+  }
 
   // Form submission
   form.addEventListener('submit', handleFormSubmit);
@@ -265,10 +276,14 @@ function handleGalleryImages(e) {
       previewDiv.appendChild(div);
 
       // Add event listener for generate button
-      div.querySelector('.generate-alt-btn').addEventListener('click', async (btn) => {
-        const idx = parseInt(btn.target.dataset.imageIndex);
-        await generateGalleryAltText(files[idx], idx);
-      });
+      const genBtn = div.querySelector('.generate-alt-btn');
+      if (genBtn) {
+        genBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          const idx = parseInt(this.dataset.imageIndex);
+          await generateGalleryAltText(files[idx], idx);
+        });
+      }
     };
     reader.readAsDataURL(file);
   });
