@@ -308,7 +308,13 @@ async function generateSingleAltText() {
     altTextInput.value = altText;
     showStatus(document.getElementById('status-message'), 'Alt text generated successfully', 'success');
   } catch (error) {
-    showStatus(document.getElementById('status-message'), `Error generating alt text: ${error.message}`, 'error');
+    let errorMsg = error.message || 'Unknown error';
+    // Provide more helpful error messages
+    if (errorMsg.includes('Load failed') || errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
+      errorMsg = 'Network error. This might be a CORS issue. Check your Replicate API token and try again. If the problem persists, the Replicate API may not support browser requests from this domain.';
+    }
+    console.error('Alt text generation error:', error);
+    showStatus(document.getElementById('status-message'), `Error generating alt text: ${errorMsg}`, 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Generate Alt Text';
@@ -347,36 +353,35 @@ async function generateAltText(imageFile) {
     'Authorization': `Token ${token}`
   };
 
-  // Upload image to Replicate
-  const formData = new FormData();
-  formData.append('file', imageFile);
-
-  const uploadResponse = await fetch(`${REPLICATE_API_BASE}/files`, {
-    method: 'POST',
-    headers: headers,
-    body: formData
-  });
-
-  let imageUrl;
-  if (uploadResponse.ok) {
-    const uploadData = await uploadResponse.json();
-    imageUrl = uploadData.urls.get;
-  } else {
-    // Fallback: use base64 encoding
-    const arrayBuffer = await imageFile.arrayBuffer();
-    const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
-    imageUrl = `data:image/jpeg;base64,${base64}`;
+  // Replicate API doesn't support CORS for file uploads from browser
+  // So we'll use base64 encoding directly (which works from browser)
+  console.log('Converting image to base64...');
+  const arrayBuffer = await imageFile.arrayBuffer();
+  const bytes = new Uint8Array(arrayBuffer);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
   }
+  const base64 = btoa(binary);
+  // Determine MIME type
+  const mimeType = imageFile.type || 'image/jpeg';
+  const imageUrl = `data:${mimeType};base64,${base64}`;
 
   // Get latest model version
-  const modelResponse = await fetch('https://api.replicate.com/v1/models/salesforce/blip', {
-    headers: headers
-  });
-
   let version;
-  if (modelResponse.ok) {
-    const modelData = await modelResponse.json();
-    version = modelData.latest_version?.id;
+  try {
+    const modelResponse = await fetch('https://api.replicate.com/v1/models/salesforce/blip', {
+      headers: headers
+    });
+
+    if (modelResponse.ok) {
+      const modelData = await modelResponse.json();
+      version = modelData.latest_version?.id;
+    } else {
+      console.warn('Failed to get model version, using fallback');
+    }
+  } catch (error) {
+    console.warn('Error fetching model version, using fallback:', error);
   }
   
   // Fallback to known working version
@@ -385,24 +390,35 @@ async function generateAltText(imageFile) {
   }
 
   // Create prediction with BLIP model
-  const predictionResponse = await fetch(`${REPLICATE_API_BASE}/predictions`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      version: version,
-      input: {
-        image: imageUrl,
-        task: 'image_captioning'
-      }
-    })
-  });
+  let predictionResponse;
+  try {
+    predictionResponse = await fetch(`${REPLICATE_API_BASE}/predictions`, {
+      method: 'POST',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        version: version,
+        input: {
+          image: imageUrl,
+          task: 'image_captioning'
+        }
+      })
+    });
+  } catch (error) {
+    throw new Error(`Network error: ${error.message}. Check your internet connection and Replicate API token.`);
+  }
 
   if (!predictionResponse.ok) {
-    const errorData = await predictionResponse.json().catch(() => ({}));
-    throw new Error(`Failed to create prediction: ${errorData.detail || predictionResponse.statusText}`);
+    let errorMessage = `HTTP ${predictionResponse.status}: `;
+    try {
+      const errorData = await predictionResponse.json();
+      errorMessage += errorData.detail || errorData.message || predictionResponse.statusText;
+    } catch (e) {
+      errorMessage += predictionResponse.statusText;
+    }
+    throw new Error(`Failed to create prediction: ${errorMessage}`);
   }
 
   const prediction = await predictionResponse.json();
@@ -417,12 +433,17 @@ async function generateAltText(imageFile) {
     await new Promise(resolve => setTimeout(resolve, 2000));
     attempts++;
     
-    const statusResponse = await fetch(`${REPLICATE_API_BASE}/predictions/${predictionId}`, {
-      headers: headers
-    });
+    let statusResponse;
+    try {
+      statusResponse = await fetch(`${REPLICATE_API_BASE}/predictions/${predictionId}`, {
+        headers: headers
+      });
+    } catch (error) {
+      throw new Error(`Network error while checking status: ${error.message}`);
+    }
     
     if (!statusResponse.ok) {
-      throw new Error(`Failed to check prediction status: ${statusResponse.statusText}`);
+      throw new Error(`Failed to check prediction status: HTTP ${statusResponse.status} ${statusResponse.statusText}`);
     }
     
     result = await statusResponse.json();
