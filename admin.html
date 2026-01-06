@@ -223,6 +223,9 @@ title: Admin - DARJIX
             <label for="single-alt-text" class="block text-sm font-medium text-black mb-2">
               Alt Text <span class="text-gray-600">*</span>
             </label>
+            <p class="text-xs text-gray-600 mb-2">
+              Note: Browser-based alt-text generation is disabled due to CORS restrictions. Use the Python script: <code class="bg-gray-100 px-1">python scripts/generate_alt_text.py "path/to/image.jpg"</code>
+            </p>
             <div class="flex gap-2 mb-2">
               <input 
                 type="text" 
@@ -233,9 +236,11 @@ title: Admin - DARJIX
               <button 
                 type="button" 
                 id="generate-single-alt-btn" 
-                class="px-4 py-2 border-2 border-black text-black text-sm font-medium hover:bg-gray-100 transition whitespace-nowrap"
+                class="px-4 py-2 border-2 border-gray-300 text-gray-500 text-sm font-medium cursor-not-allowed"
+                title="Disabled: Use Python script instead (python scripts/generate_alt_text.py)"
+                disabled
               >
-                Generate Alt Text
+                Generate (Disabled)
               </button>
             </div>
             <label for="single-caption" class="block text-sm font-medium text-black mb-2">

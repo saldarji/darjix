@@ -258,11 +258,13 @@ function handleGalleryImages(e) {
               >
               <button 
                 type="button" 
-                class="generate-alt-btn px-3 py-1 border-2 border-black text-black text-sm font-medium hover:bg-gray-100 transition"
+                class="generate-alt-btn px-3 py-1 border-2 border-gray-300 text-gray-500 text-sm font-medium cursor-not-allowed"
                 data-image-index="${index}"
                 data-image-file="${index}"
+                title="Disabled: Use Python script instead"
+                disabled
               >
-                Generate
+                Generate (Disabled)
               </button>
             </div>
           </label>
@@ -294,7 +296,18 @@ function handleGalleryImages(e) {
 }
 
 // Alt Text Generation
+// Note: Replicate API doesn't support CORS from browsers, so this feature is disabled
+// Users should use the Python script instead: python scripts/generate_alt_text.py
 async function generateSingleAltText() {
+  showStatus(
+    document.getElementById('status-message'), 
+    'Alt-text generation from browser is not available due to CORS restrictions. Please use the Python script: python scripts/generate_alt_text.py "path/to/image.jpg"', 
+    'error'
+  );
+  return;
+  
+  // Disabled code below - kept for reference
+  /*
   const fileInput = document.getElementById('single-image');
   const altTextInput = document.getElementById('single-alt-text');
   const btn = document.getElementById('generate-single-alt-btn');
@@ -313,36 +326,24 @@ async function generateSingleAltText() {
     showStatus(document.getElementById('status-message'), 'Alt text generated successfully', 'success');
   } catch (error) {
     let errorMsg = error.message || 'Unknown error';
-    // Provide more helpful error messages
-    if (errorMsg.includes('Load failed') || errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
-      errorMsg = 'Network error. This might be a CORS issue. Check your Replicate API token and try again. If the problem persists, the Replicate API may not support browser requests from this domain.';
-    }
     console.error('Alt text generation error:', error);
     showStatus(document.getElementById('status-message'), `Error generating alt text: ${errorMsg}`, 'error');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Generate Alt Text';
   }
+  */
 }
 
 async function generateGalleryAltText(file, index) {
-  const altTextInput = document.querySelector(`input.image-alt-text[data-image-index="${index}"]`);
-  const btn = document.querySelector(`button.generate-alt-btn[data-image-index="${index}"]`);
-
-  if (!altTextInput || !btn) return;
-
-  btn.disabled = true;
-  btn.textContent = 'Generating...';
-
-  try {
-    const altText = await generateAltText(file);
-    altTextInput.value = altText;
-  } catch (error) {
-    showStatus(document.getElementById('status-message'), `Error generating alt text for image ${index + 1}: ${error.message}`, 'error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Generate';
-  }
+  showStatus(
+    document.getElementById('status-message'), 
+    'Alt-text generation from browser is not available. Please use the Python script: python scripts/generate_alt_text.py', 
+    'error'
+  );
+  return;
+  
+  // Disabled - see generateSingleAltText for details
 }
 
 async function generateAltText(imageFile) {
