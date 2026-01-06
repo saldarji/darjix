@@ -72,17 +72,6 @@ title: Admin - DARJIX
         </div>
         <div>
           <label for="replicate-token" class="block text-sm font-medium text-black mb-2">
-            Replicate API Token (for alt-text generation)
-          </label>
-          <input 
-            type="password" 
-            id="replicate-token" 
-            placeholder="r8_xxxxxxxxxxxx"
-            class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
-          >
-          <p class="text-xs text-gray-600 mt-2">
-            Optional. Used for automatic alt-text generation. <a href="https://replicate.com/account/api-tokens" target="_blank" class="underline">Get token</a>
-          </p>
         </div>
         <div class="flex gap-3">
           <button 
@@ -219,30 +208,10 @@ title: Admin - DARJIX
             accept="image/*"
             class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
           >
+          <p class="text-xs text-gray-600 mt-2 mb-4">
+            Alt-text will be automatically generated after you create the post.
+          </p>
           <div class="mt-2">
-            <label for="single-alt-text" class="block text-sm font-medium text-black mb-2">
-              Alt Text <span class="text-gray-600">*</span>
-            </label>
-            <p class="text-xs text-gray-600 mb-2">
-              Note: Browser-based alt-text generation is disabled due to CORS restrictions. Use the Python script: <code class="bg-gray-100 px-1">python scripts/generate_alt_text.py "path/to/image.jpg"</code>
-            </p>
-            <div class="flex gap-2 mb-2">
-              <input 
-                type="text" 
-                id="single-alt-text" 
-                placeholder="Describe the image for accessibility"
-                class="flex-1 px-4 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
-              >
-              <button 
-                type="button" 
-                id="generate-single-alt-btn" 
-                class="px-4 py-2 border-2 border-gray-300 text-gray-500 text-sm font-medium cursor-not-allowed"
-                title="Disabled: Use Python script instead (python scripts/generate_alt_text.py)"
-                disabled
-              >
-                Generate (Disabled)
-              </button>
-            </div>
             <label for="single-caption" class="block text-sm font-medium text-black mb-2">
               Caption (optional)
             </label>
