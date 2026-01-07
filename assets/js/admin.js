@@ -385,7 +385,13 @@ ${imagesYaml}
   // Upload images first
   for (const { file, path } of imagesToUpload) {
     const arrayBuffer = await file.arrayBuffer();
-    const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    // Convert to base64 in chunks to avoid stack overflow with large images
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    const base64 = btoa(binary);
     await createGitHubFile(path, base64, `Upload image: ${file.name}`, true);
   }
 
