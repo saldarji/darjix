@@ -119,11 +119,15 @@ def generate_alt_text(image_path):
                 print(f"   ✅ Found model version: {latest_version}")
                 
                 # Create prediction
+                # Use a prompt to encourage more comprehensive descriptions
+                # BLIP typically generates short captions, but we can try to get more detail
                 prediction_data = {
                     "version": latest_version,
                     "input": {
                         "image": uploaded_file_url,
-                        "task": "image_captioning"
+                        "task": "image_captioning",
+                        # Add a prompt to encourage detailed description
+                        "prompt": "a detailed description of"
                     }
                 }
                 
@@ -167,6 +171,17 @@ def generate_alt_text(image_path):
                     alt_text = alt_text[9:].strip()
                 elif alt_text.startswith("caption: "):
                     alt_text = alt_text[9:].strip()
+                
+                # Ensure the alt-text is descriptive (at least one sentence)
+                # If it's too short, try to enhance it
+                if len(alt_text) < 20 or not any(c in alt_text for c in '.!?'):
+                    # The generated text is very short or lacks sentence structure
+                    # BLIP typically generates short captions, so this is expected
+                    # We'll use what we got, but log a note
+                    if len(alt_text) < 15:
+                        print(f"   ⚠️  Generated alt-text is quite short: {alt_text}")
+                        print(f"   💡 Consider reviewing and enhancing this description manually if needed")
+                
                 print(f"   ✅ Generated alt-text: {alt_text}")
                 return alt_text
             elif status == "failed":

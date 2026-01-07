@@ -30,6 +30,61 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generate_alt_text import generate_alt_text, update_post_file
 
 
+def is_placeholder_alt_text(alt_text):
+    """
+    Check if alt-text is a placeholder or less than one sentence that should be regenerated.
+    All images should have at least a couple of sentences describing the image.
+    
+    Args:
+        alt_text: The alt-text string to check
+        
+    Returns:
+        bool: True if the alt-text appears to be a placeholder or is less than one sentence
+    """
+    if not alt_text or alt_text.strip() == '':
+        return True
+    
+    alt_text = alt_text.strip()
+    alt_lower = alt_text.lower()
+    
+    # Check for explicit placeholder keywords
+    placeholder_keywords = ['placeholder', 'tbd', 'todo', 'description', 'alt text', 'image', 'photo', 'picture']
+    if alt_lower in placeholder_keywords:
+        return True
+    
+    # Check if it's less than one sentence (no sentence-ending punctuation)
+    # A sentence should end with . ! ? or be part of a longer description
+    sentence_endings = ['.', '!', '?']
+    has_sentence_ending = any(alt_text.endswith(ending) for ending in sentence_endings) or any(ending in alt_text for ending in sentence_endings)
+    
+    # If it's very short (less than 20 characters) or has no sentence structure, regenerate
+    if len(alt_text) < 20:
+        return True
+    
+    # If it's less than one sentence (no period, exclamation, or question mark), regenerate
+    # But allow if it's a longer descriptive phrase (more than 50 chars without punctuation might be okay)
+    if not has_sentence_ending:
+        # If it's short and has no sentence ending, it's likely incomplete
+        if len(alt_text) < 50:
+            return True
+        # Even if longer, if it has no sentence structure, it might need regeneration
+        # But be lenient for longer descriptions that might be valid without punctuation
+        if len(alt_text) < 80:
+            return True
+    
+    # Check for patterns like "Bear #2", "Image 1", "Photo 3", etc.
+    if re.match(r'^[a-z]+\s*#?\d+$', alt_lower):
+        return True
+    
+    # Check for very short alt-text (2 words or less) - these are likely placeholders
+    words = alt_text.split()
+    if len(words) <= 2:
+        # Allow if it's a meaningful compound description, but most 1-2 word descriptions are placeholders
+        return True
+    
+    return False
+
+
 def find_photo_posts(posts_dir='_posts', specific_post=None):
     """
     Find all photo posts that need alt-text generation.
@@ -83,7 +138,7 @@ def find_photo_posts(posts_dir='_posts', specific_post=None):
                     alt_text = img_match.group(2) if img_match.group(2) else None
                     
                     # Check if alt-text is missing or is a placeholder
-                    if not alt_text or alt_text.strip() == '' or alt_text.lower() in ['placeholder', 'tbd', 'todo', 'description']:
+                    if is_placeholder_alt_text(alt_text):
                         # Convert URL to file path
                         if image_url.startswith('/'):
                             image_url = image_url[1:]  # Remove leading slash
@@ -92,7 +147,8 @@ def find_photo_posts(posts_dir='_posts', specific_post=None):
                             images_needing_alt.append({
                                 'url': image_url,
                                 'path': str(image_path),
-                                'filename': image_path.name
+                                'filename': image_path.name,
+                                'current_alt': alt_text  # Store current alt for logging
                             })
         
         # Check for single image mode
@@ -104,7 +160,7 @@ def find_photo_posts(posts_dir='_posts', specific_post=None):
                 alt_text = alt_text_match.group(1) if alt_text_match else None
                 
                 # Check if alt-text is missing or is a placeholder
-                if not alt_text or alt_text.strip() == '' or alt_text.lower() in ['placeholder', 'tbd', 'todo', 'description']:
+                if is_placeholder_alt_text(alt_text):
                     # Convert URL to file path
                     if image_url.startswith('/'):
                         image_url = image_url[1:]  # Remove leading slash
@@ -113,7 +169,8 @@ def find_photo_posts(posts_dir='_posts', specific_post=None):
                         images_needing_alt.append({
                             'url': image_url,
                             'path': str(image_path),
-                            'filename': image_path.name
+                            'filename': image_path.name,
+                            'current_alt': alt_text  # Store current alt for logging
                         })
         
         if images_needing_alt:
@@ -148,10 +205,14 @@ def process_posts(dry_run=False, specific_post=None):
         print(f"   Images needing alt-text: {len(images)}")
         
         for img_info in images:
-            print(f"\n   🖼️  Processing: {img_info['filename']}")
+            current_alt = img_info.get('current_alt', '')
+            alt_status = f" (current: '{current_alt}')" if current_alt else " (missing)"
+            print(f"\n   🖼️  Processing: {img_info['filename']}{alt_status}")
             
             if dry_run:
                 print(f"      [DRY RUN] Would generate alt-text for {img_info['path']}")
+                if current_alt:
+                    print(f"      [DRY RUN] Would replace placeholder alt-text: '{current_alt}'")
                 print(f"      [DRY RUN] Would update {post_path}")
                 continue
             
