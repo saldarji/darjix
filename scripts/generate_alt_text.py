@@ -103,8 +103,11 @@ def generate_alt_text(image_path):
             print("   ✅ Using base64 encoded image")
         
         # Now create a prediction using BLIP model
-        # Try salesforce/blip model
+        # Try salesforce/blip model (standard version generates short captions)
+        # For longer descriptions, you may want to use blip-large-long-cap if available
         print("   🔄 Creating prediction with salesforce/blip model...")
+        print("   💡 Note: BLIP typically generates short captions. For longer descriptions,")
+        print("      consider manually enhancing the generated alt-text or using a different model.")
         
         # Get the latest version of the model
         model_response = requests.get(
@@ -119,15 +122,16 @@ def generate_alt_text(image_path):
                 print(f"   ✅ Found model version: {latest_version}")
                 
                 # Create prediction
-                # Use a prompt to encourage more comprehensive descriptions
-                # BLIP typically generates short captions, but we can try to get more detail
+                # Try to get more comprehensive descriptions by using parameters
+                # Note: Standard BLIP may not support all parameters, but we'll try
                 prediction_data = {
                     "version": latest_version,
                     "input": {
                         "image": uploaded_file_url,
-                        "task": "image_captioning",
-                        # Add a prompt to encourage detailed description
-                        "prompt": "a detailed description of"
+                        "task": "image_captioning"
+                        # Note: Replicate's BLIP API may not support max_new_tokens or prompt parameters
+                        # The model is designed for short captions. For longer descriptions,
+                        # consider using a different model like blip-large-long-cap if available
                     }
                 }
                 
