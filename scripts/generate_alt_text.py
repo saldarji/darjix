@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Generate Alt Text for Images using Replicate's BLIP Model
+Generate Alt Text for Images using Replicate's BLIP-2 Model
 
-This script uses Salesforce's BLIP model to automatically generate
-descriptive alt-text for images, which can be used in photo posts.
+This script uses BLIP-2 model to automatically generate comprehensive
+descriptive alt-text for images (2-3 sentences), which can be used in photo posts.
 
-The BLIP model is available at: https://replicate.com/salesforce/blip/api
+The BLIP-2 model is available at: https://replicate.com/andreasjansson/blip-2
 
 Usage:
     python scripts/generate_alt_text.py <image_path> [--update-post <post_path>]
@@ -102,16 +102,14 @@ def generate_alt_text(image_path):
             uploaded_file_url = f"data:image/jpeg;base64,{image_data}"
             print("   ✅ Using base64 encoded image")
         
-        # Now create a prediction using BLIP model
-        # Try salesforce/blip model (standard version generates short captions)
-        # For longer descriptions, you may want to use blip-large-long-cap if available
-        print("   🔄 Creating prediction with salesforce/blip model...")
-        print("   💡 Note: BLIP typically generates short captions. For longer descriptions,")
-        print("      consider manually enhancing the generated alt-text or using a different model.")
+        # Now create a prediction using BLIP-2 model
+        # BLIP-2 can answer questions about images and generate comprehensive descriptions
+        print("   🔄 Creating prediction with andreasjansson/blip-2 model...")
+        print("   💡 Using prompt to request comprehensive 2-3 sentence alt-text descriptions.")
         
-        # Get the latest version of the model
+        # Get the latest version of the BLIP-2 model
         model_response = requests.get(
-            "https://api.replicate.com/v1/models/salesforce/blip",
+            "https://api.replicate.com/v1/models/andreasjansson/blip-2",
             headers=headers
         )
         
@@ -121,17 +119,13 @@ def generate_alt_text(image_path):
             if latest_version:
                 print(f"   ✅ Found model version: {latest_version}")
                 
-                # Create prediction
-                # Try to get more comprehensive descriptions by using parameters
-                # Note: Standard BLIP may not support all parameters, but we'll try
+                # Create prediction with a prompt asking for comprehensive alt-text
+                # BLIP-2 can answer questions, so we'll ask it to create detailed alt-text
                 prediction_data = {
                     "version": latest_version,
                     "input": {
                         "image": uploaded_file_url,
-                        "task": "image_captioning"
-                        # Note: Replicate's BLIP API may not support max_new_tokens or prompt parameters
-                        # The model is designed for short captions. For longer descriptions,
-                        # consider using a different model like blip-large-long-cap if available
+                        "question": "Create an alt-text for this image. Be comprehensive and respond with 2-3 sentences describing what is in the image."
                     }
                 }
                 
@@ -148,7 +142,7 @@ def generate_alt_text(image_path):
                 else:
                     raise RuntimeError(f"Failed to create prediction: {response.status_code} - {response.text}")
             else:
-                raise RuntimeError("Could not find latest version for salesforce/blip model")
+                raise RuntimeError("Could not find latest version for andreasjansson/blip-2 model")
         else:
             raise RuntimeError(f"Failed to get model info: {model_response.status_code} - {model_response.text}")
         
@@ -170,23 +164,27 @@ def generate_alt_text(image_path):
             if status == "succeeded":
                 output = prediction.get("output", "")
                 alt_text = str(output).strip()
-                # Remove "Caption: " prefix if present
+                
+                # Clean up the output - remove any prefixes that might be added
                 if alt_text.startswith("Caption: "):
                     alt_text = alt_text[9:].strip()
                 elif alt_text.startswith("caption: "):
                     alt_text = alt_text[9:].strip()
+                elif alt_text.startswith("Alt-text: "):
+                    alt_text = alt_text[10:].strip()
+                elif alt_text.startswith("alt-text: "):
+                    alt_text = alt_text[10:].strip()
                 
-                # Ensure the alt-text is descriptive (at least one sentence)
-                # If it's too short, try to enhance it
-                if len(alt_text) < 20 or not any(c in alt_text for c in '.!?'):
-                    # The generated text is very short or lacks sentence structure
-                    # BLIP typically generates short captions, so this is expected
-                    # We'll use what we got, but log a note
-                    if len(alt_text) < 15:
-                        print(f"   ⚠️  Generated alt-text is quite short: {alt_text}")
-                        print(f"   💡 Consider reviewing and enhancing this description manually if needed")
+                # BLIP-2 should generate comprehensive descriptions (2-3 sentences)
+                # Verify it meets our requirements
+                sentence_count = len([c for c in alt_text if c in '.!?'])
+                if sentence_count < 1:
+                    print(f"   ⚠️  Generated alt-text may not have sentence structure: {alt_text}")
+                elif sentence_count < 2:
+                    print(f"   ⚠️  Generated alt-text is shorter than requested (1 sentence): {alt_text}")
+                    print(f"   💡 Consider reviewing and enhancing this description manually if needed")
                 
-                print(f"   ✅ Generated alt-text: {alt_text}")
+                print(f"   ✅ Generated alt-text ({sentence_count} sentence(s)): {alt_text}")
                 return alt_text
             elif status == "failed":
                 error = prediction.get("error", "Unknown error")
