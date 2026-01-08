@@ -32,14 +32,14 @@ from generate_alt_text import generate_alt_text, update_post_file
 
 def is_placeholder_alt_text(alt_text):
     """
-    Check if alt-text is a placeholder or less than 2-3 sentences that should be regenerated.
-    All images should have at least 2-3 sentences describing the image comprehensively.
+    Check if alt-text is a placeholder or less than 50 characters that should be regenerated.
+    All images should have at least 50 characters describing the image comprehensively.
     
     Args:
         alt_text: The alt-text string to check
         
     Returns:
-        bool: True if the alt-text appears to be a placeholder or is less than 2 sentences
+        bool: True if the alt-text appears to be a placeholder or is less than 50 characters
     """
     if not alt_text or alt_text.strip() == '':
         return True
@@ -52,16 +52,8 @@ def is_placeholder_alt_text(alt_text):
     if alt_lower in placeholder_keywords:
         return True
     
-    # Count sentences (ending with . ! ?)
-    sentence_endings = ['.', '!', '?']
-    sentence_count = sum(1 for char in alt_text if char in sentence_endings)
-    
-    # If it's very short (less than 20 characters), regenerate
-    if len(alt_text) < 20:
-        return True
-    
-    # If it has less than 2 sentences, regenerate (we want 2-3 sentences)
-    if sentence_count < 2:
+    # If it's less than 50 characters, regenerate (we want comprehensive 2-3 sentence descriptions)
+    if len(alt_text) < 50:
         return True
     
     # Check for patterns like "Bear #2", "Image 1", "Photo 3", etc.
