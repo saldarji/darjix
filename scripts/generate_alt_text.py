@@ -121,11 +121,12 @@ def generate_alt_text(image_path):
                 
                 # Create prediction with a prompt asking for comprehensive alt-text
                 # BLIP-2 can answer questions, so we'll ask it to create detailed alt-text
+                # Using a more direct and explicit prompt to encourage longer descriptions
                 prediction_data = {
                     "version": latest_version,
                     "input": {
                         "image": uploaded_file_url,
-                        "question": "Create an alt-text for this image. Be comprehensive and respond with 2-3 sentences describing what is in the image."
+                        "question": "Describe this image in detail. Write at least 2-3 complete sentences (minimum 50 words) explaining what you see, including details about the subject, setting, colors, and any notable features. Be specific and descriptive."
                     }
                 }
                 
@@ -175,16 +176,20 @@ def generate_alt_text(image_path):
                 elif alt_text.startswith("alt-text: "):
                     alt_text = alt_text[10:].strip()
                 
-                # BLIP-2 should generate comprehensive descriptions (2-3 sentences)
+                # BLIP-2 should generate comprehensive descriptions (2-3 sentences, 50+ characters)
                 # Verify it meets our requirements
                 sentence_count = len([c for c in alt_text if c in '.!?'])
-                if sentence_count < 1:
-                    print(f"   ⚠️  Generated alt-text may not have sentence structure: {alt_text}")
+                char_count = len(alt_text)
+                
+                if char_count < 50:
+                    print(f"   ⚠️  WARNING: Generated alt-text is only {char_count} characters (need 50+): {alt_text}")
+                    print(f"   ⚠️  This will be regenerated on the next run. BLIP-2 may not be following the prompt.")
+                    print(f"   💡 The model may have limitations generating longer descriptions.")
                 elif sentence_count < 2:
-                    print(f"   ⚠️  Generated alt-text is shorter than requested (1 sentence): {alt_text}")
+                    print(f"   ⚠️  Generated alt-text has only {sentence_count} sentence(s): {alt_text}")
                     print(f"   💡 Consider reviewing and enhancing this description manually if needed")
                 
-                print(f"   ✅ Generated alt-text ({sentence_count} sentence(s)): {alt_text}")
+                print(f"   ✅ Generated alt-text ({char_count} chars, {sentence_count} sentence(s)): {alt_text}")
                 return alt_text
             elif status == "failed":
                 error = prediction.get("error", "Unknown error")
