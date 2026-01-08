@@ -120,13 +120,13 @@ def generate_alt_text(image_path):
                 print(f"   ✅ Found model version: {latest_version}")
                 
                 # Create prediction with a prompt asking for comprehensive alt-text
-                # BLIP-2 can answer questions, so we'll ask it to create detailed alt-text
-                # Using a more direct and explicit prompt to encourage longer descriptions
+                # BLIP-2 can answer questions, so we'll use a multi-part question approach
+                # Research shows asking multiple questions gets more detailed responses
                 prediction_data = {
                     "version": latest_version,
                     "input": {
                         "image": uploaded_file_url,
-                        "question": "Describe this image in detail. Write at least 2-3 complete sentences (minimum 50 words) explaining what you see, including details about the subject, setting, colors, and any notable features. Be specific and descriptive."
+                        "question": "What is the main subject of this image? What is the setting or background? What colors and notable details do you see? Describe everything in 2-3 complete sentences with at least 50 words total."
                     }
                 }
                 
