@@ -32,14 +32,14 @@ from generate_alt_text import generate_alt_text, update_post_file
 
 def is_placeholder_alt_text(alt_text):
     """
-    Check if alt-text is a placeholder or less than one sentence that should be regenerated.
-    All images should have at least a couple of sentences describing the image.
+    Check if alt-text is a placeholder or less than 2-3 sentences that should be regenerated.
+    All images should have at least 2-3 sentences describing the image comprehensively.
     
     Args:
         alt_text: The alt-text string to check
         
     Returns:
-        bool: True if the alt-text appears to be a placeholder or is less than one sentence
+        bool: True if the alt-text appears to be a placeholder or is less than 2 sentences
     """
     if not alt_text or alt_text.strip() == '':
         return True
@@ -52,25 +52,17 @@ def is_placeholder_alt_text(alt_text):
     if alt_lower in placeholder_keywords:
         return True
     
-    # Check if it's less than one sentence (no sentence-ending punctuation)
-    # A sentence should end with . ! ? or be part of a longer description
+    # Count sentences (ending with . ! ?)
     sentence_endings = ['.', '!', '?']
-    has_sentence_ending = any(alt_text.endswith(ending) for ending in sentence_endings) or any(ending in alt_text for ending in sentence_endings)
+    sentence_count = sum(1 for char in alt_text if char in sentence_endings)
     
-    # If it's very short (less than 20 characters) or has no sentence structure, regenerate
+    # If it's very short (less than 20 characters), regenerate
     if len(alt_text) < 20:
         return True
     
-    # If it's less than one sentence (no period, exclamation, or question mark), regenerate
-    # But allow if it's a longer descriptive phrase (more than 50 chars without punctuation might be okay)
-    if not has_sentence_ending:
-        # If it's short and has no sentence ending, it's likely incomplete
-        if len(alt_text) < 50:
-            return True
-        # Even if longer, if it has no sentence structure, it might need regeneration
-        # But be lenient for longer descriptions that might be valid without punctuation
-        if len(alt_text) < 80:
-            return True
+    # If it has less than 2 sentences, regenerate (we want 2-3 sentences)
+    if sentence_count < 2:
+        return True
     
     # Check for patterns like "Bear #2", "Image 1", "Photo 3", etc.
     if re.match(r'^[a-z]+\s*#?\d+$', alt_lower):
@@ -79,7 +71,6 @@ def is_placeholder_alt_text(alt_text):
     # Check for very short alt-text (2 words or less) - these are likely placeholders
     words = alt_text.split()
     if len(words) <= 2:
-        # Allow if it's a meaningful compound description, but most 1-2 word descriptions are placeholders
         return True
     
     return False
