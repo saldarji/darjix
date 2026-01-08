@@ -1,13 +1,15 @@
 name: Auto-generate Alt Text
 
+# DISABLED: BLIP-2 keeps generating short captions, causing infinite loop
+# Re-enable when we have a better model or two-step approach
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '_posts/**'
-      - 'assets/images/image posts/**'
-  workflow_dispatch:  # Allow manual triggering
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - '_posts/**'
+  #     - 'assets/images/image posts/**'
+  workflow_dispatch:  # Allow manual triggering only
 
 # Permissions needed to commit changes back
 permissions:
