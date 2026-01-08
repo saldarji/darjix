@@ -48,7 +48,27 @@ title: Admin - DARJIX
 
 <section id="admin-content" class="py-16 bg-white hidden">
   <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-    <h1 class="text-3xl font-bold text-black mb-8">Create New Post</h1>
+    <h1 class="text-3xl font-bold text-black mb-8">Admin Panel</h1>
+    
+    <!-- Navigation Tabs -->
+    <div class="border-b-2 border-black mb-8">
+      <div class="flex gap-4">
+        <button 
+          id="tab-create-post" 
+          class="tab-btn px-4 py-2 border-b-2 border-black font-medium text-black transition"
+          data-tab="create-post"
+        >
+          Create Post
+        </button>
+        <button 
+          id="tab-featured-content" 
+          class="tab-btn px-4 py-2 border-b-2 border-transparent font-medium text-gray-600 hover:text-black transition"
+          data-tab="featured-content"
+        >
+          Featured Content
+        </button>
+      </div>
+    </div>
     
     <!-- Token Management Section -->
     <div class="border-2 border-black p-6 mb-8">
@@ -91,6 +111,8 @@ title: Admin - DARJIX
       </div>
     </div>
 
+    <!-- Create Post Tab Content -->
+    <div id="tab-content-create-post" class="tab-content">
     <!-- Post Creation Form -->
     <form id="post-form" class="space-y-6">
       <!-- Post Type -->
@@ -252,6 +274,41 @@ title: Admin - DARJIX
         <div id="status-message" class="mt-4 text-sm"></div>
       </div>
     </form>
+    </div>
+
+    <!-- Featured Content Tab Content -->
+    <div id="tab-content-featured-content" class="tab-content hidden">
+      <div class="space-y-6">
+        <div class="border-2 border-black p-6">
+          <div class="text-xs font-bold text-black uppercase tracking-wider mb-4">
+            What I'm Consuming
+          </div>
+          <p class="text-sm text-gray-600 mb-6">
+            Manage the featured content links displayed on the homepage. Each item should be a markdown link in the format: <code class="bg-gray-100 px-1">[Title](URL) [Source]</code>
+          </p>
+          
+          <div id="featured-content-list" class="space-y-3 mb-6">
+            <!-- Items will be loaded here -->
+            <div class="text-sm text-gray-600">Loading featured content...</div>
+          </div>
+          
+          <button 
+            id="add-featured-item-btn"
+            class="px-4 py-2 border-2 border-black text-black text-sm font-medium hover:bg-gray-100 transition mb-4"
+          >
+            + Add New Item
+          </button>
+          
+          <button 
+            id="save-featured-content-btn"
+            class="px-6 py-3 bg-black text-white font-medium hover:bg-gray-800 transition"
+          >
+            Save Changes
+          </button>
+          <div id="featured-content-status" class="mt-4 text-sm"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

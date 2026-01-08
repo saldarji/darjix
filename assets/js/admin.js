@@ -23,6 +23,8 @@ window.initializeAdminIfReady = function() {
       initializeTokenManagement();
       initializeFormHandlers();
       initializeMarkdownToolbar();
+      initializeTabs();
+      initializeFeaturedContent();
       loadSavedToken();
       setDefaultDate();
       adminInitialized = true;
@@ -473,6 +475,306 @@ function showStatus(element, message, type) {
       element.className = 'mt-4 text-sm';
     }, 5000);
   }
+}
+
+// Tab Management
+function initializeTabs() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.dataset.tab;
+      
+      // Update button states
+      tabButtons.forEach(b => {
+        b.classList.remove('border-black', 'text-black');
+        b.classList.add('border-transparent', 'text-gray-600');
+      });
+      btn.classList.remove('border-transparent', 'text-gray-600');
+      btn.classList.add('border-black', 'text-black');
+      
+      // Update content visibility
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(`tab-content-${targetTab}`).classList.remove('hidden');
+    });
+  });
+}
+
+// Featured Content Management
+let featuredContentItems = [];
+
+function initializeFeaturedContent() {
+  const addBtn = document.getElementById('add-featured-item-btn');
+  const saveBtn = document.getElementById('save-featured-content-btn');
+  
+  if (addBtn) {
+    addBtn.addEventListener('click', addFeaturedItem);
+  }
+  
+  if (saveBtn) {
+    saveBtn.addEventListener('click', saveFeaturedContent);
+  }
+  
+  // Load existing content
+  loadFeaturedContent();
+}
+
+async function loadFeaturedContent() {
+  try {
+    const token = getGitHubToken();
+    const response = await fetch(
+      `${GITHUB_API_BASE}/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/_includes/featured-content.md`,
+      {
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error(`Failed to load featured content: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    const content = atob(data.content);
+    parseFeaturedContent(content);
+    renderFeaturedContent();
+  } catch (error) {
+    const listDiv = document.getElementById('featured-content-list');
+    listDiv.innerHTML = `<div class="text-sm text-red-600">Error loading featured content: ${error.message}</div>`;
+  }
+}
+
+function parseFeaturedContent(content) {
+  featuredContentItems = [];
+  const lines = content.split('\n').filter(line => line.trim());
+  
+  for (const line of lines) {
+    // Parse markdown link format: - [Title](URL) [Source]
+    const match = line.match(/^-\s+\[([^\]]+)\]\(([^)]+)\)\s*(?:\[([^\]]+)\])?/);
+    if (match) {
+      featuredContentItems.push({
+        title: match[1],
+        url: match[2],
+        source: match[3] || ''
+      });
+    }
+  }
+}
+
+function renderFeaturedContent() {
+  const listDiv = document.getElementById('featured-content-list');
+  
+  if (featuredContentItems.length === 0) {
+    listDiv.innerHTML = '<div class="text-sm text-gray-600">No items yet. Click "Add New Item" to get started.</div>';
+    return;
+  }
+  
+  listDiv.innerHTML = featuredContentItems.map((item, index) => `
+    <div class="border-2 border-black p-4" data-index="${index}">
+      <div class="flex items-start justify-between mb-2">
+        <div class="flex-1 space-y-2">
+          <div>
+            <label class="block text-xs font-medium text-black mb-1">Title</label>
+            <input 
+              type="text" 
+              class="featured-title w-full px-3 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+              value="${escapeHtml(item.title)}"
+              data-index="${index}"
+            >
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-black mb-1">URL</label>
+            <input 
+              type="url" 
+              class="featured-url w-full px-3 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+              value="${escapeHtml(item.url)}"
+              data-index="${index}"
+            >
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-black mb-1">Source (optional)</label>
+            <input 
+              type="text" 
+              class="featured-source w-full px-3 py-2 border border-gray-300 focus:border-black focus:outline-none text-sm"
+              value="${escapeHtml(item.source)}"
+              data-index="${index}"
+            >
+          </div>
+        </div>
+        <div class="ml-4 flex flex-col gap-2">
+          <button 
+            class="move-up-btn px-3 py-1 border border-gray-300 hover:bg-gray-100 text-sm"
+            data-index="${index}"
+            ${index === 0 ? 'disabled' : ''}
+            title="Move up"
+          >
+            ↑
+          </button>
+          <button 
+            class="move-down-btn px-3 py-1 border border-gray-300 hover:bg-gray-100 text-sm"
+            data-index="${index}"
+            ${index === featuredContentItems.length - 1 ? 'disabled' : ''}
+            title="Move down"
+          >
+            ↓
+          </button>
+          <button 
+            class="delete-item-btn px-3 py-1 border-2 border-red-600 text-red-600 hover:bg-red-50 text-sm"
+            data-index="${index}"
+            title="Delete"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  // Add event listeners
+  document.querySelectorAll('.move-up-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      if (index > 0) {
+        [featuredContentItems[index], featuredContentItems[index - 1]] = 
+          [featuredContentItems[index - 1], featuredContentItems[index]];
+        renderFeaturedContent();
+      }
+    });
+  });
+  
+  document.querySelectorAll('.move-down-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      if (index < featuredContentItems.length - 1) {
+        [featuredContentItems[index], featuredContentItems[index + 1]] = 
+          [featuredContentItems[index + 1], featuredContentItems[index]];
+        renderFeaturedContent();
+      }
+    });
+  });
+  
+  document.querySelectorAll('.delete-item-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      if (confirm('Are you sure you want to delete this item?')) {
+        featuredContentItems.splice(index, 1);
+        renderFeaturedContent();
+      }
+    });
+  });
+  
+  // Update items when inputs change
+  document.querySelectorAll('.featured-title, .featured-url, .featured-source').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const field = e.target.className.includes('title') ? 'title' : 
+                    e.target.className.includes('url') ? 'url' : 'source';
+      featuredContentItems[index][field] = e.target.value;
+    });
+  });
+}
+
+function addFeaturedItem() {
+  featuredContentItems.push({
+    title: '',
+    url: '',
+    source: ''
+  });
+  renderFeaturedContent();
+  
+  // Focus on the title input of the new item
+  setTimeout(() => {
+    const newInput = document.querySelector(`.featured-title[data-index="${featuredContentItems.length - 1}"]`);
+    if (newInput) newInput.focus();
+  }, 100);
+}
+
+async function saveFeaturedContent() {
+  const saveBtn = document.getElementById('save-featured-content-btn');
+  const statusDiv = document.getElementById('featured-content-status');
+  
+  // Validate items
+  for (let i = 0; i < featuredContentItems.length; i++) {
+    const item = featuredContentItems[i];
+    if (!item.title || !item.url) {
+      showStatus(statusDiv, `Item ${i + 1} is missing title or URL`, 'error');
+      return;
+    }
+  }
+  
+  try {
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+    
+    // Generate markdown content
+    const markdown = featuredContentItems.map(item => {
+      const source = item.source ? ` [${item.source}]` : '';
+      return `- [${item.title}](${item.url})${source}`;
+    }).join('\n') + '\n';
+    
+    // Get current file SHA
+    const token = getGitHubToken();
+    let sha = null;
+    try {
+      const existingFile = await fetch(
+        `${GITHUB_API_BASE}/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/_includes/featured-content.md`,
+        {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        }
+      );
+      if (existingFile.ok) {
+        const data = await existingFile.json();
+        sha = data.sha;
+      }
+    } catch (e) {
+      // File doesn't exist, that's fine
+    }
+    
+    // Save file
+    const encodedContent = btoa(unescape(encodeURIComponent(markdown)));
+    const response = await fetch(
+      `${GITHUB_API_BASE}/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/_includes/featured-content.md`,
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update featured content',
+          content: encodedContent,
+          ...(sha && { sha: sha })
+        })
+      }
+    );
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || `Failed to save: ${response.statusText}`);
+    }
+    
+    showStatus(statusDiv, 'Featured content saved successfully! Changes will appear on the site after GitHub Pages rebuilds.', 'success');
+  } catch (error) {
+    showStatus(statusDiv, `Error: ${error.message}`, 'error');
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save Changes';
+  }
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 // Markdown Toolbar Functions
