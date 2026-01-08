@@ -540,7 +540,15 @@ async function loadFeaturedContent() {
     }
     
     const data = await response.json();
-    const content = atob(data.content);
+    // Decode base64 content properly handling UTF-8 encoding
+    // GitHub API returns base64-encoded content, decode it with proper UTF-8 handling
+    const base64Content = data.content.replace(/\s/g, ''); // Remove any whitespace
+    const binaryString = atob(base64Content);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const content = new TextDecoder('utf-8').decode(bytes);
     parseFeaturedContent(content);
     renderFeaturedContent();
   } catch (error) {
@@ -680,16 +688,17 @@ function renderFeaturedContent() {
 }
 
 function addFeaturedItem() {
-  featuredContentItems.push({
+  // Add new item at the top of the list
+  featuredContentItems.unshift({
     title: '',
     url: '',
     source: ''
   });
   renderFeaturedContent();
   
-  // Focus on the title input of the new item
+  // Focus on the title input of the new item (now at index 0)
   setTimeout(() => {
-    const newInput = document.querySelector(`.featured-title[data-index="${featuredContentItems.length - 1}"]`);
+    const newInput = document.querySelector(`.featured-title[data-index="0"]`);
     if (newInput) newInput.focus();
   }, 100);
 }
