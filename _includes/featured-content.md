@@ -1,6 +1,6 @@
+- [Higher Education Trends in 2026](https://tytonpartners.com/higher-education-trends-in-2026/) [Tyton Partners]
 - [An Annual Overview of the Condition of School Finance in the US](https://edlawcenter.org/research/making-the-grade-2025/) [Education Law Center]
 - [Plato Censored as Texas A&M Carries Out Course Review](https://www.insidehighered.com/news/faculty-issues/academic-freedom/2026/01/07/plato-censored-texas-am-carries-out-course-review) [Inside Higher Ed]
 - [One of Higher Ed's Emerging Growth Areas Is Rural America](https://apple.news/AjEtd7GoYTaW24kylKgLsWA) [The Chronicle of Higher Education]
 - [Why Albright College Is Slashing Econ and Physics Majors](https://apple.news/AY6niU7DaQCKNsNjqdCfCOg) [Bloomberg BusinessWeek]
 - [Professors are turning to oral exams to stop AI use](https://apple.news/AG0Y6W7fpTvmQXDIGOTyvnQ) [Washington Post]
-- [Girls and boys solve math problems differently with similar short-term results but different long-term outcomes](https://theconversation.com/girls-and-boys-solve-math-problems-differently-with-similar-short-term-results-but-different-long-term-outcomes-269059) [The Conversation]
