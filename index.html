@@ -204,6 +204,7 @@ pagination:
           <h3 class="text-lg font-bold text-black mb-4">Recent Posts</h3>
           <ul class="space-y-3">
             {% for post in site.posts limit:5 %}
+            {% if post.title and post.title != "" %}
             <li>
               <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
                 {{ post.title }}
@@ -212,6 +213,7 @@ pagination:
                 {{ post.date | date: "%B %d, %Y" }}
               </div>
             </li>
+            {% endif %}
             {% endfor %}
           </ul>
         </div>
