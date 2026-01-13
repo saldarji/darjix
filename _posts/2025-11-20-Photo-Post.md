@@ -1,7 +1,7 @@
 ---
 layout: photo
 title: "AIxED Conference in Pictures"
-date: 2025-11-20 00:00:00 -0500
+date: 2025-11-20
 author: "Sal Darji"
 images:
   - url: "/assets/images/image posts/IMG_4346.jpeg"
