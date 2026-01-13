@@ -28,6 +28,7 @@ pagination:
           
           <!-- Blog Posts -->
           {% for post in paginator.posts %}
+          {% if post.title and post.title != "" %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
@@ -115,6 +116,7 @@ pagination:
               {{ post.content }}
             </div>
           </article>
+          {% endif %}
           {% endfor %}
           
           {% if paginator.posts.size == 0 %}
