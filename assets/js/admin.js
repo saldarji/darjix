@@ -336,6 +336,7 @@ title: "${title.replace(/"/g, '\\"')}"
 date: ${date}
 author: "Sal Darji"
 image: "/${imagePath}"
+alt_text: "Image description will be generated automatically"
 ${caption ? `caption: "${caption.replace(/"/g, '\\"')}"` : ''}
 ---
 `;
@@ -367,6 +368,7 @@ ${caption ? `caption: "${caption.replace(/"/g, '\\"')}"` : ''}
     // Format images array for YAML
     const imagesYaml = images.map(img => {
       let yaml = `  - url: "${img.url}"`;
+      yaml += `\n    alt_text: "Image description will be generated automatically"`;
       if (img.caption) {
         yaml += `\n    caption: "${img.caption}"`;
       }
