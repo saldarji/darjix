@@ -17,3 +17,4 @@ images:
     alt_text: "A captivating B&W image features a woman speaker, microphone in hand, center stage against dark curtains. She wears a casual tee, jeans, and boots, with a badge. The audience, including a man focused on his laptop in the foreground, attentively listens to her presentation."
     caption: "Gabriela Torres presenting Sundai club @ AIxED Conference"
 ---
+
