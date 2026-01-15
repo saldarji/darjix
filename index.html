@@ -28,14 +28,15 @@ pagination:
           
           <!-- Blog Posts -->
           {% for post in paginator.posts %}
-          {% if post.title and post.title != "" %}
+          {% assign post_title = post.title | strip %}
+          {% if post_title != nil and post_title != "" %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
             </time>
             <h2 class="text-2xl md:text-3xl font-bold text-black mt-2 mb-4">
               <a href="{{ post.url | relative_url }}" class="hover:underline">
-                {{ post.title }}
+                {{ post_title }}
               </a>
             </h2>
             {% if post.layout == 'photo' %}
@@ -204,10 +205,11 @@ pagination:
           <h3 class="text-lg font-bold text-black mb-4">Recent Posts</h3>
           <ul class="space-y-3">
             {% for post in site.posts limit:5 %}
-            {% if post.title and post.title != "" %}
+            {% assign post_title = post.title | strip %}
+            {% if post_title != nil and post_title != "" %}
             <li>
               <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
-                {{ post.title }}
+                {{ post_title }}
               </a>
               <div class="text-xs text-gray-500 mt-1">
                 {{ post.date | date: "%B %d, %Y" }}
