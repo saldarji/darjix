@@ -29,11 +29,8 @@ pagination:
           <!-- Blog Posts -->
           {% for post in paginator.posts %}
           {% assign post_title = post.title | default: "" | strip %}
-          {% assign has_valid_title = false %}
-          {% if post_title and post_title != "" and post_title != nil %}
-            {% assign has_valid_title = true %}
-          {% endif %}
-          {% if has_valid_title %}
+          {% assign title_length = post_title | size %}
+          {% if title_length > 0 %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
@@ -210,11 +207,8 @@ pagination:
           <ul class="space-y-3">
             {% for post in site.posts limit:5 %}
             {% assign post_title = post.title | default: "" | strip %}
-            {% assign has_valid_title = false %}
-            {% if post_title and post_title != "" and post_title != nil %}
-              {% assign has_valid_title = true %}
-            {% endif %}
-            {% if has_valid_title %}
+            {% assign title_length = post_title | size %}
+            {% if title_length > 0 %}
             <li>
               <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
                 {{ post_title }}
