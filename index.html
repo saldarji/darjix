@@ -29,7 +29,11 @@ pagination:
           <!-- Blog Posts -->
           {% for post in paginator.posts %}
           {% assign post_title = post.title | default: "" | strip %}
-          {% unless post_title == "" or post_title == nil %}
+          {% assign has_valid_title = false %}
+          {% if post_title and post_title != "" and post_title != nil %}
+            {% assign has_valid_title = true %}
+          {% endif %}
+          {% if has_valid_title %}
           <article class="{% unless forloop.last %}border-b border-gray-200 {% endunless %}pb-12">
             <time class="text-sm text-gray-600" datetime="{{ post.date | date_to_xmlschema }}">
               {{ post.date | date: "%B %d, %Y" }}
@@ -117,7 +121,7 @@ pagination:
               {{ post.content }}
             </div>
           </article>
-          {% endunless %}
+          {% endif %}
           {% endfor %}
           
           {% if paginator.posts.size == 0 %}
@@ -206,7 +210,11 @@ pagination:
           <ul class="space-y-3">
             {% for post in site.posts limit:5 %}
             {% assign post_title = post.title | default: "" | strip %}
-            {% unless post_title == "" or post_title == nil %}
+            {% assign has_valid_title = false %}
+            {% if post_title and post_title != "" and post_title != nil %}
+              {% assign has_valid_title = true %}
+            {% endif %}
+            {% if has_valid_title %}
             <li>
               <a href="{{ post.url | relative_url }}" class="text-gray-600 hover:text-black text-sm">
                 {{ post_title }}
@@ -215,7 +223,7 @@ pagination:
                 {{ post.date | date: "%B %d, %Y" }}
               </div>
             </li>
-            {% endunless %}
+            {% endif %}
             {% endfor %}
           </ul>
         </div>
@@ -228,11 +236,20 @@ pagination:
             {% for year in postsByYear %}
               {% assign postsByMonth = year.items | group_by_exp: "post", "post.date | date: '%B %Y'" %}
               {% for month in postsByMonth %}
+              {% assign valid_posts_count = 0 %}
+              {% for post in month.items %}
+                {% assign check_title = post.title | default: "" | strip %}
+                {% if check_title and check_title != "" and check_title != nil %}
+                  {% assign valid_posts_count = valid_posts_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if valid_posts_count > 0 %}
               <li>
                 <a href="#{{ month.name | slugify }}" class="text-gray-600 hover:text-black text-sm">
-                  {{ month.name }} ({{ month.items.size }})
+                  {{ month.name }} ({{ valid_posts_count }})
                 </a>
               </li>
+              {% endif %}
               {% endfor %}
             {% endfor %}
           </ul>
