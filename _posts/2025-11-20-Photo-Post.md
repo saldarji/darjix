@@ -5,16 +5,16 @@ date: 2025-11-20
 author: "Sal Darji"
 images:
   - url: "/assets/images/image posts/IMG_4346.jpeg"
-    alt_text: "A speaker, a middle-aged man in a dark suit, engages an unseen audience in this B&W shot. He holds a mic, gestures, and stands before a dark curtain and an 'AI in Education Summit' banner, creating a professional and engaging scene with audience heads in the foreground."
+    alt_text: "In a dynamic black-and-white photo, a middle-aged man in a suit speaks at the "AI in Education Summit." He holds a mic, gesturing expressively, commanding attention against dark curtains. The foreground shows blurred audience heads, creating a focused, professional, and informative atmosphere."
     caption: "Paul Tesluk speaking @ AIxED Conference"
   - url: "/assets/images/image posts/IMG_4355.jpeg"
-    alt_text: "A striking grayscale image captures two bald men at a panel discussion. The main speaker, on the right in glasses & suit, talks into a mic. His colleague, left, listens with a slight smile. Dark stage drapes frame them, while audience heads fill the foreground, conveying an attentive, professional..."
+    alt_text: "A striking B&W photo captures two bald men at a panel. The lively speaker on the right, in glasses, gestures with a mic, while his attentive colleague on the left listens with a warm smile. Dark, textured drapes frame the scene, with blurred audience heads hinting at an engaging discussion."
     caption: "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
   - url: "/assets/images/image posts/IMG_4358.jpeg"
-    alt_text: "A grayscale shot features a dynamic man with spiky grey hair in a dark suit, passionately speaking into a mic at a 'Signature Boston' podium. He's framed by a large 'AI in Education Summit' banner. The backs of an engaged audience are visible in the foreground, creating a lively, focused conference..."
+    alt_text: "A gritty, black and white photo captures a man with spiky, light hair in a sharp dark suit, energetically speaking into a microphone at a podium. A large "AI in Education Summit" banner looms behind him. Audience heads fill the foreground, reinforcing the professional, engaging conference mood."
     caption: "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
   - url: "/assets/images/image posts/IMG_4363.jpeg"
-    alt_text: "A black-and-white photo captures an engaging speaker on stage, mic in hand, against dark curtains. Dressed in a dark shirt, jeans, and boots, she addresses an unseen audience. In the foreground, a man with a laptop observes, part of the focused conference atmosphere, framed by metal railings."
+    alt_text: "A striking black and white photo shows a woman with long dark hair, wearing a tee, jeans, and boots, confidently holding a mic on a stage. Dark pleated curtains form the backdrop. A man in the foreground watches intently, suggesting an engaging conference or presentation. The mood is professional."
     caption: "Gabriela Torres presenting Sundai club @ AIxED Conference"
 ---
 
