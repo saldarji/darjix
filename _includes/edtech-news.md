@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: January 19, 2026*
+*Updated: January 26, 2026*
 
 - 2026-01-16: [Google brings its AI videomaker to Workspace users](https://www.theverge.com/news/863570/google-flow-ai-video-generator-workspace) - Google expands access to its AI video generator "Flow" beyond premium tiers, now offering the tool to Business, Enterprise, and Education Workspace users—democratizing AI-powered video creation for classrooms and workplaces.** [The Verge]
 - 2026-01-16: [ED Details Higher Ed Staff to Labor Department](https://www.insidehighered.com/news/quick-takes/2026/01/16/ed-details-higher-ed-staff-labor-department) - The U.S. Education Department shifts staff to the Labor Department to consolidate oversight of higher ed grant programs, signaling tighter workforce-aligned funding.** [Inside Higher Ed]
