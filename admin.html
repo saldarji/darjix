@@ -162,50 +162,7 @@ title: Admin - DARJIX
         >
       </div>
 
-      <!-- Content (for regular posts) -->
-      <div id="content-section">
-        <label for="post-content" class="block text-sm font-medium text-black mb-2">
-          Content (Markdown) <span class="text-gray-600">*</span>
-        </label>
-        <!-- Markdown Toolbar -->
-        <div class="border border-gray-300 border-b-0 bg-gray-50 p-2 flex flex-wrap gap-2">
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="bold" title="Bold">
-            <strong>B</strong>
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="italic" title="Italic">
-            <em>I</em>
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="link" title="Link">
-            🔗 Link
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="heading" title="Heading">
-            H
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ul" title="Bullet List">
-            • List
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ol" title="Numbered List">
-            1. List
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="code" title="Inline Code">
-            &lt;/&gt;
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="blockquote" title="Quote">
-            " Quote
-          </button>
-          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="hr" title="Horizontal Rule">
-            ───
-          </button>
-        </div>
-        <textarea 
-          id="post-content" 
-          rows="12"
-          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none font-mono text-sm"
-          placeholder="Write your post content in Markdown..."
-        ></textarea>
-      </div>
-
-      <!-- Photo Post Section -->
+      <!-- Photo / Combo: Image upload (shown for Photo Post and Combo Post) -->
       <div id="photo-section" class="hidden space-y-4">
         <div>
           <label class="block text-sm font-medium text-black mb-2">
@@ -264,6 +221,49 @@ title: Admin - DARJIX
           >
           <div id="gallery-preview" class="space-y-4"></div>
         </div>
+      </div>
+
+      <!-- Content (for regular posts and combo posts) -->
+      <div id="content-section">
+        <label for="post-content" class="block text-sm font-medium text-black mb-2">
+          Content (Markdown) <span class="text-gray-600">*</span>
+        </label>
+        <!-- Markdown Toolbar -->
+        <div class="border border-gray-300 border-b-0 bg-gray-50 p-2 flex flex-wrap gap-2">
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="bold" title="Bold">
+            <strong>B</strong>
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="italic" title="Italic">
+            <em>I</em>
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="link" title="Link">
+            🔗 Link
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="heading" title="Heading">
+            H
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ul" title="Bullet List">
+            • List
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="ol" title="Numbered List">
+            1. List
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="code" title="Inline Code">
+            &lt;/&gt;
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="blockquote" title="Quote">
+            " Quote
+          </button>
+          <button type="button" class="markdown-btn px-3 py-1 text-sm border border-gray-300 hover:bg-white hover:border-black transition" data-action="hr" title="Horizontal Rule">
+            ───
+          </button>
+        </div>
+        <textarea 
+          id="post-content" 
+          rows="12"
+          class="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none font-mono text-sm"
+          placeholder="Write your post content in Markdown..."
+        ></textarea>
       </div>
 
       <!-- Submit Button -->

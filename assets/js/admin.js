@@ -181,12 +181,18 @@ function initializeFormHandlers() {
   // Toggle between post, photo, and combo sections
   function updateSectionsForPostType() {
     const postType = document.querySelector('input[name="post-type"]:checked').value;
-    const isPhoto = postType === 'photo';
-    const isCombo = postType === 'combo';
+    const showContent = postType === 'post' || postType === 'combo';
+    const showPhoto = postType === 'photo' || postType === 'combo';
     const contentSection = document.getElementById('content-section');
     const photoSection = document.getElementById('photo-section');
-    contentSection.classList.toggle('hidden', isPhoto && !isCombo);
-    photoSection.classList.toggle('hidden', !isPhoto && !isCombo);
+    if (contentSection) {
+      if (showContent) contentSection.classList.remove('hidden');
+      else contentSection.classList.add('hidden');
+    }
+    if (photoSection) {
+      if (showPhoto) photoSection.classList.remove('hidden');
+      else photoSection.classList.add('hidden');
+    }
   }
   postTypeRadios.forEach(radio => {
     radio.addEventListener('change', updateSectionsForPostType);
