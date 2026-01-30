@@ -4,7 +4,7 @@ title: "Fuck Off Grok"
 date: 2026-01-30
 author: "Sal Darji"
 image: "/assets/images/image posts/screenshot-2026-01-30-at-10.47.05.png"
-alt_text: "Image description will be generated automatically"
+alt_text: "A dark mode app interface, titled "Models," displays a vertical list of AI model names like "GPT-5.2 Codex," each with a brain icon. A search bar is at the top. On the right, toggle switches control activation; the first few are green (on), most others are grey (off), offering a clean, organized..."
 caption: "Screenshot of Cursor Settings"
 ---
 
