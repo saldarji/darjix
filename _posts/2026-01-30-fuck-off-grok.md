@@ -14,13 +14,10 @@ Thankfully, we have better options. I was relieved to see Cursor move Grok "belo
 
 Awareness is the first step, but action is what shifts the industry. If you’re tired of seeing AI progress tied to environmental degradation and toxic rhetoric, here is how you can help clean up the bar:
 
-Check Your Portfolio: Many of us have 401(k)s or IRAs managed by Fidelity. As one of xAI's primary backers, they are using your capital to fund these projects. Reach out to your representative or use shareholder platforms to voice your opposition to their investment in xAI.
-
-Audit Your Tech Stack: Follow the lead of tools like Cursor. If a platform you use prioritizes Grok or xAI models, let them know why you’re switching to a competitor. In the age of LLMs, convenience is no excuse for complicity.
-
-Support the Frontlines: The "Colossus" data center in Memphis is a real-world environmental crisis for local residents. Consider supporting organizations like the Southern Environmental Law Center (SELC) or Young Gifted & Green, who are fighting the unpermitted gas turbines on the ground.
-
-Demand Transparency: If you’re a developer, stick to models that prioritize safety testing and ethical data sourcing. The more we normalize "undressed" images and "MechaHitler" rhetoric as "edgy," the faster we lose the public’s trust in AI altogether.
+- **Check Your Portfolio**: Many of us have 401(k)s or IRAs managed by Fidelity. As one of xAI's primary backers, they are using your capital to fund these projects. Reach out to your representative or use shareholder platforms to voice your opposition to their investment in xAI.
+- **Audit Your Tech Stack**: Follow the lead of tools like Cursor. If a platform you use prioritizes Grok or xAI models, let them know why you’re switching to a competitor. In the age of LLMs, convenience is no excuse for complicity.
+- **Support the Frontlines**: The "Colossus" data center in Memphis is a real-world environmental crisis for local residents. Consider supporting organizations like the Southern Environmental Law Center (SELC) or Young Gifted & Green, who are fighting the unpermitted gas turbines on the ground.
+- **Demand Transparency**: If you’re a developer, stick to models that prioritize safety testing and ethical data sourcing. The more we normalize "undressed" images and "MechaHitler" rhetoric as "edgy," the faster we lose the public’s trust in AI altogether.
 
 We have options, and we have the power to make Grok the outlier, not the industry standard. Let’s keep the bar clean.
 
