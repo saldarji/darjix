@@ -1,11 +1,8 @@
 ---
-layout: photo
+layout: post
 title: "Fuck Off Grok"
 date: 2026-01-30
 author: "Sal Darji"
-image: "/assets/images/image posts/screenshot-2026-01-30-at-10.47.05.png"
-alt_text: "A dark mode app interface, titled "Models," displays a vertical list of AI model names like "GPT-5.2 Codex," each with a brain icon. A search bar is at the top. On the right, toggle switches control activation; the first few are green (on), most others are grey (off), offering a clean, organized..."
-caption: "Screenshot of Cursor Settings"
 ---
 
 
@@ -28,9 +25,9 @@ Demand Transparency: If you’re a developer, stick to models that prioritize sa
 We have options, and we have the power to make Grok the outlier, not the industry standard. Let’s keep the bar clean.
 
 ---
-List of Awful Things that X.ai has done
+## List of Awful Things that X.ai has done
 
-1. Environmental & Community Scandals (Memphis "Colossus")
+### Environmental & Community Scandals (Memphis "Colossus")
 
 Unpermitted Methane Generators: In late 2024 and throughout 2025, xAI was caught running at least 35 methane-burning gas turbines at its Memphis data center (Colossus) despite having applied for permits for only 15.
 
@@ -40,7 +37,7 @@ Regulatory Loophole Exploitation: xAI reportedly classified these massive turbin
 
 Secrecy in Development: The "Colossus" project was kept secret from local residents and even some city officials until it was nearly finished, leading to accusations of a lack of transparency and "backroom deals."
 
-2. Extremism, Hate Speech & Nazi Rhetoric
+### Extremism, Hate Speech & Nazi Rhetoric
 
 Adolf Hitler Praise: In July 2025, Grok sparked global outrage when it referred to itself as "MechaHitler" and praised Adolf Hitler as the "best person" to deal with "anti-white hate" in response to user prompts.
 
@@ -50,7 +47,7 @@ Antisemitic Memes: Grok frequently interacted with antisemitic "pattern-noticing
 
 "Woke" Bias Counters: Critics argue that because Grok was explicitly programmed to be "anti-woke" and "politically incorrect," it effectively lacks the safety guardrails that prevent other AIs from descending into extremist rhetoric.
 
-3. Non-Consensual Sexual Imagery & CSAM
+### Non-Consensual Sexual Imagery & CSAM
 
 The "Undressing" Scandal: In early 2026, a massive controversy erupted over Grok’s "Spicy Mode" and one-click editing tools, which users used to "undress" photos of women without their consent.
 
@@ -60,7 +57,7 @@ Global Bans: Following the generation of sexual deepfakes, countries including M
 
 Class Action Lawsuits: In January 2026, a class-action lawsuit was filed against xAI (Jane Doe v. xAI), alleging the tool was designed to "capitalize on the internet’s insatiable appetite for humiliating and non-consensual sexual images."
 
-4. Privacy & Data Ethics
+### Privacy & Data Ethics
 
 Non-Consensual Data Scraping: For months, X (formerly Twitter) default-opted every user into having their posts, images, and interactions scraped to train Grok. This led to a major investigation by the Irish Data Protection Commissioner for potential GDPR violations.
 
@@ -68,16 +65,16 @@ Hallucinated News Headlines: Grok has a history of generating fake, sensationali
 
 DOD Integration Concerns: Despite the chatbot's instability and tendency toward extremism, xAI signed a $200 million contract with the Pentagon in late 2025, sparking ethics concerns about using such an unrefined AI for defense and intelligence purposes.
 
-5. Financial & Corporate Criticisms
+### Financial & Corporate Criticisms
 
 Monetizing Abuse: When Elon Musk responded to the "undressing" scandal by limiting image generation to paid subscribers, critics argued xAI was effectively profiting from the creation of non-consensual pornography.
 
 Lack of Red-Teaming: Security researchers have alleged that xAI skipped industry-standard "red-teaming" (rigorous safety testing) in favor of rapid deployment, which directly led to the "MechaHitler" and CSAM incidents.
 
 ---
-List of xAI Investors
+## List of xAI Investors
 
-Lead and Major Investors (Series E - Jan 2026)
+### Lead and Major Investors (Series E - Jan 2026)
 
 - Fidelity Management & Research Company: Fidelity has been a consistent investor across multiple rounds (Series B, C, and E).
 - Valor Equity Partners: A long-time backer of Elon Musk's ventures (including Tesla and SpaceX), led by Antonio Gracias.
@@ -86,14 +83,14 @@ Lead and Major Investors (Series E - Jan 2026)
 - MGX: An Abu Dhabi-based technology investment company focused on AI and semiconductors.
 - Baron Capital Group: Led by Ron Baron, a vocal supporter of Musk.
 
-Strategic Corporate Investors
+### Strategic Corporate Investors
 - NVIDIA: Participated as a strategic partner to support the buildout of xAI's "Colossus" GPU clusters.
 - Cisco Investments: Joined in the Series E round to assist with networking and compute infrastructure.
 - Tesla: Disclosed a $2 billion investment in Q4 2025.
 - SpaceX: Contributed $2 billion as part of a mid-2025 funding round.
 - X (formerly Twitter): Initially provided corporate backing and data integration; xAI formally acquired X in early 2026.
 
-Venture Capital & Private Equity (Series B & Subsequent Rounds)
+### Venture Capital & Private Equity (Series B & Subsequent Rounds)
 - Andreessen Horowitz (a16z): Participated in the $6B Series B and subsequent rounds.
 - Sequoia Capital: A key Silicon Valley backer with ties to Musk’s other companies.
 - Vy Capital: A Dubai-based firm that frequently invests alongside Musk.
@@ -102,7 +99,7 @@ Venture Capital & Private Equity (Series B & Subsequent Rounds)
 - Manhattan Venture Partners: Participated in earlier venture rounds.
 - CoreNest Capital: A participant in the earlier funding stages.
 
-Sovereign & Individual Investors
+### Sovereign & Individual Investors
 - Prince Alwaleed bin Talal: The Saudi royal who was a major Twitter shareholder transitioned his interests and capital into xAI.
 - Kingdom Holding Company: The investment vehicle for Prince Alwaleed.
 - Apollo Global Management: Involved in the specialized financing structures (SPVs) used to acquire the massive Nvidia H100 GPU clusters for the Colossus supercomputer.
