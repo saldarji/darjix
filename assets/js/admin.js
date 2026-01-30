@@ -178,14 +178,20 @@ function initializeFormHandlers() {
   const postTypeRadios = document.querySelectorAll('input[name="post-type"]');
   const imageModeRadios = document.querySelectorAll('input[name="image-mode"]');
 
-  // Toggle between post and photo sections
+  // Toggle between post, photo, and combo sections
+  function updateSectionsForPostType() {
+    const postType = document.querySelector('input[name="post-type"]:checked').value;
+    const isPhoto = postType === 'photo';
+    const isCombo = postType === 'combo';
+    const contentSection = document.getElementById('content-section');
+    const photoSection = document.getElementById('photo-section');
+    contentSection.classList.toggle('hidden', isPhoto && !isCombo);
+    photoSection.classList.toggle('hidden', !isPhoto && !isCombo);
+  }
   postTypeRadios.forEach(radio => {
-    radio.addEventListener('change', (e) => {
-      const isPhoto = e.target.value === 'photo';
-      document.getElementById('content-section').classList.toggle('hidden', isPhoto);
-      document.getElementById('photo-section').classList.toggle('hidden', !isPhoto);
-    });
+    radio.addEventListener('change', updateSectionsForPostType);
   });
+  updateSectionsForPostType();
 
   // Toggle between single and gallery image modes
   imageModeRadios.forEach(radio => {
@@ -253,6 +259,8 @@ async function handleFormSubmit(e) {
     
     if (postType === 'photo') {
       await createPhotoPost();
+    } else if (postType === 'combo') {
+      await createComboPost();
     } else {
       await createRegularPost();
     }
@@ -401,6 +409,105 @@ ${imagesYaml}
 
   // Create post file
   await createGitHubFile(`_posts/${filename}`, frontMatter, `Create photo post: ${title}`);
+}
+
+async function createComboPost() {
+  const title = document.getElementById('post-title').value.trim();
+  const date = document.getElementById('post-date').value;
+  const content = document.getElementById('post-content').value.trim();
+  const imageMode = document.querySelector('input[name="image-mode"]:checked').value;
+
+  if (!title || !date) {
+    throw new Error('Please fill in title and date');
+  }
+
+  // Generate filename
+  const slug = title.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  const filename = `${date}-${slug}.md`;
+
+  let frontMatter;
+  let imagesToUpload = [];
+
+  if (imageMode === 'single') {
+    const fileInput = document.getElementById('single-image');
+    const caption = document.getElementById('single-caption').value.trim();
+
+    if (!fileInput.files || !fileInput.files[0]) {
+      throw new Error('Please select an image');
+    }
+
+    const imageFile = fileInput.files[0];
+    const imagePath = `assets/images/image posts/${sanitizeFilename(imageFile.name)}`;
+    imagesToUpload.push({ file: imageFile, path: imagePath });
+
+    frontMatter = `---
+layout: photo
+title: "${title.replace(/"/g, '\\"')}"
+date: ${date}
+author: "Sal Darji"
+image: "/${imagePath}"
+alt_text: "Image description will be generated automatically"
+${caption ? `caption: "${caption.replace(/"/g, '\\"')}"` : ''}
+---
+`;
+  } else {
+    const fileInput = document.getElementById('gallery-images');
+    if (!fileInput.files || fileInput.files.length === 0) {
+      throw new Error('Please select at least one image');
+    }
+
+    const images = [];
+    const files = Array.from(fileInput.files);
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const captionInput = document.querySelector(`input.image-caption[data-image-index="${i}"]`);
+      const caption = captionInput ? captionInput.value.trim() : '';
+      const imagePath = `assets/images/image posts/${sanitizeFilename(file.name)}`;
+      imagesToUpload.push({ file: file, path: imagePath });
+      images.push({
+        url: `/${imagePath}`,
+        ...(caption && { caption: caption.replace(/"/g, '\\"') })
+      });
+    }
+
+    const imagesYaml = images.map(img => {
+      let yaml = `  - url: "${img.url}"`;
+      yaml += `\n    alt_text: "Image description will be generated automatically"`;
+      if (img.caption) {
+        yaml += `\n    caption: "${img.caption}"`;
+      }
+      return yaml;
+    }).join('\n');
+
+    frontMatter = `---
+layout: photo
+title: "${title.replace(/"/g, '\\"')}"
+date: ${date}
+author: "Sal Darji"
+images:
+${imagesYaml}
+---
+`;
+  }
+
+  // Upload images first
+  for (const { file, path } of imagesToUpload) {
+    const arrayBuffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    const base64 = btoa(binary);
+    await createGitHubFile(path, base64, `Upload image: ${file.name}`, true);
+  }
+
+  // Build full post: front matter + optional markdown content (photo layout renders content below images)
+  const postContent = content ? `${frontMatter}\n\n${content}\n` : frontMatter;
+  await createGitHubFile(`_posts/${filename}`, postContent, `Create combo post: ${title}`);
 }
 
 // GitHub API Functions
