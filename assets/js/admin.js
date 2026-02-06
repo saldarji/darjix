@@ -135,6 +135,9 @@ function initializeTokenManagement() {
     githubTokenInput.value = '';
     showStatus(statusDiv, 'Token saved successfully', 'success');
     updateTokenStatus();
+    
+    // Reload featured content if user is on that tab
+    loadFeaturedContent();
   });
 
   clearBtn.addEventListener('click', () => {
@@ -638,8 +641,16 @@ function initializeFeaturedContent() {
 }
 
 async function loadFeaturedContent() {
+  const listDiv = document.getElementById('featured-content-list');
+  
+  // Check if token exists first
+  const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+  if (!token) {
+    listDiv.innerHTML = `<div class="text-sm text-gray-600">Please save your GitHub token in the section above to load featured content.</div>`;
+    return;
+  }
+  
   try {
-    const token = getGitHubToken();
     const response = await fetch(
       `${GITHUB_API_BASE}/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/_includes/featured-content.md`,
       {
@@ -667,7 +678,6 @@ async function loadFeaturedContent() {
     parseFeaturedContent(content);
     renderFeaturedContent();
   } catch (error) {
-    const listDiv = document.getElementById('featured-content-list');
     listDiv.innerHTML = `<div class="text-sm text-red-600">Error loading featured content: ${error.message}</div>`;
   }
 }
