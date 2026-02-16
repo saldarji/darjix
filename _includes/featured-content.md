@@ -1,6 +1,6 @@
+- [Adoption, Applications, and Attitudes Toward AI Among Arts and Design Alumni](https://snaaparts.org/findings/snapshots/adoption-applications-and-attitudes-toward-ai-among-arts-and-design-alumni) [Strategic National Arts Alumni Project]
 - [Higher education needs o change in order to survive the AI economy](https://apple.news/AIMk4endpQaez1ld8cmQ2ww) [Fast Company]
 - [Stop Meeting Students Where They Are](https://apple.news/Awg1_Mh2jRzOqUz3kyFHbxg) [The Atlantic]
 - [Why California’s Oldest Private Art School Is Shutting Down](https://news.artnet.com/art-world/california-college-of-the-arts-closure-2737001) [artnet]
 - [Higher Education Trends in 2026](https://tytonpartners.com/higher-education-trends-in-2026/) [Tyton Partners]
 - [An Annual Overview of the Condition of School Finance in the US](https://edlawcenter.org/research/making-the-grade-2025/) [Education Law Center]
-- [Plato Censored as Texas A&M Carries Out Course Review](https://www.insidehighered.com/news/faculty-issues/academic-freedom/2026/01/07/plato-censored-texas-am-carries-out-course-review) [Inside Higher Ed]
