@@ -1,3 +1,5 @@
+- [How McGraw Hill built, piloted and scaled its first GenAI solution](https://www.mheducation.com/about-us/news-insights/blog/how-mcgraw-hill-built-and-scaled-its-first-genai-solution.html) [McGraw Hill]
+- [Agentic AI Can Complete Whole Courses for Students. Now What?](https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/02/26/agentic-ai-can-complete-whole-courses-now) [Inside Higher Ed]
 - [Adoption, Applications, and Attitudes Toward AI Among Arts and Design Alumni](https://snaaparts.org/findings/snapshots/adoption-applications-and-attitudes-toward-ai-among-arts-and-design-alumni) [Strategic National Arts Alumni Project]
 - [Higher education needs o change in order to survive the AI economy](https://apple.news/AIMk4endpQaez1ld8cmQ2ww) [Fast Company]
 - [Stop Meeting Students Where They Are](https://apple.news/Awg1_Mh2jRzOqUz3kyFHbxg) [The Atlantic]
