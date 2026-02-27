@@ -4,7 +4,7 @@ title: "PyData Boston February 2026 Recap"
 date: 2026-02-27
 author: "Sal Darji"
 image: "/assets/images/image posts/img_4663.jpeg"
-alt_text: "Image description will be generated automatically"
+alt_text: "A high-contrast grayscale image captures a tech workshop. A presenter in a hoodie points animatedly at a large screen displaying lines of code. Several attendees, visible from behind, sit at tables with laptops, engrossed. The modern, bright room exudes a focused, educational atmosphere."
 
 ---
 
