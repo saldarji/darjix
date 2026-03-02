@@ -1,8 +1,7 @@
 # EdTech News This Week
-*Updated: February 23, 2026*
+*Updated: March 02, 2026*
 
 - 2026-02-21: [The Hidden Cost Of Admin Overload: How Technology Can Save Tutoring](https://elearningindustry.com/the-hidden-cost-of-admin-overload-how-technology-can-save-tutoring) - Tutoring faces a burnout crisis as educators waste 6–10 hours weekly on admin tasks; automation could save the profession by freeing up teaching time. [Elearningindustry.com]
 - 2026-02-19: [Assessment Consistency At Scale: The Missing Infrastructure In Digital Learning](https://elearningindustry.com/assessment-consistency-at-scale-the-missing-infrastructure-in-digital-learning) - As digital learning scales, maintaining fair and consistent assessments—especially in math—remains a major challenge; structured approaches can reduce educator workload while ensuring reliability. [Elearningindustry.com]
 - 2026-02-19: [Podcast: Robert Zemsky on How 3-Year Degrees Could Save Colleges](https://www.insidehighered.com/news/quick-takes/2026/02/19/podcast-bob-zemsky-how-3-year-degrees-could-save-colleges) - Higher ed pioneer Robert Zemsky argues 3-year degrees could revitalize colleges by refocusing on experimentation amid political distractions. [Inside Higher Ed]
 - 2026-02-17: [You Say ‘Elite.’ The Public Hears ‘Elitist.’](https://www.insidehighered.com/opinion/columns/tough-love/2026/02/17/can-we-please-stop-calling-them-elite-colleges-column) - Labeling colleges "elite" backfires by reinforcing public perceptions of elitism, undermining trust in higher education institutions. [Inside Higher Ed]
-- 2026-02-16: [Tuning into the future of collaboration](https://www.technologyreview.com/2026/02/16/1125881/tuning-into-the-future-of-collaboration/) - Advanced audio tech is reshaping remote collaboration, making virtual interactions clearer and more human across education and business. [MIT Technology Review]
