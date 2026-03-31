@@ -1,3 +1,4 @@
+- [Students Are Now Renting Smart Glasses to Cheat on Exams (in China)](https://gizmodo.com/smart-glasses-cheating-exams-2000739723) [Gizmodo]
 - [How McGraw Hill built, piloted and scaled its first GenAI solution](https://www.mheducation.com/about-us/news-insights/blog/how-mcgraw-hill-built-and-scaled-its-first-genai-solution.html) [McGraw Hill]
 - [Agentic AI Can Complete Whole Courses for Students. Now What?](https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/02/26/agentic-ai-can-complete-whole-courses-now) [Inside Higher Ed]
 - [Adoption, Applications, and Attitudes Toward AI Among Arts and Design Alumni](https://snaaparts.org/findings/snapshots/adoption-applications-and-attitudes-toward-ai-among-arts-and-design-alumni) [Strategic National Arts Alumni Project]
@@ -5,4 +6,3 @@
 - [Stop Meeting Students Where They Are](https://apple.news/Awg1_Mh2jRzOqUz3kyFHbxg) [The Atlantic]
 - [Why California’s Oldest Private Art School Is Shutting Down](https://news.artnet.com/art-world/california-college-of-the-arts-closure-2737001) [artnet]
 - [Higher Education Trends in 2026](https://tytonpartners.com/higher-education-trends-in-2026/) [Tyton Partners]
-- [An Annual Overview of the Condition of School Finance in the US](https://edlawcenter.org/research/making-the-grade-2025/) [Education Law Center]
