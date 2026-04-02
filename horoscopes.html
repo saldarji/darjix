@@ -1,0 +1,81 @@
+---
+layout: default
+title: Horoscopes - DARJIX
+permalink: /horoscopes/
+---
+
+{% assign h = site.data.horoscopes %}
+
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+
+    <header class="mb-12 border-b border-gray-200 pb-8">
+      <p class="text-xs font-bold text-black uppercase tracking-wider mb-2">AI Horoscopes</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-black">This week</h1>
+      {% if h.placeholder %}
+      <p class="mt-4 text-gray-600 text-sm">
+        Weekly content is generated on Monday mornings (UTC). Check back after the next run.
+      </p>
+      {% else %}
+      <time class="mt-4 block text-lg text-gray-700" datetime="{{ h.week_start_iso }}">{{ h.week_label }}</time>
+      {% endif %}
+    </header>
+
+    {% unless h.placeholder %}
+
+    <section class="mb-12" aria-labelledby="lucky-heading">
+      <h2 id="lucky-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">Lucky numbers today</h2>
+      <p class="text-2xl md:text-3xl font-mono text-black tracking-wide">
+        {% for n in h.lucky_numbers %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
+      </p>
+    </section>
+
+    <section class="mb-14" aria-labelledby="forecast-heading">
+      <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">News oracle (this week)</h2>
+      {% if h.news and h.news.title %}
+      <p class="text-sm text-gray-500 mb-4">
+        Based on headline:
+        {% if h.news.url != '' %}
+        <a href="{{ h.news.url }}" class="text-gray-800 underline hover:text-black">{{ h.news.title }}</a>
+        {% else %}
+        <span class="text-gray-800">{{ h.news.title }}</span>
+        {% endif %}
+        <span class="text-gray-400"> · {{ h.news.source }}</span>
+      </p>
+      {% endif %}
+      <div class="prose prose-lg max-w-none text-gray-800">
+        <p class="whitespace-pre-line">{{ h.weekly_forecast }}</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="signs-heading">
+      <h2 id="signs-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-6">The twelve signs</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
+        {% for sign in h.signs %}
+        <article class="border-t border-gray-200 pt-4">
+          <h3 class="text-lg font-bold text-black mb-2">{{ sign.name }}</h3>
+          <div class="text-sm text-gray-700 leading-relaxed space-y-1">
+            {% for line in sign.lines %}
+            <p>{{ line }}</p>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% endunless %}
+
+    <footer class="mt-16 pt-8 border-t border-gray-200">
+      <p class="text-xs text-gray-500 leading-relaxed mb-3">
+        For entertainment only. Generated with AI; not advice, not predictive, not astrological guidance.
+        Zodiac flavor text is inspired by public sign descriptions such as those on
+        <a href="https://www.astrology.com/zodiac-signs" class="underline hover:text-gray-800">Astrology.com</a>.
+      </p>
+      <p class="text-center mt-8">
+        <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">← Back to Home</a>
+      </p>
+    </footer>
+
+  </div>
+</section>

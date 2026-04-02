@@ -1,0 +1,64 @@
+{
+  "signs": [
+    {
+      "name": "Aries",
+      "dates": "Mar 21 - Apr 19",
+      "traits": "Cardinal masculine fire sign, ruled by Mars, First House of the self. Vivacious, enthusiastic, impulsive, hotheaded, quick-thinking, leader energy; symbol the Ram."
+    },
+    {
+      "name": "Taurus",
+      "dates": "Apr 20 - May 20",
+      "traits": "Fixed feminine earth sign, ruled by Venus, Second House of value. Sensual, great taste, stubborn, stabilizing, stamina; symbol the Bull."
+    },
+    {
+      "name": "Gemini",
+      "dates": "May 21 - Jun 20",
+      "traits": "Mutable masculine air sign, ruled by Mercury, Third House of communication. Witty, restless, dual-minded, curious, overbooked; symbol the Twins."
+    },
+    {
+      "name": "Cancer",
+      "dates": "Jun 21 - Jul 22",
+      "traits": "Cardinal feminine water sign, ruled by the Moon, Fourth House of home. Intuitive, nurturing, moody, protective; symbol the Crab."
+    },
+    {
+      "name": "Leo",
+      "dates": "Jul 23 - Aug 22",
+      "traits": "Fixed masculine fire sign, ruled by the Sun, Fifth House of joy and creativity. Bold, dramatic, warm, loves the spotlight; symbol the Lion."
+    },
+    {
+      "name": "Virgo",
+      "dates": "Aug 23 - Sep 22",
+      "traits": "Mutable feminine earth sign, ruled by Mercury, Sixth House of work and routine. Detail-oriented, perfectionist, dependable, critical; symbol the Virgin."
+    },
+    {
+      "name": "Libra",
+      "dates": "Sep 23 - Oct 22",
+      "traits": "Cardinal masculine air sign, ruled by Venus, Seventh House of partnership. Seeks balance, social, can be indecisive; symbol the Scales."
+    },
+    {
+      "name": "Scorpio",
+      "dates": "Oct 23 - Nov 21",
+      "traits": "Fixed feminine water sign, co-ruled by Mars and Pluto, Eighth House of transformation. Intense, deep, secretive, fierce; symbol the Scorpion."
+    },
+    {
+      "name": "Sagittarius",
+      "dates": "Nov 22 - Dec 21",
+      "traits": "Mutable masculine fire sign, ruled by Jupiter, Ninth House of exploration. Expressive, opinionated, lucky, wanderlust; symbol the Centaur."
+    },
+    {
+      "name": "Capricorn",
+      "dates": "Dec 22 - Jan 19",
+      "traits": "Cardinal feminine earth sign, ruled by Saturn, Tenth House of career. Stoic, ambitious, long-game, authority; symbol the Sea-Goat."
+    },
+    {
+      "name": "Aquarius",
+      "dates": "Jan 20 - Feb 18",
+      "traits": "Fixed masculine air sign, ruled by Saturn and Uranus, Eleventh House of community. Innovative, individualistic, cool exterior, collective-minded; symbol the Water-Bearer."
+    },
+    {
+      "name": "Pisces",
+      "dates": "Feb 19 - Mar 20",
+      "traits": "Mutable feminine water sign, co-ruled by Jupiter and Neptune, Twelfth House of the subconscious. Dreamy, intuitive, fluid, sometimes confused; symbol two Fish."
+    }
+  ]
+}
