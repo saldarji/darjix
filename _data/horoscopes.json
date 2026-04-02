@@ -1,10 +1,106 @@
 {
-  "placeholder": true,
-  "week_start_iso": null,
-  "week_label": "",
-  "generated_at_iso": null,
-  "lucky_numbers": [],
-  "news": null,
-  "weekly_forecast": "",
-  "signs": []
+  "week_start_iso": "2026-04-02",
+  "week_label": "April 02, 2026",
+  "generated_at_iso": "2026-04-02T16:03:43Z",
+  "lucky_numbers": [
+    7,
+    14,
+    23,
+    42,
+    56,
+    88
+  ],
+  "news": {
+    "title": "Stock Market Today: Stocks Jump to Begin New Quarter After Major Indexes Have Best Day Since May; Dow Rises 400 Points - Investopedia",
+    "source": "Investopedia",
+    "url": "https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-04012026-11940240"
+  },
+  "weekly_forecast": "As stocks soar on 'peace vibes' from the impending end of the Iran war, Wall Street will suddenly realize they misheard—it's actually an 'impending corn maze' festival in Iowa. Cue a 1000-point plunge followed by Elon tweeting 'lol stocks are fake' and Congress scheduling urgent hearings on whether astrology is a valid market indicator. By Friday, everyone will just pretend this never happened.",
+  "signs": [
+    {
+      "name": "Aries",
+      "lines": [
+        "You’re about to YOLO your life savings into meme stocks because 'vibes feel right.'",
+        "Spoiler: They do not.",
+        "Mars rules impulsivity, not financial literacy."
+      ]
+    },
+    {
+      "name": "Taurus",
+      "lines": [
+        "You’re still holding onto that Apple stock from 2009 like a sentimental childhood blanket.",
+        "Venus whispers: 'But what if it goes up more?'"
+      ]
+    },
+    {
+      "name": "Gemini",
+      "lines": [
+        "You’ve got 17 trading apps open and zero coherent strategies.",
+        "Mercury in retrograde has nothing on your attention span."
+      ]
+    },
+    {
+      "name": "Cancer",
+      "lines": [
+        "You’re emotionally attached to your crypto wallet.",
+        "The Moon says: 'Maybe just look away for a few years.'"
+      ]
+    },
+    {
+      "name": "Leo",
+      "lines": [
+        "You’re buying gold-plated anything this week because 'aesthetics matter.'",
+        "The Sun demands shine, not sense."
+      ]
+    },
+    {
+      "name": "Virgo",
+      "lines": [
+        "You’ve color-coded your portfolio spreadsheet but still panic-sell at the first dip.",
+        "Perfectionism is a cruel mistress."
+      ]
+    },
+    {
+      "name": "Libra",
+      "lines": [
+        "You’ll spend hours agonizing over whether to invest or not.",
+        "Spoiler: You’ll do neither and just Venmo a friend for 'emotional labor.'"
+      ]
+    },
+    {
+      "name": "Scorpio",
+      "lines": [
+        "You’re secretly shorting the market while telling everyone to 'stay bullish.'",
+        "Pluto smirks: 'Chaos is currency.'"
+      ]
+    },
+    {
+      "name": "Sagittarius",
+      "lines": [
+        "You’re betting on 'literally whatever Elon tweets next.'",
+        "Jupiter blesses your audacity, not your ROI."
+      ]
+    },
+    {
+      "name": "Capricorn",
+      "lines": [
+        "You’re pretending you knew this rally was coming all along.",
+        "Saturn nods approvingly at your revisionist history."
+      ]
+    },
+    {
+      "name": "Aquarius",
+      "lines": [
+        "You’re inventing a crypto called 'ZodiacCoin' this week.",
+        "Uranus scoffs: 'This is why we can’t have nice things.'"
+      ]
+    },
+    {
+      "name": "Pisces",
+      "lines": [
+        "You forgot your password to your brokerage account again.",
+        "Neptune sighs: 'Just... just put it under your mattress.'"
+      ]
+    }
+  ]
 }
