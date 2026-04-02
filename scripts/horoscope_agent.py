@@ -29,6 +29,24 @@ MAX_TOKENS = int(os.environ.get("HOROSCOPE_MAX_TOKENS", "4096"))
 TEMPERATURE = float(os.environ.get("HOROSCOPE_TEMPERATURE", "0.85"))
 
 
+def ordinal(n: int) -> str:
+    if 11 <= (n % 100) <= 13:
+        return f"{n}th"
+    suffix = {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+def build_date_caption(week_start_iso: str, generated_at: datetime) -> str:
+    """e.g. Created April 2, 2026 for the 14th week of 2026."""
+    week_day = datetime.strptime(week_start_iso, "%Y-%m-%d").date()
+    iso_year, iso_week, _ = week_day.isocalendar()
+    month = generated_at.strftime("%B")
+    created_part = f"{month} {generated_at.day}, {generated_at.year}"
+    return (
+        f"Created {created_part} for the {ordinal(iso_week)} week of {iso_year}."
+    )
+
+
 def load_traits() -> str:
     with open(TRAITS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -91,6 +109,7 @@ Week label for display: {week_label}
 
 Output ONLY valid JSON (no markdown fences, no commentary). Schema:
 {{
+  "page_title": "Very short, snappy title for this horoscope page (max ~8 words). Witty or dramatic; not generic phrases like 'This Week' or 'Horoscopes'. No quotes in the string.",
   "lucky_numbers": [six distinct integers from 1 through 99],
   "weekly_forecast": "3-5 sentences. Sarcastic, funny, slightly edgy. Based ONLY on the news story above, predict in a playful fictional way what might happen with this story in the coming week (hearings, tweets, plot twists, chaos). Clearly absurd satire—not factual reporting.",
   "signs": [
@@ -148,6 +167,13 @@ def run_model(prompt: str) -> dict:
 
 
 def validate_payload(data: dict, week_start_iso: str, week_label: str, story: dict) -> dict:
+    raw_title = data.get("page_title")
+    if not isinstance(raw_title, str):
+        raise ValueError("page_title must be a string")
+    page_title = raw_title.strip().strip('"').strip("'")
+    if len(page_title) < 3 or len(page_title) > 100:
+        raise ValueError("page_title length invalid")
+
     nums = data.get("lucky_numbers")
     if not isinstance(nums, list) or len(nums) < 4:
         raise ValueError("Invalid lucky_numbers")
@@ -179,10 +205,15 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
             raise ValueError(f"Missing horoscope for {name}")
         signs_out.append({"name": name, "lines": by_name[name]})
 
+    generated_at = datetime.utcnow()
+    generated_at_iso = generated_at.strftime("%Y-%m-%dT%H:%M:%SZ")
+
     return {
+        "page_title": page_title,
         "week_start_iso": week_start_iso,
         "week_label": week_label,
-        "generated_at_iso": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "date_caption": build_date_caption(week_start_iso, generated_at),
+        "generated_at_iso": generated_at_iso,
         "lucky_numbers": [int(x) for x in nums[:8]],
         "news": {
             "title": story["title"],
@@ -191,6 +222,11 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
         },
         "weekly_forecast": forecast.strip(),
         "signs": signs_out,
+        "generator": {
+            "llm_model": MODEL,
+            "llm_provider": "Replicate",
+            "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
+        },
     }
 
 

@@ -169,44 +169,7 @@ pagination:
       
       <!-- Sidebar - Right Side -->
       <aside class="lg:col-span-3">
-        <!-- Experiments -->
-        <div class="mb-12">
-          <h3 class="text-lg font-bold text-black mb-4">Experiments</h3>
-          <ul class="space-y-3">
-            <li>
-              <a href="{{ '/news' | relative_url }}" class="text-gray-600 hover:text-black text-sm">
-                EdTech News
-              </a>
-              <div class="text-xs text-gray-500 mt-1">
-                Top news stories with summaries. AI powered. Weekly. Stable prototype.
-              </div>
-            </li>
-            <li>
-              <a href="{{ '/horoscopes/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">
-                AI Horoscopes
-              </a>
-              <div class="text-xs text-gray-500 mt-1">
-                Snarky sign blurbs and a news-based “forecast,” generated weekly. Entertainment only.
-              </div>
-            </li>
-            <li>
-              <a href="{{ '/podcasts' | relative_url }}" class="text-gray-600 hover:text-black text-sm">
-                EdTech Podcasts
-              </a>
-              <div class="text-xs text-gray-500 mt-1">
-                Top podcast episodes about education technology. Updated on page load. Work in progress.
-              </div>
-            </li>
-            <li>
-              <a href="{{ '/stick-figure-fighters.html' | relative_url }}" class="text-gray-600 hover:text-black text-sm">
-                Stick Figure Fighters
-              </a>
-              <div class="text-xs text-gray-500 mt-1">
-                Vibecoded fighting game with my son.
-              </div>
-            </li>
-          </ul>
-        </div>
+        {% include experiments-sidebar.html %}
         
         <!-- Recent Posts -->
         <div class="mb-12">

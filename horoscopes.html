@@ -7,17 +7,26 @@ permalink: /horoscopes/
 {% assign h = site.data.horoscopes %}
 
 <section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8">
 
     <header class="mb-12 border-b border-gray-200 pb-8">
-      <p class="text-xs font-bold text-black uppercase tracking-wider mb-2">AI Horoscopes</p>
-      <h1 class="text-3xl md:text-4xl font-bold text-black">This week</h1>
+      <h1 class="text-3xl md:text-4xl font-bold text-black">
+        {% if h.placeholder %}
+        Horoscopes
+        {% elsif h.page_title %}
+        {{ h.page_title }}
+        {% else %}
+        Horoscopes
+        {% endif %}
+      </h1>
       {% if h.placeholder %}
       <p class="mt-4 text-gray-600 text-sm">
         Weekly content is generated on Monday mornings (UTC). Check back after the next run.
       </p>
-      {% else %}
-      <time class="mt-4 block text-lg text-gray-700" datetime="{{ h.week_start_iso }}">{{ h.week_label }}</time>
+      {% elsif h.date_caption %}
+      <p class="mt-4 text-sm text-gray-600">{{ h.date_caption }}</p>
       {% endif %}
     </header>
 
@@ -66,12 +75,27 @@ permalink: /horoscopes/
 
     {% endunless %}
 
+      </div>
+      <aside class="lg:col-span-4 lg:border-l lg:border-gray-200 lg:pl-8">
+        {% include experiments-sidebar.html %}
+      </aside>
+    </div>
+
     <footer class="mt-16 pt-8 border-t border-gray-200">
       <p class="text-xs text-gray-500 leading-relaxed mb-3">
-        For entertainment only. Generated with AI; not advice, not predictive, not astrological guidance.
+        For entertainment only. Not advice, not predictive, not astrological guidance.
         Zodiac flavor text is inspired by public sign descriptions such as those on
         <a href="https://www.astrology.com/zodiac-signs" class="underline hover:text-gray-800">Astrology.com</a>.
       </p>
+      {% if h.generator %}
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Technical: copy from <code class="text-gray-500">_data/horoscopes.json</code> (Jekyll <code class="text-gray-500">site.data.horoscopes</code>).
+        LLM <code class="text-gray-500">{{ h.generator.llm_model }}</code> via {{ h.generator.llm_provider }}.
+        News context from {{ h.generator.news_api }}.
+        Scheduled weekly (Mondays UTC) with GitHub Actions; secrets <code class="text-gray-500">REPLICATE_API_TOKEN</code>, <code class="text-gray-500">NEWS_API_KEY</code>.
+        {% if h.generated_at_iso %}Last generation timestamp (UTC): <code class="text-gray-500">{{ h.generated_at_iso }}</code>.{% endif %}
+      </p>
+      {% endif %}
       <p class="text-center mt-8">
         <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">← Back to Home</a>
       </p>
