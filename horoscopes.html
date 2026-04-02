@@ -32,14 +32,14 @@ permalink: /horoscopes/
 
     <section class="mb-12" aria-labelledby="lucky-heading">
       <h2 id="lucky-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">Lucky numbers today</h2>
-      <p class="text-2xl md:text-3xl font-mono text-black tracking-wide">
+      <p class="text-2xl md:text-3xl font-mono text-gray-700 tracking-wide">
         {% for n in h.lucky_numbers %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
       </p>
     </section>
 
     <section class="mb-14" aria-labelledby="forecast-heading">
       <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-baseline gap-2">
-        <span class="sign-zodiac-glyph select-none text-base leading-none text-black" aria-hidden="true">&#x058E;</span>
+        <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">&#x058E;</span>
         <span>News oracle (this week)</span>
       </h2>
       {% if h.news and h.news.title %}
@@ -63,9 +63,12 @@ permalink: /horoscopes/
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
         {% for sign in h.signs %}
         <article class="border-t border-gray-200 pt-4">
-          <h3 class="text-lg font-bold text-black mb-2 flex items-baseline gap-2">
+          <h3 class="text-lg font-bold text-black mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
             <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">{% include zodiac-glyph.html sign=sign.name %}</span>
-            <span>{{ sign.name }}</span>
+            <span class="inline-flex flex-wrap items-baseline gap-x-2">
+              <span>{{ sign.name }}</span>
+              <span class="text-[10px] sm:text-[11px] font-normal font-sans text-gray-500 tracking-wide">{% include zodiac-date-range.html sign=sign.name %}</span>
+            </span>
           </h3>
           <div class="text-sm text-gray-700 leading-relaxed space-y-1">
             {% for line in sign.lines %}
