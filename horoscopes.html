@@ -7,9 +7,7 @@ permalink: /horoscopes/
 {% assign h = site.data.horoscopes %}
 
 <section class="py-16 bg-white">
-  <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-8">
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
 
     <header class="mb-12 border-b border-gray-200 pb-8">
       <h1 class="text-3xl md:text-4xl font-bold text-black">
@@ -62,7 +60,10 @@ permalink: /horoscopes/
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
         {% for sign in h.signs %}
         <article class="border-t border-gray-200 pt-4">
-          <h3 class="text-lg font-bold text-black mb-2">{{ sign.name }}</h3>
+          <h3 class="text-lg font-bold text-black mb-2 flex items-baseline gap-2">
+            <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">{% include zodiac-glyph.html sign=sign.name %}</span>
+            <span>{{ sign.name }}</span>
+          </h3>
           <div class="text-sm text-gray-700 leading-relaxed space-y-1">
             {% for line in sign.lines %}
             <p>{{ line }}</p>
@@ -74,12 +75,6 @@ permalink: /horoscopes/
     </section>
 
     {% endunless %}
-
-      </div>
-      <aside class="lg:col-span-4 lg:border-l lg:border-gray-200 lg:pl-8">
-        {% include experiments-sidebar.html %}
-      </aside>
-    </div>
 
     <footer class="mt-16 pt-8 border-t border-gray-200">
       <p class="text-xs text-gray-500 leading-relaxed mb-3">
@@ -102,4 +97,10 @@ permalink: /horoscopes/
     </footer>
 
   </div>
+  <style>
+    .sign-zodiac-glyph {
+      font-variant-emoji: text;
+      font-family: "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols 2", "DejaVu Sans", serif;
+    }
+  </style>
 </section>
