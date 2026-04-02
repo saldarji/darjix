@@ -38,7 +38,10 @@ permalink: /horoscopes/
     </section>
 
     <section class="mb-14" aria-labelledby="forecast-heading">
-      <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">News oracle (this week)</h2>
+      <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-baseline gap-2">
+        <span class="sign-zodiac-glyph select-none text-base leading-none text-black" aria-hidden="true">&#x058E;</span>
+        <span>News oracle (this week)</span>
+      </h2>
       {% if h.news and h.news.title %}
       <p class="text-sm text-gray-500 mb-4">
         Based on headline:
