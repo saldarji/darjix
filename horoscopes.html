@@ -35,7 +35,7 @@ permalink: /horoscopes/
       <p class="text-2xl md:text-3xl font-mono text-gray-700 tracking-wide">
         {% if h.lucky_numbers.size == 6 %}
         {% for n in h.lucky_numbers limit:5 %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
-        <span aria-hidden="true"> · </span><span class="text-red-400 font-mono">{% assign pb = h.lucky_numbers | last %}<span class="sr-only">Powerball: </span>{{ pb }}</span>
+        <span aria-hidden="true"> · </span><span class="inline-flex items-center justify-center rounded-full border-2 border-red-400 text-red-400 font-mono tabular-nums align-middle ml-1 px-2 py-0.5 md:px-2.5 md:py-1 leading-none" title="Powerball (1–26)">{% assign pb = h.lucky_numbers | last %}<span class="sr-only">Powerball: </span>{{ pb }}</span>
         {% else %}
         {% for n in h.lucky_numbers %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
         {% endif %}
