@@ -5,13 +5,14 @@
   "date_caption": "Created April 2, 2026 for the 14th week of 2026.",
   "generated_at_iso": "2026-04-02T16:03:43Z",
   "lucky_numbers": [
-    7,
-    14,
-    23,
-    42,
-    56,
-    88
+    41,
+    54,
+    57,
+    58,
+    66,
+    14
   ],
+  "lucky_numbers_comment": "The Dow’s bull run must’ve rubbed off on these lucky numbers—41, 54, 57, 58, 66, and PB 14—because even randomness is cashing in today.",
   "news": {
     "title": "Stock Market Today: Stocks Jump to Begin New Quarter After Major Indexes Have Best Day Since May; Dow Rises 400 Points - Investopedia",
     "source": "Investopedia",
@@ -108,6 +109,7 @@
   "generator": {
     "llm_model": "deepseek-ai/deepseek-v3",
     "llm_provider": "Replicate",
-    "news_api": "NewsAPI GET /v2/top-headlines (country=us)"
+    "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
+    "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM."
   }
 }

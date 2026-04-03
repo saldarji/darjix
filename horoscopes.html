@@ -33,13 +33,21 @@ permalink: /horoscopes/
     <section class="mb-12" aria-labelledby="lucky-heading">
       <h2 id="lucky-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">Lucky numbers today</h2>
       <p class="text-2xl md:text-3xl font-mono text-gray-700 tracking-wide">
+        {% if h.lucky_numbers.size == 6 %}
+        {% for n in h.lucky_numbers limit:5 %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
+        <span aria-hidden="true"> · </span><span class="text-red-400 font-mono">{% assign pb = h.lucky_numbers | last %}<span class="sr-only">Powerball: </span>{{ pb }}</span>
+        {% else %}
         {% for n in h.lucky_numbers %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
+        {% endif %}
       </p>
+      {% if h.lucky_numbers_comment and h.lucky_numbers_comment != "" %}
+      <p class="mt-2 text-sm text-gray-600 leading-snug max-w-2xl">{{ h.lucky_numbers_comment }}</p>
+      {% endif %}
     </section>
 
     <section class="mb-14" aria-labelledby="forecast-heading">
       <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-baseline gap-2">
-        <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">&#x058E;</span>
+        <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">&#x2C17;</span>
         <span>News oracle (this week)</span>
       </h2>
       {% if h.news and h.news.title %}
@@ -93,6 +101,7 @@ permalink: /horoscopes/
         Technical: copy from <code class="text-gray-500">_data/horoscopes.json</code> (Jekyll <code class="text-gray-500">site.data.horoscopes</code>).
         LLM <code class="text-gray-500">{{ h.generator.llm_model }}</code> via {{ h.generator.llm_provider }}.
         News context from {{ h.generator.news_api }}.
+        {% if h.generator.lucky_draw %}{{ h.generator.lucky_draw }}{% endif %}
         Scheduled weekly (Mondays UTC) with GitHub Actions; secrets <code class="text-gray-500">REPLICATE_API_TOKEN</code>, <code class="text-gray-500">NEWS_API_KEY</code>.
         {% if h.generated_at_iso %}Last generation timestamp (UTC): <code class="text-gray-500">{{ h.generated_at_iso }}</code>.{% endif %}
       </p>

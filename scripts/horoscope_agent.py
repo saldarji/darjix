@@ -13,6 +13,8 @@ from pathlib import Path
 import replicate
 import requests
 
+import horoscope_lucky
+
 try:
     from dotenv import load_dotenv
 
@@ -110,7 +112,6 @@ Week label for display: {week_label}
 Output ONLY valid JSON (no markdown fences, no commentary). Schema:
 {{
   "page_title": "Very short, snappy title for this horoscope page (max ~8 words). Witty or dramatic; not generic phrases like 'This Week' or 'Horoscopes'. No quotes in the string.",
-  "lucky_numbers": [six distinct integers from 1 through 99],
   "weekly_forecast": "3-5 sentences. Sarcastic, funny, slightly edgy. Based ONLY on the news story above, predict in a playful fictional way what might happen with this story in the coming week (hearings, tweets, plot twists, chaos). Clearly absurd satire—not factual reporting.",
   "signs": [
     {{"name": "Aries", "lines": ["line1", "line2", "line3"]}},
@@ -174,9 +175,6 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
     if len(page_title) < 3 or len(page_title) > 100:
         raise ValueError("page_title length invalid")
 
-    nums = data.get("lucky_numbers")
-    if not isinstance(nums, list) or len(nums) < 4:
-        raise ValueError("Invalid lucky_numbers")
     forecast = data.get("weekly_forecast")
     if not isinstance(forecast, str) or len(forecast.strip()) < 40:
         raise ValueError("Invalid weekly_forecast")
@@ -214,7 +212,6 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
         "week_label": week_label,
         "date_caption": build_date_caption(week_start_iso, generated_at),
         "generated_at_iso": generated_at_iso,
-        "lucky_numbers": [int(x) for x in nums[:8]],
         "news": {
             "title": story["title"],
             "source": story["source"],
@@ -226,6 +223,7 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
             "llm_model": MODEL,
             "llm_provider": "Replicate",
             "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
+            "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM.",
         },
     }
 
@@ -246,6 +244,9 @@ def main() -> None:
     data = run_model(prompt)
 
     payload = validate_payload(data, week_start_iso, week_label, story)
+
+    print("🎱 Drawing Powerball-style numbers + lucky quip…")
+    horoscope_lucky.apply_lucky_to_payload(payload, story)
 
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(DATA_PATH, "w", encoding="utf-8") as f:
