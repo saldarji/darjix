@@ -1,108 +1,98 @@
 {
-  "page_title": "Markets rally; the zodiac rolls its eyes",
-  "week_start_iso": "2026-04-02",
-  "week_label": "April 02, 2026",
-  "date_caption": "Created April 2, 2026 for the 14th week of 2026.",
-  "generated_at_iso": "2026-04-02T16:03:43Z",
-  "lucky_numbers": [
-    41,
-    54,
-    57,
-    58,
-    66,
-    14
-  ],
-  "lucky_numbers_comment": "The Dow’s bull run must’ve rubbed off on these lucky numbers—41, 54, 57, 58, 66, and PB 14—because even randomness is cashing in today.",
+  "page_title": "Your Lifespan is a Cosmic Joke",
+  "week_start_iso": "2026-04-06",
+  "week_label": "April 06, 2026",
+  "date_caption": "Created April 6, 2026 for the 15th week of 2026.",
+  "generated_at_iso": "2026-04-06T10:02:11Z",
   "news": {
-    "title": "Stock Market Today: Stocks Jump to Begin New Quarter After Major Indexes Have Best Day Since May; Dow Rises 400 Points - Investopedia",
-    "source": "Investopedia",
-    "url": "https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-04012026-11940240"
+    "title": "We may have even less control over how long we live than previously thought - The Washington Post",
+    "source": "The Washington Post",
+    "url": "https://www.washingtonpost.com/health/2026/04/05/lifespan-longevity-genetics/"
   },
-  "weekly_forecast": "As stocks soar on 'peace vibes' from the impending end of the Iran war, Wall Street will suddenly realize they misheard—it's actually an 'impending corn maze' festival in Iowa. Cue a 1000-point plunge followed by Elon tweeting 'lol stocks are fake' and Congress scheduling urgent hearings on whether astrology is a valid market indicator. By Friday, everyone will just pretend this never happened.",
+  "weekly_forecast": "This week, the universe laughs at our feeble attempts to control our lifespans. Expect a viral TikTok trend where Gen Z blames millennials for 'ruining longevity.' Meanwhile, Big Pharma will quietly rebrand all supplements as 'genetic enhancers' and double the prices. The real plot twist? The study’s lead researcher admits they just guessed the numbers while hungover.",
   "signs": [
     {
       "name": "Aries",
       "lines": [
-        "You're about to YOLO your life savings into meme stocks because 'vibes feel right.'",
-        "Spoiler: They do not.",
-        "Mars rules impulsivity, not financial literacy."
+        "You’ll impulsively buy a life-extending elixir from a shady online ad.",
+        "Spoiler: It’s just expired energy drinks."
       ]
     },
     {
       "name": "Taurus",
       "lines": [
-        "You're still holding onto that Apple stock from 2009 like a sentimental childhood blanket.",
-        "Venus whispers: 'But what if it goes up more?'"
+        "You refuse to believe genetics play a role in your lifespan.",
+        "Your secret? Bacon and stubbornness."
       ]
     },
     {
       "name": "Gemini",
       "lines": [
-        "You've got 17 trading apps open and zero coherent strategies.",
-        "Mercury in retrograde has nothing on your attention span."
+        "You’ll debate the study’s validity on Twitter for 12 hours straight.",
+        "Then forget why you cared."
       ]
     },
     {
       "name": "Cancer",
       "lines": [
-        "You're emotionally attached to your crypto wallet.",
-        "The Moon says: 'Maybe just look away for a few years.'"
+        "You’ll panic and call your mom to ask about family health history.",
+        "She’ll remind you that stress is the real killer."
       ]
     },
     {
       "name": "Leo",
       "lines": [
-        "You're buying gold-plated anything this week because 'aesthetics matter.'",
-        "The Sun demands shine, not sense."
+        "You’ll declare yourself 'biologically immortal' at a party.",
+        "No one will argue because you’re too entertaining."
       ]
     },
     {
       "name": "Virgo",
       "lines": [
-        "You've color-coded your portfolio spreadsheet but still panic-sell at the first dip.",
-        "Perfectionism is a cruel mistress."
+        "You’ve already updated your 10-year plan to include 'avoid death.'",
+        "Color-coded, of course."
       ]
     },
     {
       "name": "Libra",
       "lines": [
-        "You'll spend hours agonizing over whether to invest or not.",
-        "Spoiler: You'll do neither and just Venmo a friend for 'emotional labor.'"
+        "You’ll spend the week agonizing over whether to blame nature or nurture.",
+        "Then decide it’s both and take a nap."
       ]
     },
     {
       "name": "Scorpio",
       "lines": [
-        "You're secretly shorting the market while telling everyone to 'stay bullish.'",
-        "Pluto smirks: 'Chaos is currency.'"
+        "You secretly know how you’re going to die.",
+        "But you’re not telling anyone because you enjoy the power."
       ]
     },
     {
       "name": "Sagittarius",
       "lines": [
-        "You're betting on 'literally whatever Elon tweets next.'",
-        "Jupiter blesses your audacity, not your ROI."
+        "You’ll book a one-way ticket to a 'Blue Zone' to cheat death.",
+        "Forget to pack your passport."
       ]
     },
     {
       "name": "Capricorn",
       "lines": [
-        "You're pretending you knew this rally was coming all along.",
-        "Saturn nods approvingly at your revisionist history."
+        "You’ve calculated your life expectancy down to the minute.",
+        "And you’re still behind on retirement savings."
       ]
     },
     {
       "name": "Aquarius",
       "lines": [
-        "You're inventing a crypto called 'ZodiacCoin' this week.",
-        "Uranus scoffs: 'This is why we can't have nice things.'"
+        "You’ll start a cult based on 'uploading consciousness to the cloud.'",
+        "The first meeting is just you and your VR headset."
       ]
     },
     {
       "name": "Pisces",
       "lines": [
-        "You forgot your password to your brokerage account again.",
-        "Neptune sighs: 'Just... just put it under your mattress.'"
+        "You’re pretty sure you’re already a ghost.",
+        "Or maybe that’s just the edibles talking."
       ]
     }
   ],
@@ -111,5 +101,14 @@
     "llm_provider": "Replicate",
     "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
     "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM."
-  }
+  },
+  "lucky_numbers": [
+    2,
+    20,
+    33,
+    39,
+    67,
+    4
+  ],
+  "lucky_numbers_comment": "Your genes and luck are both rigged against longevity, much like today’s cursed Powerball numbers: 2, 20, 33, 39, 67 and 4."
 }
