@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher’s guide — Dice sums &amp; variability (print)</title>
+  <style>
+    :root {
+      --text: #111;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1.25rem 1.5rem 2rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 44rem;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .toolbar a,
+    .toolbar button {
+      font: inherit;
+      font-size: 0.875rem;
+    }
+    .toolbar a {
+      color: var(--muted);
+    }
+    .toolbar button {
+      cursor: pointer;
+      border: 2px solid #000;
+      background: #fff;
+      padding: 0.35rem 0.85rem;
+      font-weight: 600;
+    }
+    .toolbar button:hover {
+      background: #000;
+      color: #fff;
+    }
+    .doc-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0 0 1.25rem;
+    }
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 0.35rem;
+      font-weight: 700;
+    }
+    h2 {
+      margin: 1.15rem 0 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    p, li {
+      margin: 0 0 0.45rem;
+      color: var(--muted);
+    }
+    ul, ol {
+      margin: 0 0 0.65rem;
+      padding-left: 1.2rem;
+    }
+    ol li { margin-bottom: 0.25rem; }
+    strong { color: var(--text); }
+    .footer-note {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { padding: 0; max-width: none; }
+      a { color: inherit; text-decoration: none; }
+      h2 { page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <a href="index.html">← Back to activity</a>
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <h1>Teacher’s guide: dice sums &amp; variability</h1>
+  <p class="doc-meta">DARJIX · Grade 6 statistics &amp; probability · Two fair six-sided dice (sums 2–12) · <a href="https://darjix.com/dice-game/">darjix.com/dice-game/</a></p>
+
+  <h2>Purpose</h2>
+  <p>Students experience <strong>variability</strong> in data: each roll can produce a different sum. The tool supports recognizing a <em>statistical question</em>, watching a <em>distribution</em> emerge, and connecting <em>center</em>, <em>spread</em>, and <em>shape</em> to the plots and summary numbers.</p>
+
+  <h2>Time &amp; materials</h2>
+  <ul>
+    <li>About 20–40 minutes, depending on depth of discussion.</li>
+    <li>One device per pair is enough; a projector lets you discuss one shared dataset.</li>
+  </ul>
+
+  <h2>Standards touchpoints (CCSS)</h2>
+  <ul>
+    <li><strong>6.SP.A.1</strong> — Contrast “What is my sum on this roll?” (one answer after rolling) with the <em>class</em> question: “What sums do we get when we keep rolling?” The second anticipates variability.</li>
+    <li><strong>6.SP.A.2–A.3</strong> — Use the plots to name <em>shape</em> (mound near 7, tails toward 2 and 12), <em>center</em> (mean / average, median), and <em>spread</em> (range, MAD, IQR).</li>
+    <li><strong>6.SP.B.4</strong> — Compare the same data on the number line, dot plot, and histogram.</li>
+    <li><strong>6.SP.B.5</strong> — Relate <em>n</em> (number of observations—here, rolls), measures of center, and measures of variability to the context: sums of two dice, fair rolls.</li>
+  </ul>
+
+  <h2>Before students work</h2>
+  <ul>
+    <li>Clarify that each recorded value is the <strong>sum</strong> of the two dice, not the pair of faces separately.</li>
+    <li>Ask for a quick <strong>prediction</strong>: Which sums will be easiest to get? Rarest? (Do not require correctness—elicit reasoning.)</li>
+  </ul>
+
+  <h2>Suggested flow</h2>
+  <ol>
+    <li>Roll manually until there are enough points to see a pattern (or use <strong>Add 10 rolls</strong> / <strong>Add 100 rolls</strong> to build data faster).</li>
+    <li>Read <strong>Summary statistics</strong> aloud; ask students which numbers changed the most after a big batch of rolls.</li>
+    <li>Hover rows in the table to open the <strong>Definitions</strong> panel—have students explain the formulas in their own words.</li>
+    <li>Switch among <strong>Number line</strong>, <strong>Dot plot</strong>, and <strong>Histogram</strong>; ask which display best answers a partner’s question about frequency, shape, or outliers.</li>
+    <li>Use <strong>Clear</strong> to reset and compare a “small sample” run to a “large sample” run (stability of mean; smoother shape).</li>
+  </ol>
+
+  <h2>Discussion prompts</h2>
+  <ul>
+    <li>Why is 7 in the middle of the distribution for fair dice? (Combinations—optional extension.)</li>
+    <li>When would the <strong>mean</strong> and <strong>median</strong> nearly match? When might they differ? (This symmetric context: usually close.)</li>
+    <li>What does a larger <strong>range</strong> or <strong>MAD</strong> tell you about a class’s rolls versus another class’s?</li>
+    <li>How does adding 100 rolls change the <em>shape</em> compared to only 10 rolls?</li>
+  </ul>
+
+  <h2>Using the definitions column</h2>
+  <p>Encourage keyboard users to tab through summary rows. The right-hand panel restates ideas in student-friendly language and shows arithmetic for the <em>current</em> dataset—useful after a whole-class bulk roll.</p>
+
+  <h2>Accessibility &amp; classroom tips</h2>
+  <ul>
+    <li>Reduced-motion settings shorten roll animation.</li>
+    <li>For very large counts, dots shrink and may split into columns so stacks stay on screen—emphasize that <em>taller</em> still means <em>more observations</em> (more rolls) for that sum.</li>
+  </ul>
+
+  <h2>Offline extension</h2>
+  <p>Have pairs record physical dice sums on paper, then enter only totals into discussion—or compare the computer’s long run to a short physical experiment.</p>
+
+  <p class="footer-note no-print">Tip: Use <strong>Print / Save as PDF</strong> above, or your browser menu → Print → “Save as PDF” (wording varies by browser).</p>
+</body>
+</html>
