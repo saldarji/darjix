@@ -4,7 +4,7 @@ title: "PyData Boston February 2026 Recap"
 date: 2026-02-27
 author: "Sal Darji"
 image: "/assets/images/image posts/img_4663.jpeg"
-alt_text: "A grayscale photo captures a dynamic tech presentation. A man gestures at a large screen filled with code, explaining to an audience seated at tables. Laptops and focused attention suggest an engaging, modern learning environment."
+alt_text: "A monochrome shot captures a focused tech presentation. A man in a hoodie points at a large screen displaying code, while an engaged audience with laptops watches from tables in the foreground. The clean, modern room suggests a dynamic learning environment."
 
 ---
 
