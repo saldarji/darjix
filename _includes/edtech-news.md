@@ -1,5 +1,5 @@
 # EdTech News This Week
-*Updated: April 20, 2026*
+*Updated: April 27, 2026*
 
 - 2026-04-16: [The Key Podcast: The ROI of a Humanities-Based Core Education](https://www.insidehighered.com/news/quick-takes/2026/04/16/key-podcast-roi-humanities-based-core-education) - A podcast episode defends the value of a humanities-based core education, arguing it provides a crucial return on investment by developing critical thinking and adaptability, even in an AI-dominated future. [Inside Higher Ed]
 - 2026-04-16: [Thought Leader Q&A: Exploring The Future Of Workplace Learning In The Age Of AI With Dimitris Tolis](https://elearningindustry.com/thought-leader-qa-exploring-the-future-of-workplace-learning-in-the-age-of-ai-with-dimitris-tolis) - In a thought leader interview, Dimitris Tolis explores the future of workplace learning with AI, forecasting a shift towards more personalized, adaptive, and impactful learning design that moves past traditional content delivery. [Elearningindustry.com]
