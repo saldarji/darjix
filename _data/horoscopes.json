@@ -1,98 +1,99 @@
 {
-  "page_title": "NASA Pulls the Plug, Zodiac Freaks Out",
-  "week_start_iso": "2026-04-20",
-  "week_label": "April 20, 2026",
-  "date_caption": "Created April 20, 2026 for the 17th week of 2026.",
-  "generated_at_iso": "2026-04-20T10:28:34Z",
+  "page_title": "Patriots Draft Chaos Zodiac Meltdown",
+  "week_start_iso": "2026-04-27",
+  "week_label": "April 27, 2026",
+  "date_caption": "Created April 27, 2026 for the 18th week of 2026.",
+  "generated_at_iso": "2026-04-27T10:55:23Z",
   "news": {
-    "title": "The Little Probe That Could: Why Voyager 1 Matters, and Why NASA Just Switched Part of It Off - NPR",
-    "source": "NPR",
-    "url": "https://www.npr.org/2026/04/19/nx-s1-5789935/voyager-1-probe-nasa"
+    "title": "10 winners and losers from the Patriots’ Day 3 picks in the NFL Draft - Pats Pulpit",
+    "source": "Pats Pulpit",
+    "url": "https://www.patspulpit.com/new-england-patriots-draft/127407/10-winners-and-losers-from-the-patriots-day-3-picks-in-the-2026-nfl-draft"
   },
-  "weekly_forecast": "Voyager 1 gets downgraded to 'Voyager 0.5' as NASA plays cosmic resource management. Conspiracy theorists insist it’s a cover-up for alien communications. Elon Musk will tweet about launching his own probe just to one-up them, then forget by Tuesday. Meanwhile, astronomers sob quietly into their star charts.",
+  "weekly_forecast": "The Patriots' draft picks will inevitably cause a cosmic stir. Expect a leaked video of a sixth-rounder arm-wrestling a Taurus fan over who gets the last buffalo wing. Bill Belichick will cryptically tweet an emoji that sends astrologers into a frenzy, while Aries fans riot over 'lack of fire signs' in the lineup. Chaos reigns.",
   "signs": [
     {
       "name": "Aries",
       "lines": [
-        "You’re already drafting a manifesto about how YOU could’ve kept Voyager running better.",
-        "NASA’s lack of hustle offends you deeply."
+        "You’ll aggressively argue that the Patriots should’ve drafted YOU.",
+        "Mars energy means you’re already yelling at a highlight reel.",
+        "Ram-headed fans will storm the draft board—metaphorically."
       ]
     },
     {
       "name": "Taurus",
       "lines": [
-        "You’d never turn off a 45-year-old machine. That’s basically vintage.",
-        "This week, you stubbornly refuse to update your phone’s OS in solidarity."
+        "You’re stubbornly convinced the new O-lineman shares your love of artisanal cheese.",
+        "No, you won’t move from the couch until the draft grades are 'perfect.'"
       ]
     },
     {
       "name": "Gemini",
       "lines": [
-        "One minute you’re defending NASA’s budget, the next you’re convinced Voyager is a hoax.",
-        "Your group chat is 90% conspiracy memes now."
+        "You’ve already drafted two opposing hot takes for Twitter.",
+        "Mercury retrograde? More like Mercury replay the draft 14 times."
       ]
     },
     {
       "name": "Cancer",
       "lines": [
-        "You’re emotionally devastated by the thought of Voyager 'feeling abandoned.'",
-        "Time to light a candle and whisper apologies to the cosmos."
+        "You’re emotionally attached to the seventh-rounder no one remembers.",
+        "Moon-ruled tears when the Pats pass on a hometown kid."
       ]
     },
     {
       "name": "Leo",
       "lines": [
-        "You’re outraged no one’s throwing Voyager a farewell tour.",
-        "Demand a tribute TikTok montage set to 'Space Oddity.'"
+        "You’re drafting a victory parade route in your head already.",
+        "The Sun demands you wear a ludicrously oversized draft hat."
       ]
     },
     {
       "name": "Virgo",
       "lines": [
-        "You’ve calculated exactly how long NASA could’ve stretched the power if they’d just turned it off 17 minutes earlier each day.",
-        "Their inefficiency haunts you."
+        "You’ve color-coded every scouting report typo.",
+        "Perfectionism means you’re still mad about a 2013 late-round pick."
       ]
     },
     {
       "name": "Libra",
       "lines": [
-        "Torn between 'let it rest' and 'fight for space justice.'",
-        "Posting vague polls about it counts as activism, right?"
+        "You’ll diplomatically argue both sides of every pick.",
+        "Venus wants the team’s new jerseys to be aesthetically balanced."
       ]
     },
     {
       "name": "Scorpio",
       "lines": [
-        "You know this is really about martian mind control. You can’t prove it, but you KNOW.",
-        "Side-eye at NASA intensifies."
+        "You suspect a secret draft-day conspiracy. (You’re probably right.)",
+        "Pluto energy = you’ve already stalked the GM’s LinkedIn."
       ]
     },
     {
       "name": "Sagittarius",
       "lines": [
-        "Announcing plans to hitchhike to the edge of the solar system 'just to check.'",
-        "Pack snacks. It’s a long trip."
+        "You’re booking a flight to wherever the 5th-rounder went to college.",
+        "Jupiter says this is your year to bet it all on a long shot."
       ]
     },
     {
       "name": "Capricorn",
       "lines": [
-        "Respect NASA’s fiscal responsibility. Also, furious they didn’t negotiate a better warranty in 1977.",
-        "Excel spreadsheet titled 'Voyager ROI' open in the background."
+        "You’ve already calculated the ROI on every pick by 2030.",
+        "Saturn demands you respect the process, even if it’s boring."
       ]
     },
     {
       "name": "Aquarius",
       "lines": [
-        "Designing a Kickstarter to launch a new probe powered by 'good vibes.'",
-        "Backers get NFT star maps (non-refundable)."
+        "You’re inventing a stats metric no one understands but you.",
+        "Uranus says disrupt the draft by live-tweeting in binary."
       ]
     },
     {
       "name": "Pisces",
       "lines": [
-        "You’re convinced Voyager is sending coded messages through your dreams.",
-        "Spoiler: It’s just that weird pizza you ate."
+        "You’re daydreaming about the draft being a mystical ritual.",
+        "Neptune has you convinced the Pats drafted a mermaid."
       ]
     }
   ],
@@ -103,12 +104,12 @@
     "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM."
   },
   "lucky_numbers": [
-    24,
-    27,
-    28,
+    29,
     44,
-    52,
-    3
+    63,
+    65,
+    68,
+    17
   ],
-  "lucky_numbers_comment": "Voyager 1’s retirement plan involves lottery numbers [24, 27, 28, 44, 52] and a Powerball 3—just like NASA, you too can gamble on fading signals while pretending it’s strategy.\" (219 chars)"
+  "lucky_numbers_comment": "The Patriots drafted six new players, but your lucky numbers—29, 44, 63, 65, 68, and Powerball 17—just fumbled their way into your wallet like an undrafted free agent signing a surprise deal."
 }
