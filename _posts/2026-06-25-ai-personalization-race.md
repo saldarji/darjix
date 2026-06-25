@@ -4,7 +4,7 @@ title: "AI Personalization Race"
 date: 2026-06-25
 author: "Sal Darji"
 image: "/assets/images/image posts/img_5541.jpeg"
-alt_text: "Image description will be generated automatically"
+alt_text: "A striking black and white photo captures a dark, muscular bronze statuette of Zeus, poised to throw a thunderbolt. Displayed dynamically in a museum case on a bright white shelf, the figure's intense pose contrasts with the serene, reflective background."
 caption: "Zeus"
 ---
 
