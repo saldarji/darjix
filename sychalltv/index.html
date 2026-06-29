@@ -54,9 +54,10 @@
     .club-name {
       font-size: 2.3vh;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: #ffffff;
       line-height: 1.2;
     }
     .club-name small {
@@ -64,10 +65,17 @@
       font-size: 1.3vh;
       color: var(--muted);
       font-weight: 400;
+      font-family: 'Segoe UI', system-ui, sans-serif;
       letter-spacing: 0.25em;
     }
 
-    .header-clock { text-align: center; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 2.5vw;
+      justify-content: flex-end;
+    }
+    .header-clock { text-align: right; }
     #clock {
       font-size: 4.2vh;
       font-weight: 200;
@@ -76,7 +84,7 @@
     }
     #date { font-size: 1.5vh; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3vh; }
 
-    .header-meta { text-align: right; font-size: 1.3vh; color: var(--muted); }
+    .header-meta { text-align: right; font-size: 1.5vh; color: var(--muted); }
 
     /* ── Main layout ── */
     main {
@@ -243,18 +251,20 @@
 
   <header>
     <div class="branding">
-      <img class="burgee-img" src="SYC Burgee2_White_w_Transparent_Background.png" alt="SYC Burgee">
+      <img class="burgee-img" src="syc-burgee.png" alt="SYC Burgee">
       <div class="club-name">
         Squantum Yacht Club
         <small>Quincy, Massachusetts</small>
       </div>
     </div>
-    <div class="header-clock">
-      <div id="clock">--:-- --</div>
-      <div id="date">—</div>
-    </div>
-    <div class="header-meta">
-      <div id="last-updated">Loading…</div>
+    <div class="header-right">
+      <div class="header-meta">
+        <div id="last-updated">Loading…</div>
+      </div>
+      <div class="header-clock">
+        <div id="clock">--:-- --</div>
+        <div id="date">—</div>
+      </div>
     </div>
   </header>
 
