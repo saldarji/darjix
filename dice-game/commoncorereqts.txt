@@ -1,3 +1,4 @@
+
 Develop understanding of statistical variability.
 CCSS.MATH.CONTENT.6.SP.A.1
 Recognize a statistical question as one that anticipates variability in the data related to the question and accounts for it in the answers. For example, "How old am I?" is not a statistical question, but "How old are the students in my school?" is a statistical question because one anticipates variability in students' ages.

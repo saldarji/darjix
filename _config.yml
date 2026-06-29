@@ -47,4 +47,8 @@ defaults:
       path: "dice-game"
     values:
       layout: null
+  - scope:
+      path: "sychalltv"
+    values:
+      layout: null
 

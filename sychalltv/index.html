@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squantum Yacht Club — Hall Display</title>
+  <style>
+    :root {
+      --bg:      #07111e;
+      --bg2:     #0d1d32;
+      --bg3:     #132a47;
+      --border:  #1a3a5c;
+      --accent:  #1e72c8;
+      --accent2: #3fa9f5;
+      --text:    #ddeeff;
+      --muted:   #6a90b0;
+      --gold:    #f0c040;
+      --rain:    #5b9bd5;
+      --red:     #ef5350;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ── Header ── */
+    header {
+      height: 8vh;
+      flex-shrink: 0;
+      background: var(--bg3);
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2vw;
+    }
+
+    .branding { display: flex; align-items: center; gap: 1.2vw; }
+    .burgee-img { height: 6vh; width: auto; display: block; }
+    .club-name {
+      font-size: 2.3vh;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+    .club-name small {
+      display: block;
+      font-size: 1.3vh;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.25em;
+    }
+
+    .header-clock { text-align: center; }
+    #clock {
+      font-size: 4.2vh;
+      font-weight: 200;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    #date { font-size: 1.5vh; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3vh; }
+
+    .header-meta { text-align: right; font-size: 1.3vh; color: var(--muted); }
+
+    /* ── Main layout ── */
+    main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    .col {
+      padding: 1.5vh 1.4vw;
+      overflow: hidden;
+    }
+    .col-left  { width: 28%; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.2vh; }
+    .col-center { width: 44%; display: flex; flex-direction: column; }
+    .col-right  { width: 28%; border-left: 1px solid var(--border); display: flex; flex-direction: column; }
+
+    /* ── Section titles ── */
+    .section-title {
+      font-size: 1.15vh;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      padding-bottom: 0.5vh;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.8vh;
+    }
+
+    /* ── Current weather ── */
+    .current-weather {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 1.4vh 1.2vw;
+      flex-shrink: 0;
+    }
+    .current-top {
+      display: flex;
+      align-items: center;
+      gap: 1vw;
+      margin-bottom: 1vh;
+    }
+    .weather-icon { font-size: 5.5vh; line-height: 1; }
+    .current-temp { font-size: 7vh; font-weight: 200; line-height: 1; }
+    .current-temp sup { font-size: 3vh; vertical-align: super; }
+    .current-desc { font-size: 1.7vh; color: var(--muted); margin-top: 0.3vh; }
+    .current-details {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35vh 0.8vw;
+      font-size: 1.4vh;
+      color: var(--muted);
+    }
+    .current-details .val { color: var(--text); font-weight: 600; }
+
+    /* ── Forecast ── */
+    .forecast {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 1.2vh 1.2vw;
+      flex: 1;
+      min-height: 0;
+    }
+    .forecast-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.5vh;
+      padding: 0.55vh 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .forecast-row:last-child { border-bottom: none; }
+    .f-day   { width: 4em; font-weight: 600; }
+    .f-icon  { font-size: 1.9vh; width: 2em; text-align: center; }
+    .f-pop   { color: var(--rain); width: 3.5em; text-align: right; font-size: 1.25vh; }
+    .f-temps { text-align: right; white-space: nowrap; }
+    .f-hi    { font-weight: 700; }
+    .f-lo    { color: var(--muted); font-size: 1.2vh; }
+
+    /* ── Tides ── */
+    .tides {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 1.2vh 1.2vw;
+      flex-shrink: 0;
+    }
+    .tide-day { margin-bottom: 0.9vh; }
+    .tide-day:last-child { margin-bottom: 0; }
+    .tide-day-label {
+      font-size: 1.1vh;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin-bottom: 0.4vh;
+    }
+    .tide-entries { display: flex; gap: 0.6vw; flex-wrap: wrap; }
+    .tide-entry {
+      background: var(--bg3);
+      border-radius: 6px;
+      padding: 0.5vh 0.6vw;
+      text-align: center;
+      min-width: 4.5vw;
+    }
+    .tide-type { font-size: 1.05vh; text-transform: uppercase; letter-spacing: 0.08em; }
+    .tide-type.H { color: var(--accent2); }
+    .tide-type.L { color: var(--muted); }
+    .tide-time { font-size: 1.5vh; font-weight: 700; margin: 0.2vh 0; }
+    .tide-ft   { font-size: 1.1vh; color: var(--muted); }
+
+    /* ── Wind map ── */
+    .windy-wrap {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg2);
+    }
+    .windy-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── Events ── */
+    .events-wrap {
+      flex: 1;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .events-wrap::-webkit-scrollbar { display: none; }
+
+    .event-card {
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1vh 1vw;
+      margin-bottom: 1vh;
+    }
+    .event-card:last-child { margin-bottom: 0; }
+    .ev-date {
+      font-size: 1.15vh;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    .ev-name {
+      font-size: 1.75vh;
+      font-weight: 600;
+      margin: 0.3vh 0 0.2vh;
+      line-height: 1.3;
+    }
+    .ev-time { font-size: 1.25vh; color: var(--muted); }
+
+    /* ── Loading / error ── */
+    .loading { color: var(--muted); font-size: 1.4vh; text-align: center; padding: 1.5vh; }
+    .err     { color: var(--red);   font-size: 1.3vh; text-align: center; padding: 1vh; }
+    .empty   { color: var(--muted); font-size: 1.4vh; text-align: center; padding: 2vh; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="branding">
+      <img class="burgee-img" src="SYC Burgee2_White_w_Transparent_Background.png" alt="SYC Burgee">
+      <div class="club-name">
+        Squantum Yacht Club
+        <small>Quincy, Massachusetts</small>
+      </div>
+    </div>
+    <div class="header-clock">
+      <div id="clock">--:-- --</div>
+      <div id="date">—</div>
+    </div>
+    <div class="header-meta">
+      <div id="last-updated">Loading…</div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Left: Weather + Tides -->
+    <div class="col col-left">
+      <div class="section-title">Current Conditions · Quincy Bay</div>
+      <div id="current-weather" class="current-weather"><div class="loading">Loading…</div></div>
+
+      <div class="section-title">7-Day Forecast</div>
+      <div id="forecast" class="forecast"><div class="loading">Loading…</div></div>
+
+      <div class="section-title">Tides · NOAA Station 8443970</div>
+      <div id="tides" class="tides"><div class="loading">Loading…</div></div>
+    </div>
+
+    <!-- Center: Wind map -->
+    <div class="col col-center">
+      <div class="section-title">Wind Map · Quincy Bay</div>
+      <div class="windy-wrap">
+        <iframe
+          src="https://embed.windy.com/embed2.html?lat=42.240&lon=-70.941&detailLat=42.285&detailLon=-71.000&width=650&height=900&zoom=11&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=default&metricTemp=default&radarRange=-1"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Right: Events -->
+    <div class="col col-right">
+      <div class="section-title">Upcoming Club Events</div>
+      <div class="events-wrap" id="events-list"><div class="loading">Loading…</div></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── Clock ──────────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  document.getElementById('date').textContent =
+    now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── WMO code lookup ────────────────────────────────────────────────────────
+const WMO = {
+  0:  ['Clear Sky',         '☀️'],
+  1:  ['Mainly Clear',      '🌤️'],
+  2:  ['Partly Cloudy',     '⛅'],
+  3:  ['Overcast',          '☁️'],
+  45: ['Fog',               '🌫️'],
+  48: ['Icy Fog',           '🌫️'],
+  51: ['Light Drizzle',     '🌦️'],
+  53: ['Drizzle',           '🌦️'],
+  55: ['Heavy Drizzle',     '🌧️'],
+  61: ['Light Rain',        '🌧️'],
+  63: ['Rain',              '🌧️'],
+  65: ['Heavy Rain',        '🌧️'],
+  71: ['Light Snow',        '🌨️'],
+  73: ['Snow',              '❄️'],
+  75: ['Heavy Snow',        '❄️'],
+  80: ['Rain Showers',      '🌦️'],
+  81: ['Rain Showers',      '🌧️'],
+  82: ['Violent Showers',   '⛈️'],
+  95: ['Thunderstorm',      '⛈️'],
+  96: ['Thunderstorm+Hail', '⛈️'],
+  99: ['Thunderstorm+Hail', '⛈️'],
+};
+
+function wmo(code) {
+  return WMO[code] || ['Unknown', '🌡️'];
+}
+
+const WIND_DIRS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+function windDir(deg) { return WIND_DIRS[Math.round(deg / 22.5) % 16]; }
+
+// ── Weather ────────────────────────────────────────────────────────────────
+async function loadWeather() {
+  const url =
+    'https://api.open-meteo.com/v1/forecast' +
+    '?latitude=42.240&longitude=-70.941' +
+    '&current=temperature_2m,apparent_temperature,windspeed_10m,winddirection_10m,weathercode,relative_humidity_2m' +
+    '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode' +
+    '&temperature_unit=fahrenheit&windspeed_unit=mph' +
+    '&timezone=America%2FNew_York&forecast_days=7';
+  const data = await fetch(url).then(r => r.json());
+  renderCurrent(data.current);
+  renderForecast(data.daily);
+}
+
+function renderCurrent(c) {
+  const [label, icon] = wmo(c.weathercode);
+  document.getElementById('current-weather').innerHTML = `
+    <div class="current-top">
+      <div class="weather-icon">${icon}</div>
+      <div>
+        <div class="current-temp">${Math.round(c.temperature_2m)}<sup>°F</sup></div>
+        <div class="current-desc">${label}</div>
+      </div>
+    </div>
+    <div class="current-details">
+      <span>Feels like</span><span class="val">${Math.round(c.apparent_temperature)}°F</span>
+      <span>Wind</span><span class="val">${Math.round(c.windspeed_10m)} mph ${windDir(c.winddirection_10m)}</span>
+      <span>Humidity</span><span class="val">${c.relative_humidity_2m}%</span>
+    </div>`;
+}
+
+function renderForecast(d) {
+  const DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let html = '';
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(d.time[i] + 'T12:00:00');
+    const [, icon] = wmo(d.weathercode[i]);
+    const pop = d.precipitation_probability_max[i] || 0;
+    html += `
+      <div class="forecast-row">
+        <span class="f-day">${i === 0 ? 'Today' : DAY[date.getDay()]}</span>
+        <span class="f-icon">${icon}</span>
+        <span class="f-pop">${pop > 5 ? pop + '%' : ''}</span>
+        <span class="f-temps">
+          <span class="f-hi">${Math.round(d.temperature_2m_max[i])}°</span>
+          <span class="f-lo"> / ${Math.round(d.temperature_2m_min[i])}°</span>
+        </span>
+      </div>`;
+  }
+  document.getElementById('forecast').innerHTML = html;
+}
+
+// ── Tides ──────────────────────────────────────────────────────────────────
+async function loadTides() {
+  const pad = n => String(n).padStart(2, '0');
+  const fmt = d => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+
+  const today = new Date();
+  const end   = new Date(today);
+  end.setDate(today.getDate() + 2);
+
+  const url =
+    `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter` +
+    `?begin_date=${fmt(today)}&end_date=${fmt(end)}` +
+    `&station=8443970&product=predictions&datum=MLLW&time_zone=lst_ldt` +
+    `&interval=hilo&units=english&application=syc_halltv&format=json`;
+
+  const data = await fetch(url).then(r => r.json());
+  renderTides(data.predictions, today, end);
+}
+
+function renderTides(predictions, today, end) {
+  const pad = n => String(n).padStart(2, '0');
+  const dayKey = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const labels = {};
+  for (let d = new Date(today), i = 0; d <= end; d.setDate(d.getDate()+1), i++) {
+    labels[dayKey(new Date(d))] = i === 0 ? 'Today' :
+      i === 1 ? 'Tomorrow' :
+      new Date(d).toLocaleDateString('en-US', { weekday: 'long' });
+  }
+
+  const groups = {};
+  for (const p of predictions) {
+    const k = p.t.slice(0,10);
+    if (!groups[k]) groups[k] = [];
+    groups[k].push(p);
+  }
+
+  let html = '';
+  for (const [k, entries] of Object.entries(groups)) {
+    if (!labels[k]) continue;
+    html += `<div class="tide-day"><div class="tide-day-label">${labels[k]}</div><div class="tide-entries">`;
+    for (const e of entries) {
+      const t = new Date(e.t + ':00').toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+      html += `
+        <div class="tide-entry">
+          <div class="tide-type ${e.type}">${e.type === 'H' ? 'High' : 'Low'}</div>
+          <div class="tide-time">${t}</div>
+          <div class="tide-ft">${parseFloat(e.v).toFixed(1)} ft</div>
+        </div>`;
+    }
+    html += '</div></div>';
+  }
+  document.getElementById('tides').innerHTML = html || '<div class="err">No tide data</div>';
+}
+
+// ── Events ─────────────────────────────────────────────────────────────────
+async function loadEvents() {
+  try {
+    const resp = await fetch('/data/syc_events.json');
+    if (!resp.ok) throw new Error();
+    const events = await resp.json();
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const upcoming = events
+      .filter(e => new Date(e.date + 'T00:00:00') >= today)
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(0, 25);
+
+    if (!upcoming.length) {
+      document.getElementById('events-list').innerHTML = '<div class="empty">No upcoming events</div>';
+      return;
+    }
+
+    let html = '';
+    for (const e of upcoming) {
+      const d = new Date(e.date + 'T12:00:00');
+      const dateStr = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      html += `
+        <div class="event-card">
+          <div class="ev-date">${dateStr}</div>
+          <div class="ev-name">${e.name}</div>
+          ${e.time ? `<div class="ev-time">${e.time}</div>` : ''}
+        </div>`;
+    }
+    document.getElementById('events-list').innerHTML = html;
+  } catch {
+    document.getElementById('events-list').innerHTML =
+      '<div class="empty">Events unavailable — check back soon</div>';
+  }
+}
+
+// ── Refresh ────────────────────────────────────────────────────────────────
+async function refresh() {
+  try { await loadWeather(); } catch { document.getElementById('current-weather').innerHTML = '<div class="err">Weather unavailable</div>'; document.getElementById('forecast').innerHTML = ''; }
+  try { await loadTides(); }   catch { document.getElementById('tides').innerHTML = '<div class="err">Tide data unavailable</div>'; }
+  await loadEvents();
+  document.getElementById('last-updated').textContent =
+    'Updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+refresh();
+setInterval(refresh, 30 * 60 * 1000);
+setTimeout(() => location.reload(), 30 * 60 * 1000);
+</script>
+</body>
+</html>
