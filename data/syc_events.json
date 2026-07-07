@@ -1,10 +1,5 @@
 [
   {
-    "name": "Dancing with Thru Dance",
-    "date": "2026-07-04",
-    "time": null
-  },
-  {
     "name": "SYC Kid Adventure Nights (SYC Hall)",
     "date": "2026-07-09",
     "time": null
@@ -52,6 +47,11 @@
   {
     "name": "MBYCA September Meeting",
     "date": "2026-09-25",
+    "time": null
+  },
+  {
+    "name": "KENTUCKY DERBY DAY AT SYC",
+    "date": "2027-05-01",
     "time": null
   }
 ]
