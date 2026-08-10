@@ -171,10 +171,10 @@
       border-bottom: 1px solid var(--border);
     }
     .forecast-row:last-child { border-bottom: none; }
-    .f-day   { width: 6.5em; font-weight: 600; }
+    .f-day   { width: 6em; font-weight: 600; }
     .f-date  { color: var(--accent2); font-size: 1.2vh; font-weight: 500; margin-left: 0.4em; }
-    .f-icon  { font-size: 1.9vh; width: 3em; text-align: center; }
-    .f-pop   { color: var(--rain); width: 3.5em; text-align: right; font-size: 1.25vh; }
+    .f-icon  { font-size: 1.9vh; width: 6em; text-align: center; }
+    .f-pop   { color: var(--rain); width: 3.5em; text-align: center; font-size: 1.25vh; }
     .f-temps { text-align: right; white-space: nowrap; width: 4.5em; }
     .f-hi    { font-weight: 700; }
     .f-lo    { color: var(--muted); font-size: 1.2vh; }
@@ -399,7 +399,7 @@ function renderForecast(d) {
   let html = `
     <div class="forecast-header">
       <span class="f-day">Day</span>
-      <span class="f-icon">Cond</span>
+      <span class="f-icon">Conditions</span>
       <span class="f-pop">Rain</span>
       <span class="f-temps">Hi / Lo</span>
     </div>`;
