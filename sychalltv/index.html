@@ -147,19 +147,35 @@
       flex: 1;
       min-height: 0;
     }
+    .forecast-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.1vh;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 0.5vh;
+      margin-bottom: 0.3vh;
+      border-bottom: 1px solid var(--border);
+    }
+    .forecast-header span { font-size: 1.1vh; }
+    .forecast-header .f-pop { color: var(--muted); }
     .forecast-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 1.5vh;
-      padding: 0.55vh 0;
+      padding: 0.5vh 0;
       border-bottom: 1px solid var(--border);
     }
     .forecast-row:last-child { border-bottom: none; }
-    .f-day   { width: 4em; font-weight: 600; }
-    .f-icon  { font-size: 1.9vh; width: 2em; text-align: center; }
+    .f-day   { width: 6.5em; font-weight: 600; }
+    .f-date  { color: var(--accent2); font-size: 1.2vh; font-weight: 500; margin-left: 0.4em; }
+    .f-icon  { font-size: 1.9vh; width: 3em; text-align: center; }
     .f-pop   { color: var(--rain); width: 3.5em; text-align: right; font-size: 1.25vh; }
-    .f-temps { text-align: right; white-space: nowrap; }
+    .f-temps { text-align: right; white-space: nowrap; width: 4.5em; }
     .f-hi    { font-weight: 700; }
     .f-lo    { color: var(--muted); font-size: 1.2vh; }
 
@@ -380,14 +396,21 @@ function renderCurrent(c) {
 
 function renderForecast(d) {
   const DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  let html = '';
+  let html = `
+    <div class="forecast-header">
+      <span class="f-day">Day</span>
+      <span class="f-icon">Cond</span>
+      <span class="f-pop">Rain</span>
+      <span class="f-temps">Hi / Lo</span>
+    </div>`;
   for (let i = 0; i < 7; i++) {
     const date = new Date(d.time[i] + 'T12:00:00');
+    const dateStr = `${date.getMonth() + 1}/${date.getDate()}`;
     const [, icon] = wmo(d.weathercode[i]);
     const pop = d.precipitation_probability_max[i] || 0;
     html += `
       <div class="forecast-row">
-        <span class="f-day">${i === 0 ? 'Today' : DAY[date.getDay()]}</span>
+        <span class="f-day">${i === 0 ? 'Today' : DAY[date.getDay()]} <span class="f-date">${dateStr}</span></span>
         <span class="f-icon">${icon}</span>
         <span class="f-pop">${pop > 5 ? pop + '%' : ''}</span>
         <span class="f-temps">
