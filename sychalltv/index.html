@@ -148,9 +148,9 @@
       min-height: 0;
     }
     .forecast-header {
-      display: flex;
+      display: grid;
+      grid-template-columns: 6.5em 1fr 3.5em 4.5em;
       align-items: center;
-      justify-content: space-between;
       font-size: 1.1vh;
       font-weight: 600;
       color: var(--muted);
@@ -161,21 +161,21 @@
       border-bottom: 1px solid var(--border);
     }
     .forecast-header span { font-size: 1.1vh; }
-    .forecast-header .f-pop { color: var(--muted); }
+    .forecast-header .f-pop { color: var(--muted); text-align: left; }
     .forecast-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: 6.5em 1fr 3.5em 4.5em;
       align-items: center;
-      justify-content: space-between;
       font-size: 1.5vh;
       padding: 0.5vh 0;
       border-bottom: 1px solid var(--border);
     }
     .forecast-row:last-child { border-bottom: none; }
-    .f-day   { width: 6em; font-weight: 600; }
+    .f-day   { font-weight: 600; text-align: left; }
     .f-date  { color: var(--accent2); font-size: 1.2vh; font-weight: 500; margin-left: 0.4em; }
-    .f-icon  { font-size: 1.9vh; width: 6em; text-align: center; }
-    .f-pop   { color: var(--rain); width: 3.5em; text-align: center; font-size: 1.25vh; }
-    .f-temps { text-align: right; white-space: nowrap; width: 4.5em; }
+    .f-icon  { font-size: 1.9vh; text-align: left; }
+    .f-pop   { color: var(--rain); font-size: 1.25vh; text-align: left; }
+    .f-temps { text-align: right; white-space: nowrap; }
     .f-hi    { font-weight: 700; }
     .f-lo    { color: var(--muted); font-size: 1.2vh; }
 
