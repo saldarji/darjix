@@ -196,13 +196,14 @@
       font-weight: 600;
       margin-bottom: 0.4vh;
     }
-    .tide-entries { display: flex; gap: 0.6vw; flex-wrap: wrap; }
+    .tide-entries { display: flex; gap: 0.6vw; }
     .tide-entry {
+      flex: 1;
+      min-width: 0;
       background: var(--bg3);
       border-radius: 6px;
-      padding: 0.5vh 0.6vw;
+      padding: 0.6vh 0.4vw;
       text-align: center;
-      min-width: 4.5vw;
     }
     .tide-type { font-size: 1.05vh; text-transform: uppercase; letter-spacing: 0.08em; }
     .tide-type.H { color: var(--accent2); }
