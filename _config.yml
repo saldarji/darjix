@@ -11,6 +11,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-paginate
 
 # GitHub Pages specific settings
 # Note: 'theme' is commented out since we're using custom layouts

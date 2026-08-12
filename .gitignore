@@ -41,3 +41,6 @@ __pycache__/
 .Python
 
 .env
+
+# Firebase
+.firebase/

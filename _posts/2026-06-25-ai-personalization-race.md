@@ -4,7 +4,7 @@ title: "AI Personalization Race"
 date: 2026-06-25
 author: "Sal Darji"
 image: "/assets/images/image posts/img_5541.jpeg"
-alt_text: "A dark bronze statuette of a powerful, bearded man, poised to hurl a thunderbolt, stands in a grayscale museum display. Set on a white plinth, ethereal reflections of windows and onlookers shimmer behind him, hinting at the present amidst ancient art."s intense pose contrasts with the serene, reflective background."
+alt_text: "A dark bronze statuette of a powerful, bearded man, poised to hurl a thunderbolt, stands in a grayscale museum display. Set on a white plinth, ethereal reflections of windows and onlookers shimmer behind him, hinting at the present amidst ancient art. His intense pose contrasts with the serene, reflective background."
 caption: "Zeus"
 ---
 
