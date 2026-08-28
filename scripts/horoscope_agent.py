@@ -129,17 +129,24 @@ Rules for each sign:
 
 def extract_json(text: str) -> dict:
     text = text.strip()
-    fence = re.match(r"^```(?:json)?\s*([\s\S]*?)\s*```$", text)
+    fence = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", text)
     if fence:
         text = fence.group(1).strip()
     try:
-        return json.loads(text)
+        return json.loads(text, strict=False)
     except json.JSONDecodeError:
         start = text.find("{")
         end = text.rfind("}")
         if start >= 0 and end > start:
-            return json.loads(text[start : end + 1])
+            snippet = text[start : end + 1]
+            try:
+                return json.loads(snippet, strict=False)
+            except json.JSONDecodeError:
+                # Replace unescaped control characters (except standard space) if strict=False still failed
+                cleaned = re.sub(r"[\x00-\x1f]+", " ", snippet)
+                return json.loads(cleaned, strict=False)
         raise
+
 
 
 def run_model(prompt: str) -> dict:
@@ -152,17 +159,17 @@ def run_model(prompt: str) -> dict:
         "temperature": TEMPERATURE,
     }
 
-    raw = ""
     try:
+        out = replicate.run(MODEL, input=inp)
+        if isinstance(out, (list, tuple)):
+            raw = "".join(str(x) for x in out)
+        else:
+            raw = str(out)
+    except Exception as e:
+        print(f"⚠️  Replicate run error: {e}, attempting stream fallback…", file=sys.stderr)
+        raw = ""
         for event in replicate.stream(MODEL, input=inp):
             raw += str(event)
-    except Exception as e:
-        print(f"⚠️  Replicate stream error: {e}, trying run()…", file=sys.stderr)
-        out = replicate.run(MODEL, input=inp)
-        if isinstance(out, str):
-            raw = out
-        else:
-            raw = "".join(str(x) for x in out)
 
     return extract_json(raw)
 
@@ -240,10 +247,22 @@ def main() -> None:
     traits = load_traits()
     prompt = build_prompt(traits, story, week_label)
 
-    print(f"🔮 Calling Replicate {MODEL}…")
-    data = run_model(prompt)
+    max_attempts = 3
+    payload = None
+    last_error = None
 
-    payload = validate_payload(data, week_start_iso, week_label, story)
+    for attempt in range(1, max_attempts + 1):
+        print(f"🔮 Calling Replicate {MODEL} (Attempt {attempt}/{max_attempts})…")
+        try:
+            data = run_model(prompt)
+            payload = validate_payload(data, week_start_iso, week_label, story)
+            break
+        except Exception as e:
+            print(f"⚠️ Attempt {attempt} failed: {e}", file=sys.stderr)
+            last_error = e
+
+    if not payload:
+        raise RuntimeError(f"Failed to generate valid horoscope after {max_attempts} attempts: {last_error}")
 
     print("🎱 Drawing Powerball-style numbers + lucky quip…")
     horoscope_lucky.apply_lucky_to_payload(payload, story)
@@ -258,3 +277,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

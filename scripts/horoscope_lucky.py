@@ -82,20 +82,24 @@ def generate_lucky_comment(story: dict, numbers: list[int]) -> str:
     }
     raw = ""
     try:
-        for event in replicate.stream(MODEL, input=inp):
-            raw += str(event)
-    except Exception as e:
-        print(f"⚠️  Replicate stream error: {e}, trying run()…", file=sys.stderr)
         out = replicate.run(MODEL, input=inp)
-        raw = out if isinstance(out, str) else "".join(str(x) for x in out)
+        if isinstance(out, (list, tuple)):
+            raw = "".join(str(x) for x in out)
+        else:
+            raw = str(out)
+    except Exception as e:
+        print(f"⚠️  Replicate run error (lucky comment): {e}", file=sys.stderr)
 
     line = raw.strip().split("\n")[0].strip()
     line = line.strip('"').strip("'")
     if len(line) < 12:
-        raise ValueError("Lucky comment too short from model")
+        main_nums = ", ".join(str(x) for x in numbers[:5])
+        pb_num = numbers[5]
+        return f"With numbers {main_nums} and Powerball {pb_num}, the cosmos is holding its cards tight today."
     if len(line) > 500:
         line = line[:497] + "…"
     return line
+
 
 
 def apply_lucky_to_payload(payload: dict, story: dict) -> None:
