@@ -36,6 +36,17 @@ The Horoscopes page (`/horoscopes/`) displays a weekly satirical horoscope inspi
 
 ---
 
+## News Topic Filtering & Content Guidelines
+
+To ensure horoscopes remain lighthearted, fun, and appropriate for entertainment:
+
+- **Dark & Controversial Keyword Filter**: Headlines are checked against a blocklist (`DARK_OR_CONTROVERSIAL_KEYWORDS`) to exclude stories related to war, violent crime, trials/executions, disasters, fatal accidents, and disease outbreaks.
+- **Category Fallback**: If general top headlines contain heavy or tragic news, the fetcher automatically falls back to `technology` and `entertainment` headline categories.
+- **Prompt Tone Rules**: The prompt explicitly enforces a lighthearted, silly, and whimsical tone while forbidding morbid, tragic, or politically aggressive copy.
+
+---
+
+
 ## Replicate Integration Details
 
 Replicate is used as the primary LLM inference provider for generating creative, structured text.

@@ -60,40 +60,63 @@ def load_traits() -> str:
     return "\n".join(lines)
 
 
+DARK_OR_CONTROVERSIAL_KEYWORDS = {
+    "die", "dies", "died", "death", "killing", "killed", "kill", "murder", "murdered",
+    "war", "warfare", "genocide", "casualty", "casualties", "victim", "victims", "fatal",
+    "shooting", "shot", "shooter", "slain", "massacre", "bomb", "bombing", "attack",
+    "terror", "terrorist", "terrorism", "strike", "hostage", "abuse", "assault", "execution",
+    "criminal", "crime", "arrested", "indicted", "indictment", "trial", "convicted",
+    "sentence", "sentenced", "prison", "jail", "guilty", "scandal", "prosecutor",
+    "disaster", "tragedy", "outbreak", "pandemic", "virus", "hantavirus", "measles",
+    "ebola", "earthquake", "flood", "explosion", "crash", "crashed",
+}
+
+
+def is_dark_or_controversial(title: str, desc: str) -> bool:
+    text_words = set(re.findall(r"\b\w+\b", f"{title} {desc}".lower()))
+    return bool(text_words & DARK_OR_CONTROVERSIAL_KEYWORDS)
+
+
 def fetch_top_us_story() -> dict:
     api_key = os.environ.get("NEWS_API_KEY")
     if not api_key:
         raise ValueError("NEWS_API_KEY environment variable not set")
 
     url = "https://newsapi.org/v2/top-headlines"
-    params = {
-        "country": "us",
-        "pageSize": 20,
-        "apiKey": api_key,
-    }
-    r = requests.get(url, params=params, timeout=30)
-    r.raise_for_status()
-    body = r.json()
-    if body.get("status") != "ok":
-        raise RuntimeError(body.get("message", "NewsAPI error"))
+    
+    # Try general headlines first, fallback to technology/entertainment categories
+    query_params_list = [
+        {"country": "us", "pageSize": 20, "apiKey": api_key},
+        {"country": "us", "category": "technology", "pageSize": 20, "apiKey": api_key},
+        {"country": "us", "category": "entertainment", "pageSize": 20, "apiKey": api_key},
+    ]
 
-    for article in body.get("articles", []):
-        title = (article.get("title") or "").strip()
-        desc = (article.get("description") or "").strip()
-        if not title or title.lower() == "[removed]":
+    for params in query_params_list:
+        r = requests.get(url, params=params, timeout=30)
+        r.raise_for_status()
+        body = r.json()
+        if body.get("status") != "ok":
             continue
-        if len(desc) < 20:
-            desc = title
-        source = article.get("source") or {}
-        name = source.get("name", "Unknown") if isinstance(source, dict) else str(source)
-        return {
-            "title": title,
-            "description": desc,
-            "url": article.get("url") or "",
-            "source": name,
-        }
 
-    raise RuntimeError("No usable top-headlines article returned")
+        for article in body.get("articles", []):
+            title = (article.get("title") or "").strip()
+            desc = (article.get("description") or "").strip()
+            if not title or title.lower() == "[removed]":
+                continue
+            if len(desc) < 20:
+                desc = title
+            if is_dark_or_controversial(title, desc):
+                continue
+            source = article.get("source") or {}
+            name = source.get("name", "Unknown") if isinstance(source, dict) else str(source)
+            return {
+                "title": title,
+                "description": desc,
+                "url": article.get("url") or "",
+                "source": name,
+            }
+
+    raise RuntimeError("No suitable lighthearted top-headlines article returned")
 
 
 def build_prompt(traits_block: str, story: dict, week_label: str) -> str:
@@ -111,8 +134,8 @@ Week label for display: {week_label}
 
 Output ONLY valid JSON (no markdown fences, no commentary). Schema:
 {{
-  "page_title": "Very short, snappy title for this horoscope page (max ~8 words). Witty or dramatic; not generic phrases like 'This Week' or 'Horoscopes'. No quotes in the string.",
-  "weekly_forecast": "3-5 sentences. Sarcastic, funny, slightly edgy. Based ONLY on the news story above, predict in a playful fictional way what might happen with this story in the coming week (hearings, tweets, plot twists, chaos). Clearly absurd satire—not factual reporting.",
+  "page_title": "Very short, snappy title for this horoscope page (max ~8 words). Witty, playful, or dramatic; not generic phrases like 'This Week' or 'Horoscopes'. No quotes in the string.",
+  "weekly_forecast": "3-5 sentences. Sarcastic, funny, playful. Based ONLY on the news story above, predict in a playful fictional way what might happen with this story in the coming week. Clearly absurd satire—not factual reporting.",
   "signs": [
     {{"name": "Aries", "lines": ["line1", "line2", "line3"]}},
     ... exactly 12 objects in zodiac order: Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces
@@ -121,10 +144,12 @@ Output ONLY valid JSON (no markdown fences, no commentary). Schema:
 
 Rules for each sign:
 - Exactly 2 or 3 short lines per sign (array length 2 or 3).
-- Sarcastic, witty, edgy-but-not-hateful; horoscope parody for laughs.
+- Sarcastic, witty, lighthearted, and funny horoscope parody.
+- Tone MUST be light, fun, and playful. Avoid morbid, dark, tragic, heavy, or politically hostile commentary.
 - Tie each sign lightly to the news vibe OR to classic sign stereotypes—mix it up.
 - No slurs; no targeted harassment of real private individuals. Public figures in the news may be joked about lightly.
 """
+
 
 
 def extract_json(text: str) -> dict:
