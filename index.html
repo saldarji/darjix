@@ -15,17 +15,7 @@ pagination:
       <!-- Main Content - Left Side -->
       <div class="lg:col-span-7">
         <div class="space-y-12">
-          <!-- Featured Content Box -->
-          <div class="border-2 border-black p-6 mb-12">
-            <div class="text-xs font-bold text-black uppercase tracking-wider mb-4">
-              What I'm Consuming
-            </div>
-            <div class="prose prose-lg">
-              {% capture featured_content %}{% include featured-content.md %}{% endcapture %}
-              {{ featured_content | markdownify }}
-            </div>
-          </div>
-          
+
           <!-- Blog Posts -->
           {% for post in paginator.posts %}
           {% assign post_title = post.title | default: "" | strip %}

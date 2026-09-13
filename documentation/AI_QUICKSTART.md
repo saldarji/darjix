@@ -37,8 +37,7 @@ darjix/
 │   ├── footer.html         # Site footer
 │   ├── inset.html          # Expandable image/table component
 │   ├── edtech-news.md      # Auto-generated news content
-│   ├── edtech-podcasts.md  # Auto-generated podcast content
-│   └── featured-content.md # Manually curated featured content
+│   └── edtech-podcasts.md  # Auto-generated podcast content
 ├── _posts/                 # Blog posts (Jekyll convention)
 │   └── YYYY-MM-DD-Title.md # Post files (date prefix required)
 ├── assets/                  # Static assets
@@ -166,13 +165,6 @@ caption: "Optional caption"
 
 **Display:** `podcasts.html` page
 
-### 6. Featured Content
-
-**Location:** `_includes/featured-content.md` (manually edited)
-
-**Display:** Homepage "What I'm Consuming" box
-
-**Format:** Markdown list of articles/resources
 
 ## Common Tasks
 
@@ -194,11 +186,6 @@ caption: "Optional caption"
 
 **See:** `documentation/PHOTO_POSTS.md` for full details
 
-### Updating Featured Content
-
-1. Edit `_includes/featured-content.md`
-2. Use markdown format for links
-3. Commit and push
 
 ### Running News/Podcast Scripts Locally
 

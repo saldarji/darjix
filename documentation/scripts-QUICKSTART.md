@@ -58,7 +58,7 @@ To run automatically every week:
 - `scripts/requirements.txt` - Python dependencies
 - `scripts/test_agent.sh` - Quick test script
 - `.github/workflows/update-edtech-news.yml` - Automation
-- `_includes/featured-content.md` - Generated content (on your site!)
+- `_includes/edtech-news.md` - Generated content (on your site!)
 
 ## 🎨 Customize the Output
 

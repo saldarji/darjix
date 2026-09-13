@@ -36,7 +36,7 @@ def parse_config(config_path='scripts/edtech-news-config.md'):
         'total_max_articles': 15,
         'language': 'en',
         'sort_by': 'relevancy',
-        'output_file': '_includes/featured-content.md',
+        'output_file': '_includes/edtech-news.md',
         'query_strategies': []
     }
     
