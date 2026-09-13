@@ -121,23 +121,22 @@ CRITICAL REQUIREMENTS:
 
 3. DIVERSITY: Avoid selecting multiple episodes from the same podcast or on the same topic. Prioritize variety.
 
-REJECT episodes that:
-- Are not primarily about education technology
-- Are promotional content or ads
-- Are about unrelated topics (general business, non-edtech startups, etc.)
-- Are duplicates or very similar to already selected episodes
+4. QUANTITY: You MUST select EXACTLY {max_selected} episodes (or all available if fewer than {max_selected}).
 
 OUTPUT FORMAT:
-For each selected episode, provide:
-[Episode Number] [Episode Title]
+Return ONLY a JSON array of the integer index numbers of your {max_selected} chosen episodes (e.g. [1, 2, 4, 5, 7, 8, 10, 11, 13, 14]). Do not output any markdown formatting, text, or explanations outside the JSON array.
 
 Episodes:
 {episodes_text}
 
-Selected Episodes:"""
+Selected Episode Indices JSON:"""
 
     try:
         api_key = os.environ.get('GEMINI_API_KEY')
+        if not api_key:
+            print("⚠️  GEMINI_API_KEY not set. Falling back to top candidates...")
+            return candidates[:max_selected]
+
         client = genai.Client(api_key=api_key)
         response = client.models.generate_content(
             model=config['model'],
@@ -157,35 +156,40 @@ Selected Episodes:"""
         return candidates[:max_selected]
 
 def parse_selection(llm_output, episodes):
-    """Parse LLM output to extract selected episodes"""
+    """Parse LLM output to extract selected episodes (handles JSON array or text lists)"""
     selected = []
+    seen_indices = set()
     
+    # 1. Try parsing JSON array format (e.g. [2, 5, 6, 12, 15, 1, 7, 8, 3, 10])
+    try:
+        json_match = re.search(r'\[\s*\d+(?:\s*,\s*\d+)*\s*\]', llm_output)
+        if json_match:
+            indices = json.loads(json_match.group(0))
+            for idx in indices:
+                if isinstance(idx, int) and 1 <= idx <= len(episodes) and idx not in seen_indices:
+                    selected.append(episodes[idx - 1])
+                    seen_indices.add(idx)
+            if len(selected) > 0:
+                return selected
+    except Exception:
+        pass
+
+    # 2. Fallback: Parse line by line for [N] or N. or numbers
     lines = llm_output.split('\n')
-    
     for line in lines:
         line = line.strip()
         if not line:
             continue
             
-        # Look for [N] format or N. format
-        match = re.match(r'^\[(\d+)\]\s+(.+)$', line)
-        if not match:
-            match = re.match(r'^(\d+)\.?\s+(.+)$', line)
-        
-        if not match:
-            continue
-            
-        episode_num = int(match.group(1))
-        title = match.group(2).strip()
-        
-        # Find the corresponding episode
-        if 1 <= episode_num <= len(episodes):
-            episode = episodes[episode_num - 1]
-            
-            # Verify title matches (fuzzy match)
-            episode_title = episode.get('trackName', '')
-            if title.lower() in episode_title.lower() or episode_title.lower() in title.lower():
-                selected.append(episode)
+        # Match [N] or N. at start of line
+        match = re.search(r'^\s*(?:\[(\d+)\]|(\d+)\.|\b(\d+)\b)', line)
+        if match:
+            num_str = match.group(1) or match.group(2) or match.group(3)
+            if num_str:
+                idx = int(num_str)
+                if 1 <= idx <= len(episodes) and idx not in seen_indices:
+                    selected.append(episodes[idx - 1])
+                    seen_indices.add(idx)
     
     return selected
 
@@ -299,14 +303,13 @@ def main():
         'model': os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash'),
         'keywords': ['edtech', 'education technology', 'higher education', 'learning technology'],
         'searches_per_keyword': 5,
-        'max_candidates': 15,
+        'max_candidates': 30,
         'max_selected': 10  # Will select 5-10 episodes
     }
     
-    # Check for Gemini API key
+    # Log Gemini model info
     if not os.environ.get('GEMINI_API_KEY'):
-        print("⚠️  GEMINI_API_KEY not set. Exiting.")
-        return
+        print("⚠️  GEMINI_API_KEY not set in local environment. Will fallback to top iTunes candidates.")
     
     print(f"📋 Using model: {config['model']}")
     print(f"📊 Keywords: {', '.join(config['keywords'])}")
