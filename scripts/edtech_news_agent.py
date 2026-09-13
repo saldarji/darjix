@@ -228,11 +228,13 @@ def update_news_file(stories, output_file='_includes/edtech-news.md'):
     ]
     
     for s in stories:
-        title = s.get('title', 'Untitled')
-        url = s.get('url', '#')
-        source = s.get('source', 'News Source')
+        title = s.get('title', 'Untitled').strip()
+        # Replace pipes and brackets to prevent Kramdown table & link parsing bugs
+        title = title.replace('|', '—').replace('[', '(').replace(']', ')')
+        source = s.get('source', 'News Source').strip().replace('[', '(').replace(']', ')')
+        url = s.get('url', '#').strip()
         date_str = s.get('date', datetime.now().strftime('%Y-%m-%d'))
-        summary = s.get('summary', '').strip()
+        summary = s.get('summary', '').strip().replace('|', '—')
         
         entry = f"- {date_str}: [{title}]({url}) - {summary} [{source}]\n"
         lines.append(entry)
