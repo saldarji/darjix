@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Horoscopes - DARJIX
-permalink: /horoscopes/
+title: Horoscopes - DARJIX Archive
+permalink: /archive/horoscopes/
 ---
 
 {% assign h = site.data.horoscopes %}
@@ -106,8 +106,10 @@ permalink: /horoscopes/
         {% if h.generated_at_iso %}Last generation timestamp (UTC): <code class="text-gray-500">{{ h.generated_at_iso }}</code>.{% endif %}
       </p>
       {% endif %}
-      <p class="text-center mt-8">
-        <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">← Back to Home</a>
+      <p class="text-center mt-8 space-x-4">
+        <a href="{{ '/archive/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">← Back to Archive</a>
+        <span class="text-gray-300">|</span>
+        <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">Home</a>
       </p>
     </footer>
 
