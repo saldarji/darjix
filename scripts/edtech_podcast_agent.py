@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-EdTech Podcast Agent - Fetches and selects relevant podcast episodes using Replicate
+EdTech Podcast Agent - Fetches and selects relevant podcast episodes using Google Gemini API
 """
 
 import os
 import re
 import json
-import replicate
 import time
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from google import genai
 
 # Load environment variables from .env file if it exists
 try:
@@ -137,19 +137,21 @@ Episodes:
 Selected Episodes:"""
 
     try:
-        output = replicate.run(
-            config['model'],
-            input={"prompt": selection_prompt, "max_tokens": 1024, "temperature": 0.3}
+        api_key = os.environ.get('GEMINI_API_KEY')
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model=config['model'],
+            contents=selection_prompt
         )
         
-        result = "".join(str(item) for item in output)
+        result = response.text or ""
         selected = parse_selection(result, candidates)
         
         print(f"✅ Selected {len(selected)} episodes")
         return selected
         
     except Exception as e:
-        print(f"⚠️  Replicate error: {e}")
+        print(f"⚠️  Gemini API error: {e}")
         print("Falling back to top episodes by date...")
         # Fallback: return top episodes by date
         return candidates[:max_selected]
@@ -294,16 +296,16 @@ def main():
     
     # Configuration
     config = {
-        'model': os.environ.get('REPLICATE_MODEL', 'deepseek-ai/deepseek-r1'),
+        'model': os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash'),
         'keywords': ['edtech', 'education technology', 'higher education', 'learning technology'],
         'searches_per_keyword': 5,
         'max_candidates': 15,
         'max_selected': 10  # Will select 5-10 episodes
     }
     
-    # Check for Replicate API token
-    if not os.environ.get('REPLICATE_API_TOKEN'):
-        print("⚠️  REPLICATE_API_TOKEN not set. Exiting.")
+    # Check for Gemini API key
+    if not os.environ.get('GEMINI_API_KEY'):
+        print("⚠️  GEMINI_API_KEY not set. Exiting.")
         return
     
     print(f"📋 Using model: {config['model']}")

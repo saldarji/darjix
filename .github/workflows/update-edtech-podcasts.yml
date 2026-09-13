@@ -34,8 +34,8 @@ jobs:
       
       - name: Run EdTech Podcast Agent
         env:
-          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
-          REPLICATE_MODEL: deepseek-ai/deepseek-r1
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
         run: |
           python scripts/edtech_podcast_agent.py
       
