@@ -45,7 +45,7 @@ defaults:
     values:
       layout: "default"
   - scope:
-      path: "dice-game"
+      path: "archive/dice-game"
     values:
       layout: null
   - scope:
