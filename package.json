@@ -1,27 +1,35 @@
 {
   "name": "darjix",
   "version": "1.0.0",
-  "description": "Darjix.com - Static site with Jekyll and Tailwind CSS",
+  "description": "Darjix.com - Database-backed blog with Next.js and Firebase",
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css",
-    "watch:css": "tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css --watch",
-    "build:jekyll": "bundle exec jekyll build",
-    "serve:jekyll": "bundle exec jekyll serve --livereload",
-    "dev": "concurrently \"npm run watch:css\" \"npm run serve:jekyll\"",
-    "build:production": "NODE_ENV=production tailwindcss -i ./assets/src/input.css -o ./assets/css/style.css --minify && bundle exec jekyll build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "node scripts/migrate-jekyll-to-firebase.js"
   },
-  "keywords": [
-    "jekyll",
-    "tailwindcss",
-    "static-site"
-  ],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "firebase": "^10.13.0",
+    "firebase-admin": "^12.5.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.453.0",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "tailwind-merge": "^2.5.4"
+  },
   "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.16",
-    "concurrently": "^8.2.2",
     "postcss": "^8.4.32",
-    "tailwindcss": "^3.3.6"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.5"
   }
 }
-
