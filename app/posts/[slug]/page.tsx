@@ -15,6 +15,22 @@ interface PostPageProps {
   };
 }
 
+export async function generateStaticParams() {
+  try {
+    const jsonPath = path.join(process.cwd(), "data/posts.json");
+    if (fs.existsSync(jsonPath)) {
+      const fileData = fs.readFileSync(jsonPath, "utf-8");
+      const posts = JSON.parse(fileData) as Post[];
+      return posts.map((post) => ({
+        slug: post.slug || post.id,
+      }));
+    }
+  } catch (err) {
+    console.error("Error in generateStaticParams:", err);
+  }
+  return [];
+}
+
 async function findPost(slug: string): Promise<Post | null> {
   const post = await getPostBySlug(slug);
   if (post) return post;
