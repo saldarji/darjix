@@ -5,8 +5,15 @@ import Pagination from "@/components/Pagination";
 import fs from "fs";
 import path from "path";
 import { Post } from "@/lib/types";
+import { notFound } from "next/navigation";
 
 const POSTS_PER_PAGE = 5;
+
+interface PageProps {
+  params: {
+    num: string;
+  };
+}
 
 async function fetchPosts(): Promise<Post[]> {
   const firestorePosts = await getPublishedPosts(50);
@@ -27,11 +34,39 @@ async function fetchPosts(): Promise<Post[]> {
   return [];
 }
 
-export default async function HomePage() {
+export async function generateStaticParams() {
   const posts = await fetchPosts();
-
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  const currentPosts = posts.slice(0, POSTS_PER_PAGE);
+  const paths = [];
+
+  for (let pageNum = 2; pageNum <= totalPages; pageNum++) {
+    paths.push({ num: pageNum.toString() });
+  }
+
+  return paths;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  return {
+    title: `Page ${params.num} - DARJIX`,
+  };
+}
+
+export default async function PaginatedPostsPage({ params }: PageProps) {
+  const pageNum = parseInt(params.num, 10);
+  if (isNaN(pageNum) || pageNum < 1) {
+    notFound();
+  }
+
+  const posts = await fetchPosts();
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+  if (pageNum > totalPages && totalPages > 0) {
+    notFound();
+  }
+
+  const startIndex = (pageNum - 1) * POSTS_PER_PAGE;
+  const currentPosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
   return (
     <section className="py-12 bg-white">
@@ -41,10 +76,7 @@ export default async function HomePage() {
           <div className="lg:col-span-7">
             {currentPosts.length === 0 ? (
               <div className="p-8 border border-dashed border-gray-300 rounded text-center">
-                <p className="text-gray-600 font-medium">No blog posts found yet.</p>
-                <p className="text-xs text-gray-500 mt-2">
-                  Run <code className="bg-gray-100 px-1 py-0.5 font-mono">npm run migrate</code> to parse existing posts into database format.
-                </p>
+                <p className="text-gray-600 font-medium">No posts found on this page.</p>
               </div>
             ) : (
               <div>
@@ -52,7 +84,7 @@ export default async function HomePage() {
                   <PostCard key={post.id || post.slug} post={post} isLast={idx === currentPosts.length - 1} />
                 ))}
 
-                <Pagination currentPage={1} totalPages={totalPages} />
+                <Pagination currentPage={pageNum} totalPages={totalPages} />
               </div>
             )}
           </div>
