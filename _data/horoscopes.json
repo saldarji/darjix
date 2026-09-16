@@ -1,0 +1,114 @@
+{
+  "page_title": "Practical Magic 2: Box Office or Bust",
+  "week_start_iso": "2026-09-14",
+  "week_label": "September 14, 2026",
+  "date_caption": "Created September 14, 2026 for the 38th week of 2026.",
+  "generated_at_iso": "2026-09-14T15:29:43Z",
+  "news": {
+    "title": "‘Practical Magic 2’ Brews Up $46M WW In Global Opening - Deadline",
+    "source": "Deadline",
+    "url": "http://deadline.com/2026/09/box-office-practical-magic-2-global-1237100627/"
+  },
+  "weekly_forecast": "Practical Magic 2's $46M opening is about as magical as a wet match. Next week, desperate Warner Bros. execs will try to blame the flop on Mercury retrograde. The film's stars will mysteriously vanish from social media, only to reappear promoting a surprise reboot of Hocus Pocus. Meanwhile, fans will start a Change.org petition to remake the movie with Nicolas Cage as every character.",
+  "signs": [
+    {
+      "name": "Aries",
+      "lines": [
+        "You’ll storm out of the theater demanding a refund after 10 minutes.",
+        "Then you’ll apologize and buy tickets for everyone in line."
+      ]
+    },
+    {
+      "name": "Taurus",
+      "lines": [
+        "You’ll stubbornly insist the movie is a masterpiece.",
+        "Even though you fell asleep halfway through."
+      ]
+    },
+    {
+      "name": "Gemini",
+      "lines": [
+        "You’ll tweet 37 hot takes about the film’s cinematography.",
+        "Then delete them all when your mutuals roast you."
+      ]
+    },
+    {
+      "name": "Cancer",
+      "lines": [
+        "You’ll cry during the trailer and refuse to see the movie.",
+        "It’s just too emotionally risky."
+      ]
+    },
+    {
+      "name": "Leo",
+      "lines": [
+        "You’ll loudly declare it’s your new favorite film.",
+        "Mainly because you’re in the background of one scene."
+      ]
+    },
+    {
+      "name": "Virgo",
+      "lines": [
+        "You’ll spend the runtime counting continuity errors.",
+        "Your spreadsheet will break IMDb."
+      ]
+    },
+    {
+      "name": "Libra",
+      "lines": [
+        "You’ll agonize over whether to see it or not.",
+        "Then you’ll miss the theatrical run entirely."
+      ]
+    },
+    {
+      "name": "Scorpio",
+      "lines": [
+        "You’ll write a scalding Letterboxd review.",
+        "Then send it anonymously to the director."
+      ]
+    },
+    {
+      "name": "Sagittarius",
+      "lines": [
+        "You’ll show up to the wrong movie theater.",
+        "End up watching a documentary about llamas instead."
+      ]
+    },
+    {
+      "name": "Capricorn",
+      "lines": [
+        "You’ll calculate the exact ROI of buying a ticket.",
+        "Then pirate it anyway."
+      ]
+    },
+    {
+      "name": "Aquarius",
+      "lines": [
+        "You’ll organize a protest against ‘capitalist witchcraft.’",
+        "No one shows up, but you make a great TikTok."
+      ]
+    },
+    {
+      "name": "Pisces",
+      "lines": [
+        "You’ll get lost in the lobby and miss the movie.",
+        "Somehow, you still leave with strong opinions about it."
+      ]
+    }
+  ],
+  "generator": {
+    "llm_model": "deepseek-ai/deepseek-v3",
+    "llm_provider": "Replicate",
+    "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
+    "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM."
+  },
+  "lucky_numbers": [
+    2,
+    27,
+    38,
+    48,
+    64,
+    19
+  ],
+  "lucky_numbers_comment": "The stars conjure up $46M like a lukewarm love potion, but your numbers—2, 27, 38, 48, 64, PB 19—might cast a luckier spell than this box office snooze-fest."
+}

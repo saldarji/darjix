@@ -46,3 +46,6 @@ __pycache__/
 # Firebase
 .firebase/
 firebase-debug.log
+
+# Bundler
+.bundle/

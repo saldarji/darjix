@@ -1,0 +1,16 @@
+{% comment %}Tropical zodiac Sun-sign date ranges (same as scripts/zodiac_traits.json).{% endcomment %}
+{% case include.sign %}
+{% when 'Aries' %}Mar 21 – Apr 19
+{% when 'Taurus' %}Apr 20 – May 20
+{% when 'Gemini' %}May 21 – Jun 20
+{% when 'Cancer' %}Jun 21 – Jul 22
+{% when 'Leo' %}Jul 23 – Aug 22
+{% when 'Virgo' %}Aug 23 – Sep 22
+{% when 'Libra' %}Sep 23 – Oct 22
+{% when 'Scorpio' %}Oct 23 – Nov 21
+{% when 'Sagittarius' %}Nov 22 – Dec 21
+{% when 'Capricorn' %}Dec 22 – Jan 19
+{% when 'Aquarius' %}Jan 20 – Feb 18
+{% when 'Pisces' %}Feb 19 – Mar 20
+{% else %}
+{% endcase %}

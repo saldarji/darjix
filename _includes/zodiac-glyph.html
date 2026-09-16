@@ -1,0 +1,16 @@
+{% comment %}Text-presentation zodiac symbols (Unicode + U+FE0E). See https://www.wikihow.com/Zodiac-Text-Symbols-Not-Emoji {% endcomment %}
+{% case include.sign %}
+{% when 'Aries' %}♈︎
+{% when 'Taurus' %}♉︎
+{% when 'Gemini' %}♊︎
+{% when 'Cancer' %}♋︎
+{% when 'Leo' %}♌︎
+{% when 'Virgo' %}♍︎
+{% when 'Libra' %}♎︎
+{% when 'Scorpio' %}♏︎
+{% when 'Sagittarius' %}♐︎
+{% when 'Capricorn' %}♑︎
+{% when 'Aquarius' %}♒︎
+{% when 'Pisces' %}♓︎
+{% else %}◦
+{% endcase %}

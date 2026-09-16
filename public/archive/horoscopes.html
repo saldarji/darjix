@@ -1,0 +1,123 @@
+---
+layout: default
+title: Horoscopes - DARJIX Archive
+permalink: /archive/horoscopes/
+---
+
+{% assign h = site.data.horoscopes %}
+
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+
+    <header class="mb-12 border-b border-gray-200 pb-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-black">
+        {% if h.placeholder %}
+        Horoscopes
+        {% elsif h.page_title %}
+        {{ h.page_title }}
+        {% else %}
+        Horoscopes
+        {% endif %}
+      </h1>
+      {% if h.placeholder %}
+      <p class="mt-4 text-gray-600 text-sm">
+        Weekly content is generated on Monday mornings (UTC). Check back after the next run.
+      </p>
+      {% elsif h.date_caption %}
+      <p class="mt-4 text-sm text-gray-600">{{ h.date_caption }}</p>
+      {% endif %}
+    </header>
+
+    {% unless h.placeholder %}
+
+    <section class="mb-12" aria-labelledby="lucky-heading">
+      <h2 id="lucky-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3">Lucky numbers today</h2>
+      <p class="text-2xl md:text-3xl font-mono text-gray-700 tracking-wide">
+        {% if h.lucky_numbers.size == 6 %}
+        {% for n in h.lucky_numbers limit:5 %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
+        <span aria-hidden="true"> · </span><span class="inline-flex items-center justify-center rounded-full border-2 border-red-400 text-red-400 font-mono tabular-nums align-middle ml-1 px-2 py-0.5 md:px-2.5 md:py-1 leading-none" title="Powerball (1–26)">{% assign pb = h.lucky_numbers | last %}<span class="sr-only">Powerball: </span>{{ pb }}</span>
+        {% else %}
+        {% for n in h.lucky_numbers %}{{ n }}{% unless forloop.last %} · {% endunless %}{% endfor %}
+        {% endif %}
+      </p>
+      {% if h.lucky_numbers_comment and h.lucky_numbers_comment != "" %}
+      <p class="mt-2 text-sm text-gray-600 leading-snug max-w-2xl">{{ h.lucky_numbers_comment }}</p>
+      {% endif %}
+    </section>
+
+    <section class="mb-14" aria-labelledby="forecast-heading">
+      <h2 id="forecast-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-baseline gap-2">
+        <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">&#x2C17;</span>
+        <span>News oracle (this week)</span>
+      </h2>
+      {% if h.news and h.news.title %}
+      <p class="text-sm text-gray-500 mb-4">
+        Based on headline:
+        {% if h.news.url != '' %}
+        <a href="{{ h.news.url }}" class="text-gray-800 underline hover:text-black">{{ h.news.title }}</a>
+        {% else %}
+        <span class="text-gray-800">{{ h.news.title }}</span>
+        {% endif %}
+        <span class="text-gray-400"> · {{ h.news.source }}</span>
+      </p>
+      {% endif %}
+      <div class="prose prose-lg max-w-none text-gray-800">
+        <p class="whitespace-pre-line">{{ h.weekly_forecast }}</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="signs-heading">
+      <h2 id="signs-heading" class="text-xs font-bold text-black uppercase tracking-wider mb-6">The twelve signs</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
+        {% for sign in h.signs %}
+        <article class="border-t border-gray-200 pt-4">
+          <h3 class="text-lg font-bold text-black mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <span class="sign-zodiac-glyph select-none text-xl leading-none text-black" aria-hidden="true">{% include zodiac-glyph.html sign=sign.name %}</span>
+            <span class="inline-flex flex-wrap items-baseline gap-x-2">
+              <span>{{ sign.name }}</span>
+              <span class="text-[10px] sm:text-[11px] font-normal font-sans text-gray-500 tracking-wide">{% include zodiac-date-range.html sign=sign.name %}</span>
+            </span>
+          </h3>
+          <div class="text-sm text-gray-700 leading-relaxed space-y-1">
+            {% for line in sign.lines %}
+            <p>{{ line }}</p>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% endunless %}
+
+    <footer class="mt-16 pt-8 border-t border-gray-200">
+      <p class="text-xs text-gray-500 leading-relaxed mb-3">
+        For entertainment only. Not advice, not predictive, not astrological guidance.
+        Zodiac flavor text is inspired by public sign descriptions such as those on
+        <a href="https://www.astrology.com/zodiac-signs" class="underline hover:text-gray-800">Astrology.com</a>.
+      </p>
+      {% if h.generator %}
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Technical: copy from <code class="text-gray-500">_data/horoscopes.json</code> (Jekyll <code class="text-gray-500">site.data.horoscopes</code>).
+        LLM <code class="text-gray-500">{{ h.generator.llm_model }}</code> via {{ h.generator.llm_provider }}.
+        News context from {{ h.generator.news_api }}.
+        {% if h.generator.lucky_draw %}{{ h.generator.lucky_draw }}{% endif %}
+        Scheduled weekly (Mondays UTC) with GitHub Actions; secrets <code class="text-gray-500">REPLICATE_API_TOKEN</code>, <code class="text-gray-500">NEWS_API_KEY</code>.
+        {% if h.generated_at_iso %}Last generation timestamp (UTC): <code class="text-gray-500">{{ h.generated_at_iso }}</code>.{% endif %}
+      </p>
+      {% endif %}
+      <p class="text-center mt-8 space-x-4">
+        <a href="{{ '/archive/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">← Back to Archive</a>
+        <span class="text-gray-300">|</span>
+        <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-black text-sm">Home</a>
+      </p>
+    </footer>
+
+  </div>
+  <style>
+    .sign-zodiac-glyph {
+      font-variant-emoji: text;
+      font-family: "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols 2", "DejaVu Sans", serif;
+    }
+  </style>
+</section>

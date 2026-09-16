@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice sums — Grade 6 statistical variability</title>
+  <meta name="description" content="Explore variability, center, and spread by rolling two dice. Aligned with Common Core Grade 6 Statistics & Probability.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --border-strong: #000000;
+      --max: 72rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .site-link {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+    }
+    .site-link:hover { color: var(--text); }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+
+    h1 {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .intro {
+      width: 100%;
+      max-width: none;
+    }
+
+    .intro p {
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      max-width: none;
+    }
+
+    .ccss-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      max-width: none;
+    }
+
+    .intro-footer {
+      margin: 0.75rem 0 0;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: none;
+    }
+
+    .text-link {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      color: var(--text);
+      font: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      cursor: pointer;
+    }
+    .text-link:hover,
+    .text-link:focus-visible {
+      color: var(--muted);
+      background: none;
+      outline: none;
+    }
+    .text-link:focus-visible {
+      outline: 2px solid var(--border-strong);
+      outline-offset: 2px;
+    }
+
+    .teachers-guide-dialog {
+      position: relative;
+      max-width: 38rem;
+      width: calc(100vw - 2.5rem);
+      max-height: min(88vh, 42rem);
+      margin: auto;
+      padding: 0;
+      border: 2px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .teachers-guide-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .teachers-guide-dialog .dialog-inner {
+      padding: 1.25rem 1.35rem 1.5rem;
+      max-height: min(88vh, 42rem);
+      overflow-y: auto;
+    }
+
+    .teachers-guide-dialog h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      padding-right: 2.5rem;
+    }
+
+    .teachers-guide-dialog .dialog-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+
+    .dialog-print-links {
+      margin: 0 0 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+
+    .dialog-print-links a {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
+    }
+    .dialog-print-links a:hover {
+      color: var(--muted);
+    }
+
+    .dialog-print-hint {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .teachers-guide-dialog h3 {
+      margin: 1.25rem 0 0.4rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .teachers-guide-dialog p,
+    .teachers-guide-dialog li {
+      margin: 0 0 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .teachers-guide-dialog ul {
+      margin: 0 0 0.75rem;
+      padding-left: 1.25rem;
+    }
+
+    .teachers-guide-dialog ol.tg-steps {
+      margin: 0 0 0.75rem;
+      padding-left: 1.35rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+
+    .teachers-guide-dialog ol.tg-steps li {
+      margin-bottom: 0.35rem;
+    }
+
+    .teachers-guide-dialog .dialog-close {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.8125rem;
+      border: 2px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .teachers-guide-dialog .dialog-close:hover,
+    .teachers-guide-dialog .dialog-close:focus-visible {
+      background: var(--border-strong);
+      color: var(--bg);
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 2px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    button:hover, button:focus-visible {
+      background: var(--border-strong);
+      color: var(--bg);
+      outline: none;
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    button:disabled:hover {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .activity-layout {
+      display: grid;
+      grid-template-columns: minmax(12.5rem, 14rem) minmax(15rem, 1fr) minmax(17rem, 1.15fr);
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    .activity-layout > .top {
+      grid-column: 1 / -1;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .activity-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dice-wrap {
+      border: 2px solid var(--border-strong);
+      padding: 1.25rem;
+      text-align: center;
+      align-self: start;
+    }
+
+    .dice-wrap h2 {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    .stats-box {
+      border: 2px solid var(--border-strong);
+      padding: 1.25rem;
+    }
+
+    .stats-box h2 {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    #stats-dl {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      font-size: 0.875rem;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.35rem 1rem;
+      align-items: baseline;
+      padding: 0.35rem 0.4rem;
+      margin: 0 -0.4rem;
+      border-radius: 2px;
+      cursor: help;
+    }
+
+    .stat-row:hover {
+      background: #f9fafb;
+    }
+
+    .stat-row:focus {
+      outline: none;
+    }
+
+    .stat-row:focus-visible {
+      background: #f9fafb;
+      outline: 2px solid var(--border-strong);
+      outline-offset: 1px;
+    }
+
+    .stats-box dt {
+      margin: 0;
+      color: var(--muted);
+    }
+    .stats-box dd {
+      margin: 0;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .defs-box {
+      border: 2px solid var(--border-strong);
+      padding: 1.25rem;
+      align-self: start;
+      min-height: 12rem;
+    }
+
+    .defs-box h2 {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 0.75rem;
+      color: var(--text);
+    }
+
+    .defs-default {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .defs-detail[hidden] {
+      display: none !important;
+    }
+
+    .defs-detail:not([hidden]) {
+      display: block;
+    }
+
+    .defs-term {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .defs-text {
+      margin: 0 0 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .defs-math {
+      margin: 0;
+      padding: 0.75rem 0.85rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .stats-foot {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .dice-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .die {
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 2px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+
+    .die-face {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      padding: 0.35rem;
+      gap: 1px;
+      box-sizing: border-box;
+    }
+
+    .pip {
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 50%;
+      background: var(--border-strong);
+      margin: auto;
+      opacity: 0;
+    }
+
+    .die-face[data-value="1"] .pip:nth-child(5) { opacity: 1; }
+    .die-face[data-value="2"] .pip:nth-child(1),
+    .die-face[data-value="2"] .pip:nth-child(9) { opacity: 1; }
+    .die-face[data-value="3"] .pip:nth-child(1),
+    .die-face[data-value="3"] .pip:nth-child(5),
+    .die-face[data-value="3"] .pip:nth-child(9) { opacity: 1; }
+    .die-face[data-value="4"] .pip:nth-child(1),
+    .die-face[data-value="4"] .pip:nth-child(3),
+    .die-face[data-value="4"] .pip:nth-child(7),
+    .die-face[data-value="4"] .pip:nth-child(9) { opacity: 1; }
+    .die-face[data-value="5"] .pip:nth-child(1),
+    .die-face[data-value="5"] .pip:nth-child(3),
+    .die-face[data-value="5"] .pip:nth-child(5),
+    .die-face[data-value="5"] .pip:nth-child(7),
+    .die-face[data-value="5"] .pip:nth-child(9) { opacity: 1; }
+    /* Six: full left column (1,4,7) and right column (3,6,9) in row-major 3×3 */
+    .die-face[data-value="6"] .pip:nth-child(1),
+    .die-face[data-value="6"] .pip:nth-child(4),
+    .die-face[data-value="6"] .pip:nth-child(7),
+    .die-face[data-value="6"] .pip:nth-child(3),
+    .die-face[data-value="6"] .pip:nth-child(6),
+    .die-face[data-value="6"] .pip:nth-child(9) { opacity: 1; }
+
+    .dice-wrap.rolling .die {
+      animation: die-shake 0.12s ease-in-out infinite;
+    }
+
+    @keyframes die-shake {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-1px, 1px); }
+      50% { transform: translate(1px, -1px); }
+      75% { transform: translate(-1px, -1px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dice-wrap.rolling .die { animation: none; opacity: 0.85; }
+    }
+
+    .roll-hint {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .sum-line {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .sum-line strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .bulk-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+
+    .plots {
+      border: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .tablist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tablist li { margin: 0; }
+
+    .tablist button {
+      border: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: -1px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .tablist button:hover {
+      background: transparent;
+      color: var(--text);
+    }
+    .tablist button[aria-selected="true"] {
+      color: var(--text);
+      border-bottom-color: var(--border-strong);
+    }
+    .tablist button:focus-visible {
+      outline: 2px solid var(--border-strong);
+      outline-offset: -2px;
+    }
+
+    .tabpanel {
+      padding: 1.25rem 1.25rem 1.75rem;
+      min-height: 26rem;
+    }
+
+    .tabpanel[hidden] { display: none; }
+
+    .plot-empty {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    .plot-caption {
+      margin: 0 0 0.85rem;
+      padding: 0;
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      color: var(--muted);
+      text-align: left;
+      max-width: none;
+    }
+
+    .plot-svg {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="site-link" href="/">DARJIX</a>
+
+    <div class="activity-layout">
+      <header class="top">
+        <div class="intro">
+          <h1>Statistical variability: two dice</h1>
+          <p>
+            <strong>How do the sums vary?</strong> Roll two fair six-sided dice and record each <em>sum</em> (2 through 12).
+            Each roll adds one <strong>observation</strong>—one recorded sum. In the summary table, <strong>n</strong> is the number of observations (the same as your number of rolls), and <strong>mean</strong> is the <strong>average</strong> of those sums.
+            A statistical question expects different answers on different trials—unlike “What is 3 + 4?”, which has one fixed answer.
+          </p>
+          <p class="ccss-note">
+            Aligned with Grade 6 CCSS: develop understanding of statistical variability (6.SP.A), and display / summarize numerical data (6.SP.B.4–5)—center, spread, and shape of the distribution.
+          </p>
+          <p class="intro-footer">
+            Open the
+            <button type="button" class="text-link" id="btn-teachers-guide" aria-haspopup="dialog" aria-controls="teachers-guide-dialog">teacher&rsquo;s guide</button>
+            for facilitation notes, standards mapping, and discussion prompts (opens in a pop-over window).
+          </p>
+        </div>
+        <div class="actions">
+          <button type="button" id="btn-clear">Clear</button>
+        </div>
+      </header>
+
+        <div class="dice-wrap" id="dice-wrap">
+          <h2 id="dice-heading">Roll the dice</h2>
+          <div class="dice-row" id="dice-row" role="group" aria-labelledby="dice-heading" aria-label="Two dice with pips. Click to roll.">
+            <div class="die" id="die-a" aria-hidden="true">
+              <div class="die-face" id="die-a-face" data-value="0">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+              </div>
+            </div>
+            <div class="die" id="die-b" aria-hidden="true">
+              <div class="die-face" id="die-b-face" data-value="0">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="btn-roll">Roll dice</button>
+          <p class="roll-hint">Or click the dice</p>
+          <p class="sum-line" id="last-sum" aria-live="polite"></p>
+          <div class="bulk-actions">
+            <button type="button" id="btn-bulk-10">Add 10 rolls</button>
+            <button type="button" id="btn-bulk-100">Add 100 rolls</button>
+          </div>
+        </div>
+        <aside class="stats-box" id="stats-box" aria-labelledby="stats-heading">
+          <h2 id="stats-heading">Summary statistics</h2>
+          <dl id="stats-dl">
+            <div class="stat-row" data-stat="n" tabindex="0" role="group" aria-label="Observations, sample size n, equal to number of rolls. Hover for definition.">
+              <dt>Observations (<abbr title="sample size">n</abbr>)</dt>
+              <dd id="st-n">—</dd>
+            </div>
+            <div class="stat-row" data-stat="mean" tabindex="0" role="group" aria-label="Mean, also called average. Hover for definition.">
+              <dt>Mean (average)</dt>
+              <dd id="st-mean">—</dd>
+            </div>
+            <div class="stat-row" data-stat="median" tabindex="0" role="group" aria-label="Median. Hover for definition.">
+              <dt>Median</dt>
+              <dd id="st-median">—</dd>
+            </div>
+            <div class="stat-row" data-stat="mode" tabindex="0" role="group" aria-label="Mode. Hover for definition.">
+              <dt>Mode</dt>
+              <dd id="st-mode">—</dd>
+            </div>
+            <div class="stat-row" data-stat="minmax" tabindex="0" role="group" aria-label="Min and max. Hover for definition.">
+              <dt>Min / Max</dt>
+              <dd id="st-minmax">—</dd>
+            </div>
+            <div class="stat-row" data-stat="range" tabindex="0" role="group" aria-label="Range. Hover for definition.">
+              <dt>Range</dt>
+              <dd id="st-range">—</dd>
+            </div>
+            <div class="stat-row" data-stat="mad" tabindex="0" role="group" aria-label="M A D. Hover for definition.">
+              <dt>MAD</dt>
+              <dd id="st-mad">—</dd>
+            </div>
+            <div class="stat-row" data-stat="iqr" tabindex="0" role="group" aria-label="I Q R. Hover for definition.">
+              <dt>IQR</dt>
+              <dd id="st-iqr">—</dd>
+            </div>
+          </dl>
+          <p class="stats-foot">
+            <strong>MAD</strong> (mean absolute deviation) is the average distance of each sum from the mean (average).
+            <strong>IQR</strong> uses <em>Tukey hinges</em>: split the ordered data at the median (median excluded from both halves when the number of observations <em>n</em> is odd); Q1 and Q3 are the medians of the lower and upper halves. Reproducible for class discussion.
+          </p>
+        </aside>
+        <aside class="defs-box" id="defs-box" aria-labelledby="defs-heading">
+          <h2 id="defs-heading">Definitions</h2>
+          <p class="defs-default" id="defs-default">Hover or focus a row in <strong>Summary statistics</strong> to see a short definition and—once you have observations (each roll adds one)—how that quantity is computed from your current data.</p>
+          <div id="defs-detail" class="defs-detail" hidden aria-live="polite"></div>
+        </aside>
+    </div>
+
+    <section class="plots" aria-label="Plots of observed sums (one observation per roll)">
+      <ul class="tablist" role="tablist" aria-label="Plot type">
+        <li><button type="button" role="tab" id="tab-line" aria-selected="true" aria-controls="panel-line">Number line</button></li>
+        <li><button type="button" role="tab" id="tab-dot" aria-selected="false" aria-controls="panel-dot">Dot plot</button></li>
+        <li><button type="button" role="tab" id="tab-hist" aria-selected="false" aria-controls="panel-hist">Histogram</button></li>
+      </ul>
+      <div id="panel-line" class="tabpanel" role="tabpanel" aria-labelledby="tab-line"></div>
+      <div id="panel-dot" class="tabpanel" role="tabpanel" aria-labelledby="tab-dot" hidden></div>
+      <div id="panel-hist" class="tabpanel" role="tabpanel" aria-labelledby="tab-hist" hidden></div>
+    </section>
+
+    <dialog id="teachers-guide-dialog" class="teachers-guide-dialog" aria-labelledby="tg-title">
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Close teacher’s guide">Close</button>
+      <div class="dialog-inner">
+        <h2 id="tg-title">Teacher&rsquo;s guide: dice sums &amp; variability</h2>
+        <p class="dialog-meta">Grade 6 statistics &amp; probability · Two fair six-sided dice (sums 2–12)</p>
+        <p class="dialog-print-links">
+          <a href="teachers-guide-print.html" download="darjix-dice-game-teachers-guide.html" target="_blank" rel="noopener">Download printable guide</a>
+          <span class="dialog-print-hint">Standalone HTML (same content as here). If your browser opens it instead of saving, use File → Save Page As, or open it and use Print → Save as PDF.</span>
+        </p>
+
+        <h3>Purpose</h3>
+        <p>Students experience <strong>variability</strong> in data: each roll can produce a different sum. The tool supports recognizing a <em>statistical question</em>, watching a <em>distribution</em> emerge, and connecting <em>center</em>, <em>spread</em>, and <em>shape</em> to the plots and summary numbers.</p>
+
+        <h3>Time &amp; materials</h3>
+        <ul>
+          <li>About 20–40 minutes, depending on depth of discussion.</li>
+          <li>One device per pair is enough; a projector lets you discuss one shared dataset.</li>
+        </ul>
+
+        <h3>Standards touchpoints (CCSS)</h3>
+        <ul>
+          <li><strong>6.SP.A.1</strong> — Contrast &ldquo;What is my sum on this roll?&rdquo; (one answer after rolling) with the <em>class</em> question: &ldquo;What sums do we get when we keep rolling?&rdquo; The second anticipates variability.</li>
+          <li><strong>6.SP.A.2–A.3</strong> — Use the plots to name <em>shape</em> (mound near 7, tails toward 2 and 12), <em>center</em> (mean / average, median), and <em>spread</em> (range, MAD, IQR).</li>
+          <li><strong>6.SP.B.4</strong> — Compare the same data on the number line, dot plot, and histogram.</li>
+          <li><strong>6.SP.B.5</strong> — Relate <em>n</em> (number of observations—here, rolls), measures of center, and measures of variability to the context: sums of two dice, fair rolls.</li>
+        </ul>
+
+        <h3>Before students work</h3>
+        <ul>
+          <li>Clarify that each recorded value is the <strong>sum</strong> of the two dice, not the pair of faces separately.</li>
+          <li>Ask for a quick <strong>prediction</strong>: Which sums will be easiest to get? Rarest? (Do not require correctness—elicit reasoning.)</li>
+        </ul>
+
+        <h3>Suggested flow</h3>
+        <ol class="tg-steps">
+          <li>Roll manually until there are enough points to see a pattern (or use <strong>Add 10 rolls</strong> / <strong>Add 100 rolls</strong> to build data faster).</li>
+          <li>Read <strong>Summary statistics</strong> aloud; ask students which numbers changed the most after a big batch of rolls.</li>
+          <li>Hover rows in the table to open the <strong>Definitions</strong> panel—have students explain the formulas in their own words.</li>
+          <li>Switch among <strong>Number line</strong>, <strong>Dot plot</strong>, and <strong>Histogram</strong>; ask which display best answers a partner&rsquo;s question about frequency, shape, or outliers.</li>
+          <li>Use <strong>Clear</strong> to reset and compare a &ldquo;small sample&rdquo; run to a &ldquo;large sample&rdquo; run (stability of mean; smoother shape).</li>
+        </ol>
+
+        <h3>Discussion prompts</h3>
+        <ul>
+          <li>Why is 7 in the middle of the distribution for fair dice? (Combinations—optional extension.)</li>
+          <li>When would the <strong>mean</strong> and <strong>median</strong> nearly match? When might they differ? (This symmetric context: usually close.)</li>
+          <li>What does a larger <strong>range</strong> or <strong>MAD</strong> tell you about a class&rsquo;s rolls versus another class&rsquo;s?</li>
+          <li>How does adding 100 rolls change the <em>shape</em> compared to only 10 rolls?</li>
+        </ul>
+
+        <h3>Using the definitions column</h3>
+        <p>Encourage keyboard users to tab through summary rows. The right-hand panel restates ideas in student-friendly language and shows arithmetic for the <em>current</em> dataset—useful after a whole-class bulk roll.</p>
+
+        <h3>Accessibility &amp; classroom tips</h3>
+        <ul>
+          <li>Reduced-motion settings shorten roll animation.</li>
+          <li>For very large counts, dots shrink and may split into columns so stacks stay on screen—emphasize that <em>taller</em> still means <em>more observations</em> (more rolls) for that sum.</li>
+        </ul>
+
+        <h3>Offline extension</h3>
+        <p>Have pairs record physical dice sums on paper, then enter only totals into discussion—or compare the computer&rsquo;s long run to a short physical experiment.</p>
+      </div>
+    </dialog>
+  </div>
+
+  <script>
+(function () {
+  'use strict';
+
+  /** @type {number[]} sums 2..12 */
+  var history = [];
+  var lastPair = [1, 1];
+  var rolling = false;
+  var activeTab = 'line';
+
+  var prefersReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ROLL_MS = prefersReduceMotion ? 0 : 520;
+  var TICK_MS = prefersReduceMotion ? 0 : 70;
+
+  var el = {
+    wrap: document.getElementById('dice-wrap'),
+    dieAFace: document.getElementById('die-a-face'),
+    dieBFace: document.getElementById('die-b-face'),
+    diceRow: document.getElementById('dice-row'),
+    lastSum: document.getElementById('last-sum'),
+    btnRoll: document.getElementById('btn-roll'),
+    btnClear: document.getElementById('btn-clear'),
+    btnBulk10: document.getElementById('btn-bulk-10'),
+    btnBulk100: document.getElementById('btn-bulk-100'),
+    stN: document.getElementById('st-n'),
+    stMean: document.getElementById('st-mean'),
+    stMedian: document.getElementById('st-median'),
+    stMode: document.getElementById('st-mode'),
+    stMinmax: document.getElementById('st-minmax'),
+    stRange: document.getElementById('st-range'),
+    stMad: document.getElementById('st-mad'),
+    stIqr: document.getElementById('st-iqr'),
+    statsBox: document.getElementById('stats-box'),
+    defsBox: document.getElementById('defs-box'),
+    defsDefault: document.getElementById('defs-default'),
+    defsDetail: document.getElementById('defs-detail'),
+    tabLine: document.getElementById('tab-line'),
+    tabDot: document.getElementById('tab-dot'),
+    tabHist: document.getElementById('tab-hist'),
+    panelLine: document.getElementById('panel-line'),
+    panelDot: document.getElementById('panel-dot'),
+    panelHist: document.getElementById('panel-hist')
+  };
+
+  /** Shared canvas for number line, dot plot, and histogram (aligned x-axis, same height). */
+  var PLOT = {
+    W: 760,
+    H: 440,
+    padL: 48,
+    padR: 48,
+    padT: 50,
+    padB: 60,
+    minSum: 2,
+    maxSum: 12
+  };
+
+  function getPlotLayout() {
+    var W = PLOT.W;
+    var H = PLOT.H;
+    var padL = PLOT.padL;
+    var padR = PLOT.padR;
+    var padT = PLOT.padT;
+    var padB = PLOT.padB;
+    var innerW = W - padL - padR;
+    var baseY = H - padB;
+    var chartTop = padT + 8;
+    var chartH = baseY - 12 - chartTop;
+    if (chartH < 120) chartH = 120;
+    return {
+      W: W,
+      H: H,
+      padL: padL,
+      padR: padR,
+      padT: padT,
+      padB: padB,
+      innerW: innerW,
+      baseY: baseY,
+      chartTop: chartTop,
+      chartH: chartH
+    };
+  }
+
+  function xAtSum(L, sum) {
+    return L.padL + ((sum - PLOT.minSum) / (PLOT.maxSum - PLOT.minSum)) * L.innerW;
+  }
+
+  /** Half-width available for dot stack at this sum (stay inside neighboring ticks). */
+  function slotHalfWidthAt(L, sumVal) {
+    var x = xAtSum(L, sumVal);
+    var xL = sumVal > 2 ? xAtSum(L, sumVal - 1) : L.padL;
+    var xR = sumVal < 12 ? xAtSum(L, sumVal + 1) : (L.W - L.padR);
+    var distL = x - xL;
+    var distR = xR - x;
+    // Interior sums: min(left, right) is half the gap to each neighbor. For 2 and 12 the
+    // tick sits on the inner chart edge, so one side is 0 and min() wrongly shrinks the slot
+    // to the 6px floor—layout search then fails and falls back to a clipped, over-wide stack.
+    var half = Math.min(distL, distR);
+    if (half < 1e-6) {
+      half = Math.max(distL, distR);
+    }
+    return Math.max(6, half * 0.88);
+  }
+
+  function stackPitchForRadius(r) {
+    var minPitchFloor = 1.85;
+    return Math.max(2 * r * 0.9, minPitchFloor);
+  }
+
+  /** Whether n dots fit in one stack with given cols, r, vertical budget, and horizontal half-slot. */
+  function fitsCount(cols, r, n, usableH, slotHalf) {
+    if (n <= 0) return true;
+    var p = stackPitchForRadius(r);
+    var rows = Math.ceil(n / cols);
+    var hNeed = rows <= 1 ? 2 * r : (rows - 1) * p + 2 * r;
+    var wNeed = cols <= 1 ? 2 * r : (cols - 1) * p + 2 * r;
+    return hNeed <= usableH + 1.2 && wNeed <= 2 * slotHalf + 1.2;
+  }
+
+  /**
+   * One layout (same cols and dot radius) for every sum on the plot so stack heights
+   * are visually comparable. Picks fewest columns, then largest radius, that fits every bin.
+   */
+  function computeUnifiedDotLayout(counts, L, usableH) {
+    var rMax = 5.35;
+    var rMin = 1.35;
+    var maxN = 0;
+    for (var tv = 2; tv <= 12; tv++) {
+      if (counts[tv] > maxN) maxN = counts[tv];
+    }
+    if (maxN === 0) {
+      return { cols: 1, r: rMax, pitch: stackPitchForRadius(rMax) };
+    }
+    var maxColsSearch = Math.min(80, Math.max(maxN, 1));
+
+    for (var cols = 1; cols <= maxColsSearch; cols++) {
+      var r = rMax;
+      while (r >= rMin - 1e-6) {
+        var allOk = true;
+        for (var t = 2; t <= 12; t++) {
+          var n = counts[t];
+          if (!n) continue;
+          var slot = slotHalfWidthAt(L, t);
+          if (!fitsCount(cols, r, n, usableH, slot)) {
+            allOk = false;
+            break;
+          }
+        }
+        if (allOk) {
+          return { cols: cols, r: r, pitch: stackPitchForRadius(r) };
+        }
+        r -= 0.25;
+      }
+    }
+
+    var rF = rMin;
+    var colsF = Math.min(80, Math.max(maxN, 1));
+    return { cols: colsF, r: rF, pitch: stackPitchForRadius(rF) };
+  }
+
+  /** Append n circles in a bottom-up grid (row 0 = bottom) centered at centerX. */
+  function appendStackedDots(svg, centerX, bottomCenterY, n, layout) {
+    var cols = layout.cols;
+    var r = layout.r;
+    var p = layout.pitch;
+    for (var i = 0; i < n; i++) {
+      var row = Math.floor(i / cols);
+      var col = i % cols;
+      var cy = bottomCenterY - row * p;
+      var dx = (col - (cols - 1) / 2) * p;
+      svg.appendChild(svgEl('circle', {
+        cx: centerX + dx,
+        cy: cy,
+        r: r,
+        fill: '#111'
+      }));
+    }
+  }
+
+  function randDie() {
+    return 1 + Math.floor(Math.random() * 6);
+  }
+
+  function setDieFace(faceEl, n) {
+    if (!faceEl) return;
+    if (n >= 1 && n <= 6) {
+      faceEl.setAttribute('data-value', String(n));
+    } else {
+      faceEl.setAttribute('data-value', '0');
+    }
+  }
+
+  function mean(arr) {
+    if (!arr.length) return null;
+    var s = 0;
+    for (var i = 0; i < arr.length; i++) s += arr[i];
+    return s / arr.length;
+  }
+
+  function medianSorted(sorted) {
+    var n = sorted.length;
+    if (!n) return null;
+    var m = Math.floor(n / 2);
+    if (n % 2 === 1) return sorted[m];
+    return (sorted[m - 1] + sorted[m]) / 2;
+  }
+
+  /**
+   * Tukey hinges for Q1 and Q3 (same as R type=1 / boxplot hinges):
+   * Sort data. Median splits the set; if n is odd, the median value is excluded
+   * from both halves; if n is even, lower half is first n/2 values, upper half is last n/2.
+   * Q1 = median(lower half), Q3 = median(upper half).
+   */
+  function tukeyHinges(sorted) {
+    var n = sorted.length;
+    if (n < 2) {
+      return { q1: null, q3: null, lower: [], upper: [] };
+    }
+    var mid = Math.floor(n / 2);
+    var lower, upper;
+    if (n % 2 === 1) {
+      lower = sorted.slice(0, mid);
+      upper = sorted.slice(mid + 1);
+    } else {
+      lower = sorted.slice(0, mid);
+      upper = sorted.slice(mid);
+    }
+    return {
+      q1: medianSorted(lower),
+      q3: medianSorted(upper),
+      lower: lower,
+      upper: upper
+    };
+  }
+
+  function formatNum(x) {
+    if (x === null || x === undefined || Number.isNaN(x)) return '—';
+    var r = Math.round(x * 1000) / 1000;
+    return String(r);
+  }
+
+  function modes(arr) {
+    if (!arr.length) return null;
+    var freq = {};
+    for (var i = 0; i < arr.length; i++) {
+      var v = arr[i];
+      freq[v] = (freq[v] || 0) + 1;
+    }
+    var maxf = 0;
+    for (var k in freq) {
+      if (freq[k] > maxf) maxf = freq[k];
+    }
+    var out = [];
+    for (var j in freq) {
+      if (freq[j] === maxf) out.push(Number(j));
+    }
+    out.sort(function (a, b) { return a - b; });
+    if (maxf === 1 && out.length === arr.length) return 'None';
+    if (out.length > 4) return out.slice(0, 4).join(', ') + '…';
+    return out.join(', ');
+  }
+
+  function computeStats(data) {
+    var n = data.length;
+    if (!n) {
+      return {
+        n: 0,
+        mean: null,
+        median: null,
+        modeStr: '—',
+        min: null,
+        max: null,
+        range: null,
+        mad: null,
+        iqr: null
+      };
+    }
+    var sorted = data.slice().sort(function (a, b) { return a - b; });
+    var m = mean(data);
+    var med = medianSorted(sorted);
+    var hinges = tukeyHinges(sorted);
+    var iqr = hinges.q1 !== null && hinges.q3 !== null ? hinges.q3 - hinges.q1 : null;
+    var madSum = 0;
+    for (var i = 0; i < data.length; i++) {
+      madSum += Math.abs(data[i] - m);
+    }
+    var mad = madSum / n;
+    return {
+      n: n,
+      mean: m,
+      median: med,
+      modeStr: modes(data),
+      min: sorted[0],
+      max: sorted[n - 1],
+      range: sorted[n - 1] - sorted[0],
+      mad: mad,
+      iqr: iqr
+    };
+  }
+
+  function countsBySum(data) {
+    var c = {};
+    for (var v = 2; v <= 12; v++) c[v] = 0;
+    for (var i = 0; i < data.length; i++) {
+      var s = data[i];
+      if (c[s] !== undefined) c[s]++;
+    }
+    return c;
+  }
+
+  var activeDefKey = null;
+
+  function getDetailContext() {
+    if (!history.length) return null;
+    var chron = history.slice();
+    var sorted = chron.slice().sort(function (a, b) { return a - b; });
+    var n = sorted.length;
+    var sum = 0;
+    for (var ii = 0; ii < chron.length; ii++) sum += chron[ii];
+    var m = sum / n;
+    var med = medianSorted(sorted);
+    var hinges = tukeyHinges(sorted);
+    var madTerms = [];
+    for (var j = 0; j < chron.length; j++) {
+      madTerms.push(Math.abs(chron[j] - m));
+    }
+    var madSumVal = 0;
+    for (var k = 0; k < madTerms.length; k++) madSumVal += madTerms[k];
+    return {
+      chron: chron,
+      sorted: sorted,
+      n: n,
+      sum: sum,
+      mean: m,
+      median: med,
+      hinges: hinges,
+      min: sorted[0],
+      max: sorted[n - 1],
+      range: sorted[n - 1] - sorted[0],
+      madTerms: madTerms,
+      mad: madSumVal / n,
+      iqr: hinges.q1 !== null && hinges.q3 !== null ? hinges.q3 - hinges.q1 : null
+    };
+  }
+
+  function formatSumExpression(chron) {
+    var sum = 0;
+    for (var i = 0; i < chron.length; i++) sum += chron[i];
+    if (chron.length <= 14) {
+      return chron.join(' + ') + '\n= ' + formatNum(sum);
+    }
+    var a = chron.slice(0, 7).join(' + ');
+    var b = chron.slice(-7).join(' + ');
+    return a + '\n+ … (' + (chron.length - 14) + ' more values) …\n+ ' + b + '\n= ' + formatNum(sum);
+  }
+
+  function formatSortedBracket(sorted) {
+    if (sorted.length <= 32) {
+      return '[' + sorted.join(', ') + ']';
+    }
+    return '[' + sorted.slice(0, 14).join(', ') + ', …, ' + sorted.slice(-12).join(', ') + ']\n(length n = ' + sorted.length + ')';
+  }
+
+  function buildDefHtml(key) {
+    var titles = {
+      n: 'Observations (n)',
+      mean: 'Mean (average)',
+      median: 'Median',
+      mode: 'Mode',
+      minmax: 'Minimum and maximum',
+      range: 'Range',
+      mad: 'Mean absolute deviation (MAD)',
+      iqr: 'Interquartile range (IQR)'
+    };
+    var title = titles[key] || 'Statistic';
+    var ctx = getDetailContext();
+
+    function intro(text) {
+      return '<h3 class="defs-term">' + title + '</h3><p class="defs-text">' + text + '</p>';
+    }
+
+    function noData(text) {
+      return intro(text) + '<p class="defs-text">Roll the dice to collect sums; then the math below will use your data.</p>';
+    }
+
+    if (!ctx) {
+      switch (key) {
+        case 'n':
+          return noData('An <strong>observation</strong> is one recorded sum from a single roll. <strong>n</strong> is how many observations you have—here, the same as your number of rolls so far.');
+        case 'mean':
+          return noData('The <strong>mean</strong> is the <strong>average</strong>: add every recorded sum and divide by <strong>n</strong> (the number of observations, i.e. rolls). It is one measure of <em>center</em>.');
+        case 'median':
+          return noData('The <strong>median</strong> is the middle value after sorting. Half the data are at or below it, half at or above. Another measure of <em>center</em>.');
+        case 'mode':
+          return noData('The <strong>mode</strong> is the value that appears most often. There can be more than one mode, or none if every value ties.');
+        case 'minmax':
+          return noData('<strong>Min</strong> is the smallest roll; <strong>max</strong> is the largest. They describe the extremes of your data.');
+        case 'range':
+          return noData('<strong>Range</strong> is max − min. It is a simple measure of <em>spread</em> (how spread out values are).');
+        case 'mad':
+          return noData('<strong>MAD</strong> is the average distance of each value from the mean (average)—how far observations typically sit from the center.');
+        case 'iqr':
+          return noData('<strong>IQR</strong> is Q3 − Q1, where quartiles split the ordered data into quarters. Here we use <em>Tukey hinges</em> (see footnote under the table).');
+        default:
+          return intro('Pick a row in the table.');
+      }
+    }
+
+    var math = '';
+    switch (key) {
+      case 'n':
+        return intro('Each observation is one sum from one roll. <strong>n</strong> counts those observations (your sample size).') +
+          '<pre class="defs-math">n = ' + ctx.n + '</pre>';
+      case 'mean':
+        math = 'mean (average) = (sum of all sums) / n\n\n' + formatSumExpression(ctx.chron) + '\n\nmean = ' + formatNum(ctx.sum) + ' / ' + ctx.n + '\n     = ' + formatNum(ctx.mean);
+        return intro('Add every recorded sum, then divide by <strong>n</strong> (number of observations—same as number of rolls).') +
+          '<pre class="defs-math">' + math + '</pre>';
+      case 'median':
+        var sortedStr = formatSortedBracket(ctx.sorted);
+        var medLine = '';
+        if (ctx.n % 2 === 1) {
+          var mid = Math.floor(ctx.n / 2);
+          medLine = 'With n = ' + ctx.n + ' (odd), the median is the middle entry in the sorted list (index ' + mid + ', one-based position ' + (mid + 1) + ').\n\nmedian = ' + formatNum(ctx.median);
+        } else {
+          var m1 = ctx.n / 2 - 1;
+          var m2 = ctx.n / 2;
+          medLine = 'With n = ' + ctx.n + ' (even), the median is the average of the two middle sorted values:\n  sorted[' + m1 + '] and sorted[' + m2 + '] → ' + ctx.sorted[m1] + ' and ' + ctx.sorted[m2] + '\n\nmedian = (' + ctx.sorted[m1] + ' + ' + ctx.sorted[m2] + ') / 2 = ' + formatNum(ctx.median);
+        }
+        return intro('Sort all sums from smallest to largest. The median is the middle value (or average of the two middle values if there is an even count).') +
+          '<pre class="defs-math">Sorted: ' + sortedStr + '\n\n' + medLine + '</pre>';
+      case 'mode': {
+        var counts = countsBySum(ctx.chron);
+        var lines = [];
+        for (var v = 2; v <= 12; v++) {
+          if (counts[v] > 0) lines.push('  sum ' + v + ':  count = ' + counts[v]);
+        }
+        var modeStr = modes(ctx.chron);
+        return intro('Count how many times each sum appears. The mode is the sum with the highest count (ties allowed).') +
+          '<pre class="defs-math">' + lines.join('\n') + '\n\nmode = ' + (typeof modeStr === 'string' ? modeStr : String(modeStr)) + '</pre>';
+      }
+      case 'minmax':
+        math = 'min = smallest value in the data\nmax = largest value in the data\n\nSorted: ' + formatSortedBracket(ctx.sorted) + '\n\nmin = ' + ctx.min + '\nmax = ' + ctx.max;
+        return intro('The smallest and largest sums among your rolls.') +
+          '<pre class="defs-math">' + math + '</pre>';
+      case 'range':
+        math = 'range = max − min\n      = ' + ctx.max + ' − ' + ctx.min + '\n      = ' + formatNum(ctx.range);
+        return intro('The distance between the largest and smallest sum—a quick measure of spread.') +
+          '<pre class="defs-math">' + math + '</pre>';
+      case 'mad': {
+        var parts = [];
+        parts.push('mean = ' + formatNum(ctx.mean));
+        if (ctx.n <= 18) {
+          for (var i = 0; i < ctx.n; i++) {
+            parts.push('|' + ctx.chron[i] + ' − ' + formatNum(ctx.mean) + '| = ' + formatNum(ctx.madTerms[i]));
+          }
+        } else {
+          for (var i2 = 0; i2 < 6; i2++) {
+            parts.push('|' + ctx.chron[i2] + ' − ' + formatNum(ctx.mean) + '| = ' + formatNum(ctx.madTerms[i2]));
+          }
+          parts.push('… (' + (ctx.n - 12) + ' similar rows omitted) …');
+          for (var i3 = ctx.n - 6; i3 < ctx.n; i3++) {
+            parts.push('|' + ctx.chron[i3] + ' − ' + formatNum(ctx.mean) + '| = ' + formatNum(ctx.madTerms[i3]));
+          }
+        }
+        var totalD = 0;
+        for (var z = 0; z < ctx.madTerms.length; z++) totalD += ctx.madTerms[z];
+        parts.push('');
+        parts.push('Sum of absolute deviations = ' + formatNum(totalD));
+        parts.push('MAD = (that sum) / n = ' + formatNum(totalD) + ' / ' + ctx.n + ' = ' + formatNum(ctx.mad));
+        return intro('For each observation (each roll&rsquo;s sum), take the distance to the mean (average), ignore the sign, then average those distances.') +
+          '<pre class="defs-math">' + parts.join('\n') + '</pre>';
+      }
+      case 'iqr': {
+        var h = ctx.hinges;
+        if (ctx.n < 2 || h.q1 === null || h.q3 === null) {
+          return intro('The interquartile range measures spread using the middle half of the sorted data (third quartile minus first quartile).') +
+            '<pre class="defs-math">Need at least 2 rolls to compute Tukey hinges (Q1 and Q3).</pre>';
+        }
+        var lowerStr = '[' + h.lower.join(', ') + ']';
+        var upperStr = '[' + h.upper.join(', ') + ']';
+        if (h.lower.length > 14) lowerStr = '[' + h.lower.slice(0, 8).join(', ') + ', …]';
+        if (h.upper.length > 14) upperStr = '[' + h.upper.slice(0, 8).join(', ') + ', …]';
+        math = 'Tukey hinges: split sorted data at the median' + (ctx.n % 2 === 1 ? ' (median excluded from both halves when n is odd).' : ' (lower half = first n/2, upper half = last n/2).') +
+          '\n\nLower half (for Q1): ' + lowerStr + '\nQ1 = median(lower) = ' + formatNum(h.q1) +
+          '\n\nUpper half (for Q3): ' + upperStr + '\nQ3 = median(upper) = ' + formatNum(h.q3) +
+          '\n\nIQR = Q3 − Q1 = ' + formatNum(h.q3) + ' − ' + formatNum(h.q1) + ' = ' + formatNum(ctx.iqr);
+        return intro('The interquartile range measures spread using the middle half of the sorted data (third quartile minus first quartile).') +
+          '<pre class="defs-math">' + math + '</pre>';
+      }
+      default:
+        return intro('Hover a labeled row in the summary table.');
+    }
+  }
+
+  function paintDefPanelDefault() {
+    el.defsDefault.hidden = false;
+    el.defsDetail.hidden = true;
+    el.defsDetail.innerHTML = '';
+  }
+
+  function paintDefPanel() {
+    if (!activeDefKey) {
+      paintDefPanelDefault();
+      return;
+    }
+    el.defsDefault.hidden = true;
+    el.defsDetail.hidden = false;
+    el.defsDetail.innerHTML = buildDefHtml(activeDefKey);
+  }
+
+  function initDefPanel() {
+    if (!el.statsBox || !el.defsBox) return;
+    el.statsBox.querySelectorAll('.stat-row').forEach(function (row) {
+      row.addEventListener('mouseenter', function () {
+        activeDefKey = row.getAttribute('data-stat');
+        paintDefPanel();
+      });
+    });
+    el.statsBox.addEventListener('mouseleave', function (ev) {
+      var rt = ev.relatedTarget;
+      if (rt && (el.defsBox.contains(rt) || el.statsBox.contains(rt))) return;
+      activeDefKey = null;
+      paintDefPanelDefault();
+    });
+    el.statsBox.addEventListener('focusin', function (ev) {
+      var row = ev.target.closest ? ev.target.closest('.stat-row') : null;
+      if (!row || !el.statsBox.contains(row)) return;
+      activeDefKey = row.getAttribute('data-stat');
+      paintDefPanel();
+    });
+    el.statsBox.addEventListener('focusout', function (ev) {
+      var rt = ev.relatedTarget;
+      if (rt && (el.statsBox.contains(rt) || el.defsBox.contains(rt))) return;
+      activeDefKey = null;
+      paintDefPanelDefault();
+    });
+  }
+
+  function renderStats() {
+    var s = computeStats(history);
+    el.stN.textContent = s.n ? String(s.n) : '—';
+    el.stMean.textContent = formatNum(s.mean);
+    el.stMedian.textContent = formatNum(s.median);
+    el.stMode.textContent = typeof s.modeStr === 'string' ? s.modeStr : String(s.modeStr);
+    el.stMinmax.textContent = s.min === null ? '—' : s.min + ' / ' + s.max;
+    el.stRange.textContent = s.range === null ? '—' : String(s.range);
+    el.stMad.textContent = formatNum(s.mad);
+    el.stIqr.textContent = formatNum(s.iqr);
+  }
+
+  function renderLastSum() {
+    if (!history.length) {
+      el.lastSum.innerHTML = '';
+      setDieFace(el.dieAFace, 0);
+      setDieFace(el.dieBFace, 0);
+      return;
+    }
+    setDieFace(el.dieAFace, lastPair[0]);
+    setDieFace(el.dieBFace, lastPair[1]);
+    var sum = lastPair[0] + lastPair[1];
+    el.lastSum.innerHTML = 'Last roll: <strong>' + lastPair[0] + '</strong> + <strong>' + lastPair[1] + '</strong> = <strong>' + sum + '</strong>';
+  }
+
+  function svgEl(tag, attrs) {
+    var e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    if (attrs) {
+      for (var a in attrs) {
+        if (attrs[a] !== null && attrs[a] !== undefined) {
+          e.setAttribute(a, String(attrs[a]));
+        }
+      }
+    }
+    return e;
+  }
+
+  function appendPlotCaption(panel, text) {
+    var p = document.createElement('p');
+    p.className = 'plot-caption';
+    p.textContent = text;
+    panel.appendChild(p);
+  }
+
+  function renderNumberLine(panel) {
+    panel.innerHTML = '';
+    if (!history.length) {
+      panel.appendChild(emptyMsg());
+      return;
+    }
+    appendPlotCaption(panel, 'Number line for sums 2–12. Each dot is one observation (one roll). Dots shrink with count; when columns are used, every sum uses the same column count so stack heights compare fairly.');
+    var L = getPlotLayout();
+    var W = L.W;
+    var H = L.H;
+    var counts = countsBySum(history);
+    var axisY = L.baseY;
+    var stackTopY = L.chartTop + 10;
+    var bottomCenterY = axisY - 14;
+    var usableH = bottomCenterY - stackTopY;
+    if (usableH < 24) usableH = 24;
+    var svg = svgEl('svg', { class: 'plot-svg', viewBox: '0 0 ' + W + ' ' + H, 'aria-label': 'Number line from 2 to 12 with tick marks' });
+    svg.appendChild(svgEl('line', { x1: L.padL, y1: axisY, x2: W - L.padR, y2: axisY, stroke: '#111', 'stroke-width': 2 }));
+    var unifiedLayout = computeUnifiedDotLayout(counts, L, usableH);
+    for (var t = 2; t <= 12; t++) {
+      var x = xAtSum(L, t);
+      svg.appendChild(svgEl('line', { x1: x, y1: axisY, x2: x, y2: axisY + 10, stroke: '#111', 'stroke-width': 1.5 }));
+      var label = svgEl('text', { x: x, y: H - 20, 'text-anchor': 'middle', fill: '#6b7280', 'font-size': 13 });
+      label.textContent = String(t);
+      svg.appendChild(label);
+      var n = counts[t];
+      if (n > 0) {
+        appendStackedDots(svg, x, bottomCenterY, n, unifiedLayout);
+      }
+    }
+    panel.appendChild(svg);
+  }
+
+  function renderDotPlot(panel) {
+    panel.innerHTML = '';
+    if (!history.length) {
+      panel.appendChild(emptyMsg());
+      return;
+    }
+    appendPlotCaption(panel, 'Dot plot: one dot per observation (one per roll). Same rules as the number line—one shared column count and dot size so taller stacks mean more observations for that sum.');
+    var L = getPlotLayout();
+    var W = L.W;
+    var H = L.H;
+    var counts = countsBySum(history);
+    var stackTopY = L.chartTop + 8;
+    var bottomCenterY = L.baseY - 12;
+    var usableH = bottomCenterY - stackTopY;
+    if (usableH < 24) usableH = 24;
+    var svg = svgEl('svg', { class: 'plot-svg', viewBox: '0 0 ' + W + ' ' + H, 'aria-label': 'Dot plot of sums 2 through 12' });
+    svg.appendChild(svgEl('line', {
+      x1: L.padL - 4,
+      y1: L.baseY,
+      x2: W - L.padR + 4,
+      y2: L.baseY,
+      stroke: '#e5e7eb',
+      'stroke-width': 1
+    }));
+    var unifiedDot = computeUnifiedDotLayout(counts, L, usableH);
+    for (var t = 2; t <= 12; t++) {
+      var x = xAtSum(L, t);
+      var n = counts[t];
+      if (n > 0) {
+        appendStackedDots(svg, x, bottomCenterY, n, unifiedDot);
+      }
+      var lbl = svgEl('text', { x: x, y: H - 20, 'text-anchor': 'middle', fill: '#6b7280', 'font-size': 13 });
+      lbl.textContent = String(t);
+      svg.appendChild(lbl);
+    }
+    panel.appendChild(svg);
+  }
+
+  function renderHistogram(panel) {
+    panel.innerHTML = '';
+    if (!history.length) {
+      panel.appendChild(emptyMsg());
+      return;
+    }
+    appendPlotCaption(panel, 'Histogram: one bar per integer sum (2–12). Bar height is proportional to how many observations fell on that sum.');
+    var L = getPlotLayout();
+    var W = L.W;
+    var H = L.H;
+    var nbins = 11;
+    var slotW = L.innerW / nbins;
+    var barW = Math.max(6, slotW - 6);
+    var counts = countsBySum(history);
+    var maxC = 0;
+    for (var v = 2; v <= 12; v++) {
+      if (counts[v] > maxC) maxC = counts[v];
+    }
+    var chartH = L.chartH;
+    var svg = svgEl('svg', { class: 'plot-svg', viewBox: '0 0 ' + W + ' ' + H, 'aria-label': 'Histogram: one bar per sum 2 to 12' });
+    svg.appendChild(svgEl('line', {
+      x1: L.padL - 4,
+      y1: L.baseY,
+      x2: W - L.padR + 4,
+      y2: L.baseY,
+      stroke: '#e5e7eb',
+      'stroke-width': 1
+    }));
+    for (var i = 0; i < nbins; i++) {
+      var sumVal = 2 + i;
+      var c = counts[sumVal];
+      var h = maxC ? (c / maxC) * chartH : 0;
+      var cx = xAtSum(L, sumVal);
+      var x0 = cx - barW / 2;
+      var y0 = L.baseY - h;
+      svg.appendChild(svgEl('rect', {
+        x: x0,
+        y: y0,
+        width: barW,
+        height: Math.max(h, c > 0 ? 2 : 0),
+        fill: '#111',
+        stroke: '#111',
+        'stroke-width': 1
+      }));
+      var lbl = svgEl('text', { x: cx, y: H - 20, 'text-anchor': 'middle', fill: '#6b7280', 'font-size': 13 });
+      lbl.textContent = String(sumVal);
+      svg.appendChild(lbl);
+      if (c > 0) {
+        var ct = svgEl('text', { x: cx, y: y0 - 6, 'text-anchor': 'middle', fill: '#111', 'font-size': 12, 'font-weight': 600 });
+        ct.textContent = String(c);
+        svg.appendChild(ct);
+      }
+    }
+    panel.appendChild(svg);
+  }
+
+  function emptyMsg() {
+    var p = document.createElement('p');
+    p.className = 'plot-empty';
+    p.textContent = 'Roll to collect observations (one sum per roll). The plots will show how your sums pile up from 2 to 12.';
+    return p;
+  }
+
+  function renderPlots() {
+    renderNumberLine(el.panelLine);
+    renderDotPlot(el.panelDot);
+    renderHistogram(el.panelHist);
+  }
+
+  function render() {
+    renderStats();
+    renderLastSum();
+    renderPlots();
+    if (activeDefKey) paintDefPanel();
+  }
+
+  function setRolling(on) {
+    rolling = on;
+    el.wrap.classList.toggle('rolling', on);
+    el.btnRoll.disabled = on;
+    el.btnBulk10.disabled = on;
+    el.btnBulk100.disabled = on;
+    el.btnClear.disabled = on;
+  }
+
+  function applyRoll(a, b) {
+    lastPair = [a, b];
+    history.push(a + b);
+    render();
+  }
+
+  function flashDiceWhileRolling(done) {
+    var end = Date.now() + ROLL_MS;
+    function tick() {
+      if (Date.now() >= end) {
+        done();
+        return;
+      }
+      setDieFace(el.dieAFace, randDie());
+      setDieFace(el.dieBFace, randDie());
+      setTimeout(tick, TICK_MS > 0 ? TICK_MS : 16);
+    }
+    if (ROLL_MS <= 0) {
+      done();
+    } else {
+      tick();
+    }
+  }
+
+  function rollOnce() {
+    if (rolling) return;
+    setRolling(true);
+    flashDiceWhileRolling(function () {
+      var a = randDie();
+      var b = randDie();
+      applyRoll(a, b);
+      setRolling(false);
+    });
+  }
+
+  function addBulk(n) {
+    for (var i = 0; i < n; i++) {
+      var a = randDie();
+      var b = randDie();
+      lastPair = [a, b];
+      history.push(a + b);
+    }
+    render();
+  }
+
+  function clearAll() {
+    if (rolling) return;
+    history = [];
+    lastPair = [1, 1];
+    render();
+  }
+
+  function selectTab(which) {
+    activeTab = which;
+    var tabs = [
+      { id: 'line', tab: el.tabLine, panel: el.panelLine },
+      { id: 'dot', tab: el.tabDot, panel: el.panelDot },
+      { id: 'hist', tab: el.tabHist, panel: el.panelHist }
+    ];
+    for (var i = 0; i < tabs.length; i++) {
+      var sel = tabs[i].id === which;
+      tabs[i].tab.setAttribute('aria-selected', sel ? 'true' : 'false');
+      tabs[i].tab.tabIndex = sel ? 0 : -1;
+      if (sel) {
+        tabs[i].panel.removeAttribute('hidden');
+      } else {
+        tabs[i].panel.setAttribute('hidden', '');
+      }
+    }
+  }
+
+  var teachersDialog = document.getElementById('teachers-guide-dialog');
+  var teachersGuideBtn = document.getElementById('btn-teachers-guide');
+  if (teachersGuideBtn && teachersDialog) {
+    teachersGuideBtn.addEventListener('click', function () {
+      teachersDialog.showModal();
+    });
+    var tgClose = teachersDialog.querySelector('[data-close-dialog]');
+    if (tgClose) {
+      tgClose.addEventListener('click', function () {
+        teachersDialog.close();
+      });
+    }
+    teachersDialog.addEventListener('click', function (ev) {
+      if (ev.target === teachersDialog) {
+        teachersDialog.close();
+      }
+    });
+  }
+
+  el.btnRoll.addEventListener('click', rollOnce);
+  el.diceRow.addEventListener('click', rollOnce);
+  el.btnClear.addEventListener('click', clearAll);
+  el.btnBulk10.addEventListener('click', function () { addBulk(10); });
+  el.btnBulk100.addEventListener('click', function () { addBulk(100); });
+
+  el.tabLine.addEventListener('click', function () { selectTab('line'); });
+  el.tabDot.addEventListener('click', function () { selectTab('dot'); });
+  el.tabHist.addEventListener('click', function () { selectTab('hist'); });
+
+  var tabOrder = [el.tabLine, el.tabDot, el.tabHist];
+  function tabIndexOf(btn) {
+    for (var i = 0; i < tabOrder.length; i++) {
+      if (tabOrder[i] === btn) return i;
+    }
+    return 0;
+  }
+  tabOrder.forEach(function (btn) {
+    btn.addEventListener('keydown', function (ev) {
+      var idx = tabIndexOf(btn);
+      if (ev.key === 'ArrowRight' || ev.key === 'ArrowDown') {
+        ev.preventDefault();
+        var next = tabOrder[(idx + 1) % tabOrder.length];
+        next.focus();
+        selectTab(next === el.tabLine ? 'line' : next === el.tabDot ? 'dot' : 'hist');
+      } else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowUp') {
+        ev.preventDefault();
+        var prev = tabOrder[(idx - 1 + tabOrder.length) % tabOrder.length];
+        prev.focus();
+        selectTab(prev === el.tabLine ? 'line' : prev === el.tabDot ? 'dot' : 'hist');
+      } else if (ev.key === 'Home') {
+        ev.preventDefault();
+        tabOrder[0].focus();
+        selectTab('line');
+      } else if (ev.key === 'End') {
+        ev.preventDefault();
+        tabOrder[2].focus();
+        selectTab('hist');
+      }
+    });
+  });
+
+  initDefPanel();
+  selectTab('line');
+  render();
+})();
+  </script>
+</body>
+</html>
