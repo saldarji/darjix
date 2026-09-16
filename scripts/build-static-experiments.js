@@ -281,6 +281,16 @@ function copyArchiveFiles() {
   }
 }
 
+function copySycEvents() {
+  const src = path.join(__dirname, '../data/syc_events.json');
+  const dest = path.join(__dirname, '../public/data/syc_events.json');
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(src, dest);
+    console.log('✅ Copied syc_events.json to /public/data/syc_events.json');
+  }
+}
+
 function run() {
   console.log('🚀 Building static experiment pages...');
   buildNews();
@@ -288,6 +298,7 @@ function run() {
   buildArchiveIndex();
   buildHoroscopes();
   copyArchiveFiles();
+  copySycEvents();
   console.log('🎉 Static experiment pages ready!');
 }
 
