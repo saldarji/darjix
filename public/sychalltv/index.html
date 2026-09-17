@@ -6,17 +6,18 @@
   <title>Squantum Yacht Club — Hall Display</title>
   <style>
     :root {
-      --bg:      #07111e;
-      --bg2:     #0d1d32;
-      --bg3:     #132a47;
-      --border:  #1a3a5c;
-      --accent:  #1e72c8;
-      --accent2: #3fa9f5;
-      --text:    #ddeeff;
-      --muted:   #6a90b0;
-      --gold:    #f0c040;
-      --rain:    #5b9bd5;
-      --red:     #ef5350;
+      --bg:          #040a14;
+      --bg2:         #0a1628;
+      --bg3:         #10223c;
+      --border:      rgba(30, 114, 200, 0.2);
+      --accent:      #1e72c8;
+      --accent2:     #3fa9f5;
+      --gold:        #f0c040;
+      --gold-glow:   rgba(240, 192, 64, 0.25);
+      --text:        #f0f6fc;
+      --muted:       #8bb0d0;
+      --rain:        #5b9bd5;
+      --red:         #ef5350;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,34 +40,44 @@
 
     /* ── Header ── */
     header {
-      height: 8vh;
+      height: 9vh;
       flex-shrink: 0;
-      background: var(--bg3);
+      background: rgba(10, 22, 40, 0.9);
       border-bottom: 2px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2vw;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .branding { display: flex; align-items: center; gap: 1.2vw; }
-    .burgee-img { height: 6vh; width: auto; display: block; }
+    .burgee-img {
+      height: 6.5vh;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+    .club-title {
+      display: flex;
+      flex-direction: column;
+    }
     .club-name {
-      font-size: 2.3vh;
+      font-size: 2.6vh;
       font-weight: 700;
-      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-family: 'Times New Roman', Georgia, serif;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #ffffff;
-      line-height: 1.2;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
-    .club-name small {
-      display: block;
+    .club-subtitle {
       font-size: 1.3vh;
-      color: var(--muted);
-      font-weight: 400;
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--gold);
+      font-weight: 600;
       letter-spacing: 0.25em;
+      text-transform: uppercase;
     }
 
     .header-right {
@@ -77,12 +88,14 @@
     }
     .header-clock { text-align: right; }
     #clock {
-      font-size: 4.2vh;
-      font-weight: 200;
-      letter-spacing: 0.04em;
+      font-size: 4vh;
+      font-weight: 300;
+      letter-spacing: 0.05em;
       line-height: 1;
+      color: #ffffff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-    #date { font-size: 1.5vh; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3vh; }
+    #date { font-size: 1.4vh; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3vh; }
 
     .header-meta { text-align: right; font-size: 1.5vh; color: var(--muted); }
 
@@ -269,9 +282,9 @@
   <header>
     <div class="branding">
       <img class="burgee-img" src="/sychalltv/syc-burgee.png" alt="SYC Burgee">
-      <div class="club-name">
-        Squantum Yacht Club
-        <small>Quincy, Massachusetts</small>
+      <div class="club-title">
+        <div class="club-name">Squantum Yacht Club</div>
+        <div class="club-subtitle">Quincy, Massachusetts · Est. 1890</div>
       </div>
     </div>
     <div class="header-right">
