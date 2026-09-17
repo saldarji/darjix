@@ -291,6 +291,23 @@ function copySycEvents() {
   }
 }
 
+function copySycMemberData() {
+  try {
+    const { runParser } = require('./parse-syc-members');
+    runParser();
+  } catch (e) {
+    console.error('Error running member parser:', e);
+  }
+
+  const srcDir = path.join(__dirname, '../data/syc_members');
+  const destDir = path.join(__dirname, '../public/data/syc_members');
+  if (fs.existsSync(srcDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+    fs.cpSync(srcDir, destDir, { recursive: true });
+    console.log('✅ Copied syc_members CSV data directory to /public/data/syc_members');
+  }
+}
+
 function run() {
   console.log('🚀 Building static experiment pages...');
   buildNews();
@@ -299,7 +316,9 @@ function run() {
   buildHoroscopes();
   copyArchiveFiles();
   copySycEvents();
+  copySycMemberData();
   console.log('🎉 Static experiment pages ready!');
 }
 
 run();
+

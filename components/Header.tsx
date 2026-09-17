@@ -6,6 +6,10 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/sycmembertv") || pathname?.startsWith("/sychalltv")) {
+    return null;
+  }
+
   return (
     <header className="bg-white border-b border-gray-200">
       <nav className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">

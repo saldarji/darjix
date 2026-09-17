@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squantum Yacht Club — Member Display TV</title>
+  <style>
+    :root {
+      --bg:          #040a14;
+      --bg2:         #0a1628;
+      --bg3:         #10223c;
+      --card-bg:     rgba(16, 34, 60, 0.75);
+      --card-border: rgba(30, 114, 200, 0.3);
+      --accent:      #1e72c8;
+      --accent2:     #3fa9f5;
+      --gold:        #f0c040;
+      --gold-glow:   rgba(240, 192, 64, 0.25);
+      --text:        #f0f6fc;
+      --muted:       #8bb0d0;
+      --green:       #4caf50;
+      --timer-height: 4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Interactive & Canvas Background ── */
+    #bg-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .app-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ── Progress Timer Bar ── */
+    .timer-bar-wrap {
+      width: 100%;
+      height: var(--timer-height);
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    .timer-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent2), var(--gold));
+      box-shadow: 0 0 10px var(--gold);
+      transition: width 0.1s linear;
+    }
+
+    /* ── Header ── */
+    header {
+      height: 9vh;
+      background: rgba(10, 22, 40, 0.9);
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2vw;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 1.2vw;
+    }
+    .burgee-img {
+      height: 6.5vh;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+    .club-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .club-name {
+      font-size: 2.6vh;
+      font-weight: 700;
+      font-family: 'Times New Roman', Georgia, serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .club-subtitle {
+      font-size: 1.3vh;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 2.5vw;
+    }
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5vw;
+      background: rgba(30, 114, 200, 0.15);
+      border: 1px solid rgba(63, 169, 245, 0.3);
+      padding: 0.6vh 1vw;
+      border-radius: 20px;
+      font-size: 1.3vh;
+      color: var(--muted);
+    }
+    .status-dot {
+      width: 0.8vh;
+      height: 0.8vh;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+    .header-clock { text-align: right; }
+    #clock {
+      font-size: 4vh;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      color: #ffffff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    #date {
+      font-size: 1.4vh;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.3vh;
+    }
+
+    /* ── Navigation / Slide Pills Bar ── */
+    .slide-pills-bar {
+      height: 5.5vh;
+      background: rgba(4, 10, 20, 0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8vw;
+      padding: 0 1vw;
+    }
+    .pill {
+      font-size: 1.4vh;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0.6vh 1.2vw;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      transition: all 0.4s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5vw;
+    }
+    .pill.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(30, 114, 200, 0.6), rgba(16, 34, 60, 0.8));
+      border-color: var(--gold);
+      box-shadow: 0 0 15px var(--gold-glow);
+      transform: scale(1.05);
+    }
+
+    /* ── Main View Area ── */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      padding: 2.5vh 3vw;
+    }
+
+    .slide-stage {
+      position: absolute;
+      top: 2.5vh;
+      left: 3vw;
+      right: 3vw;
+      bottom: 2.5vh;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-stage.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    /* ── Slide Header Title ── */
+    .slide-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2vh;
+      border-bottom: 2px solid rgba(240, 192, 64, 0.3);
+      padding-bottom: 1.2vh;
+    }
+    .slide-title-left {
+      display: flex;
+      align-items: center;
+      gap: 1vw;
+    }
+    .slide-icon {
+      font-size: 4vh;
+      line-height: 1;
+    }
+    .slide-h1 {
+      font-size: 3.6vh;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .slide-subtitle {
+      font-size: 1.5vh;
+      color: var(--muted);
+      margin-top: 0.2vh;
+    }
+    .slide-meta-badge {
+      background: rgba(240, 192, 64, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.6vh 1.4vw;
+      border-radius: 20px;
+      font-size: 1.6vh;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Frameless Roster List ── */
+    .roster-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 0.5vh 1.4vw;
+      overflow: hidden;
+      padding-top: 0.5vh;
+      max-height: 74vh;
+    }
+
+    .roster-item {
+      display: flex;
+      align-items: baseline;
+      padding: 0.3vh 0.4vw;
+      border-bottom: 1px dashed rgba(30, 114, 200, 0.25);
+      transition: color 0.2s ease;
+    }
+    .roster-item:hover {
+      border-bottom-color: var(--gold);
+    }
+
+    .roster-item.density-high {
+      width: 14.2vw;
+      font-size: 1.45vh;
+    }
+    .roster-item.density-medium {
+      width: 21vw;
+      font-size: 1.75vh;
+    }
+    .roster-item.density-spacious {
+      width: 28vw;
+      font-size: 2.1vh;
+    }
+    .roster-item.density-large {
+      width: 40vw;
+      font-size: 2.5vh;
+    }
+
+    .member-name-wrap {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.45em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .member-name {
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+    }
+
+    .member-since-inline {
+      font-size: 0.88em;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      opacity: 0.95;
+    }
+
+    /* ── Combined Classes Grid ── */
+    .combined-classes-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      padding-top: 1vh;
+    }
+    .class-column {
+      display: flex;
+      flex-direction: column;
+    }
+    .column-header {
+      font-size: 2.4vh;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-bottom: 0.8vh;
+      margin-bottom: 1.5vh;
+      border-bottom: 1px solid rgba(240, 192, 64, 0.3);
+    }
+    .roster-container-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2vh;
+    }
+
+    /* ── Officers Frameless List ── */
+    .officer-line-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      padding: 0.5vh 0;
+    }
+    .officer-role-label {
+      font-size: 2.3vh;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .officer-name-val {
+      font-size: 2.3vh;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Special Feature Slides (Work Hours / Regatta) ── */
+    .feature-slide-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2vw;
+      align-items: center;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 3vh 2.5vw;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(240, 192, 64, 0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 1.4vh;
+      font-weight: 700;
+      padding: 0.4vh 1vw;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5vh;
+    }
+
+    .feature-headline {
+      font-size: 3.8vh;
+      font-family: 'Times New Roman', Georgia, serif;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 1.5vh;
+    }
+
+    .feature-body {
+      font-size: 2vh;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2vh;
+    }
+
+    .feature-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5vh 1vw;
+      margin-top: 1vh;
+    }
+
+    .stat-box {
+      background: rgba(4, 10, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5vh 1vw;
+    }
+    .stat-num {
+      font-size: 3.2vh;
+      font-weight: 800;
+      color: var(--accent2);
+    }
+    .stat-label {
+      font-size: 1.3vh;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Footer Branding (Removed) ── */
+  </style>
+</head>
+<body>
+
+<!-- Animated Canvas Background -->
+<canvas id="bg-canvas"></canvas>
+
+<div class="app-container">
+
+  <!-- Top 30-Second Progress Timer -->
+  <div class="timer-bar-wrap">
+    <div id="timer-bar" class="timer-bar-fill"></div>
+  </div>
+
+  <!-- Main Header -->
+  <header>
+    <div class="branding">
+      <img class="burgee-img" src="/sychalltv/syc-burgee.png" alt="SYC Burgee" onerror="this.src='/syc-burgee.png'">
+      <div class="club-title">
+        <div class="club-name">Squantum Yacht Club</div>
+        <div class="club-subtitle">Quincy, Massachusetts · Est. 1890</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-badge">
+        <span id="data-status-text">220 Total Members</span>
+      </div>
+      <div class="header-clock">
+        <div id="clock">--:-- --</div>
+        <div id="date">—</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide Pills Bar -->
+  <div class="slide-pills-bar" id="pills-bar">
+    <!-- Dynamic Pill Items -->
+  </div>
+
+  <!-- Stage Area for Slides -->
+  <main id="slide-stage-container">
+    <!-- Slides will be rendered here dynamically -->
+  </main>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. DYNAMIC CANVAS BACKGROUND (Nautical Wave Effect)
+// ─────────────────────────────────────────────────────────────────────────────
+(function initCanvasBg() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let width, height, dpr;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  let step = 0;
+  
+  // 8 waves distributed: spread out at top (gap ~0.17), dense at bottom (gap ~0.06)
+  const waveRatios = [0.15, 0.32, 0.47, 0.60, 0.71, 0.80, 0.87, 0.93];
+  const waveColors = [
+    'rgba(30, 90, 170, 0.22)',   // wave 0 (top, far apart)
+    'rgba(35, 110, 195, 0.26)',  // wave 1
+    'rgba(40, 125, 210, 0.30)',  // wave 2
+    'rgba(45, 140, 225, 0.34)',  // wave 3
+    'rgba(50, 155, 235, 0.38)',  // wave 4
+    'rgba(30, 120, 205, 0.42)',  // wave 5
+    'rgba(63, 169, 245, 0.48)',  // wave 6
+    'rgba(40, 145, 235, 0.58)'   // wave 7 (bottom-most)
+  ];
+
+  const burgeeImg = new Image();
+  burgeeImg.src = '/sychalltv/syc-burgee.png';
+
+  function calcWaveY(x, i, time) {
+    const baseRatio = waveRatios[i];
+    const amp1 = 28 + i * 2.2;
+    const amp2 = 16 + i * 1.5;
+    const freq1 = 0.0028 + i * 0.0001;
+    const freq2 = 0.0014;
+    return Math.sin(x * freq1 + time + i * 1.3) * amp1 +
+           Math.cos(x * freq2 + time * 0.85 + i * 0.7) * amp2 +
+           (height * baseRatio);
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.scale(dpr, dpr);
+
+    // Deep gradient fill
+    const grad = ctx.createLinearGradient(0, 0, width, height);
+    grad.addColorStop(0, '#040a14');
+    grad.addColorStop(0.5, '#0a1a2f');
+    grad.addColorStop(1, '#040a14');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, width, height);
+
+    // Slow down waves by ~20% (0.008 * 0.8 = 0.0064)
+    step += 0.0064;
+
+    // Render 8 Blue Waves
+    for (let i = 0; i < waveRatios.length; i++) {
+      ctx.beginPath();
+      ctx.lineWidth = 2.4;
+      ctx.strokeStyle = waveColors[i];
+      for (let x = 0; x <= width; x += 20) {
+        const y = calcWaveY(x, i, step);
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    // ── Regular Sailboat (Sleek Flat-Bottom Hull with Overhang Bow, Yellow Sails, Royal Blue SYC Axe Burgee) ──
+    const boatX = Math.min(width - 50, (width * 0.85) + 100);
+    const bottomWaveIdx = waveRatios.length - 1; // Wave 7
+    const boatY = calcWaveY(boatX, bottomWaveIdx, step);
+    const boatY2 = calcWaveY(boatX + 5, bottomWaveIdx, step);
+    const angle = Math.atan2(boatY2 - boatY, 5);
+
+    ctx.save();
+    ctx.translate(boatX, boatY); // Flat hull bottom rests directly on wave line with zero gap
+    ctx.rotate(angle);
+
+    const scale = Math.max(0.75, Math.min(1.2, height / 850));
+    ctx.scale(scale, scale);
+
+    // Completely disable all shadow/blur effects
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'transparent';
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    function strokeLine(x1, y1, x2, y2) {
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
+    // 1. Sleek Solid White Yacht Hull with Classic Bow & Stern Overhangs (Stern ends at x = -26, just past boom)
+    ctx.beginPath();
+    ctx.moveTo(-26, -9);                    // Stern deck top (just past boom at x = -22)
+    ctx.quadraticCurveTo(15, -11, 52, -5);  // Sleek deck line to overhanging bow tip
+    ctx.lineTo(34, 1.5);                    // Bow overhang slanting to waterline
+    ctx.lineTo(-20, 1.5);                   // Flat bottom on wave line
+    ctx.closePath();                        // Stern transom overhang slanting up to (-26, -9)
+    ctx.fillStyle = '#ffffff';              // Solid White Hull
+    ctx.fill();
+
+    // Outline top deck, stern transom, and bow overhang (excluding bottom edge to keep white hull flush on wave line)
+    ctx.beginPath();
+    ctx.moveTo(-20, 1.5);                   // Bottom stern waterline corner
+    ctx.lineTo(-26, -9);                    // Stern transom overhang up to deck
+    ctx.quadraticCurveTo(15, -11, 52, -5);  // Deck line to bow tip
+    ctx.lineTo(34, 1.5);                    // Bow overhang down to waterline
+    ctx.strokeStyle = '#040a14';            // Dark navy edge for crisp deck & stern definition
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+
+    // 2. Mast & Boom (Positioned Forward Towards Bow at x = 18)
+    ctx.strokeStyle = '#f0c040';
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    strokeLine(18, -4, 18, -66);    // Main Mast (Forward position)
+    strokeLine(18, -12, -22, -12);  // Boom (Extending aft)
+
+    // 3. Solid Yellow Mainsail (Aft Sail - Warm Golden Yellow)
+    ctx.beginPath();
+    ctx.moveTo(18, -61);
+    ctx.quadraticCurveTo(2, -36, -22, -12);   // Curved leech
+    ctx.lineTo(18, -12);                       // Foot along boom
+    ctx.closePath();                           // Luff along mast
+    ctx.fillStyle = '#f5c518'; // Warm golden yellow
+    ctx.fill();
+
+    // 4. Solid Yellow Foresail / Jib (Forward Sail - Connected near Overhang Bow tip)
+    ctx.beginPath();
+    ctx.moveTo(18, -56);
+    ctx.lineTo(48, -5);                        // Luff down to near overhanging bow tip
+    ctx.lineTo(20, -12);                       // Foot along deck back to mast
+    ctx.closePath();
+    ctx.fillStyle = '#ffe066'; // Lighter sunny yellow for subtle differentiation
+    ctx.fill();
+
+    // 5. Official SYC Burgee (Half-Size Royal Blue Triangle at Masthead x=18)
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(18, -68);     // Top left base at masthead
+    ctx.lineTo(29, -65.5);   // Right point tip (50% size)
+    ctx.lineTo(18, -63);     // Bottom left base at masthead
+    ctx.closePath();
+    ctx.fillStyle = '#001fd0'; // Solid Royal Blue
+    ctx.fill();
+
+    // 2-3px white line representing the axe
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 1.2;
+    strokeLine(21, -64.5, 24, -66);
+
+    ctx.restore(); // restore burgee state
+    ctx.restore(); // restore boat state
+    ctx.restore(); // restore dpr state
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. REAL-TIME CLOCK & DATE
+// ─────────────────────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  document.getElementById('date').textContent =
+    now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. SAMPLE / FALLBACK DATA (Used if CSV is not uploaded yet)
+// ─────────────────────────────────────────────────────────────────────────────
+const FALLBACK_MEMBERS = [
+  // Life Members
+  { name: 'Arthur Pendleton', class: 'Life Members', since: '1978' },
+  { name: 'Eleanor Vane', class: 'Life Members', since: '1982' },
+  { name: 'Cap. Richard Barton', class: 'Life Members', since: '1985' },
+  { name: 'Margaret Bradford', class: 'Life Members', since: '1988' },
+  { name: 'Harold Winslow', class: 'Life Members', since: '1990' },
+  { name: 'Beatrice Endicott', class: 'Life Members', since: '1993' },
+
+  // Regular Members
+  { name: 'James Saldarji', class: 'Regular Members', since: '2005' },
+  { name: 'Robert Holloway', class: 'Regular Members', since: '2010' },
+  { name: 'Catherine Squire', class: 'Regular Members', since: '2012' },
+  { name: 'Thomas Fairfax', class: 'Regular Members', since: '2014' },
+  { name: 'David Miller', class: 'Regular Members', since: '2015' },
+  { name: 'Sarah Jenkins', class: 'Regular Members', since: '2016' },
+  { name: 'Michael O\'Connor', class: 'Regular Members', since: '2017' },
+  { name: 'Elizabeth Swann', class: 'Regular Members', since: '2018' },
+  { name: 'William Turner', class: 'Regular Members', since: '2019' },
+  { name: 'Patricia Quincy', class: 'Regular Members', since: '2020' },
+  { name: 'Christopher Adams', class: 'Regular Members', since: '2021' },
+  { name: 'Victoria Sterling', class: 'Regular Members', since: '2022' },
+
+  // Social Members
+  { name: 'Charles Davenport', class: 'Social Members', since: '2016' },
+  { name: 'Amanda Prescott', class: 'Social Members', since: '2018' },
+  { name: 'Gregory Hayes', class: 'Social Members', since: '2019' },
+  { name: 'Jennifer Walsh', class: 'Social Members', since: '2020' },
+  { name: 'Brian Sullivan', class: 'Social Members', since: '2021' },
+  { name: 'Laura Harrington', class: 'Social Members', since: '2022' },
+  { name: 'Kevin Donovan', class: 'Social Members', since: '2023' },
+  { name: 'Rachel Mercer', class: 'Social Members', since: '2024' },
+
+  // Intermediate Members
+  { name: 'Alexander Brooks', class: 'Intermediate Members', since: '2021' },
+  { name: 'Samantha Reed', class: 'Intermediate Members', since: '2022' },
+  { name: 'Daniel Fletcher', class: 'Intermediate Members', since: '2023' },
+  { name: 'Jessica Morgan', class: 'Intermediate Members', since: '2024' },
+
+  // Junior Members
+  { name: 'Benjamin Hawthorne', class: 'Junior Members', since: '2023' },
+  { name: 'Chloe Vanguard', class: 'Junior Members', since: '2024' },
+  { name: 'Liam Gallagher', class: 'Junior Members', since: '2024' },
+  { name: 'Sophia Belmont', class: 'Junior Members', since: '2025' }
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CSV PARSER (Flexible for ClubExpress exports)
+// ─────────────────────────────────────────────────────────────────────────────
+function parseCSV(csvText) {
+  const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
+  if (lines.length < 2) return [];
+
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^["']|["']$/g, '').toLowerCase());
+
+  // Find column indices
+  const fnIdx = headers.findIndex(h => h.includes('first') || h.includes('given'));
+  const lnIdx = headers.findIndex(h => h.includes('last') || h.includes('surname'));
+  const nameIdx = headers.findIndex(h => h === 'name' || h === 'member name' || h.includes('full name'));
+  const classIdx = headers.findIndex(h => h.includes('class') || h.includes('type') || h.includes('category'));
+  const sinceIdx = headers.findIndex(h => h.includes('since') || h.includes('joined') || h.includes('year') || h.includes('date'));
+
+  const results = [];
+  for (let i = 1; i < lines.length; i++) {
+    const row = lines[i].split(',').map(c => c.trim().replace(/^["']|["']$/g, ''));
+    if (row.length < 2) continue;
+
+    let memberName = '';
+    if (fnIdx !== -1 && lnIdx !== -1) {
+      memberName = `${row[fnIdx]} ${row[lnIdx]}`.trim();
+    } else if (nameIdx !== -1) {
+      memberName = row[nameIdx];
+    } else {
+      memberName = row[0];
+    }
+
+    let mClass = classIdx !== -1 ? row[classIdx] : 'Regular Members';
+    let mSince = sinceIdx !== -1 ? row[sinceIdx] : '';
+
+    if (memberName) {
+      results.push({ name: memberName, class: mClass, since: mSince });
+    }
+  }
+  return results;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. SLIDE ENGINE ARCHITECTURE
+// ─────────────────────────────────────────────────────────────────────────────
+const ROTATION_SPEED_MS = 30000; // 30 seconds per slide as requested
+let currentSlideIndex = 0;
+let slides = [];
+let timerInterval = null;
+let timerStartTime = 0;
+
+const CLASS_CONFIG = [
+  { key: 'Officers', title: 'Officers', subtitle: 'Squantum Yacht Club Flag Officers & Board of Directors', isOfficers: true },
+  { key: 'Life Members', title: 'Life Members', subtitle: 'Honoring Dedicated Lifetime Service to Squantum Yacht Club', isCombined: false },
+  { key: 'Regular Members', title: 'Regular Members', subtitle: 'Active Boating & Voting Members of Squantum Yacht Club', isCombined: false },
+  { key: 'Social Members', title: 'Social Members', subtitle: 'Clubhouse Community & Social Members', isCombined: false },
+  { key: 'Intermediate and Junior Members', title: 'Intermediate and Junior Members', subtitle: 'Young Adult Members & Youth Sailors of Squantum Yacht Club', isCombined: true }
+];
+
+async function loadMemberData() {
+  try {
+    // Try fetching pre-processed JSON data
+    const jsonResp = await fetch('/data/syc_members/processed_members.json');
+    if (jsonResp.ok) {
+      const data = await jsonResp.json();
+      if (Array.isArray(data) && data.length > 0) {
+        document.getElementById('data-status-text').textContent = data.length + ' Total Members';
+        return data;
+      }
+    }
+  } catch (err) {
+    console.log('JSON fetch attempt fallback to CSV');
+  }
+
+  try {
+    // Try fetching uploaded ClubExpress CSV extract
+    const resp = await fetch('/data/syc_members/member_report.csv');
+    if (resp.ok) {
+      const csvText = await resp.text();
+      const parsed = parseCSV(csvText);
+      if (parsed.length > 0) {
+        document.getElementById('data-status-text').textContent = parsed.length + ' Total Members';
+        return parsed;
+      }
+    }
+  } catch (err) {
+    console.log('CSV fetch attempt fallback to sample data');
+  }
+
+  document.getElementById('data-status-text').textContent = '220 Total Members';
+  return FALLBACK_MEMBERS;
+}
+
+function formatNameClient(rawName) {
+  if (!rawName) return '';
+  let name = rawName.trim();
+  if (name.includes(',')) {
+    const parts = name.split(',').map(p => p.trim());
+    if (parts.length >= 2) {
+      name = `${parts.slice(1).join(' ')} ${parts[0]}`;
+    }
+  }
+  return name.split(/\s+/).map(word => {
+    if (/^(jr\.?|sr\.?)$/i.test(word)) return /^jr\.?/i.test(word) ? 'Jr.' : 'Sr.';
+    if (/^(ii|iii|iv)$/i.test(word)) return word.toUpperCase();
+    if (word === word.toUpperCase() || word === word.toLowerCase()) {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+    return word;
+  }).join(' ');
+}
+
+function parseOfficersText(txtContent) {
+  if (!txtContent || !txtContent.trim()) return [];
+  const lines = txtContent.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const officers = [];
+  let currentCategory = 'Officer';
+
+  lines.forEach(line => {
+    if (/(officers of the bridge|flag officers)/i.test(line)) {
+      currentCategory = 'Officer';
+      return;
+    }
+    if (/(executive board|board members|board of directors)/i.test(line)) {
+      currentCategory = 'Executive Board';
+      return;
+    }
+
+    if (line.includes(':')) {
+      const parts = line.split(':');
+      const role = parts[0].trim();
+      const rawName = parts.slice(1).join(':').trim();
+      if (role && rawName) {
+        officers.push({ role, name: formatNameClient(rawName) });
+      } else if (role && !rawName) {
+        if (/executive board|board/i.test(role)) {
+          currentCategory = 'Executive Board';
+        } else {
+          currentCategory = role;
+        }
+      }
+    } else if (line.includes(' - ')) {
+      const parts = line.split(' - ');
+      const role = parts[0].trim();
+      const rawName = parts.slice(1).join(' - ').trim();
+      if (role && rawName) {
+        officers.push({ role, name: formatNameClient(rawName) });
+      }
+    } else if (line.includes('\t')) {
+      const parts = line.split('\t').map(p => p.trim()).filter(Boolean);
+      if (parts.length >= 2) {
+        officers.push({ role: parts[0], name: formatNameClient(parts[1]) });
+      }
+    } else if (line.includes(',')) {
+      const parts = line.split(',').map(p => p.trim()).filter(Boolean);
+      if (parts.length >= 2) {
+        if (/commodore|vice|rear|secretary|treasurer|captain|measurer|director|officer/i.test(parts[0])) {
+          officers.push({ role: parts[0], name: formatNameClient(parts.slice(1).join(' ')) });
+        } else {
+          officers.push({ role: parts[parts.length - 1], name: formatNameClient(parts.slice(0, -1).join(', ')) });
+        }
+      }
+    } else {
+      const role = currentCategory || 'Executive Board';
+      officers.push({ role, name: formatNameClient(line) });
+    }
+  });
+
+  return officers;
+}
+
+async function loadOfficersData() {
+  try {
+    const jsonResp = await fetch('/data/syc_members/processed_officers.json?v=' + Date.now());
+    if (jsonResp.ok) {
+      const data = await jsonResp.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data;
+      }
+    }
+  } catch (err) {
+    console.log('Officers JSON fetch attempt fallback');
+  }
+
+  try {
+    const txtResp = await fetch('/data/syc_members/officers.txt?v=' + Date.now());
+    if (txtResp.ok) {
+      const txt = await txtResp.text();
+      const parsed = parseOfficersText(txt);
+      if (parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch (err) {
+    console.log('Officers TXT fetch fallback');
+  }
+
+  return [
+    { role: 'Commodore', name: 'John Donohue' },
+    { role: 'Vice Commodore', name: 'Jane Cody' },
+    { role: 'Rear Commodore', name: 'Chris Haff' },
+    { role: 'Secretary', name: 'Mary Michel' },
+    { role: 'Treasurer', name: 'Kevin Cook' },
+    { role: 'Fleet Captain', name: 'Sean McCarthy' },
+    { role: 'Measurer', name: 'Ray Crosby' }
+  ];
+}
+
+function buildSlides(memberList, officerList = []) {
+  const generatedSlides = [];
+
+  CLASS_CONFIG.forEach(cfg => {
+    if (cfg.isOfficers) {
+      const bridgeList = officerList.filter(o => 
+        ['commodore', 'vice commodore', 'rear commodore', 'treasurer', 'secretary'].includes((o.role || '').toLowerCase())
+      );
+      const boardList = officerList.filter(o => 
+        !['commodore', 'vice commodore', 'rear commodore', 'treasurer', 'secretary'].includes((o.role || '').toLowerCase())
+      );
+
+      generatedSlides.push({
+        id: `class-officers`,
+        pillTitle: cfg.title,
+        type: 'member-officers',
+        config: cfg,
+        bridgeOfficers: bridgeList,
+        boardOfficers: boardList,
+        totalCount: officerList.length
+      });
+    } else if (cfg.isCombined) {
+      const intermediateMembers = memberList.filter(m => m.class.toLowerCase().includes('intermediate'));
+      const juniorMembers = memberList.filter(m => m.class.toLowerCase().includes('junior'));
+      generatedSlides.push({
+        id: `class-combined-inter-junior`,
+        pillTitle: cfg.title,
+        type: 'member-combined-class',
+        config: cfg,
+        col1Title: 'Intermediate Members',
+        col1Members: intermediateMembers,
+        col2Title: 'Junior Members',
+        col2Members: juniorMembers,
+        totalCount: intermediateMembers.length + juniorMembers.length
+      });
+    } else {
+      const matchedMembers = memberList.filter(m =>
+        m.class.toLowerCase().includes(cfg.key.toLowerCase().split(' ')[0])
+      );
+
+      generatedSlides.push({
+        id: `class-${cfg.key}`,
+        pillTitle: cfg.title,
+        type: 'member-class',
+        config: cfg,
+        members: matchedMembers,
+        totalCount: matchedMembers.length
+      });
+    }
+  });
+
+  return generatedSlides;
+}
+
+function renderPillsNav() {
+  const pillsBar = document.getElementById('pills-bar');
+  pillsBar.innerHTML = '';
+  slides.forEach((slide, idx) => {
+    const pill = document.createElement('div');
+    pill.className = `pill ${idx === currentSlideIndex ? 'active' : ''}`;
+    pill.innerHTML = slide.pillTitle;
+    pill.onclick = () => jumpToSlide(idx);
+    pillsBar.appendChild(pill);
+  });
+}
+
+function renderSlidesHTML() {
+  const container = document.getElementById('slide-stage-container');
+  container.innerHTML = '';
+
+  slides.forEach((slide, idx) => {
+    const stage = document.createElement('div');
+    stage.className = `slide-stage ${idx === currentSlideIndex ? 'active' : ''}`;
+    stage.id = `slide-stage-${idx}`;
+
+    if (slide.type === 'member-officers') {
+      const bridgeHTML = slide.bridgeOfficers.map(o => `
+        <div class="officer-line-item">
+          <span class="officer-role-label">${o.role}:</span>
+          <span class="officer-name-val">${o.name}</span>
+        </div>
+      `).join('');
+
+      const boardHTML = slide.boardOfficers.map(o => `
+        <div class="officer-line-item">
+          <span class="officer-role-label">${o.role}:</span>
+          <span class="officer-name-val">${o.name}</span>
+        </div>
+      `).join('');
+
+      stage.innerHTML = `
+        <div class="slide-title-wrap">
+          <div class="slide-title-left">
+            <div>
+              <div class="slide-h1">${slide.config.title}</div>
+              <div class="slide-subtitle">${slide.config.subtitle}</div>
+            </div>
+          </div>
+          <div class="slide-meta-badge">${slide.totalCount} Officers</div>
+        </div>
+        <div class="combined-classes-grid">
+          <div class="class-column">
+            <div class="column-header">Officers of the Bridge (${slide.bridgeOfficers.length})</div>
+            <div class="roster-container-col">
+              ${bridgeHTML || '<div class="officer-line-item"><span class="officer-name-val">No officers listed</span></div>'}
+            </div>
+          </div>
+          <div class="class-column">
+            <div class="column-header">Executive Board (${slide.boardOfficers.length})</div>
+            <div class="roster-container-col">
+              ${boardHTML || '<div class="officer-line-item"><span class="officer-name-val">No board members listed</span></div>'}
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (slide.type === 'member-combined-class') {
+      const col1HTML = slide.col1Members.map(m => `
+        <div class="roster-item density-large">
+          <span class="member-name-wrap">
+            <span class="member-name">${m.name}</span>
+            ${m.since ? `<span class="member-since-inline">’${m.since.slice(-2)}</span>` : ''}
+          </span>
+        </div>
+      `).join('');
+
+      const col2HTML = slide.col2Members.map(m => `
+        <div class="roster-item density-large">
+          <span class="member-name-wrap">
+            <span class="member-name">${m.name}</span>
+            ${m.since ? `<span class="member-since-inline">’${m.since.slice(-2)}</span>` : ''}
+          </span>
+        </div>
+      `).join('');
+
+      stage.innerHTML = `
+        <div class="slide-title-wrap">
+          <div class="slide-title-left">
+            <div>
+              <div class="slide-h1">${slide.config.title}</div>
+              <div class="slide-subtitle">${slide.config.subtitle}</div>
+            </div>
+          </div>
+          <div class="slide-meta-badge">${slide.totalCount} Members</div>
+        </div>
+        <div class="combined-classes-grid">
+          <div class="class-column">
+            <div class="column-header">${slide.col1Title} (${slide.col1Members.length})</div>
+            <div class="roster-container-col">
+              ${col1HTML || '<div class="roster-item density-large"><span class="member-name">No members listed</span></div>'}
+            </div>
+          </div>
+          <div class="class-column">
+            <div class="column-header">${slide.col2Title} (${slide.col2Members.length})</div>
+            <div class="roster-container-col">
+              ${col2HTML || '<div class="roster-item density-large"><span class="member-name">No members listed</span></div>'}
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (slide.type === 'member-class') {
+      const count = slide.totalCount;
+      let densityClass = 'density-large';
+      if (count > 80) densityClass = 'density-high';
+      else if (count > 35) densityClass = 'density-medium';
+      else if (count > 12) densityClass = 'density-spacious';
+
+      const membersHTML = slide.members.map(m => `
+        <div class="roster-item ${densityClass}">
+          <span class="member-name-wrap">
+            <span class="member-name">${m.name}</span>
+            ${m.since ? `<span class="member-since-inline">’${m.since.slice(-2)}</span>` : ''}
+          </span>
+        </div>
+      `).join('');
+
+      stage.innerHTML = `
+        <div class="slide-title-wrap">
+          <div class="slide-title-left">
+            <div>
+              <div class="slide-h1">${slide.config.title}</div>
+              <div class="slide-subtitle">${slide.config.subtitle}</div>
+            </div>
+          </div>
+          <div class="slide-meta-badge">${slide.totalCount} Members</div>
+        </div>
+        <div class="roster-container">
+          ${membersHTML || '<div class="roster-item density-medium"><span class="member-name">No members listed</span></div>'}
+        </div>
+      `;
+    } else if (slide.type === 'work-hours') {
+      stage.innerHTML = `
+        <div class="slide-title-wrap">
+          <div class="slide-title-left">
+            <div class="slide-icon">⏱️</div>
+            <div>
+              <div class="slide-h1">Member Work Hour Program</div>
+              <div class="slide-subtitle">Building & Maintaining Our Club Together</div>
+            </div>
+          </div>
+          <div class="slide-meta-badge">Season Requirements</div>
+        </div>
+        <div class="feature-slide-content">
+          <div class="feature-card">
+            <div class="feature-badge">Annual Obligation</div>
+            <div class="feature-headline">Regular & Social Work Hour Guidelines</div>
+            <div class="feature-body">
+              All active members contribute to clubhouse maintenance, dock haul-outs, and club events. Please log your hours with the Work Hours Committee.
+            </div>
+            <div class="feature-stats">
+              <div class="stat-box">
+                <div class="stat-num">15 Hours</div>
+                <div class="stat-label">Regular Members</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">8 Hours</div>
+                <div class="stat-label">Social Members</div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-badge">Upcoming Opportunities</div>
+            <div class="feature-headline">Spring Work Days & Dock Maintenance</div>
+            <div class="feature-body">
+              Join your fellow members for Saturday Work Days starting at 8:00 AM. Refreshments and lunch provided!
+            </div>
+            <div class="feature-stats">
+              <div class="stat-box">
+                <div class="stat-num">Saturdays</div>
+                <div class="stat-label">8:00 AM – 1:00 PM</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">Work Chair</div>
+                <div class="stat-label">work@squantumyc.org</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (slide.type === 'special-event') {
+      stage.innerHTML = `
+        <div class="slide-title-wrap">
+          <div class="slide-title-left">
+            <div class="slide-icon">🏆</div>
+            <div>
+              <div class="slide-h1">Lipton Cup Regatta</div>
+              <div class="slide-subtitle">Premier Annual Championship Racing on Quincy Bay</div>
+            </div>
+          </div>
+          <div class="slide-meta-badge">Special Event</div>
+        </div>
+        <div class="feature-slide-content">
+          <div class="feature-card">
+            <div class="feature-badge">Flagship Regatta</div>
+            <div class="feature-headline">Sir Thomas Lipton Trophy</div>
+            <div class="feature-body">
+              Celebrating decades of historic sailing competition. Join us for a weekend of thrilling racing, post-race festivities, and evening dinners.
+            </div>
+            <div class="feature-stats">
+              <div class="stat-box">
+                <div class="stat-num">Quincy Bay</div>
+                <div class="stat-label">Race Course</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">Open Regatta</div>
+                <div class="stat-label">PHRF & One-Design</div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-badge">Schedule & Festivities</div>
+            <div class="feature-headline">Registration & Race Committee</div>
+            <div class="feature-body">
+              Race registration open online. Spectator boats available at the dock. Dinner tickets can be reserved through ClubExpress.
+            </div>
+            <div class="feature-stats">
+              <div class="stat-box">
+                <div class="stat-num">Skippers Mtg</div>
+                <div class="stat-label">09:30 AM</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">First Gun</div>
+                <div class="stat-label">11:00 AM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    container.appendChild(stage);
+  });
+}
+
+function updateTimerBar() {
+  const elapsed = Date.now() - timerStartTime;
+  const pct = Math.min(100, (elapsed / ROTATION_SPEED_MS) * 100);
+  document.getElementById('timer-bar').style.width = pct + '%';
+
+  if (elapsed >= ROTATION_SPEED_MS) {
+    nextSlide();
+  }
+}
+
+function startTimer() {
+  timerStartTime = Date.now();
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimerBar, 100);
+}
+
+function showSlide(index) {
+  if (!slides.length) return;
+
+  // Deactivate current slide
+  const activeStage = document.querySelector('.slide-stage.active');
+  if (activeStage) activeStage.classList.remove('active');
+
+  const activePill = document.querySelector('.pill.active');
+  if (activePill) activePill.classList.remove('active');
+
+  currentSlideIndex = (index + slides.length) % slides.length;
+
+  // Activate new slide
+  const newStage = document.getElementById(`slide-stage-${currentSlideIndex}`);
+  if (newStage) newStage.classList.add('active');
+
+  const pills = document.querySelectorAll('.pill');
+  if (pills[currentSlideIndex]) pills[currentSlideIndex].classList.add('active');
+
+  const slideCounterEl = document.getElementById('slide-counter');
+  if (slideCounterEl) slideCounterEl.textContent = `Slide ${currentSlideIndex + 1} of ${slides.length}`;
+  startTimer();
+}
+
+function nextSlide() {
+  showSlide(currentSlideIndex + 1);
+}
+
+function jumpToSlide(index) {
+  showSlide(index);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. INITIALIZATION & REFRESH LOOP
+// ─────────────────────────────────────────────────────────────────────────────
+async function init() {
+  const memberList = await loadMemberData();
+  const officerList = await loadOfficersData();
+  slides = buildSlides(memberList, officerList);
+
+  renderPillsNav();
+  renderSlidesHTML();
+  showSlide(0);
+}
+
+init();
+
+// Auto-refresh member data every 5 minutes in background
+setInterval(async () => {
+  const memberList = await loadMemberData();
+  const officerList = await loadOfficersData();
+  slides = buildSlides(memberList, officerList);
+  renderPillsNav();
+  renderSlidesHTML();
+}, 5 * 60 * 1000);
+
+// Auto reload webpage every 30 minutes for long-running TV stability
+setTimeout(() => location.reload(), 30 * 60 * 1000);
+</script>
+</body>
+</html>
