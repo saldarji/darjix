@@ -12,22 +12,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
 
-      - name: Install Node & Ruby Dependencies
-        run: |
-          npm ci
-          bundle install
+      - name: Install Node Dependencies
+        run: npm ci
 
       - name: Build Production Site
         run: npm run build:production
