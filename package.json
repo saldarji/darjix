@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "migrate": "node scripts/migrate-jekyll-to-firebase.js",
+    "seed:posts": "node scripts/seed-firestore-posts.js",
     "parse:members": "node scripts/parse-syc-members.js"
   },
   "dependencies": {
