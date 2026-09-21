@@ -452,6 +452,9 @@
 <!-- Animated Canvas Background -->
 <canvas id="bg-canvas"></canvas>
 
+<!-- Invisible Keep-Awake Video to prevent Amazon Silk / Fire OS sleep mode -->
+<video id="tv-keep-awake-video" src="/sycmembertv/keepawake.mp4" muted loop playsinline autoplay style="position:fixed;top:-999px;left:-999px;width:1px;height:1px;opacity:0.001;pointer-events:none;z-index:-999;"></video>
+
 <div class="app-container">
 
   <!-- Top 30-Second Progress Timer -->
@@ -1303,6 +1306,44 @@ setInterval(async () => {
 
 // Auto reload webpage every 30 minutes for long-running TV stability
 setTimeout(() => location.reload(), 30 * 60 * 1000);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. SMART TV KEEP-AWAKE (Screen Wake Lock API + Background Media Playback)
+// ─────────────────────────────────────────────────────────────────────────────
+let wakeLock = null;
+async function acquireWakeLock() {
+  if ('wakeLock' in navigator) {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+    } catch (e) {}
+  }
+}
+
+function startKeepAwakeVideo() {
+  const video = document.getElementById('tv-keep-awake-video');
+  if (video) {
+    video.muted = true;
+    video.play().catch(() => {
+      const resumeOnAction = () => {
+        video.play().catch(() => {});
+        document.removeEventListener('click', resumeOnAction);
+        document.removeEventListener('keydown', resumeOnAction);
+      };
+      document.addEventListener('click', resumeOnAction, { once: true });
+      document.addEventListener('keydown', resumeOnAction, { once: true });
+    });
+  }
+}
+
+acquireWakeLock();
+startKeepAwakeVideo();
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    acquireWakeLock();
+    startKeepAwakeVideo();
+  }
+});
 </script>
 </body>
 </html>
