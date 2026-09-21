@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { auth, googleProvider, db, storage } from "@/lib/firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs, query, orderBy } from "firebase/firestore";
@@ -21,6 +21,105 @@ export default function AdminPage() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [statusMsg, setStatusMsg] = useState("");
+  const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const insertMarkdown = (action: string) => {
+    const textarea = contentTextareaRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = content.substring(start, end);
+    const beforeText = content.substring(0, start);
+    const afterText = content.substring(end);
+
+    let insertText = "";
+    let newCursorPos = start;
+
+    switch (action) {
+      case "bold":
+        insertText = selectedText || "bold text";
+        insertText = `**${insertText}**`;
+        newCursorPos = start + (selectedText ? insertText.length : 11);
+        break;
+
+      case "italic":
+        insertText = selectedText || "italic text";
+        insertText = `*${insertText}*`;
+        newCursorPos = start + (selectedText ? insertText.length : 12);
+        break;
+
+      case "heading":
+        insertText = selectedText || "Heading";
+        insertText = `## ${insertText}`;
+        newCursorPos = start + insertText.length;
+        break;
+
+      case "link":
+        if (selectedText) {
+          insertText = `[${selectedText}](url)`;
+          newCursorPos = start + insertText.length - 1;
+        } else {
+          insertText = "[link text](url)";
+          newCursorPos = start + insertText.length - 4;
+        }
+        break;
+
+      case "ul":
+        if (selectedText) {
+          const lines = selectedText.split("\n").filter((l) => l.trim());
+          insertText = lines.map((line) => `- ${line}`).join("\n");
+          newCursorPos = start + insertText.length;
+        } else {
+          insertText = "- List item";
+          newCursorPos = start + insertText.length;
+        }
+        break;
+
+      case "ol":
+        if (selectedText) {
+          const lines = selectedText.split("\n").filter((l) => l.trim());
+          insertText = lines.map((line, i) => `${i + 1}. ${line}`).join("\n");
+          newCursorPos = start + insertText.length;
+        } else {
+          insertText = "1. List item";
+          newCursorPos = start + insertText.length;
+        }
+        break;
+
+      case "code":
+        insertText = selectedText || "code";
+        insertText = `\`${insertText}\``;
+        newCursorPos = start + (selectedText ? insertText.length : 6);
+        break;
+
+      case "blockquote":
+        if (selectedText) {
+          const lines = selectedText.split("\n");
+          insertText = lines.map((line) => `> ${line}`).join("\n");
+          newCursorPos = start + insertText.length;
+        } else {
+          insertText = "> Quote";
+          newCursorPos = start + insertText.length;
+        }
+        break;
+
+      case "hr":
+        insertText = "\n---\n";
+        newCursorPos = start + insertText.length;
+        break;
+    }
+
+    const newContent = beforeText + insertText + afterText;
+    setContent(newContent);
+
+    setTimeout(() => {
+      if (contentTextareaRef.current) {
+        contentTextareaRef.current.focus();
+        contentTextareaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+      }
+    }, 0);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -295,13 +394,94 @@ export default function AdminPage() {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-black mb-1">Markdown Body</label>
+              <div className="flex justify-between items-center mb-1">
+                <label className="block text-sm font-medium text-black">Markdown Body</label>
+                <span className="text-xs text-gray-400 font-mono">Markdown formatted</span>
+              </div>
+              
+              {/* Markdown Toolbar */}
+              <div className="flex flex-wrap gap-1 p-2 bg-gray-50 border border-gray-300 border-b-0 rounded-t">
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("bold")}
+                  className="px-2.5 py-1 text-xs font-bold border border-gray-300 bg-white hover:border-black transition"
+                  title="Bold (**text**)"
+                >
+                  B
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("italic")}
+                  className="px-2.5 py-1 text-xs italic font-serif border border-gray-300 bg-white hover:border-black transition"
+                  title="Italic (*text*)"
+                >
+                  I
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("heading")}
+                  className="px-2.5 py-1 text-xs font-semibold border border-gray-300 bg-white hover:border-black transition"
+                  title="Heading 2 (## Heading)"
+                >
+                  H2
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("link")}
+                  className="px-2.5 py-1 text-xs border border-gray-300 bg-white hover:border-black transition"
+                  title="Link ([text](url))"
+                >
+                  Link
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("ul")}
+                  className="px-2.5 py-1 text-xs border border-gray-300 bg-white hover:border-black transition"
+                  title="Bullet List (- item)"
+                >
+                  • List
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("ol")}
+                  className="px-2.5 py-1 text-xs border border-gray-300 bg-white hover:border-black transition"
+                  title="Numbered List (1. item)"
+                >
+                  1. List
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("code")}
+                  className="px-2.5 py-1 text-xs font-mono border border-gray-300 bg-white hover:border-black transition"
+                  title="Inline Code (`code`)"
+                >
+                  &lt;/&gt;
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("blockquote")}
+                  className="px-2.5 py-1 text-xs border border-gray-300 bg-white hover:border-black transition"
+                  title="Blockquote (> quote)"
+                >
+                  &quot; Quote
+                </button>
+                <button
+                  type="button"
+                  onClick={() => insertMarkdown("hr")}
+                  className="px-2.5 py-1 text-xs border border-gray-300 bg-white hover:border-black transition"
+                  title="Horizontal Rule (---)"
+                >
+                  ───
+                </button>
+              </div>
+
               <textarea
-                rows={10}
+                ref={contentTextareaRef}
+                rows={12}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Write your post in Markdown..."
-                className="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none font-mono text-sm"
+                className="w-full px-4 py-2 border border-gray-300 focus:border-black focus:outline-none font-mono text-sm rounded-b"
               />
             </div>
 
