@@ -8,9 +8,19 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: 'projects/752835748650/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'github-action-1074514827@darjix-website.iam.gserviceaccount.com'
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,7 +35,7 @@ jobs:
         run: npm run build:production
 
       - name: Deploy to Firebase Hosting
-        run: npx firebase-tools deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
+        run: npx firebase-tools deploy --only hosting --project darjix-website
 
 
 
