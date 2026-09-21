@@ -171,9 +171,14 @@ export default function AdminPage() {
           <p className="text-sm text-gray-600 mb-6">
             Sign in with Google to access the DARJIX CMS & Firestore Manager.
           </p>
+          {statusMsg && (
+            <div className="mb-6 p-3 bg-red-50 border border-red-200 text-red-700 text-xs text-left rounded break-words">
+              <strong>Error:</strong> {statusMsg}
+            </div>
+          )}
           <button
             onClick={handleGoogleSignIn}
-            className="w-full py-3 bg-black text-white font-medium flex items-center justify-center space-x-2 hover:bg-gray-800 transition rounded"
+            className="w-full py-3 bg-black text-white font-medium flex items-center justify-center space-x-2 hover:bg-gray-800 transition rounded mb-3"
           >
             <LogIn className="w-5 h-5" />
             <span>Sign in with Google</span>
