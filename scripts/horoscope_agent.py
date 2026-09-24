@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Weekly AI horoscopes: NewsAPI top US headline + Replicate DeepSeek V3 -> _data/horoscopes.json
+Weekly AI horoscopes: NewsAPI top US headline + Google Gemini -> _data/horoscopes.json
 """
 
 import json
@@ -10,9 +10,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-import replicate
+from google import genai
+from google.genai import types
 import requests
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import horoscope_lucky
 
 try:
@@ -26,7 +28,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = REPO_ROOT / "_data" / "horoscopes.json"
 TRAITS_PATH = Path(__file__).resolve().parent / "zodiac_traits.json"
 
-MODEL = os.environ.get("HOROSCOPE_REPLICATE_MODEL", "deepseek-ai/deepseek-v3")
+MODEL = os.environ.get("HOROSCOPE_GEMINI_MODEL", os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
 MAX_TOKENS = int(os.environ.get("HOROSCOPE_MAX_TOKENS", "4096"))
 TEMPERATURE = float(os.environ.get("HOROSCOPE_TEMPERATURE", "0.85"))
 
@@ -175,27 +177,24 @@ def extract_json(text: str) -> dict:
 
 
 def run_model(prompt: str) -> dict:
-    if not os.environ.get("REPLICATE_API_TOKEN"):
-        raise ValueError("REPLICATE_API_TOKEN environment variable not set")
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY environment variable not set")
 
-    inp = {
-        "prompt": prompt,
-        "max_tokens": MAX_TOKENS,
-        "temperature": TEMPERATURE,
-    }
+    client = genai.Client(api_key=api_key)
+    config = types.GenerateContentConfig(
+        temperature=TEMPERATURE,
+        max_output_tokens=MAX_TOKENS,
+        response_mime_type="application/json",
+        thinking_config=types.ThinkingConfig(thinking_budget=0),
+    )
 
-    try:
-        out = replicate.run(MODEL, input=inp)
-        if isinstance(out, (list, tuple)):
-            raw = "".join(str(x) for x in out)
-        else:
-            raw = str(out)
-    except Exception as e:
-        print(f"⚠️  Replicate run error: {e}, attempting stream fallback…", file=sys.stderr)
-        raw = ""
-        for event in replicate.stream(MODEL, input=inp):
-            raw += str(event)
-
+    response = client.models.generate_content(
+        model=MODEL,
+        contents=prompt,
+        config=config,
+    )
+    raw = response.text or ""
     return extract_json(raw)
 
 
@@ -253,7 +252,7 @@ def validate_payload(data: dict, week_start_iso: str, week_label: str, story: di
         "signs": signs_out,
         "generator": {
             "llm_model": MODEL,
-            "llm_provider": "Replicate",
+            "llm_provider": "Google Gemini",
             "news_api": "NewsAPI GET /v2/top-headlines (country=us)",
             "lucky_draw": "Powerball-style: five distinct 1–69 (sorted) plus one Powerball 1–26; snarky one-liner via same LLM.",
         },
@@ -277,7 +276,7 @@ def main() -> None:
     last_error = None
 
     for attempt in range(1, max_attempts + 1):
-        print(f"🔮 Calling Replicate {MODEL} (Attempt {attempt}/{max_attempts})…")
+        print(f"🔮 Calling Google Gemini {MODEL} (Attempt {attempt}/{max_attempts})…")
         try:
             data = run_model(prompt)
             payload = validate_payload(data, week_start_iso, week_label, story)

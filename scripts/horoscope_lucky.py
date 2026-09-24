@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Powerball-style lucky draw: 5 distinct numbers from 1–69 (sorted) + 1 Powerball 1–26
-(may match a main number). Plus one snarky AI line from Replicate (entertainment only).
+(may match a main number). Plus one snarky AI line from Google Gemini (entertainment only).
 
 Also: python scripts/horoscope_lucky.py --merge
   Updates only lucky_numbers and lucky_numbers_comment in _data/horoscopes.json
@@ -14,7 +14,8 @@ import random
 import sys
 from pathlib import Path
 
-import replicate
+from google import genai
+from google.genai import types
 
 try:
     from dotenv import load_dotenv
@@ -26,9 +27,9 @@ except ImportError:
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = REPO_ROOT / "_data" / "horoscopes.json"
 
-MODEL = os.environ.get("HOROSCOPE_REPLICATE_MODEL", "deepseek-ai/deepseek-v3")
+MODEL = os.environ.get("HOROSCOPE_GEMINI_MODEL", os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
 LUCKY_MAX_TOKENS = int(os.environ.get("HOROSCOPE_LUCKY_MAX_TOKENS", "256"))
-LUCKY_TEMPERATURE = float(os.environ.get("HOROSCOPE_LUCKY_TEMP_REPLICATE", "0.85"))
+LUCKY_TEMPERATURE = float(os.environ.get("HOROSCOPE_LUCKY_TEMP", os.environ.get("HOROSCOPE_LUCKY_TEMP_REPLICATE", "0.85")))
 
 
 def draw_powerball() -> list[int]:
@@ -71,24 +72,28 @@ Requirements:
 def generate_lucky_comment(story: dict, numbers: list[int]) -> str:
     if len(numbers) != 6:
         raise ValueError("numbers must be 6 ints (5 main + Powerball)")
-    if not os.environ.get("REPLICATE_API_TOKEN"):
-        raise ValueError("REPLICATE_API_TOKEN environment variable not set")
+    
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY environment variable not set")
 
     prompt = _build_lucky_prompt(story, numbers)
-    inp = {
-        "prompt": prompt,
-        "max_tokens": LUCKY_MAX_TOKENS,
-        "temperature": LUCKY_TEMPERATURE,
-    }
     raw = ""
     try:
-        out = replicate.run(MODEL, input=inp)
-        if isinstance(out, (list, tuple)):
-            raw = "".join(str(x) for x in out)
-        else:
-            raw = str(out)
+        client = genai.Client(api_key=api_key)
+        config = types.GenerateContentConfig(
+            temperature=LUCKY_TEMPERATURE,
+            max_output_tokens=LUCKY_MAX_TOKENS,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+        )
+        response = client.models.generate_content(
+            model=MODEL,
+            contents=prompt,
+            config=config,
+        )
+        raw = response.text or ""
     except Exception as e:
-        print(f"⚠️  Replicate run error (lucky comment): {e}", file=sys.stderr)
+        print(f"⚠️  Gemini run error (lucky comment): {e}", file=sys.stderr)
 
     line = raw.strip().split("\n")[0].strip()
     line = line.strip('"').strip("'")
@@ -159,7 +164,7 @@ def main() -> None:
         try:
             merge_into_horoscopes_json()
         except ModuleNotFoundError as e:
-            if e.name == "replicate":
+            if "genai" in str(e):
                 print(
                     "Install deps: pip install -r scripts/requirements.txt (use a venv)",
                     file=sys.stderr,
