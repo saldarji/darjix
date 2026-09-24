@@ -206,13 +206,13 @@ export default function AdminPage() {
     try {
       if (editingId) {
         await updateDoc(doc(db, "posts", editingId), postData);
-        setStatusMsg("Post updated successfully!");
+        setStatusMsg("Post updated in Firestore! Note: Trigger a site deploy or push to main to rebuild and publish live.");
       } else {
         await addDoc(collection(db, "posts"), {
           ...postData,
           created_at: dateStr,
         });
-        setStatusMsg("New post created successfully!");
+        setStatusMsg("New post created in Firestore! Note: Trigger a site deploy or push to main to rebuild and publish live.");
       }
 
       resetForm();

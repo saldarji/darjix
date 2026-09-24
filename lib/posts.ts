@@ -32,6 +32,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       const docSnap = querySnapshot.docs[0];
       return { id: docSnap.id, ...docSnap.data() } as Post;
     }
+    const directDoc = await getDoc(doc(db, "posts", slug));
+    if (directDoc.exists()) {
+      return { id: directDoc.id, ...directDoc.data() } as Post;
+    }
     return null;
   } catch (error) {
     console.warn("Error fetching post by slug:", error);

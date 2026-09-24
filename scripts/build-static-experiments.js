@@ -308,8 +308,15 @@ function copySycMemberData() {
   }
 }
 
-function run() {
+async function run() {
   console.log('🚀 Building static experiment pages...');
+  try {
+    const { syncPosts } = require('./sync-firestore-posts');
+    await syncPosts();
+  } catch (err) {
+    console.warn('⚠️ Could not sync posts from Firestore (continuing with local data/posts.json):', err.message);
+  }
+
   buildNews();
   buildPodcasts();
   buildArchiveIndex();

@@ -1,4 +1,4 @@
-import { getPostBySlug } from "@/lib/posts";
+import { getPostBySlug, getPublishedPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import PhotoGallery from "@/components/PhotoGallery";
@@ -16,19 +16,35 @@ interface PostPageProps {
 }
 
 export async function generateStaticParams() {
+  const slugs = new Set<string>();
+
+  try {
+    const firestorePosts = await getPublishedPosts(100);
+    if (firestorePosts && firestorePosts.length > 0) {
+      firestorePosts.forEach((post) => {
+        const s = post.slug || post.id;
+        if (s) slugs.add(s);
+      });
+    }
+  } catch (err) {
+    console.warn("Firestore fetch in generateStaticParams failed:", err);
+  }
+
   try {
     const jsonPath = path.join(process.cwd(), "data/posts.json");
     if (fs.existsSync(jsonPath)) {
       const fileData = fs.readFileSync(jsonPath, "utf-8");
       const posts = JSON.parse(fileData) as Post[];
-      return posts.map((post) => ({
-        slug: post.slug || post.id,
-      }));
+      posts.forEach((post) => {
+        const s = post.slug || post.id;
+        if (s) slugs.add(s);
+      });
     }
   } catch (err) {
     console.error("Error in generateStaticParams:", err);
   }
-  return [];
+
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 async function findPost(slug: string): Promise<Post | null> {
