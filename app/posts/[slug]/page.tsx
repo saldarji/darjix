@@ -49,20 +49,32 @@ export async function generateStaticParams() {
 
 async function findPost(slug: string): Promise<Post | null> {
   const post = await getPostBySlug(slug);
-  if (post) return post;
 
+  let localPost: Post | null = null;
   try {
     const jsonPath = path.join(process.cwd(), "data/posts.json");
     if (fs.existsSync(jsonPath)) {
       const fileData = fs.readFileSync(jsonPath, "utf-8");
       const posts = JSON.parse(fileData) as Post[];
-      return posts.find((p) => p.slug === slug || p.id === slug) || null;
+      localPost = posts.find((p) => p.slug === slug || p.id === slug) || null;
     }
   } catch (err) {
     console.error("Fallback error:", err);
   }
 
-  return null;
+  if (post && localPost) {
+    return {
+      ...localPost,
+      ...post,
+      images: post.images && post.images.length > 0 ? post.images : localPost.images,
+      image: post.image || localPost.image,
+      caption: post.caption || localPost.caption,
+      alt_text: post.alt_text || localPost.alt_text,
+      layout: post.layout || localPost.layout,
+    };
+  }
+
+  return post || localPost;
 }
 
 export async function generateMetadata({ params }: PostPageProps) {
@@ -108,11 +120,27 @@ export default async function PostDetailPage({ params }: PostPageProps) {
               {post.title}
             </h1>
 
-            {post.layout === "photo" && post.images && post.images.length > 0 && (
+            {/* Photo Gallery for multiple images */}
+            {post.images && post.images.length > 1 && (
               <PhotoGallery images={post.images} title={post.title} />
             )}
 
-            {post.layout === "photo" && post.image && !post.images && (
+            {/* Single image from images array */}
+            {post.images && post.images.length === 1 && (
+              <div className="my-6">
+                <img
+                  src={encodeURI(post.images[0].url)}
+                  alt={post.images[0].alt_text || post.title}
+                  className="w-full h-auto rounded border border-gray-200"
+                />
+                {post.images[0].caption && (
+                  <p className="mt-2 text-sm text-gray-600 italic px-2">{post.images[0].caption}</p>
+                )}
+              </div>
+            )}
+
+            {/* Single image from image property */}
+            {(!post.images || post.images.length === 0) && post.image && (
               <div className="my-6">
                 <img
                   src={encodeURI(post.image)}

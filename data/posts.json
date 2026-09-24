@@ -3,13 +3,22 @@
     "id": "kkywmCKBMTeaOEPp0WfJ",
     "title": "The \"How Does This Sound?\" Prompt: Siri's Best UI Innovation",
     "slug": "the-how-does-this-sound-prompt-siri-s-best-ui-innovation",
-    "date": "2026-09-24T15:49:17.831Z",
+    "date": "2026-09-24T17:03:03.369Z",
     "layout": "post",
     "published": true,
     "content": "One subtle feature of the latest Siri update stands out as perhaps the best UI innovation of the past couple of years: the \"How does this sound?\" prompt. \n\nThis simple question allows a user to get feedback on writing, without having the AI rewrite it. It shifts the dynamic from the AI as author to a collaborative partner. It gives the user a moment of pause, a sense of control, and the final say. And it does this without interrupting your thoughts and putting its words in your writing.\n\nUltimately, Siri now feels less like cheating, and more like a true collaboration.\n",
-    "images": null,
+    "images": [
+      {
+        "url": "/assets/images/image posts/siri-how-does-this-sound.png",
+        "alt_text": "Siri How does this sound? prompt",
+        "caption": "Siri's 'How does this sound?' prompt"
+      }
+    ],
+    "caption": "Siri's 'How does this sound?' prompt",
+    "alt_text": "Siri How does this sound? prompt",
+    "image": "/assets/images/image posts/siri-how-does-this-sound.png",
     "created_at": "2026-09-24T15:49:17.831Z",
-    "updated_at": "2026-09-24T15:49:17.831Z"
+    "updated_at": "2026-09-24T17:03:03.369Z"
   },
   {
     "id": "oui-french-gemini.md",
@@ -175,24 +184,24 @@
     "content": "",
     "images": [
       {
-        "url": "/assets/images/image posts/IMG_4346.jpeg",
+        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused.",
         "caption": "Paul Tesluk speaking @ AIxED Conference",
-        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused."
+        "url": "/assets/images/image posts/IMG_4346.jpeg"
       },
       {
-        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads...",
+        "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference",
         "url": "/assets/images/image posts/IMG_4355.jpeg",
-        "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
+        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads..."
       },
       {
+        "url": "/assets/images/image posts/IMG_4358.jpeg",
         "alt_text": "A man with messy hair, in a dark suit, speaks passionately into a microphone from a podium at an 'AI in Education Summit.' The black and white image, shot from behind the audience, creates a focused, professional atmosphere for the engaging presentation.",
-        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference",
-        "url": "/assets/images/image posts/IMG_4358.jpeg"
+        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
       },
       {
-        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation.",
         "url": "/assets/images/image posts/IMG_4363.jpeg",
-        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference"
+        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference",
+        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation."
       }
     ],
     "created_at": "2025-11-20T00:00:00.000Z",

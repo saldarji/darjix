@@ -9,22 +9,38 @@ import { Post } from "@/lib/types";
 const POSTS_PER_PAGE = 5;
 
 async function fetchPosts(): Promise<Post[]> {
-  const firestorePosts = await getPublishedPosts(50);
-  if (firestorePosts && firestorePosts.length > 0) {
-    return firestorePosts;
-  }
-
+  let localPosts: Post[] = [];
   try {
     const jsonPath = path.join(process.cwd(), "data/posts.json");
     if (fs.existsSync(jsonPath)) {
       const fileData = fs.readFileSync(jsonPath, "utf-8");
-      return JSON.parse(fileData) as Post[];
+      localPosts = JSON.parse(fileData) as Post[];
     }
   } catch (err) {
     console.error("Local posts fallback read error:", err);
   }
 
-  return [];
+  const firestorePosts = await getPublishedPosts(50);
+  if (firestorePosts && firestorePosts.length > 0) {
+    const localMap = new Map(localPosts.map((p) => [p.slug || p.id, p]));
+    return firestorePosts.map((fp) => {
+      const lp = localMap.get(fp.slug || fp.id) || localMap.get(fp.id);
+      if (lp) {
+        return {
+          ...lp,
+          ...fp,
+          images: fp.images && fp.images.length > 0 ? fp.images : lp.images,
+          image: fp.image || lp.image,
+          caption: fp.caption || lp.caption,
+          alt_text: fp.alt_text || lp.alt_text,
+          layout: fp.layout || lp.layout,
+        };
+      }
+      return fp;
+    });
+  }
+
+  return localPosts;
 }
 
 export default async function HomePage() {

@@ -30,14 +30,30 @@ export default function PostCard({ post, isLast }: PostCardProps) {
         </Link>
       </h2>
 
-      {post.layout === "photo" && post.images && post.images.length > 0 && (
+      {/* Photo Gallery for multiple images */}
+      {post.images && post.images.length > 1 && (
         <PhotoGallery images={post.images} title={post.title} />
       )}
 
-      {post.layout === "photo" && imageUrl && !post.images && (
+      {/* Single image from images array */}
+      {post.images && post.images.length === 1 && (
         <div className="my-4">
           <img
-            src={imageUrl}
+            src={encodeURI(post.images[0].url)}
+            alt={post.images[0].alt_text || post.title}
+            className="w-full h-auto rounded border border-gray-200"
+          />
+          {post.images[0].caption && (
+            <p className="mt-2 text-sm text-gray-600 italic px-2">{post.images[0].caption}</p>
+          )}
+        </div>
+      )}
+
+      {/* Single image from image property */}
+      {(!post.images || post.images.length === 0) && (post.image || imageUrl) && (
+        <div className="my-4">
+          <img
+            src={imageUrl || encodeURI(post.image!)}
             alt={post.alt_text || post.title}
             className="w-full h-auto rounded border border-gray-200"
           />

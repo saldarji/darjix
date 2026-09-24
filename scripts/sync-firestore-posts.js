@@ -17,29 +17,45 @@ async function syncPosts() {
   const postsRef = collection(db, "posts");
   const q = query(postsRef, where("published", "==", true), orderBy("date", "desc"));
   const snap = await getDocs(q);
+  const targetPath = path.join(__dirname, "../data/posts.json");
+  const existingMap = new Map();
+  if (fs.existsSync(targetPath)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(targetPath, "utf-8"));
+      existing.forEach((p) => existingMap.set(p.slug || p.id, p));
+    } catch (e) {}
+  }
+
   const posts = [];
 
   snap.forEach((doc) => {
     const data = doc.data();
+    const slug = data.slug || doc.id;
+    const existing = existingMap.get(slug) || existingMap.get(doc.id);
+
+    const images = data.images && data.images.length > 0 ? data.images : (existing?.images || null);
+    const image = data.image || existing?.image || undefined;
+    const caption = data.caption || existing?.caption || undefined;
+    const alt_text = data.alt_text || existing?.alt_text || undefined;
+
     posts.push({
       id: doc.id,
       title: data.title,
-      slug: data.slug || doc.id,
+      slug: slug,
       date: data.date,
-      layout: data.layout || "post",
+      layout: data.layout || existing?.layout || "post",
       published: data.published ?? true,
       content: data.content || "",
-      images: data.images || null,
-      caption: data.caption || undefined,
-      alt_text: data.alt_text || undefined,
-      image: data.image || undefined,
+      images: images,
+      caption: caption,
+      alt_text: alt_text,
+      image: image,
       created_at: data.created_at || data.date,
       updated_at: data.updated_at || data.date,
     });
   });
 
   console.log(`✅ Fetched ${posts.length} published posts from Firestore.`);
-  const targetPath = path.join(__dirname, "../data/posts.json");
   fs.writeFileSync(targetPath, JSON.stringify(posts, null, 2) + "\n");
   console.log(`💾 Synced posts to ${path.relative(process.cwd(), targetPath)}`);
 }
