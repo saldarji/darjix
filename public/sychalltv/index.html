@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Squantum Yacht Club — Hall Display</title>
   <style>
     :root {
@@ -289,6 +292,7 @@
     </div>
     <div class="header-right">
       <div class="header-meta">
+        <button id="fullscreen-btn" onclick="toggleFullscreen()" style="background: rgba(30,114,200,0.3); border: 1px solid var(--accent); color: var(--text); padding: 4px 8px; border-radius: 4px; font-size: 1.2vh; cursor: pointer; margin-bottom: 4px;">⛶ Fullscreen</button>
         <div id="last-updated">Loading…</div>
       </div>
       <div class="header-clock">
@@ -297,6 +301,8 @@
       </div>
     </div>
   </header>
+
+  <video id="tv-keep-awake-video" src="/sycmembertv/keepawake.mp4" muted loop playsinline autoplay style="position:fixed;top:-999px;left:-999px;width:1px;height:1px;opacity:0.001;pointer-events:none;z-index:-999;"></video>
 
   <main>
 
@@ -537,9 +543,53 @@ async function refresh() {
     'Updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
+// ── Fullscreen & Keep-Awake ──────────────────────────────────────────────────
+function toggleFullscreen() {
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  } else {
+    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
+}
+
+let wakeLock = null;
+async function acquireWakeLock() {
+  if ('wakeLock' in navigator) {
+    try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+  }
+}
+
+function startKeepAwakeVideo() {
+  const video = document.getElementById('tv-keep-awake-video');
+  if (video) {
+    video.muted = true;
+    video.play().catch(() => {
+      const resumeOnAction = () => {
+        video.play().catch(() => {});
+        document.removeEventListener('click', resumeOnAction);
+        document.removeEventListener('keydown', resumeOnAction);
+      };
+      document.addEventListener('click', resumeOnAction, { once: true });
+      document.addEventListener('keydown', resumeOnAction, { once: true });
+    });
+  }
+}
+
+acquireWakeLock();
+startKeepAwakeVideo();
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    acquireWakeLock();
+    startKeepAwakeVideo();
+  }
+});
+
 refresh();
 setInterval(refresh, 30 * 60 * 1000);
-setTimeout(() => location.reload(), 30 * 60 * 1000);
 </script>
 </body>
 </html>

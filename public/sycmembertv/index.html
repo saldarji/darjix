@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Squantum Yacht Club — Member Display TV</title>
   <style>
     :root {
@@ -472,6 +475,7 @@
       </div>
     </div>
     <div class="header-right">
+      <button id="fullscreen-btn" onclick="toggleFullscreen()" style="background: rgba(30,114,200,0.3); border: 1px solid var(--accent); color: var(--text); padding: 4px 8px; border-radius: 4px; font-size: 1.2vh; cursor: pointer;">⛶ Fullscreen</button>
       <div class="status-badge">
         <span id="data-status-text">220 Total Members</span>
       </div>
@@ -1304,12 +1308,20 @@ setInterval(async () => {
   renderSlidesHTML();
 }, 5 * 60 * 1000);
 
-// Auto reload webpage every 30 minutes for long-running TV stability
-setTimeout(() => location.reload(), 30 * 60 * 1000);
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. SMART TV FULLSCREEN & KEEP-AWAKE (Screen Wake Lock API + Media Playback)
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleFullscreen() {
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  } else {
+    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
+}
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 7. SMART TV KEEP-AWAKE (Screen Wake Lock API + Background Media Playback)
-// ─────────────────────────────────────────────────────────────────────────────
 let wakeLock = null;
 async function acquireWakeLock() {
   if ('wakeLock' in navigator) {
