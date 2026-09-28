@@ -1,74 +1,74 @@
 # EdTech News This Week
-*Updated: September 21, 2026*
+*Updated: September 28, 2026*
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">The Malaysian Reserve</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 21, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">The Guardian Nigeria News</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 28, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZDJQRjdrWmNaWG05Tk93VXlydkRzLXUwSU05NWhDUWV3WFhQNThldWJZMHdJYWRPRVVsOXhNN3VXZmVLZl81MGVnb25NVGZFcVAxT2twWnd5blJOSzNzUDdYVFhkenctelJVZWw4VUlIdEZ3WkpHTHpLS2JCYmozcHZ0YTlmWElRNFk0d21wdFBwN1pfaTZhZ1pOQ1RVTXhUTEJBQTlPZjdzeEtGTmFwMUNVWGZtakFUVWJQSENoUXlZU0xET1V6am9Mc3RWTURNTE80alhpN01CcWt6ZW5hU2lNV3JIWDQ?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Huawei Launches the AI Practice LAB (AIPL) Solution, Setting a New Paradigm for "Education + AI" Talent Cultivation</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Huawei's launch of the AI Practice LAB (AIPL) in Malaysia signifies a major step in integrating AI directly into education, aiming to cultivate future talent ready for an AI-driven world. This initiative represents a significant industry-led push to redefine vocational and higher education curricula globally, focusing on practical AI application and skill development.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPLW50czZnX3VtT2xfRmh1bHVCeHNWc29tSTNOR0ZibUE0MGlrWnV0QkpOUE10V2lDWFpIMTZHckxBQ2tvWDBXNDR2RWVpd3dkSTBacFMtcm1PcnZrbC1nMG1faWFET3ozOEZ1eWdEcHpSdEhpazR5dzkzSTNfS2JsbEp4QjdrZlFDSzBtRkdNTEViMmZ5Y0dxaE5rb2RYbDhmYWFR?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">African leaders seek higher education reforms to drive economic growth</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">African leaders are advocating for comprehensive higher education reforms aimed at directly contributing to economic growth across the continent. This initiative highlights a significant policy shift towards aligning academic institutions with national development agendas and workforce needs.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Gulf News</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 21, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">ANI News</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 28, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPSUh2c1JyZVNZNW9YNmtGaHk4R1VmMWVYczhPX1A2MkZaTWh2RkcwaVN3ZW85SEo5UDZrT0NKRVZIc19kSWtlNUZjMW1NZ05sNmZWLUFZTlVqWjhPMWhwbkd0MFdTUGRIcTNlTDkwN0tPN3RzdVJSNDEzZHhDclo2VkpBTjctZjhWaGFZX094elloQ3JJWHNMaXlZN1ZkcXdrVkhpNW0wRGtJV09fTEHSAcABQVVfeXFMTy1RQXpGc2JMRUIyNlBaUGM0Q2s5TjgyT3lmejNVV2tJRFJxWUpEdGpSbnc1eERJU2NINFNZZDhQWXBBclg0c05BMVR2ZDQxR3JRRE5CRnNDNGF2Z3Z4bEJfQmZBUFJQVm9adVdLUEgxUi0wM1dkNDFOQ3c2OWhPQUkzTXJNbGw5bkFrNlU5cXNMcVJRZ3U0YVcyOHVTVFNoVVlKck1JOTQ1VHh0Sm4zV2tad01YNFB3R2F0ZGZKNS1S?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Dubai brings sector leaders together to shape education future</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Dubai's initiative to convene education sector leaders underscores a strategic commitment to proactively shaping the future of learning in the region. This collaborative approach indicates potential for major policy shifts and innovative frameworks that could influence global education models, especially in rapidly developing economies.</p>
-</div>
-
-<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">The Chronicle of Higher Education</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 18, 2026</span>
-  </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5NUDJsOVRiaWV2VWZUWXdmYUNHNFVpa2k2YkFFUFhtWHpvMHMxbkFEZnVjQzJuUElKZ2hzWTZqRnpBRHJFcFp2S3RZTjhpd2RyNDU2ZFlpOG9FR3IyV2pYWng1dE5jYXlRbjYwY0p0Rk9wUQ?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Subject: Afternoon Update: Will Congress regulate AI in education?</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">The discussion around potential US Congressional regulation of AI in education signals a critical juncture for policy development concerning AI's role in learning environments. This deliberation could set precedents for how governments worldwide approach the governance and ethical deployment of AI technologies in educational institutions.</p>
-</div>
-
-<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Pulse 2.0</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 18, 2026</span>
-  </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE14U1otSm1BZ09yUnNtajk0bnZFaTM1X3gydjdSZGw4Z3R5VXJxQmhRY3JYdjE0aTAteGJtQnN0NkpuTXB2a0c3Z0YxVEQ3QnpRelh5dHdOZk9CTDEyb3hva2pqUkg4V2NoTmFv0gFwQVVfeXFMTndhbEZoc3AtaVpoemNwcVJtcXliNldEa3hPZDFHMnFILVJrcnQ3QWJBMnlsc3I1aklFOFZIVHhxdk43bERrR1IybmFiX2dkWDJSTlJVSmFNbEhTVi1HZ2gwSGlUVnk5c09qbHRWRXFUSw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Aristotle Raises $5 Million Seed Funding To Expand Voice-First AI Tutoring Platform For Students</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Aristotle's successful $5 million seed funding round highlights continued investor confidence in AI-driven personalized learning solutions within the EdTech sector. This significant investment will fuel the expansion of its voice-first AI tutoring platform, pointing towards a future where intelligent, conversational AI becomes a standard component of global student support.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxNb05pZmxLUmhWbnItT3Z5eklpZC1SV0pmQUZoRms3YlVaaDE1Q0NEeUw1OFpRQ0pVS05Ha3pzeEpUcm1vNEZpWW1SQWFVUFBzVFg5UDlRbHZWSldidUpTWDdPZDlaR200MDFYYzdxZk51UTRzdTkyQjJTR2U0cEZrYVBzUTExd3Y2VTJ5MjB1bGNQWkpRa20zVzVMUThIUlJudXEzZU5iNEhBY0F6VUFiUW9uZ1hjX0ljS05FSC03X3hUS1BSakpoMDFVQmRKaEgzVDJELVd1Ymk5TlB6ME5OVkRUT2Rldw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Microsoft backs Kerala edtech startup Wayvida with ₹3.25 crore support to accelerate AI innovation</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Microsoft's substantial funding for an Indian edtech startup specializing in AI underscores the growing global investment in AI-driven learning solutions. This partnership aims to accelerate AI innovation in education, potentially creating scalable digital learning breakthroughs in a major market.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
     <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Higher Ed Dive</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 18, 2026</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 28, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.highereddive.com/news/us-higher-ed-faces-mounting-attacks-on-academic-freedom-report-warns/830730/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">US higher ed faces mounting attacks on academic freedom, report warns</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">A new report warning of increasing attacks on academic freedom in US higher education signals a profound challenge to core institutional values and governance. This trend reflects broader global political pressures on educational autonomy, potentially impacting research integrity, curriculum development, and the overall intellectual environment of universities worldwide.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.highereddive.com/spons/microcredentials-are-booming-so-is-the-reconciliation-work-behind-them/830846/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Microcredentials are booming. So is the reconciliation work behind them.</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">The rapid growth of microcredentials signals a significant shift in higher education towards flexible, skills-based learning pathways globally. Institutions are actively working to integrate and standardize these credentials, driving innovation in digital learning and workforce alignment.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">WKOW</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 18, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">The Recursive</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 28, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiqgJBVV95cUxObGJFamROektMZWk1bGFMeTJZZUROOUhnaHlPZVdyM1d0aGtZb2dsVUx5bXA4a1ItbFhJMGlOc0hiR3gwck1hU0taR3B4T054UjBHNnM1Wk5uSENybHZRVmE3TWdYMkMxUjZPSzVDclhqVEliLXpGQmNKaWgybm9DTnJVLVhGaE9sZVBUMXFrVGJNUnh3ZzBDT2MzUWZxNUFjV3lsWTgzZk10dXhGR3RlUE95cGt4dzhoMUxVT3FCS2E1QnpVb21haGUwdlA1elU2R0tfWUlDQnhTd3lHb0R3eXJPTHBBbjdRd3NsdW4yQzZyWDVuVDhXM2VFUU1mc0JWb3FzdlBQSzFMcERWa0cyU0dSNjBnRjZzRkhoNXQzOFhYZVlhZ0JsdGNR?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Vyzoxa, an EdTech Platform for AI Agent Development Learning, Empowers Learners Worldwide to Move From Using AI to Building With It, With a Mission to Shape One Million AI Innovators by 2030</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Vyzoxa's global mission to cultivate one million AI innovators by 2030 through its AI agent development learning platform represents a significant breakthrough in EdTech. This initiative shifts the focus from simply consuming AI tools to actively creating with them, promising to empower a new generation of digital learners and professionals worldwide.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE4xVFBjU2ZIWVJQTXF2eUlzRERWdHlRblVqUmtMOWtpa2FvV0V2QVBLSWhLWUo0T2RtUTB5MXd4eW1JX3Zxcl9BN3JSQnNPNW9rZW0xOVo4cWlPSVNLdzI5Z1RjdmJJaW5vUkpnM1lvcnJpU1l3bVJ2RDZn?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">7 CEE EdTech Rising Stars Worth Watching</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This spotlight on emerging EdTech companies in Central and Eastern Europe highlights the region's increasing prominence as a hub for educational technology innovation. These startups are poised to introduce new digital learning tools and solutions with potential global impact.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">MarketScale</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 17, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">EdTech Innovation Hub</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 28, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPZWEwWEhVdFdMd3lMbjJJbWJDQ01DRldyVGFBcTkxY2owZU9EN1RUd25NejcwbFM2ekJGMWNXRmI1NlpEazNzY0o2Ti1rMzlscjlmMkUyYzdzd1Y4di1Sb0JaMHZkQ0wyd0hRcWhtOXZFY3BQeThEcDhuNnpxWG5rdEpNOGdSOUlzbXRPUnBMaFV4WDNOQUNWZEdjeVFMRmlLZmlvU3hmSTFmOExDOXRuODhENGxwTk1fTEhFekExOXNqdzl3TnFiRGlRQ0lCdw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Schools are still catching up after Google opened Gemini to every student</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Google's move to make its Gemini AI accessible to all students signifies a monumental shift in digital learning, integrating advanced AI capabilities directly into educational ecosystems. This widespread adoption challenges schools globally to rapidly adapt curricula, infrastructure, and pedagogical approaches to harness AI's potential effectively while addressing associated challenges.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxOSXkxQWNsUWN3c2VscFZ5X0xIMlo1eVBhem0yQ2hjZlpKV3JzY2ViMmRZa3p6R0FkT2t5cDdRUWx2d3ZWbWw3SjFzN2xzWDlqUTZMU2NKMXFzeGFzck1uMlA1RkVoRFZsNGRLcmZsUnFOVWVlQ0EycXE1UG1IYjVuc2QyQ0N6QllQYVJCZWhWR2tMc1BJQnZ6OEFuVFpYSVZmMGpOZVhMSkN1c0VodmJ1WGR0WUJWZEE?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Google and UN ITU offer 100,000 AI training scholarships across 80+ countries</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">A massive global initiative by Google and UN ITU to provide 100,000 AI training scholarships signifies a critical effort to bridge the global digital skills gap. This program will significantly enhance AI literacy and access to future-ready education across diverse populations worldwide.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">WSJ</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">September 17, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">EdTech Innovation Hub</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 27, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOM0F5cDZ0bFlsSUUtOFNVS1ZIb0ZNdF9hUmdpcWZKekhaLU95ODJSaDZWay1kQ3A2ZENfY1Y4Qm1xbnRYREZTaERSQl9QS1pOVkdWMjhMUE5BUHVjM3F1NlhHdDNMU1UtbzgtTHNoTnd4T1FKS2FkWjh2RHJzTU9lMTlpS3ROUENFek13bThwZkZjY2lsZ04zejNMcG8zMjd6UTBqYXBrZzFhaGZWZ3lIRkpuaUpZd0dWbGpvQzZiYzU?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Exclusive | Dutch Buyout Firm Main Capital to Acquire Edtech Company Watermark Insights</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">The acquisition of EdTech company Watermark Insights by Dutch buyout firm Main Capital represents a significant M&A event in the global EdTech landscape. This transaction highlights the ongoing consolidation and growth of the industry, impacting market dynamics, product innovation, and competitive strategies for education technology solutions worldwide.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPN3d4a0I2cUQtX0djcDNoclFNMnhWRHo1dUtUN08wM3B3b0pCTXNRaW1oVUVEbjJ6ZHI0aV82dHhsSHpoVVp5V0VBMjhRNlROS1ZmaUN2aURoWWlRLVVlVTdwb3N1MzR5TDFDRHNkMHB2bWNTbjhxNkpEdG9aYzA2dVZrY2owWlhvVTFadmtNb1Z0WGVhVmNKNDEzVFhWYXVpSEtaQ0pwa01SR0Rvd2tKajFvYU1sakdPQTc3NjY0WElxVVFVVUtR?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">OpenAI expands Academy with role-based AI courses for educators, students and developers</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">OpenAI's expansion of its Academy with specialized AI courses directly impacts global education by providing targeted training for educators, students, and developers. This move empowers diverse users to effectively integrate and leverage AI in learning and professional development.</p>
+</div>
+
+<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">ShiaWaves</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 27, 2026</span>
+  </div>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxOVmp0em9tQ0pzZnBVcWNfZjlwVHpIMEdCUXlHVGNDMms4S3IxNnN4ckVYVkEyQnJIVl9yaDhDNXB4TEZzY2R6aVBmNzJ6MzVtV2hXMFBqbTB3U29oaTMwbTZQajZCMGo2aFBKX3MzWVFRSENqbU9yTldjZkxsRjgwVXpKRHJ3bUxDbzBDdGVLX3pnbWVQajFTSEI5cnl3cmhmV2U2VURhYXNEUGlUTzdXSjgweE1fRWFTb0xSdlY0YUo2VFhVUjd4Wl9XSEJWU2M?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">UNESCO Calls for Responsible Use of AI in Education and Equal Access to Technology</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">UNESCO's strong call for ethical AI use and equitable access in education underscores the critical global dialogue around AI governance in learning environments. This emphasizes the need for international policy frameworks to ensure AI benefits all learners responsibly.</p>
+</div>
+
+<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">K-12 Dive</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 25, 2026</span>
+  </div>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.k12dive.com/news/federal-court-clears-way-for-first-religious-public-charter-school/831429/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Federal court clears way for first religious public charter school</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">A federal court ruling allowing the first religious public charter school in the US marks a significant policy shift in K-12 education, blurring lines between public and religious schooling. This decision sets a precedent with broad implications for funding, curriculum, and religious freedom in public education.</p>
 </div>
