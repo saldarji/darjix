@@ -8,7 +8,7 @@ import re
 import json
 import time
 import urllib.parse
-import urllib.request
+import requests
 from datetime import datetime, timedelta, timezone
 from google import genai
 
@@ -23,11 +23,15 @@ def fetch_itunes_episodes(keyword, limit=25):
     """Fetch podcast episodes from iTunes Search API"""
     search_term = urllib.parse.quote(keyword)
     api_url = f"https://itunes.apple.com/search?term={search_term}&media=podcast&entity=podcastEpisode&limit={limit}&country=us"
-    
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
     try:
-        with urllib.request.urlopen(api_url) as response:
-            data = json.loads(response.read().decode())
+        resp = requests.get(api_url, headers=headers, timeout=15)
+        if resp.status_code == 200:
+            data = resp.json()
             return data.get('results', [])
+        return []
     except Exception as e:
         print(f"  ⚠️  Error fetching episodes for '{keyword}': {e}")
         return []

@@ -9,6 +9,8 @@ import os
 import re
 import json
 import time
+import calendar
+import requests
 import feedparser
 from datetime import datetime, timedelta, timezone
 from urllib.parse import quote
@@ -53,12 +55,17 @@ def fetch_rss_candidates(days_back=7):
 
     print(f"📡 Fetching candidates published since {cutoff_dt.strftime('%Y-%m-%d')} (past {days_back} days)...")
 
+    HEADERS = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+
     print("\n🔍 Querying Google News RSS feeds...")
     for query in GOOGLE_NEWS_QUERIES:
         encoded_q = quote(query)
         rss_url = f"https://news.google.com/rss/search?q={encoded_q}&hl=en-US&gl=US&ceid=US:en"
         try:
-            feed = feedparser.parse(rss_url)
+            resp = requests.get(rss_url, headers=HEADERS, timeout=15)
+            feed = feedparser.parse(resp.content)
             count = 0
             for entry in feed.entries[:20]:
                 title = entry.get('title', '').strip()
@@ -68,9 +75,9 @@ def fetch_rss_candidates(days_back=7):
                 # Check publication date
                 pub_parsed = getattr(entry, 'published_parsed', None)
                 if pub_parsed:
-                    pub_dt = datetime.fromtimestamp(time.mktime(pub_parsed), tz=timezone.utc)
+                    pub_dt = datetime.fromtimestamp(calendar.timegm(pub_parsed), tz=timezone.utc)
                     if pub_dt < cutoff_dt:
-                        continue  # Skip articles older than 7 days
+                        continue  # Skip articles older than N days
                 else:
                     pub_dt = now_utc
 
@@ -102,7 +109,8 @@ def fetch_rss_candidates(days_back=7):
     print("\n🔍 Querying Premier Education RSS feeds...")
     for source_name, feed_url in PREMIER_RSS_FEEDS:
         try:
-            feed = feedparser.parse(feed_url)
+            resp = requests.get(feed_url, headers=HEADERS, timeout=15)
+            feed = feedparser.parse(resp.content)
             count = 0
             for entry in feed.entries[:15]:
                 title = entry.get('title', '').strip()
@@ -110,7 +118,7 @@ def fetch_rss_candidates(days_back=7):
                 
                 pub_parsed = getattr(entry, 'published_parsed', None)
                 if pub_parsed:
-                    pub_dt = datetime.fromtimestamp(time.mktime(pub_parsed), tz=timezone.utc)
+                    pub_dt = datetime.fromtimestamp(calendar.timegm(pub_parsed), tz=timezone.utc)
                     if pub_dt < cutoff_dt:
                         continue
                 else:
