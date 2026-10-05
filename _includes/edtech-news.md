@@ -1,22 +1,49 @@
 # EdTech News This Week
-*Updated: October 02, 2026*
+*Updated: October 05, 2026*
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">The Quad-City Times</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 02, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">TechRound</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">October 05, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE9ITUZJanZId0NzSjM1Q1Z1Y3gwMXQ1X3M1NEJaZ2t1ZURMbVN4M2pIaHdvbllZLTlhdDJuMnhvZFhoa2s0YUxVb3BDMEpKM2hEenk3dy04VURSN256QVA4YTM3c1gtMEhGX0tkcWFDeUhfS0ZJRzgyMg?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Trump has promoted AI in education. His FCC may end school internet subsidies.</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This story highlights a potential significant policy reversal in the US that could impact digital equity in education. The proposed ending of school internet subsidies, despite a push for AI in education, poses a major challenge for digital learning access for millions of students and could create a gap between technological aspiration and infrastructure support.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPMWJQRDVKSGVSQ1RtWnh2VUtscEhqcTdNSmJJYkhjc3BTeVZLNTRsLXU0Z191aE5sbXBFOXhhR0JaM1oyaVBNeFhrU2xVOGFDUTdsUVFwRnFJLU5lR0kyU0FVMUhZVjhGZkY1Wmo3LVNmby12dEJpUDh0UHZySVhaRHp2aW01SGl6UW9WZHRBalU3RG5mX1E5X09FU1duRUlfQXJzTk9EOEM4VEp4Skxv?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">AI In Education Is Moving Fast, Are School Policies Keeping Up?</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This article highlights the urgent challenge for educational institutions worldwide to develop robust policies that keep pace with the rapid integration of AI in classrooms. It underscores the global need for frameworks that ensure responsible and effective AI use, balancing innovation with student privacy and ethical considerations.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Vietnam.vn</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 02, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Indian Startup News</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">October 05, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOQXh1WWxSajJKNFpXVGtHSkI1RlhFX3NxbG9ydTFKX2I0RXNOQmNCSDAyWE1xZDJpSGdsbk9YaEMwLWVNbnY5QUFXZk5Oa0wwRVpiN3d6MDRkYWZwaGhYWEp0N2NjbXRQYTA1RUYxXzRmRXI4c2NDMlE5RTRFQVdza1pVYWU?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">AI in education: The role of the teacher in the digital age.</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">From Vietnam, this article offers a global perspective on the evolving role of educators as AI integration accelerates worldwide. It emphasizes the need for teachers to adapt, leveraging AI as a tool while preserving human connection and critical thinking, which is a universal challenge and opportunity in modern pedagogy.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxORlp0Qi1UU2FlTEtkXzVxTzd6T0YzVlVwLXljRjd6QVpJNWllbGpTd1BTbVI0Z2E4SW5SMWgtLWVYa2diSWY0V09DOWNrZVFpZ0JlZDgzSEF1RUpQdU5TWG5UTEtmdkdfYXkyZ3ZZbnJFN3I3dlBORkwtSGtsdzZubW5namd3M1JzTEZqTlBlY3Fua1M2T0JTcHhZTGZ6eFBvVnlpQWd3WkRndXpUODgxRUVXVTdzeWh0WDhFZS1lZ01peDcxeVVQR2Jka9IBywFBVV95cUxORlp0Qi1UU2FlTEtkXzVxTzd6T0YzVlVwLXljRjd6QVpJNWllbGpTd1BTbVI0Z2E4SW5SMWgtLWVYa2diSWY0V09DOWNrZVFpZ0JlZDgzSEF1RUpQdU5TWG5UTEtmdkdfYXkyZ3ZZbnJFN3I3dlBORkwtSGtsdzZubW5namd3M1JzTEZqTlBlY3Fua1M2T0JTcHhZTGZ6eFBvVnlpQWd3WkRndXpUODgxRUVXVTdzeWh0WDhFZS1lZ01peDcxeVVQR2Jkaw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Edtech giant PhysicsWallah's FinZ Finance to sell Rs 95.79 crore loan portfolio to Auxilo</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This significant financial transaction involving PhysicsWallah, a major Indian EdTech player, highlights evolving business strategies and consolidation within the global EdTech sector. It signals potential shifts in how educational financing and services are managed, with implications for market stability and access to learning in emerging economies.</p>
+</div>
+
+<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">hi-Tech.ua</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">October 05, 2026</span>
+  </div>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPSUc0QWJZRGN1V01JU2xNUTJZYzFUM1BiOE95OTJVR0FXRUc1Q2VOTXJHMGN5Z2wtcE12Z2ctY3ROZkhNSDJtRHV3cVI5d1NuODBGbUNKZWwtUi1ldmhHTU92UVRnb3pzY0dpS2M5Q24xaDB3c3lFTHIyU29VZFRMZjFqUWtNZjAxSDh6VV9jLU84QmluQWZMdFpsWGkyQQ?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">AI in Education: Gen Z Struggles to Apply Knowledge Despite Increased Study</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This report exposes a critical challenge in AI-integrated education: despite increased study, Gen Z learners are struggling with knowledge application, raising concerns about the efficacy of current AI pedagogical approaches. It prompts a global discussion on refining AI tools to foster deeper learning and critical thinking, rather than merely facilitating rote memorization or surface-level engagement.</p>
+</div>
+
+<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">ABC17NEWS</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">October 03, 2026</span>
+  </div>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxOU0lES3RJcVpwc013OGhaQldiMWhqQU8xLVQyYkZwaklXQ3doZ1pHeDd3ZEVORDA2UlJ0dHV5WG9aMFhfYmhiZEluYndMRHgtZGdkQzF0LTBEWVdKMkV5QWI0bHppbExzVzdLaVJuN3ptU2QxTVNucXZIX2FRSGI5OUZjMXMyT3JtaVhGaVpIZWN6OWN0cjhvb0Q0RVkwRGo0aTVNSEVwQktKT3lJMGM2TWE3Vm96SnhqbzFXUjN6dVliMWRyaGlXWWdZdFhGNnhLcnJkRw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Trump has promoted AI in education. His FCC may end school internet subsidies.</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This story highlights a significant policy contradiction in the US, where promotion of AI in education is undermined by potential cuts to essential school internet subsidies. This move could exacerbate digital divides, impacting access to AI-powered learning and digital resources for underserved communities, reflecting a broader global challenge in ensuring equitable access to technology.</p>
+</div>
+
+<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">UNESCO</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">October 03, 2026</span>
+  </div>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOeHpnTTFwb21uYVlmZDh0Z1NkWlh0cWpZdFdNdk9SWkxrUDBfdEVRQlRQRWRkZFJtZDg5VlJJTV9QWWlDc2R0WlNVQTlkay1wbUk5bGNBZnFySTRIZ3B2NWp3VGpGS3BDZ3VFZy1YeUo1NEgybTVsX0ZwQkFuTThNdkpoajJrVVlIV0stT3hWS0RUcFVsVzJKQ1NuTUk2VC11N0RpWThTRjgwRWNWXzU4Q2lYOFY?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">How Kenyan teachers embrace technology while keeping the human connection in the classroom</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This UNESCO report showcases Kenya's innovative approach to integrating technology in classrooms while preserving vital human interaction, offering valuable lessons for educators globally. It emphasizes a balanced pedagogical model that leverages EdTech tools to enhance learning without compromising the essential human connection between teachers and students.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
@@ -25,7 +52,7 @@
     <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
   </div>
   <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxONDFxTHFWSHU3aVluVXZrbWIwTEZjcmhsT1lvUTl5bHZpMXRIX2U1b2hxcGVldjZyZG8xX2RuT2pFbWdYRGtsTnREZ0paRGhtekNnRGNUTnh2UTUzSXFpSWlCOThyeE9KZ0RkUkZuenE0RC1sSDBFdUpDM0ZrbHNWbVBaem5qdlJNWTBicXdWbnhwZXpUNFBEaWJmLXBGUQ?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Ukraine’s wartime innovation must now reach the classroom</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This report from Europe underscores how conflict can drive educational innovation, with Ukraine leveraging technology to maintain learning amidst crisis. It highlights the critical challenge of scaling these wartime digital learning solutions to become a permanent feature of post-war education systems, providing lessons for resilience globally.</p>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This compelling article highlights the critical need to translate Ukraine's rapid wartime innovation into sustainable educational practices for its classrooms, offering a model for resilience and adaptation in education globally. It underscores how adversity can accelerate the adoption of new technologies and methodologies, emphasizing digital learning's role in continuity during crises.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
@@ -34,41 +61,14 @@
     <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
   </div>
   <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.highereddive.com/news/share-of-americans-who-say-college-is-very-important-hits-a-new-low/831966/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Share of Americans who say college is ‘very important’ hits a new low</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This US-based story reveals a significant shift in public perception regarding the value of higher education, with implications for enrollment, funding, and policy globally. The decline in perceived importance could prompt widespread re-evaluation of educational models, costs, and career relevance across international higher education systems.</p>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">New data reveals a significant decline in the perceived importance of higher education among Americans, reflecting a growing global skepticism about its value proposition and cost. This trend signals a crucial moment for universities worldwide to innovate their offerings, demonstrate tangible career outcomes, and address concerns about accessibility and affordability.</p>
 </div>
 
 <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">Higher Ed Dive</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
+    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">edtechinnovationhub.com</span>
+    <span style="font-size: 0.8125rem; color: #6b7280;">September 30, 2026</span>
   </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.highereddive.com/news/dhs-appeals-decision-blocking-four-year-cap/831927/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">DHS appeals decision blocking 4-year cap on student visas</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This US policy development directly impacts international student mobility and the global higher education landscape. The outcome of the appeal will determine future access for international students to US institutions, affecting diversity, research collaboration, and the economic contributions of foreign students worldwide.</p>
-</div>
-
-<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">UNESCO</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
-  </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQN2d3S0dtcEdJbXVCSTFFbVV4X2RLcVlKRU1EaVM4LUQ3S2FkaEJfXzUzOXJhMDFFOGdHU0pOSEZNMFVBQUdBNVdVblF1MTVuaDh1QzUyTTQ0SEU3VGc3NXYyeW1nUk90MmJpREdid3dCRUlXUl85bDkwel96bGtDWktQNXZSMFg2Tk05THgyZTZ1THNybXhiOFhld29adG1scFlmNnJkTXUyRkE3cWJBRDQ0elhFbnR6dGZhenpwZw?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Ethiopia concludes UNESCO–Huawei project to advance technology-enabled secondary education</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This initiative represents a significant digital learning breakthrough and institutional transformation in Africa, showcasing successful international collaboration in education development. It demonstrates how strategic partnerships and technology infrastructure can enhance secondary education access and quality in developing regions, serving as a model for global digital equity efforts.</p>
-</div>
-
-<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">K-12 Dive</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
-  </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://www.k12dive.com/news/irs-releases-proposed-school-choice-rule-Education-Freedom-Tax-Credit/831680/" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">IRS proposes rule for groundbreaking school choice program</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This US policy proposal could lead to a massive transformation in K-12 funding and educational access through a $26 billion school choice program. It signifies a major shift in public and private school funding dynamics, with the potential to reshape the educational landscape and spark debate on similar models internationally.</p>
-</div>
-
-<div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-    <span style="font-size: 0.8125rem; font-weight: 600; color: #4f46e5; background-color: #eef2ff; padding: 2px 8px; border-radius: 4px;">EdTech Innovation Hub</span>
-    <span style="font-size: 0.8125rem; color: #6b7280;">October 01, 2026</span>
-  </div>
-  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQWmJBVUh4Rko0WTJoQ3Z2akY0M1JkWHNMcm13Q3ZJQk41VEVLakRud2VBS1Z0cS0xYkxCSVhjOGgyR214S2ZPMFQzTXJMT2FXQ0Q2S3REYlR2SERYS1FJZU5uV0ZNQktMdTh3N0JVSUZiOUU4bmptWEstM2NTa3A2WFlrYTZvZlNqWWxpbDNvVHZtcDZNRWxfVGpLSXg3cWdOeWxyeXJYZHI1R0ZEaEE?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">OpenAI to retire custom GPTs in December as creators move to plugins</a></h3>
-  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">This announcement signals a significant platform shift for a leading AI tool widely used in education, requiring developers and educators to adapt their existing AI applications. It impacts how AI-driven educational solutions are built and integrated, highlighting the dynamic and sometimes disruptive nature of EdTech innovation globally.</p>
+  <h3 style="margin: 0 0 8px 0; font-size: 1.125rem; font-weight: 600; line-height: 1.4;"><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNblBsdWZ2YzN4OU9naDJTam1LQ3ZrY1J5V3o5cDBobTZWUWtRTGF6N3hhcGNBYWMzZmZEaGg5MnhLMUk3UUFBMGJIWjFYNWZ6bW80dEw5VC1yRkRQN3B4VVM3VC0xQnh2dDJJcTVlX2R2RjdDRG44NmpRS0V1UQ?oc=5" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">Microsoft overhauls Copilot with Autopilot agents and app-building tools</a></h3>
+  <p style="margin: 0; font-size: 0.9375rem; color: #374151; line-height: 1.6;">Microsoft's significant overhaul of Copilot, introducing Autopilot agents and app-building tools, represents a major advancement in AI integration that will profoundly impact productivity and EdTech solutions globally. This development enables educators and institutions to create more customized and intelligent learning experiences, accelerating the next generation of digital learning tools.</p>
 </div>
