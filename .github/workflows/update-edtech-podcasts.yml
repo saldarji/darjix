@@ -40,9 +40,22 @@ jobs:
           python scripts/edtech_podcast_agent.py
       
       - name: Commit and push changes
+        id: commit_step
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _includes/edtech-podcasts.md || true
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update: EdTech Podcasts - $(date +'%B %d, %Y')" && git pull --rebase origin main && git push origin HEAD:main)
+          if ! git diff --quiet || ! git diff --staged --quiet; then
+            git commit -m "🤖 Auto-update: EdTech Podcasts - $(date +'%B %d, %Y')"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "pushed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Firebase Hosting Deploy
+        if: steps.commit_step.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run firebase-hosting-deploy.yml --ref main
 
