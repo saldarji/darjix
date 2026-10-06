@@ -1,5 +1,17 @@
 [
   {
+    "id": "HnTV76T714pBxgropg4V",
+    "title": "Agent-Enable Everything: The Next Enterprise Super-Cycle",
+    "slug": "agent-enable-everything-the-next-enterprise-super-cycle",
+    "date": "2026-10-06T18:30:39.407Z",
+    "layout": "post",
+    "published": true,
+    "content": "Personal agents like Muse and Instinct will drive the biggest disruption to enterprise architecture since the migration to cloud and mobile.\n\nWhen your primary customer becomes a machine executing multi-step goals on a user's behalf, rather than a human clicking buttons on a screen, the shift breaks down every layer of enterprise technology, marketing, and governance. You must rebuild it from the ground up.\n\n## What's happening\n\nPersonal agents upend core enterprise functions as they become the default proxy for commerce, travel, and banking:\n*   Enterprises spend billions optimizing fonts, landing pages, emotional branding, and high-friction dark patterns designed to cross-sell. Agents ignore your polished homepage.\n*   Product teams must shift from optimizing for human search intent to engineering for machine discovery and programmatic negotiation.\n*   Today, booking engines see minutes of dwell time between clicks. An agent network queries, price-checks, and simulates transactions across hundreds of competing services simultaneously. Enterprises will face synthetic traffic spikes that look identical to DDoS attacks—except each request represents an intent-driven buyer.\n\nTo survive, enterprises must transition from human-first interfaces to autonomous agent gateways. This requires teams to completely re-architect every stack across the company: Front End, Identity, Customer Support, and Payments.\n\nYou cannot simply open an unauthenticated API to the public web and let autonomous agents execute high-value transactions. Enterprises face massive operational and legal risks. Teams must solve Delegated Authority (does this agent actually have permission to buy that $3,000 laptop?), mitigate prompt injection attacks, and define liability for machine-driven errors. \n\n## A gold rush for consulting\n\nBuilding and securing this infrastructure is not a standard SaaS plug-and-play upgrade. It touches legacy core banking systems, decades-old airline reservation engines like Sabre or Amadeus, ERP systems, and enterprise compliance divisions.\n\nJust as the 1990s created Accenture and modern enterprise consulting around ERP implementations, and the 2010s fueled the cloud transformation boom, the next decade belongs to the mandate to Agent-Enable the enterprise.\n\nConsulting firms, systems integrators, and specialized boutiques will extract hundreds of billions in value helping enterprises Agent-Enable their operations and adapt to this machine-mediated economy.",
+    "images": null,
+    "created_at": "2026-10-06T18:21:53.472Z",
+    "updated_at": "2026-10-06T18:30:39.407Z"
+  },
+  {
     "id": "kkywmCKBMTeaOEPp0WfJ",
     "title": "The \"How Does This Sound?\" Prompt: Siri's Best UI Innovation",
     "slug": "the-how-does-this-sound-prompt-siri-s-best-ui-innovation",
@@ -185,23 +197,23 @@
     "images": [
       {
         "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused.",
-        "caption": "Paul Tesluk speaking @ AIxED Conference",
-        "url": "/assets/images/image posts/IMG_4346.jpeg"
+        "url": "/assets/images/image posts/IMG_4346.jpeg",
+        "caption": "Paul Tesluk speaking @ AIxED Conference"
       },
       {
-        "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference",
         "url": "/assets/images/image posts/IMG_4355.jpeg",
-        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads..."
+        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads...",
+        "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
       },
       {
-        "url": "/assets/images/image posts/IMG_4358.jpeg",
         "alt_text": "A man with messy hair, in a dark suit, speaks passionately into a microphone from a podium at an 'AI in Education Summit.' The black and white image, shot from behind the audience, creates a focused, professional atmosphere for the engaging presentation.",
+        "url": "/assets/images/image posts/IMG_4358.jpeg",
         "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
       },
       {
         "url": "/assets/images/image posts/IMG_4363.jpeg",
-        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference",
-        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation."
+        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation.",
+        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference"
       }
     ],
     "created_at": "2025-11-20T00:00:00.000Z",

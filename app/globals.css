@@ -12,3 +12,25 @@
     @apply bg-white text-gray-900 antialiased;
   }
 }
+
+/* Google Calendar Appointment Scheduling Modal Styling */
+.hur54b {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px);
+  z-index: 99999 !important;
+}
+
+iframe.mmGMM, .mmGMM {
+  background-color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.1) !important;
+  color-scheme: light;
+}
+
+body.gcal-dark-popover iframe.mmGMM,
+body.gcal-dark-popover .mmGMM {
+  background-color: #111827 !important;
+  color-scheme: dark;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+}
+
