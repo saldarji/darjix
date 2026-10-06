@@ -27,10 +27,4 @@ iframe.mmGMM, .mmGMM {
   color-scheme: light;
 }
 
-body.gcal-dark-popover iframe.mmGMM,
-body.gcal-dark-popover .mmGMM {
-  background-color: #111827 !important;
-  color-scheme: dark;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
-}
 
