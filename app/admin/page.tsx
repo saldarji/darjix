@@ -6,7 +6,7 @@ import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/aut
 import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs, query, orderBy } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Post, PhotoItem } from "@/lib/types";
-import { LogIn, LogOut, Plus, Trash2, Edit3 } from "lucide-react";
+import { LogIn, LogOut, Plus, Trash2, Edit3, Rocket, RefreshCw } from "lucide-react";
 
 export default function AdminPage() {
   const [user, setUser] = useState<User | null>(null);
@@ -21,7 +21,47 @@ export default function AdminPage() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [statusMsg, setStatusMsg] = useState("");
+  const [rebuilding, setRebuilding] = useState(false);
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleTriggerRebuild = async () => {
+    let token = localStorage.getItem("github_pat");
+    if (!token) {
+      token = prompt("Please enter a GitHub Personal Access Token (PAT) with Actions:Write permissions to trigger site rebuilds:");
+      if (!token) return;
+      localStorage.setItem("github_pat", token.trim());
+    }
+
+    setRebuilding(true);
+    setStatusMsg("🚀 Triggering site rebuild on GitHub Actions...");
+
+    try {
+      const res = await fetch("https://api.github.com/repos/saldarji/darjix/actions/workflows/firebase-hosting-deploy.yml/dispatches", {
+        method: "POST",
+        headers: {
+          "Accept": "application/vnd.github+json",
+          "Authorization": `Bearer ${token}`,
+          "X-GitHub-Api-Version": "2022-11-28",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ref: "main" }),
+      });
+
+      if (res.status === 204) {
+        setStatusMsg("✅ Site rebuild triggered successfully! Your post will be live on darjix.com in about 2-3 minutes.");
+      } else if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem("github_pat");
+        setStatusMsg("⚠️ GitHub authorization failed. Invalid token or missing permissions. Click 'Rebuild & Deploy' again to re-enter your token.");
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setStatusMsg(`⚠️ Rebuild trigger error (${res.status}): ${data.message || "Failed to trigger workflow."}`);
+      }
+    } catch (err: any) {
+      setStatusMsg(`⚠️ Network error triggering rebuild: ${err.message}`);
+    } finally {
+      setRebuilding(false);
+    }
+  };
 
   const insertMarkdown = (action: string) => {
     const textarea = contentTextareaRef.current;
@@ -295,13 +335,28 @@ export default function AdminPage() {
             <h1 className="text-3xl font-bold text-black">Admin Panel</h1>
             <p className="text-xs text-gray-500 mt-1">Logged in as {user.email}</p>
           </div>
-          <button
-            onClick={handleSignOut}
-            className="px-4 py-2 border border-gray-300 text-sm font-medium hover:bg-gray-100 transition rounded flex items-center space-x-1"
-          >
-            <LogOut className="w-4 h-4" />
-            <span>Sign Out</span>
-          </button>
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={handleTriggerRebuild}
+              disabled={rebuilding}
+              className="px-4 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition rounded flex items-center space-x-2 disabled:opacity-50"
+              title="Rebuild static pages and publish live to Firebase Hosting"
+            >
+              {rebuilding ? (
+                <RefreshCw className="w-4 h-4 animate-spin" />
+              ) : (
+                <Rocket className="w-4 h-4" />
+              )}
+              <span>{rebuilding ? "Rebuilding..." : "Rebuild & Publish Site"}</span>
+            </button>
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 border border-gray-300 text-sm font-medium hover:bg-gray-100 transition rounded flex items-center space-x-1"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Sign Out</span>
+            </button>
+          </div>
         </div>
 
         {statusMsg && (
