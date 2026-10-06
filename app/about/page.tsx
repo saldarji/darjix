@@ -1,3 +1,5 @@
+import CalendarBooking from "@/components/CalendarBooking";
+
 export const metadata = {
   title: "About - DARJIX",
   description: "About Sal Darji and DARJIX",
@@ -23,6 +25,8 @@ export default function AboutPage() {
             <p className="text-base text-gray-600">
               After two years of successfully running the Boston chapter for AI Tinkerers, I'm embarking on a new adventure building AI products for higher education. This site is where I document what I learn along the way.
             </p>
+
+            <CalendarBooking />
 
             <h2 className="text-xl font-bold text-black mt-8 mb-4">What You'll Find Here</h2>
 
