@@ -1,10 +1,5 @@
 [
   {
-    "name": "General Membership Meeting - October Annual Meeting \u2013 Voting",
-    "date": "2026-10-08",
-    "time": null
-  },
-  {
     "name": "Practical Magic Movie Night",
     "date": "2026-10-09",
     "time": null
@@ -32,6 +27,11 @@
   {
     "name": "Kentucky Derby Day 2027",
     "date": "2027-05-01",
+    "time": null
+  },
+  {
+    "name": "TENTATIVE - Lipton Cup 2027",
+    "date": "2027-07-31",
     "time": null
   }
 ]
