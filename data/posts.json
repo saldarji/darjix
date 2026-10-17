@@ -1,5 +1,17 @@
 [
   {
+    "id": "toau28B8vEbNU40wYRhD",
+    "title": "Cognitive Trap or Augmented Self-Efficacy?",
+    "slug": "cognitive-trap-or-augmented-self-efficacy",
+    "date": "2026-10-16T21:34:24.297Z",
+    "layout": "post",
+    "published": true,
+    "content": "## It's a Cognitive Trap\n- Transactive Memory & The Google Effect: First identified by Yale researchers studying internet search (Fisher et al., 2015), this is the tendency for humans to confuse access to information with personal knowledge. When you are plugged into a system that can instantly write a Python script, draft a legal memo, or architect a database, your brain absorbs the tool into your own cognitive identity. You feel smarter because your \"extended mind\" is smarter.\n- AI-Augmented Dunning-Kruger: Studies on human-AI interaction (such as Fernandes & Welsch, 2025) found that using generative AI dramatically flattens the traditional Dunning-Kruger curve. Instead of novices slowly realizing how much they don't know, AI's hyper-confident, articulate outputs mask the user's knowledge gaps. You get the dopamine hit of shipping a finished product without experiencing the friction that usually teaches you how hard the domain actually is.\n- The Illusion of Explanatory Depth: This is the belief that you understand how a complex system works when you really only understand the surface narrative. When AI bridges all the painful execution steps in the middle, it induces a state of \"effortless fluency\"—making you feel like the master architect of a system you might struggle to debug from scratch if the power went out.\n\n## It's Augmented Self-Efficacy\n- Cognitive Leverage (or \"God Mode\"): For decades, execution was gated by syntax and specialized mechanics—knowing the exact API, the right financial formula, or the CSS quirks. If you already have strong systems thinking, taste, and architectural judgment, AI removes the mechanical friction. The euphoria you feel isn't a cognitive bias; it's the sudden removal of the bottleneck between your vision and a working prototype.\n- The \"Centaur\" State: Borrowed from freestyle chess (where a human-AI team beats either a grandmaster or a supercomputer alone), this is the flow state of high-agency orchestration. You aren't claiming to be a 10x specialist in every domain; you are recognizing that as a director with an infinite fleet of tireless interns, your effective range has multiplied tenfold.",
+    "images": null,
+    "created_at": "2026-10-16T21:34:24.297Z",
+    "updated_at": "2026-10-16T21:34:24.297Z"
+  },
+  {
     "id": "HnTV76T714pBxgropg4V",
     "title": "Agent-Enable Everything: The Next Enterprise Super-Cycle",
     "slug": "agent-enable-everything-the-next-enterprise-super-cycle",
@@ -196,24 +208,24 @@
     "content": "",
     "images": [
       {
+        "caption": "Paul Tesluk speaking @ AIxED Conference",
         "url": "/assets/images/image posts/IMG_4346.jpeg",
-        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused.",
-        "caption": "Paul Tesluk speaking @ AIxED Conference"
+        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused."
       },
       {
-        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads...",
         "url": "/assets/images/image posts/IMG_4355.jpeg",
+        "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads...",
         "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
       },
       {
-        "url": "/assets/images/image posts/IMG_4358.jpeg",
         "alt_text": "A man with messy hair, in a dark suit, speaks passionately into a microphone from a podium at an 'AI in Education Summit.' The black and white image, shot from behind the audience, creates a focused, professional atmosphere for the engaging presentation.",
-        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
+        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference",
+        "url": "/assets/images/image posts/IMG_4358.jpeg"
       },
       {
-        "url": "/assets/images/image posts/IMG_4363.jpeg",
         "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation.",
-        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference"
+        "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference",
+        "url": "/assets/images/image posts/IMG_4363.jpeg"
       }
     ],
     "created_at": "2025-11-20T00:00:00.000Z",

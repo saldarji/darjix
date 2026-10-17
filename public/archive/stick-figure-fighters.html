@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Stick Figure Fighters</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,32 +15,37 @@
       font-family: Arial, sans-serif;
       min-height: 100vh;
     }
+
     h1 {
       color: #FFFFFF;
       margin-bottom: 5px;
       font-size: 2em;
     }
+
     .version-info {
       color: #CCCCCC;
       font-size: 14px;
       margin-bottom: 10px;
       text-align: center;
     }
+
     #canvas {
       border: 3px solid #333;
       background: #FFFFFF;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       outline: none;
       max-width: 100%;
       height: auto;
       display: block;
     }
+
     .info {
       margin-top: 20px;
       color: #FFFFFF;
       text-align: center;
     }
+
     .controls {
       margin-top: 20px;
       color: #FFFFFF;
@@ -49,6 +55,7 @@
       padding: 0 10px;
       word-wrap: break-word;
     }
+
     .credits {
       margin-top: 10px;
       color: #FFFFFF;
@@ -59,72 +66,85 @@
       padding: 0 10px;
       word-wrap: break-word;
     }
-    
+
     /* Responsive styles for tablets and smaller screens */
     @media screen and (max-width: 1024px) {
       body {
         padding: 10px;
       }
+
       h1 {
         font-size: 1.5em;
       }
+
       .version-info {
         font-size: 12px;
       }
+
       .controls {
         font-size: 11px;
         margin-top: 15px;
       }
+
       .credits {
         font-size: 11px;
       }
     }
-    
+
     /* Responsive styles for portrait tablets and phones */
     @media screen and (max-width: 768px) {
       body {
         padding: 5px;
       }
+
       h1 {
         font-size: 1.2em;
         margin-bottom: 3px;
       }
+
       .version-info {
         font-size: 10px;
         margin-bottom: 5px;
       }
+
       #canvas {
         border-width: 2px;
       }
+
       .controls {
         font-size: 10px;
         margin-top: 10px;
         line-height: 1.4;
       }
+
       .credits {
         font-size: 10px;
         margin-top: 5px;
       }
     }
-    
+
     /* Responsive styles for small phones */
     @media screen and (max-width: 480px) {
       h1 {
         font-size: 1em;
       }
+
       .version-info {
         font-size: 9px;
       }
+
       .controls {
         font-size: 9px;
         line-height: 1.3;
       }
+
       .credits {
         font-size: 9px;
       }
     }
   </style>
 </head>
+
 <body>
   <div style="width: 100%; max-width: 1200px; margin-bottom: 10px; text-align: left;">
     <a href="/archive/" style="color: #888888; text-decoration: none; font-size: 14px;">← Back to Archive</a>
@@ -138,7 +158,7 @@
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    
+
     // Stick Figure Class - Profile view with karate moves
     class StickFigure {
       constructor(x, y) {
@@ -174,18 +194,18 @@
         this.vomitParticles = []; // Persistent vomit particles on ground
         this.waterParticles = []; // Water particles from trident attack
       }
-      
+
       // Karate move types
       getRandomMove() {
         const moves = ['punch', 'kick', 'spinKick', 'block', 'uppercut', 'jump', 'tumble', 'lieDown', 'ready'];
         return moves[Math.floor(Math.random() * moves.length)];
       }
-      
+
       // Check if current move should stop horizontal movement
       shouldStopMoving() {
         return ['kick', 'spinKick', 'jump', 'tumble', 'lieDown'].includes(this.currentMove);
       }
-      
+
       // Trigger a random action (excludes jump and lieDown - those are arrow key actions)
       triggerRandomAction() {
         // Actions available for spacebar (exclude jump and lieDown)
@@ -196,55 +216,55 @@
         // Reset offsets when changing moves
         this.jumpOffset = 0;
         this.rotation = 0;
-        
+
         // Trigger sound effects for certain moves (reduced frequency)
         this.triggerSoundEffect(this.currentMove);
       }
-      
+
       // Trigger sound effect for moves (only on actions, 1 out of 5 chance)
       triggerSoundEffect(move) {
         // Only trigger on actions, not on 'ready' stance
         if (move === 'ready') {
           return;
         }
-        
+
         // Only trigger sound effects 1 out of 5 times (20% chance)
         if (Math.random() > 0.2) {
           return;
         }
-        
+
         // Expanded sound effects - dozen more added
         const allSoundEffects = [
           'Hiyahhh!', 'Hya!', 'Hiya!', 'Hah!', 'Hup!', 'Hyaa!', 'Upp!', 'Whoa!',
           'Hiyah!', 'Whaa!', 'Yah!', 'Hoo!', 'Hahh!', 'Hyah!', 'Wah!', 'Hooah!',
           'Yahh!', 'Hiyahh!', 'Hyaah!', 'Whaah!', 'Hooahh!', 'Yahhh!', 'Hiyahhhh!', 'Hyaaa!'
         ];
-        
+
         // Pick a random sound effect
         this.soundText = allSoundEffects[Math.floor(Math.random() * allSoundEffects.length)];
         this.soundTimer = 0;
       }
-      
+
       update() {
         // Check for death
         if (this.health <= 0 && !this.isDead) {
           this.explode();
         }
-        
+
         // If dead, only update death particles
         if (this.isDead) {
           this.updateDeathParticles();
           return;
         }
-        
+
         // Update stun timer
         if (this.stunnedTimer > 0) {
           this.stunnedTimer--;
         }
-        
+
         // Track if fighter is moving horizontally
         this.isMoving = false;
-        
+
         // Move based on keyboard input (unless stunned, doing a move that stops movement)
         if (!this.shouldStopMoving() && this.stunnedTimer === 0) {
           // WASD movement (only horizontal now)
@@ -257,19 +277,19 @@
             this.isMoving = true;
           }
         }
-        
+
         // Update yellow particles
         this.updateYellowParticles();
-        
+
         // Update knives
         this.updateKnives();
-        
+
         // Update radioactive vomit
         this.updateRadioactiveVomit();
-        
+
         // Update persistent vomit particles
         this.updateVomitParticles();
-        
+
         // Update water particles from trident attack
         if (this.currentMove === 'trident' && enemy) {
           this.createWaterParticles(enemy);
@@ -278,34 +298,34 @@
         if (enemy) {
           this.updateWaterParticles(enemy);
         }
-        
+
         // Check if enemy is punching and hitting fighter
         if (enemy && !enemy.isDead) {
           const punchMoves = ['punch', 'uppercut'];
           const enemyIsPunching = punchMoves.includes(enemy.currentMove);
           const enemyMoveFrame = enemy.moveTimer / enemy.moveDuration;
           const enemyPunchIntensity = enemyIsPunching ? Math.sin(enemyMoveFrame * Math.PI) : 0;
-          
+
           // Calculate enemy punch reach (enemy punches left, fighter is to the left)
           const enemyPunchReach = enemyIsPunching ? 15 + enemyPunchIntensity * 25 : 0;
           const fighterLeftEdge = this.x; // Fighter is right-facing, so left edge is at x
           const enemyPunchEnd = enemy.x - enemyPunchReach; // Enemy punches left (negative direction)
-          
+
           // Check if enemy punch connects (enemy punches left, fighter is to the left)
           const enemyHitNow = enemyIsPunching && enemyPunchIntensity > 0.4 && enemyPunchEnd <= fighterLeftEdge + 30 && enemyPunchEnd >= fighterLeftEdge - 15;
-          
+
           // Create particles when hit (only if not already in hit state)
           if (enemyHitNow && this.hitTimer === 0) {
             this.hitTimer = 10; // Same hit duration as enemy
             this.health = Math.max(0, this.health - 5); // Same damage as fighter's punches
           }
         }
-        
+
         // Update hit timer
         if (this.hitTimer > 0) {
           this.hitTimer--;
         }
-        
+
         // Keep fighter on screen horizontally
         if (this.x < -50) {
           this.x = -50;
@@ -313,10 +333,10 @@
         if (this.x > canvas.width + 50) {
           this.x = canvas.width + 50;
         }
-        
+
         // Advance animation frame
         this.frame += 0.1;
-        
+
         // Update move timer and change move when it expires
         this.moveTimer++;
         if (this.moveTimer > this.moveDuration) {
@@ -328,12 +348,12 @@
           this.jumpOffset = 0;
           this.rotation = 0;
         }
-        
+
         // Trigger sound effect at the start of moves (frequency already reduced in triggerSoundEffect)
         if (this.moveTimer === 1) {
           this.triggerSoundEffect(this.currentMove);
         }
-        
+
         // Update sound effect timer
         if (this.soundText) {
           this.soundTimer++;
@@ -343,10 +363,10 @@
             this.soundTimer = 0;
           }
         }
-        
+
         // Calculate move-specific offsets
         const moveFrame = this.moveTimer / this.moveDuration;
-        
+
         if (this.currentMove === 'jump') {
           // Jump animation - up then down
           this.jumpOffset = Math.sin(moveFrame * Math.PI) * -40;
@@ -365,242 +385,272 @@
           this.rotation = 0;
         }
       }
-      
+
+      // Smooth, intact lieDown animation with anatomical continuity
+      drawLieDown() {
+        const progress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0;
+        const groundY = this.baseY + 55 + 25; // Character ground level (baseY + 80)
+        const facing = 1; // Fighter faces right (+X)
+
+        // Continuous easing curve:
+        // 0.00 to 0.28: smooth transition down to ground
+        // 0.28 to 0.72: lying intact on ground (holding pose)
+        // 0.72 to 1.00: smooth transition back up to ready stance
+        let p = 0;
+        if (progress < 0.28) {
+          const u = progress / 0.28;
+          p = u * u * (3 - 2 * u); // Smoothstep down
+        } else if (progress <= 0.72) {
+          p = 1.0; // Rest flat on ground
+        } else {
+          const u = (progress - 0.72) / 0.28;
+          p = 1.0 - u * u * (3 - 2 * u); // Smoothstep back up
+        }
+
+        // Subtle breathing motion while resting on ground
+        const breath = (p >= 0.99) ? Math.sin(this.frame * 2) * 0.8 : 0;
+
+        // Waist drops smoothly to ground and shifts slightly back
+        const standWaistX = this.x;
+        const standWaistY = this.waistY + this.jumpOffset;
+        const lieWaistX = this.x - 5 * facing;
+        const lieWaistY = groundY - 8 + breath;
+
+        const waistX = standWaistX + p * (lieWaistX - standWaistX);
+        const waistY = standWaistY + p * (lieWaistY - standWaistY);
+
+        // Torso angle: 0 (vertical) to PI/2 (horizontal flat on back)
+        const angle = p * (Math.PI / 2);
+        const torsoLen = 43; // Strict conservation of torso spine length
+
+        // Neck rigidly attached to waist
+        const neckX = waistX - Math.sin(angle) * torsoLen * facing;
+        const neckY = waistY - Math.cos(angle) * torsoLen;
+
+        // Head center strictly 12px past neck along spine, resting on ground surface
+        const headDist = 12;
+        const headX = neckX - Math.sin(angle) * headDist * facing;
+        const headY = neckY - Math.cos(angle) * headDist - p * 4;
+
+        // Eye naturally rotates with head
+        const eyeX = headX + (Math.cos(angle) * 3 - Math.sin(angle) * 1) * facing;
+        const eyeY = headY + (-Math.sin(angle) * 3);
+
+        // Shoulders rigidly located along the torso spine
+        const sh1X = neckX + Math.sin(angle) * 8 * facing;
+        const sh1Y = neckY + Math.cos(angle) * 8;
+        const sh2X = neckX + Math.sin(angle) * 14 * facing;
+        const sh2Y = neckY + Math.cos(angle) * 14;
+
+        // Hands transition smoothly from guard to resting beside torso
+        const standHand1X = this.x + 12 * facing;
+        const standHand1Y = this.baseY + 10;
+        const standHand2X = this.x + 10 * facing;
+        const standHand2Y = this.baseY + 15;
+
+        const lieHand1X = sh1X + 22 * facing;
+        const lieHand1Y = groundY - 4;
+        const lieHand2X = sh2X + 18 * facing;
+        const lieHand2Y = groundY - 2;
+
+        const hand1X = standHand1X + p * (lieHand1X - standHand1X);
+        const hand1Y = Math.min(groundY - 2, standHand1Y + p * (lieHand1Y - standHand1Y));
+        const hand2X = standHand2X + p * (lieHand2X - standHand2X);
+        const hand2Y = Math.min(groundY - 2, standHand2Y + p * (lieHand2Y - standHand2Y));
+
+        // Feet transition smoothly from standing stance to resting extended on ground
+        const standFoot1X = this.x + 12 * facing;
+        const standFoot1Y = groundY;
+        const standFoot2X = this.x - 8 * facing;
+        const standFoot2Y = groundY;
+
+        const lieFoot1X = lieWaistX + 26 * facing;
+        const lieFoot1Y = groundY - 2;
+        const lieFoot2X = lieWaistX + 22 * facing;
+        const lieFoot2Y = groundY - 4;
+
+        const foot1X = standFoot1X + p * (lieFoot1X - standFoot1X);
+        const foot1Y = (1 - p) * standFoot1Y + p * lieFoot1Y;
+        const foot2X = standFoot2X + p * (lieFoot2X - standFoot2X);
+        const foot2Y = (1 - p) * standFoot2Y + p * lieFoot2Y;
+
+        // --- DRAW INTACT FIGHTER ---
+        // Head
+        ctx.fillStyle = '#FFD700';
+        ctx.beginPath();
+        ctx.arc(headX, headY, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Eye
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(eyeX, eyeY, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Torso (Spine)
+        ctx.beginPath();
+        ctx.moveTo(neckX, neckY);
+        ctx.lineTo(waistX, waistY);
+        ctx.stroke();
+
+        // Arms (attached to shoulders)
+        ctx.beginPath();
+        ctx.moveTo(sh1X, sh1Y);
+        ctx.lineTo(hand1X, hand1Y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(sh2X, sh2Y);
+        ctx.lineTo(hand2X, hand2Y);
+        ctx.stroke();
+
+        // Legs (attached to waist)
+        ctx.beginPath();
+        ctx.moveTo(waistX, waistY);
+        ctx.lineTo(foot1X, foot1Y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(waistX, waistY);
+        ctx.lineTo(foot2X, foot2Y);
+        ctx.stroke();
+      }
+
       draw() {
         // If dead, only draw death particles
         if (this.isDead) {
           this.drawDeathParticles();
           return;
         }
-        
+
         ctx.save(); // Save canvas state
-        
+
         // Apply rotation for tumble
         if (this.currentMove === 'tumble') {
           ctx.translate(this.x, this.baseY + 30); // Rotate around center of body
           ctx.rotate(this.rotation);
           ctx.translate(-this.x, -(this.baseY + 30)); // Translate back
         }
-        
+
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 3;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        
+
         const waistX = this.x;
         const waistY = this.waistY + this.jumpOffset;
         let upperBodyX = this.x + (this.swayOffsetX || 0);
         let upperBodyY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset;
-        
-        // Adjust position for lieDown (3 stages: sitting -> partially lying -> fully down)
+
         if (this.currentMove === 'lieDown') {
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3); // Stage 1, 2, or 3
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - body angled back, head higher
-            upperBodyX = this.x + 10;
-            upperBodyY = this.baseY + 55 + 15 - (lieDownProgress / 0.33) * 10; // Gradually lower
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - body more horizontal
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33; // 0 to 1 within stage 2
-            upperBodyX = this.x + 10 + stage2Progress * 5; // Move forward
-            upperBodyY = this.baseY + 55 + 5 - stage2Progress * 5; // Lower to ground
-          } else {
-            // Stage 3: Fully down - body horizontal on ground
-            upperBodyX = this.x + 15;
-            upperBodyY = this.baseY + 55 + 25 - 5; // On ground level
-          }
-        }
-        
-        // Head
-        ctx.fillStyle = '#FFD700';
-        ctx.beginPath();
-        ctx.arc(upperBodyX, upperBodyY, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        
-        // Eye
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(upperBodyX + 3, upperBodyY, 2, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Body - 3 stages for lieDown, vertical otherwise
-        let actualWaistX = waistX;
-        let actualWaistY = waistY;
-        if (this.currentMove === 'lieDown') {
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - body angled back
-            const stage1Progress = lieDownProgress / 0.33; // 0 to 1 within stage 1
-            const angle = Math.PI / 4 - stage1Progress * (Math.PI / 4); // 45 degrees to 0 degrees
-            const bodyLength = 35;
-            actualWaistX = upperBodyX + Math.cos(angle) * bodyLength;
-            actualWaistY = upperBodyY + Math.sin(angle) * bodyLength;
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX + 12, upperBodyY);
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - body transitioning to horizontal
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33; // 0 to 1 within stage 2
-            actualWaistX = upperBodyX + 35 + stage2Progress * 10; // Gradually extend horizontally
-            actualWaistY = upperBodyY + (1 - stage2Progress) * 5; // Gradually lower to same level
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX + 12, upperBodyY);
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          } else {
-            // Stage 3: Fully down - body horizontal
-            actualWaistX = upperBodyX + 45;
-            actualWaistY = upperBodyY;
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX + 12, upperBodyY);
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          }
+          this.drawLieDown();
         } else {
+          // Head
+          ctx.fillStyle = '#FFD700';
+          ctx.beginPath();
+          ctx.arc(upperBodyX, upperBodyY, 12, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Eye
+          ctx.fillStyle = '#000000';
+          ctx.beginPath();
+          ctx.arc(upperBodyX + 3, upperBodyY, 2, 0, Math.PI * 2);
+          ctx.fill();
+
           // Body vertical normally
           ctx.beginPath();
           ctx.moveTo(upperBodyX, upperBodyY + 12);
           ctx.lineTo(waistX, waistY);
           ctx.stroke();
-        }
-        
-        // Draw karate move based on current move
-        this.drawKarateMove(upperBodyX, upperBodyY, waistX, waistY);
-        
-        // Legs - different behavior for different moves
-        if (this.currentMove === 'kick' || this.currentMove === 'spinKick') {
-          const moveFrame = this.moveTimer / this.moveDuration;
-          const kickIntensity = Math.sin(moveFrame * Math.PI);
-          
-          if (this.currentMove === 'spinKick') {
-            // Spin kick - leg extends outward and rotates
-            const spinAngle = moveFrame * Math.PI * 2;
-            const kickLength = 30 + kickIntensity * 20;
-            const kickX = waistX + Math.cos(spinAngle) * kickLength;
-            const kickY = waistY + Math.sin(spinAngle) * kickLength;
-            
-            // Supporting leg
+
+          // Draw karate move based on current move
+          this.drawKarateMove(upperBodyX, upperBodyY, waistX, waistY);
+
+          // Legs - different behavior for different moves
+          if (this.currentMove === 'kick' || this.currentMove === 'spinKick') {
+            const moveFrame = this.moveTimer / this.moveDuration;
+            const kickIntensity = Math.sin(moveFrame * Math.PI);
+
+            if (this.currentMove === 'spinKick') {
+              // Spin kick - leg extends outward and rotates
+              const spinAngle = moveFrame * Math.PI * 2;
+              const kickLength = 30 + kickIntensity * 20;
+              const kickX = waistX + Math.cos(spinAngle) * kickLength;
+              const kickY = waistY + Math.sin(spinAngle) * kickLength;
+
+              // Supporting leg
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX - 8, waistY + 25);
+              ctx.stroke();
+
+              // Spinning leg
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(kickX, kickY);
+              ctx.stroke();
+            } else {
+              // Regular kick
+              // Back leg (supporting leg)
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX - 8, waistY + 25);
+              ctx.stroke();
+
+              // Front leg kicks forward and up
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX + 20 + kickIntensity * 25, waistY + 15 - kickIntensity * 20);
+              ctx.stroke();
+            }
+          } else if (this.currentMove === 'jump') {
+            // Jump - legs tucked up
+            const moveFrame = this.moveTimer / this.moveDuration;
+            const tuckAmount = Math.sin(moveFrame * Math.PI) * 15;
+
+            // Front leg
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX - 8, waistY + 25);
+            ctx.lineTo(waistX + 8, waistY + 15 - tuckAmount);
             ctx.stroke();
-            
-            // Spinning leg
+
+            // Back leg
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(kickX, kickY);
+            ctx.lineTo(waistX - 6, waistY + 15 - tuckAmount);
+            ctx.stroke();
+          } else if (this.currentMove === 'tumble') {
+            // Tumble - legs extended during rotation
+            ctx.beginPath();
+            ctx.moveTo(waistX, waistY);
+            ctx.lineTo(waistX + 10, waistY + 20);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(waistX, waistY);
+            ctx.lineTo(waistX - 10, waistY + 20);
             ctx.stroke();
           } else {
-            // Regular kick
-            // Back leg (supporting leg)
+            // Normal legs - only animate when moving
+            const legOffset = this.isMoving ? Math.sin(this.frame * 2) * 8 : 0;
+
+            // Front leg
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX - 8, waistY + 25);
+            ctx.lineTo(waistX + 12 + legOffset, waistY + 25);
             ctx.stroke();
-            
-            // Front leg kicks forward and up
+
+            // Back leg
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX + 20 + kickIntensity * 25, waistY + 15 - kickIntensity * 20);
+            ctx.lineTo(waistX - 8 - legOffset, waistY + 25);
             ctx.stroke();
           }
-        } else if (this.currentMove === 'jump') {
-          // Jump - legs tucked up
-          const moveFrame = this.moveTimer / this.moveDuration;
-          const tuckAmount = Math.sin(moveFrame * Math.PI) * 15;
-          
-          // Front leg
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 8, waistY + 15 - tuckAmount);
-          ctx.stroke();
-          
-          // Back leg
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 6, waistY + 15 - tuckAmount);
-          ctx.stroke();
-        } else if (this.currentMove === 'tumble') {
-          // Tumble - legs extended during rotation
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 10, waistY + 20);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 10, waistY + 20);
-          ctx.stroke();
-        } else if (this.currentMove === 'lieDown') {
-          // Lie down - legs 3 stages
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // Prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-          
-          // Use the waist position calculated in body drawing
-          const lieDownWaistX = actualWaistX;
-          const lieDownWaistY = actualWaistY;
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - legs bent in front
-            const stage1Progress = lieDownProgress / 0.33;
-            // Left leg - bent forward
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 15 - stage1Progress * 10, lieDownWaistY + 20 - stage1Progress * 15);
-            ctx.stroke();
-            // Right leg - bent forward
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 18 - stage1Progress * 12, lieDownWaistY + 18 - stage1Progress * 12);
-            ctx.stroke();
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - legs extending back
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33;
-            // Left leg - extending back
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 5 + stage2Progress * 15, lieDownWaistY + 5 + stage2Progress * 0);
-            ctx.stroke();
-            // Right leg - extending back
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 6 + stage2Progress * 12, lieDownWaistY + 8 + stage2Progress * 0);
-            ctx.stroke();
-          } else {
-            // Stage 3: Fully down - legs extended horizontally behind
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 20, lieDownWaistY + 5);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX + 18, lieDownWaistY + 8);
-            ctx.stroke();
-          }
-        } else {
-          // Normal legs - only animate when moving
-          const legOffset = this.isMoving ? Math.sin(this.frame * 2) * 8 : 0;
-          
-          // Front leg
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 12 + legOffset, waistY + 25);
-          ctx.stroke();
-          
-          // Back leg
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 8 - legOffset, waistY + 25);
-          ctx.stroke();
         }
-        
+
         ctx.restore(); // Restore canvas state
-        
+
         // Draw sound effect text above character's head (after restore so not affected by rotation)
         if (this.soundText) {
           // Calculate fade: persist for 1 second, then fade out
@@ -609,45 +659,45 @@
             const fadeProgress = (this.soundTimer - this.soundDuration) / this.soundFadeDuration;
             fadeAlpha = 1 - fadeProgress; // Fade out after persistence
           }
-          
+
           // Calculate text position relative to character (accounting for jump offset)
           const textX = this.x + (this.swayOffsetX || 0);
           const textY = (this.baseY + (this.swayOffsetY || 0) + this.jumpOffset) - 30;
-          
+
           ctx.save();
           // Black typewriter font (monospace)
           ctx.font = 'bold 18px "Courier New", "Courier", monospace';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          
+
           // Draw black text (typewriter style)
           ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;
           ctx.fillText(this.soundText, textX, textY);
-          
+
           ctx.restore();
         }
-        
+
         // Draw health bar
         this.drawHealthBar();
       }
-      
+
       drawHealthBar() {
         // Draw health bar in top left corner (lowered by 20 pixels)
         const barWidth = 120;
         const barHeight = 20;
         const barX = 10;
         const barY = 30; // Lowered by 20 pixels (was 10)
-        
+
         // Label (separated by 5 pixels from bar)
         ctx.fillStyle = '#000000';
         ctx.font = 'bold 14px Arial';
         ctx.textAlign = 'left';
         ctx.fillText('Fighter', barX, barY - 7); // Separated by 5 pixels (was -2, now -7)
-        
+
         // Background (empty/red)
         ctx.fillStyle = '#FF0000';
         ctx.fillRect(barX, barY, barWidth, barHeight);
-        
+
         // Health bar color: Yellow until < 20%, then Red, Empty at 0
         const healthPercent = this.health / this.maxHealth;
         let healthColor;
@@ -661,21 +711,21 @@
           // Empty (0%)
           healthColor = '#000000'; // Black/Empty
         }
-        
+
         ctx.fillStyle = healthColor;
         ctx.fillRect(barX, barY, barWidth * healthPercent, barHeight);
-        
+
         // Border
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 2;
         ctx.strokeRect(barX, barY, barWidth, barHeight);
-        
+
         // Health text below the bar
         ctx.fillStyle = '#000000';
         ctx.font = '12px Arial';
         ctx.fillText(`${Math.max(0, Math.floor(this.health))}/${this.maxHealth}`, barX, barY + barHeight + 15);
       }
-      
+
       createYellowParticles() {
         // Create yellow pixels when hit by lightning
         const particleCount = 5 + Math.floor(Math.random() * 10);
@@ -693,7 +743,7 @@
           });
         }
       }
-      
+
       updateYellowParticles() {
         const groundLevel = this.baseY + 55 + 25;
         for (let i = this.yellowParticles.length - 1; i >= 0; i--) {
@@ -703,7 +753,7 @@
             p.y += p.vy;
             p.vy += 0.3; // Gravity
             p.vx *= 0.95;
-            
+
             if (p.y >= groundLevel - p.size) {
               p.y = groundLevel - p.size;
               p.vy = 0;
@@ -717,7 +767,7 @@
           }
         }
       }
-      
+
       drawYellowParticles() {
         ctx.imageSmoothingEnabled = false;
         for (const p of this.yellowParticles) {
@@ -725,7 +775,7 @@
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       throwKnife(enemy) {
         const startX = this.x;
         const startY = this.baseY - 30; // Throw from head level
@@ -743,7 +793,7 @@
           enemy: enemy // Store enemy reference for collision
         });
       }
-      
+
       updateKnives() {
         for (let i = this.knives.length - 1; i >= 0; i--) {
           const knife = this.knives[i];
@@ -751,32 +801,32 @@
           knife.y += knife.vy;
           knife.vy += 0.2; // Gravity
           knife.life--;
-          
+
           // Check collision with enemy (stickman)
           if (knife.enemy && !knife.enemy.isDead) {
             const enemyHeadX = knife.enemy.x + (knife.enemy.swayOffsetX || 0);
             const enemyHeadY = knife.enemy.baseY + (knife.enemy.swayOffsetY || 0) + knife.enemy.jumpOffset - 30;
             const enemyBodyX = knife.enemy.x + (knife.enemy.swayOffsetX || 0);
             const enemyBodyY = knife.enemy.baseY + (knife.enemy.swayOffsetY || 0) + knife.enemy.jumpOffset;
-            
+
             // Check collision with head (12px radius)
             const distanceToHead = Math.sqrt(Math.pow(knife.x - enemyHeadX, 2) + Math.pow(knife.y - enemyHeadY, 2));
             // Check collision with body (roughly 30px tall area)
             const distanceToBody = Math.sqrt(Math.pow(knife.x - enemyBodyX, 2) + Math.pow(knife.y - enemyBodyY, 2));
-            
+
             if (distanceToHead < 20 || distanceToBody < 25) {
               knife.enemy.health = Math.max(0, knife.enemy.health - 1); // Same damage as cannonball
               this.knives.splice(i, 1);
               continue;
             }
           }
-          
+
           if (knife.life <= 0 || knife.y > canvas.height || knife.x < 0 || knife.x > canvas.width) {
             this.knives.splice(i, 1);
           }
         }
       }
-      
+
       drawKnives() {
         ctx.save();
         for (const knife of this.knives) {
@@ -785,7 +835,7 @@
           ctx.fillStyle = '#C0C0C0'; // Silver/gray color for knife
           ctx.strokeStyle = '#000000';
           ctx.lineWidth = 2;
-          
+
           // Draw knife shape (bigger triangle/arrow)
           ctx.beginPath();
           ctx.moveTo(0, 0);
@@ -794,25 +844,25 @@
           ctx.closePath();
           ctx.fill();
           ctx.stroke();
-          
+
           // Draw handle (bigger)
           ctx.fillStyle = '#8B4513'; // Brown handle
           ctx.fillRect(-15, -3, 6, 6);
         }
         ctx.restore();
       }
-      
+
       shootRadioactiveVomit(enemy) {
         // Start from fighter's head position
         const startX = this.x + (this.swayOffsetX || 0);
         const startY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset - 30; // Head level
-        
+
         // Target enemy's head
         const targetX = enemy.x + (enemy.swayOffsetX || 0);
         const targetY = enemy.baseY + (enemy.swayOffsetY || 0) + enemy.jumpOffset - 30;
         const angle = Math.atan2(targetY - startY, targetX - startX);
         const speed = 6; // Same speed as knife
-        
+
         // Create multiple pixel projectiles (identical physics to knife)
         for (let i = 0; i < 5; i++) {
           const spread = (Math.random() - 0.5) * 0.3; // Small spread
@@ -829,7 +879,7 @@
           });
         }
       }
-      
+
       updateRadioactiveVomit() {
         const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
         for (let i = this.radioactiveVomit.length - 1; i >= 0; i--) {
@@ -838,7 +888,7 @@
           vomit.y += vomit.vy;
           vomit.vy += 0.2; // Gravity (identical to knife)
           vomit.life--;
-          
+
           // Check collision with enemy (identical to knife collision detection)
           let hitEnemy = false;
           if (vomit.enemy && !vomit.enemy.isDead) {
@@ -846,12 +896,12 @@
             const enemyHeadY = vomit.enemy.baseY + (vomit.enemy.swayOffsetY || 0) + vomit.enemy.jumpOffset - 30;
             const enemyBodyX = vomit.enemy.x + (vomit.enemy.swayOffsetX || 0);
             const enemyBodyY = vomit.enemy.baseY + (vomit.enemy.swayOffsetY || 0) + vomit.enemy.jumpOffset;
-            
+
             // Check collision with head (12px radius)
             const distanceToHead = Math.sqrt(Math.pow(vomit.x - enemyHeadX, 2) + Math.pow(vomit.y - enemyHeadY, 2));
             // Check collision with body (roughly 30px tall area)
             const distanceToBody = Math.sqrt(Math.pow(vomit.x - enemyBodyX, 2) + Math.pow(vomit.y - enemyBodyY, 2));
-            
+
             if (distanceToHead < 20 || distanceToBody < 25) {
               vomit.enemy.health = Math.max(0, vomit.enemy.health - 1); // Same damage as knife
               hitEnemy = true;
@@ -861,7 +911,7 @@
               continue;
             }
           }
-          
+
           // Check if hit ground
           if (!hitEnemy && vomit.y >= groundLevel - vomit.size) {
             // Create persistent particles on ground
@@ -869,7 +919,7 @@
             this.radioactiveVomit.splice(i, 1);
             continue;
           }
-          
+
           // Remove if out of bounds or expired (identical to knife)
           if (vomit.life <= 0 || vomit.y > canvas.height || vomit.x < 0 || vomit.x > canvas.width) {
             // Create particles even if expired (landed somewhere)
@@ -880,7 +930,7 @@
           }
         }
       }
-      
+
       createVomitHitParticles(x, y) {
         // Create persistent particles similar to death explosion
         const particleCount = 10 + Math.floor(Math.random() * 15);
@@ -899,7 +949,7 @@
           });
         }
       }
-      
+
       updateVomitParticles() {
         const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
         for (let i = this.vomitParticles.length - 1; i >= 0; i--) {
@@ -909,7 +959,7 @@
             p.y += p.vy;
             p.vy += 0.1; // Slow gravity for slow motion (like death particles)
             p.vx *= 0.98;
-            
+
             if (p.y >= groundLevel - p.size) {
               p.y = groundLevel - p.size;
               p.vy = 0;
@@ -923,7 +973,7 @@
           }
         }
       }
-      
+
       drawVomitParticles() {
         ctx.imageSmoothingEnabled = false;
         for (const p of this.vomitParticles) {
@@ -931,7 +981,7 @@
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       drawRadioactiveVomit() {
         ctx.imageSmoothingEnabled = false;
         for (const vomit of this.radioactiveVomit) {
@@ -944,13 +994,13 @@
           ctx.shadowBlur = 0;
         }
       }
-      
+
       explode() {
         // Create death explosion particles in slow motion
         if (this.isDead) return; // Already exploded
         this.isDead = true;
         this.deathTimer = 0;
-        
+
         // Create many particles for explosion
         const particleCount = 100;
         for (let i = 0; i < particleCount; i++) {
@@ -968,7 +1018,7 @@
           });
         }
       }
-      
+
       updateDeathParticles() {
         const groundLevel = this.baseY + 55 + 25;
         for (let i = this.deathParticles.length - 1; i >= 0; i--) {
@@ -978,7 +1028,7 @@
             p.y += p.vy;
             p.vy += 0.1; // Slow gravity for slow motion
             p.vx *= 0.98;
-            
+
             if (p.y >= groundLevel - p.size) {
               p.y = groundLevel - p.size;
               p.vy = 0;
@@ -993,7 +1043,7 @@
         }
         this.deathTimer++;
       }
-      
+
       drawDeathParticles() {
         ctx.imageSmoothingEnabled = false;
         for (const p of this.deathParticles) {
@@ -1001,12 +1051,12 @@
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       drawKarateMove(upperBodyX, upperBodyY, waistX, waistY) {
         const moveFrame = this.moveTimer / this.moveDuration; // 0 to 1
         const intensity = Math.sin(moveFrame * Math.PI); // Smooth animation curve
-        
-        switch(this.currentMove) {
+
+        switch (this.currentMove) {
           case 'punch':
             // Left arm punches forward
             ctx.beginPath();
@@ -1019,7 +1069,7 @@
             ctx.lineTo(upperBodyX + 10, upperBodyY + 15);
             ctx.stroke();
             break;
-            
+
           case 'kick':
             // Arms up for balance
             ctx.beginPath();
@@ -1032,7 +1082,7 @@
             ctx.stroke();
             // Leg kick is drawn separately in main draw function
             break;
-            
+
           case 'spinKick':
             // Arms spread for balance during spin
             const spinFrame = this.moveTimer / this.moveDuration;
@@ -1042,7 +1092,7 @@
             const leftArmY = upperBodyY + 15 + Math.sin(spinAngle + Math.PI / 2) * armLength;
             const rightArmX = upperBodyX + Math.cos(spinAngle - Math.PI / 2) * armLength;
             const rightArmY = upperBodyY + 20 + Math.sin(spinAngle - Math.PI / 2) * armLength;
-            
+
             ctx.beginPath();
             ctx.moveTo(upperBodyX, upperBodyY + 20);
             ctx.lineTo(leftArmX, leftArmY);
@@ -1053,7 +1103,7 @@
             ctx.stroke();
             // Spin kick leg is drawn separately in main draw function
             break;
-            
+
           case 'jump':
             // Arms up during jump
             ctx.beginPath();
@@ -1066,7 +1116,7 @@
             ctx.stroke();
             // Jump legs are drawn separately in main draw function
             break;
-            
+
           case 'tumble':
             // Arms extended during tumble
             ctx.beginPath();
@@ -1079,52 +1129,11 @@
             ctx.stroke();
             // Tumble legs are drawn separately in main draw function
             break;
-            
+
           case 'lieDown':
-            // Arms attached to body - 3 stages
-            const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-            const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-            
-            if (stage === 1) {
-              // Stage 1: Sitting - arms supporting body (behind/at sides)
-              const stage1Progress = lieDownProgress / 0.33;
-              // Left arm - supporting behind
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 15);
-              ctx.lineTo(upperBodyX + 8 - stage1Progress * 5, upperBodyY + 20 + stage1Progress * 3);
-              ctx.stroke();
-              // Right arm - supporting behind
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 18);
-              ctx.lineTo(upperBodyX + 6 - stage1Progress * 5, upperBodyY + 22 + stage1Progress * 3);
-              ctx.stroke();
-            } else if (stage === 2) {
-              // Stage 2: Partially lying - arms transitioning to sides
-              const stage2Progress = (lieDownProgress - 0.33) / 0.33;
-              // Left arm - transitioning
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 15);
-              ctx.lineTo(upperBodyX + 3 - stage2Progress * 8, upperBodyY + 23 + (1 - stage2Progress) * 2);
-              ctx.stroke();
-              // Right arm - transitioning
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 18);
-              ctx.lineTo(upperBodyX + 1 - stage2Progress * 8, upperBodyY + 25 + (1 - stage2Progress) * 3);
-              ctx.stroke();
-            } else {
-              // Stage 3: Fully down - arms at sides
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 15);
-              ctx.lineTo(upperBodyX - 5, upperBodyY + 25);
-              ctx.stroke();
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX + 12, upperBodyY + 18);
-              ctx.lineTo(upperBodyX - 2, upperBodyY + 28);
-              ctx.stroke();
-            }
-            // Lie down legs are drawn separately in main draw function
+            // Lie down arms are drawn directly in drawLieDown
             break;
-            
+
           case 'block':
             // Both arms up blocking
             ctx.beginPath();
@@ -1136,7 +1145,7 @@
             ctx.lineTo(upperBodyX + 15 + intensity * 5, upperBodyY + 5);
             ctx.stroke();
             break;
-            
+
           case 'uppercut':
             // Right arm uppercut
             ctx.beginPath();
@@ -1149,24 +1158,24 @@
             ctx.lineTo(upperBodyX + 12, upperBodyY + 8);
             ctx.stroke();
             break;
-            
+
           case 'trident':
             // Trident attack - hold trident forward (looks like "------E")
             const tridentProgress = this.moveTimer / this.moveDuration;
             const tridentX = upperBodyX + 20 + tridentProgress * 30; // Extend forward
             const tridentY = upperBodyY + 15;
-            
+
             // Draw arm holding trident
             ctx.beginPath();
             ctx.moveTo(upperBodyX, upperBodyY + 22);
             ctx.lineTo(tridentX - 15, tridentY);
             ctx.stroke();
-            
+
             // Draw gold trident
             ctx.strokeStyle = '#FFD700'; // Gold color
             ctx.fillStyle = '#FFD700';
             ctx.lineWidth = 3;
-            
+
             // Trident shaft (horizontal line going right)
             const shaftLength = 60;
             const shaftStartX = tridentX - 15;
@@ -1175,7 +1184,7 @@
             ctx.moveTo(shaftStartX, tridentY);
             ctx.lineTo(shaftEndX, tridentY);
             ctx.stroke();
-            
+
             // Trident prongs (3 horizontal lines extending forward like "E")
             // The E has three horizontal lines, so prongs extend forward (to the right)
             const prongLength = 20;
@@ -1195,18 +1204,18 @@
             ctx.moveTo(shaftEndX, tridentY + prongSpacing);
             ctx.lineTo(shaftEndX + prongLength, tridentY + prongSpacing);
             ctx.stroke();
-            
+
             // Reset stroke style
             ctx.strokeStyle = '#000000';
             ctx.lineWidth = 1;
-            
+
             // Other arm guards
             ctx.beginPath();
             ctx.moveTo(upperBodyX, upperBodyY + 25);
             ctx.lineTo(upperBodyX + 12, upperBodyY + 10);
             ctx.stroke();
             break;
-            
+
           case 'ready':
           default:
             // Ready stance
@@ -1221,30 +1230,30 @@
             break;
         }
       }
-      
+
       // Trigger trident water attack
       triggerTridentAttack(enemy) {
         if (this.currentMove !== 'ready') return; // Don't interrupt current move
-        
+
         this.currentMove = 'trident';
         this.moveTimer = 0;
         this.moveDuration = 60; // 1 second at 60fps
-        
+
         // Trigger sound effect
         this.triggerSoundEffect('trident');
       }
-      
+
       // Create water particles from trident
       createWaterParticles(enemy) {
         if (this.currentMove !== 'trident') return;
-        
+
         const tridentProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0;
         const upperBodyX = this.x + (this.swayOffsetX || 0);
         const upperBodyY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset;
         // Trident tip position: tridentX - 15 + 60 (shaft length) + 20 (prong length) = upperBodyX + 20 + progress*30 - 15 + 60 + 20
         const tridentTipX = upperBodyX + 20 + tridentProgress * 30 - 15 + 60 + 20;
         const tridentTipY = upperBodyY + 15;
-        
+
         // Create water particles continuously during attack (only for first half of animation)
         if (tridentProgress > 0.1 && tridentProgress < 0.5) {
           // Limit total water particles to prevent accumulation
@@ -1256,7 +1265,7 @@
           for (let i = 0; i < 3; i++) {
             const angle = Math.atan2(enemy.baseY - tridentTipY, enemy.x - tridentTipX) + (Math.random() - 0.5) * 0.5;
             const speed = 8 + Math.random() * 4;
-            
+
             this.waterParticles.push({
               x: tridentTipX,
               y: tridentTipY,
@@ -1269,30 +1278,30 @@
           }
         }
       }
-      
+
       // Update water particles (using timer-based system like other particles)
       updateWaterParticles(enemy) {
         const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
-        
+
         for (let i = this.waterParticles.length - 1; i >= 0; i--) {
           const particle = this.waterParticles[i];
-          
+
           // Decrement life timer first (same as other particles)
           particle.life--;
-          
+
           // Update position
           particle.x += particle.vx;
           particle.y += particle.vy;
           particle.vy += 0.3; // Gravity
           particle.vx *= 0.98; // Slow down
-          
+
           // Stop particles when they hit ground at character's feet level (but don't remove yet)
           if (particle.y >= groundLevel - particle.size) {
             particle.y = groundLevel - particle.size;
             particle.vy = 0;
             particle.vx *= 0.95; // Slow down more on ground
           }
-          
+
           // Check collision with enemy
           if (!enemy.isDead && !enemy.isDrowning) {
             const distance = Math.sqrt(Math.pow(particle.x - enemy.x, 2) + Math.pow(particle.y - enemy.baseY, 2));
@@ -1303,17 +1312,17 @@
               continue;
             }
           }
-          
+
           // Remove only when timer expires or out of bounds (timer-based removal like other particles)
-          if (particle.life <= 0 || 
-              particle.y > canvas.height || 
-              particle.x < -100 || 
-              particle.x > canvas.width + 100) {
+          if (particle.life <= 0 ||
+            particle.y > canvas.height ||
+            particle.x < -100 ||
+            particle.x > canvas.width + 100) {
             this.waterParticles.splice(i, 1);
           }
         }
       }
-      
+
       // Draw water particles
       drawWaterParticles() {
         ctx.save();
@@ -1331,7 +1340,7 @@
         ctx.restore();
       }
     }
-    
+
     // Enemy Class - Neon green pixelized square
     class Enemy {
       constructor(fighter) {
@@ -1381,38 +1390,38 @@
         this.drowningDuration = 240; // 4 seconds
         this.fireBreath = []; // Fire breath particles (blue and gold)
       }
-      
+
       // Start drowning animation
       startDrowning() {
         if (this.isDrowning || this.isDead) return; // Already drowning or dead
-        
+
         this.isDrowning = true;
         this.drowningTimer = 0;
         this.currentMove = 'drowning'; // Set move to drowning
         this.moveTimer = 0;
         this.moveDuration = this.drowningDuration;
-        
+
         // Lose 50% health
         this.health = Math.max(0, this.health - this.maxHealth * 0.5);
       }
-      
+
       update() {
         // Check for death
         if (this.health <= 0 && !this.isDead) {
           this.explode();
         }
-        
+
         // If dead, only update death particles
         if (this.isDead) {
           this.updateDeathParticles();
           return;
         }
-        
+
         // Update drowning state
         if (this.isDrowning) {
           this.drowningTimer++;
           this.moveTimer = this.drowningTimer;
-          
+
           if (this.drowningTimer >= this.drowningDuration) {
             // End drowning
             this.isDrowning = false;
@@ -1426,9 +1435,9 @@
           this.updateLightningBolts();
           return;
         }
-        
+
         this.frame++;
-        
+
         // Update move timer
         if (this.currentMove !== 'ready') {
           this.moveTimer++;
@@ -1437,12 +1446,12 @@
             this.moveTimer = 0;
           }
         }
-        
+
         // Trigger sound effect at the start of moves (same as fighter)
         if (this.moveTimer === 1 && this.currentMove !== 'ready') {
           this.triggerSoundEffect(this.currentMove);
         }
-        
+
         // Update sound effect timer
         if (this.soundText) {
           this.soundTimer++;
@@ -1451,7 +1460,7 @@
             this.soundTimer = 0;
           }
         }
-        
+
         // Update jump state
         if (this.currentMove === 'jump') {
           const moveFrame = this.moveTimer / this.moveDuration;
@@ -1459,7 +1468,7 @@
         } else {
           this.jumpOffset = 0;
         }
-        
+
         // Update rotation for tumble
         if (this.currentMove === 'tumble') {
           const moveFrame = this.moveTimer / this.moveDuration;
@@ -1467,12 +1476,12 @@
         } else {
           this.rotation = 0;
         }
-        
+
         // Update sway for ready stance
         if (this.currentMove === 'ready') {
           this.swayOffsetX = Math.sin(this.frame * 0.1) * 1.5;
           this.swayOffsetY = Math.sin(this.frame * 0.15) * 2;
-          
+
           // Move based on keyboard input (arrow keys)
           this.isMoving = false;
           if (this.keys['ArrowLeft']) {
@@ -1489,55 +1498,55 @@
           this.swayOffsetX = 0;
           this.swayOffsetY = 0;
         }
-        
+
         // Check if fighter is punching and hitting
         const punchMoves = ['punch', 'uppercut'];
         const isPunching = punchMoves.includes(this.fighter.currentMove);
         const moveFrame = this.fighter.moveTimer / this.fighter.moveDuration;
         const punchIntensity = isPunching ? Math.sin(moveFrame * Math.PI) : 0;
-        
+
         // Calculate punch reach (punch extends forward from fighter)
         const punchReach = isPunching ? 15 + punchIntensity * 25 : 0;
         const enemyRightEdge = this.x; // Enemy is left-facing, so right edge is at x
         const punchEnd = this.fighter.x + punchReach;
-        
+
         // Check if punch connects (fighter punches right, enemy is to the right)
         const isHitNow = isPunching && punchIntensity > 0.4 && punchEnd >= enemyRightEdge - 15 && punchEnd <= enemyRightEdge + 30;
-        
+
         // Create particles when hit (only if not already in hit state)
         if (isHitNow && this.hitTimer === 0) {
           this.hitTimer = this.hitDuration;
           this.hitOffset = -8; // Push back slightly when hit (negative for left-facing)
           this.health = Math.max(0, this.health - 5); // Reduce health
         }
-        
+
         // Check if enemy is doing sword attack and hitting fighter
         const isSwordAttacking = this.currentMove === 'sword';
         const swordMoveFrame = this.moveTimer / this.moveDuration;
         const swordIntensity = isSwordAttacking ? Math.sin(swordMoveFrame * Math.PI) : 0;
-        
+
         // Calculate sword reach (sword extends left from enemy, longer than punch)
         const swordReach = isSwordAttacking ? 20 + swordIntensity * 50 : 0; // Longer reach than punch
         const fighterLeftEdge = this.fighter.x; // Fighter is right-facing, so left edge is at x
         const swordEnd = this.x - swordReach; // Enemy sword swings left (negative direction)
-        
+
         // Check if sword connects (enemy swings left, fighter is to the left)
         const swordHitNow = isSwordAttacking && swordIntensity > 0.4 && swordEnd <= fighterLeftEdge + 30 && swordEnd >= fighterLeftEdge - 15;
-        
+
         // Create particles when hit (only if not already in hit state)
         if (swordHitNow && this.fighter.hitTimer === 0) {
           this.fighter.hitTimer = 10;
           this.fighter.health = Math.max(0, this.fighter.health - 5); // Same damage as punches
-          
+
           // Increment sword attack counter on hit
           this.swordAttackCount++;
-          
+
           // Every 10th sword attack that hits stuns the fighter
           if (this.swordAttackCount % 10 === 0) {
             this.fighter.stunnedTimer = this.fighter.stunDuration; // Stun for 3 seconds
           }
         }
-        
+
         // Update hit effect
         if (this.hitTimer > 0) {
           this.hitTimer--;
@@ -1545,31 +1554,31 @@
         } else {
           this.hitOffset = 0;
         }
-        
+
         // Update lava
         this.updateLava();
-        
+
         // Update persistent lava particles
         this.updateLavaParticles();
-        
+
         // Update lightning bolts
         this.updateLightningBolts();
-        
+
         // Update fire breath
         this.updateFireBreath(this.fighter);
       }
-      
+
       shootLava() {
         // Start from enemy's head position
         const startX = this.x + (this.swayOffsetX || 0);
         const startY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset - 30; // Head level
-        
+
         // Target fighter's head
         const targetX = this.fighter.x + (this.fighter.swayOffsetX || 0);
         const targetY = this.fighter.baseY + (this.fighter.swayOffsetY || 0) + this.fighter.jumpOffset - 30;
         const angle = Math.atan2(targetY - startY, targetX - startX);
         const speed = 6; // Same speed as vomit/knife
-        
+
         // Create multiple pixel projectiles (identical physics to vomit)
         for (let i = 0; i < 5; i++) {
           const spread = (Math.random() - 0.5) * 0.3; // Small spread
@@ -1586,7 +1595,7 @@
           });
         }
       }
-      
+
       updateLava() {
         const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
         for (let i = this.lava.length - 1; i >= 0; i--) {
@@ -1595,7 +1604,7 @@
           lava.y += lava.vy;
           lava.vy += 0.2; // Gravity (identical to vomit/knife)
           lava.life--;
-          
+
           // Check collision with fighter (identical to vomit collision detection)
           let hitFighter = false;
           if (lava.fighter && !lava.fighter.isDead) {
@@ -1603,12 +1612,12 @@
             const fighterHeadY = lava.fighter.baseY + (lava.fighter.swayOffsetY || 0) + lava.fighter.jumpOffset - 30;
             const fighterBodyX = lava.fighter.x + (lava.fighter.swayOffsetX || 0);
             const fighterBodyY = lava.fighter.baseY + (lava.fighter.swayOffsetY || 0) + lava.fighter.jumpOffset;
-            
+
             // Check collision with head (12px radius)
             const distanceToHead = Math.sqrt(Math.pow(lava.x - fighterHeadX, 2) + Math.pow(lava.y - fighterHeadY, 2));
             // Check collision with body (roughly 30px tall area)
             const distanceToBody = Math.sqrt(Math.pow(lava.x - fighterBodyX, 2) + Math.pow(lava.y - fighterBodyY, 2));
-            
+
             if (distanceToHead < 20 || distanceToBody < 25) {
               lava.fighter.health = Math.max(0, lava.fighter.health - 1); // Same damage as vomit/knife
               hitFighter = true;
@@ -1618,7 +1627,7 @@
               continue;
             }
           }
-          
+
           // Check if hit ground
           if (!hitFighter && lava.y >= groundLevel - lava.size) {
             // Create persistent particles on ground
@@ -1626,7 +1635,7 @@
             this.lava.splice(i, 1);
             continue;
           }
-          
+
           // Remove if out of bounds or expired (identical to vomit/knife)
           if (lava.life <= 0 || lava.y > canvas.height || lava.x < 0 || lava.x > canvas.width) {
             // Create particles even if expired (landed somewhere)
@@ -1637,7 +1646,7 @@
           }
         }
       }
-      
+
       createLavaHitParticles(x, y) {
         // Create persistent particles similar to death explosion
         const particleCount = 10 + Math.floor(Math.random() * 15);
@@ -1656,7 +1665,7 @@
           });
         }
       }
-      
+
       updateLavaParticles() {
         const groundLevel = this.baseY + 55 + 25; // Same level as character's feet
         for (let i = this.lavaParticles.length - 1; i >= 0; i--) {
@@ -1666,7 +1675,7 @@
             p.y += p.vy;
             p.vy += 0.1; // Slow gravity for slow motion (like death particles)
             p.vx *= 0.98;
-            
+
             if (p.y >= groundLevel - p.size) {
               p.y = groundLevel - p.size;
               p.vy = 0;
@@ -1680,7 +1689,7 @@
           }
         }
       }
-      
+
       drawLavaParticles() {
         ctx.imageSmoothingEnabled = false;
         for (const p of this.lavaParticles) {
@@ -1688,7 +1697,7 @@
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       drawLava() {
         ctx.imageSmoothingEnabled = false;
         for (const lava of this.lava) {
@@ -1701,26 +1710,26 @@
           ctx.shadowBlur = 0;
         }
       }
-      
+
       createParticles() {
         // Calculate enemy center position (absolute position)
         const x = this.x + this.size / 2;
         const y = this.y + this.offsetY;
-        
+
         // Create 1-10 particles
         const particleCount = 1 + Math.floor(Math.random() * 10);
         this.totalParticlesCreated += particleCount;
-        
+
         // Remove 1 pixel for every 10 particles
         const pixelsToRemove = Math.floor(this.totalParticlesCreated / 10);
         const currentRemovedCount = this.removedPixels.length;
-        
+
         // Add new removed pixels if needed
         if (pixelsToRemove > currentRemovedCount) {
           const pixelsWide = Math.floor(this.baseSize / this.pixelSize);
           const pixelsHigh = Math.floor(this.baseSize / this.pixelSize);
           const pixelsToAdd = pixelsToRemove - currentRemovedCount;
-          
+
           // Add all missing pixels
           for (let i = 0; i < pixelsToAdd; i++) {
             let px, py;
@@ -1730,14 +1739,14 @@
               py = Math.floor(Math.random() * pixelsHigh);
               attempts++;
             } while (this.removedPixels.some(p => p.px === px && p.py === py) && attempts < 500);
-            
+
             // Only add if we found a unique pixel
             if (attempts < 500 && !this.removedPixels.some(p => p.px === px && p.py === py)) {
               this.removedPixels.push({ px, py });
             }
           }
         }
-        
+
         for (let i = 0; i < particleCount; i++) {
           const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.8;
           const speed = 2 + Math.random() * 3;
@@ -1751,7 +1760,7 @@
           });
         }
       }
-      
+
       updateParticles() {
         // Particles are persistent - they fall and stay on ground
         for (const p of this.particles) {
@@ -1760,10 +1769,10 @@
             p.x += p.vx;
             p.y += p.vy;
             p.vy += 0.3; // Gravity
-            
+
             // Slow down horizontal movement
             p.vx *= 0.95;
-            
+
             // Check if particle hits ground
             if (p.y >= this.groundLevel - p.size) {
               p.y = this.groundLevel - p.size;
@@ -1775,245 +1784,275 @@
           // Once on ground, particles stay there permanently
         }
       }
-      
+
+      // Smooth, intact lieDown animation with anatomical continuity for enemy (mirrored)
+      drawLieDown() {
+        const progress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0;
+        const groundY = this.baseY + 55 + 25; // Character ground level (baseY + 80)
+        const facing = -1; // Enemy faces left (-X)
+        const actualX = this.x + (this.hitOffset || 0);
+
+        // Continuous easing curve:
+        // 0.00 to 0.28: smooth transition down to ground
+        // 0.28 to 0.72: lying intact on ground (holding pose)
+        // 0.72 to 1.00: smooth transition back up to ready stance
+        let p = 0;
+        if (progress < 0.28) {
+          const u = progress / 0.28;
+          p = u * u * (3 - 2 * u); // Smoothstep down
+        } else if (progress <= 0.72) {
+          p = 1.0; // Rest flat on ground
+        } else {
+          const u = (progress - 0.72) / 0.28;
+          p = 1.0 - u * u * (3 - 2 * u); // Smoothstep back up
+        }
+
+        // Subtle breathing motion while resting on ground
+        const breath = (p >= 0.99) ? Math.sin(this.frame * 0.2) * 0.8 : 0;
+
+        // Waist drops smoothly to ground and shifts slightly back
+        const standWaistX = actualX;
+        const standWaistY = this.waistY + this.jumpOffset;
+        const lieWaistX = actualX - 5 * facing;
+        const lieWaistY = groundY - 8 + breath;
+
+        const waistX = standWaistX + p * (lieWaistX - standWaistX);
+        const waistY = standWaistY + p * (lieWaistY - standWaistY);
+
+        // Torso angle: 0 (vertical) to PI/2 (horizontal flat on back)
+        const angle = p * (Math.PI / 2);
+        const torsoLen = 43; // Strict conservation of torso spine length
+
+        // Neck rigidly attached to waist
+        const neckX = waistX - Math.sin(angle) * torsoLen * facing;
+        const neckY = waistY - Math.cos(angle) * torsoLen;
+
+        // Head center strictly 12px past neck along spine, resting on ground surface
+        const headDist = 12;
+        const headX = neckX - Math.sin(angle) * headDist * facing;
+        const headY = neckY - Math.cos(angle) * headDist - p * 4;
+
+        // Eye naturally rotates with head
+        const eyeX = headX + (Math.cos(angle) * 3 - Math.sin(angle) * 1) * facing;
+        const eyeY = headY + (-Math.sin(angle) * 3);
+
+        // Shoulders rigidly located along the torso spine
+        const sh1X = neckX + Math.sin(angle) * 8 * facing;
+        const sh1Y = neckY + Math.cos(angle) * 8;
+        const sh2X = neckX + Math.sin(angle) * 14 * facing;
+        const sh2Y = neckY + Math.cos(angle) * 14;
+
+        // Hands transition smoothly from ready guard to relaxed beside torso
+        const standHand1X = actualX - 12;
+        const standHand1Y = this.baseY + 8;
+        const standHand2X = actualX - 10;
+        const standHand2Y = this.baseY + 12;
+
+        const lieHand1X = sh1X + 22 * facing;
+        const lieHand1Y = groundY - 4;
+        const lieHand2X = sh2X + 18 * facing;
+        const lieHand2Y = groundY - 2;
+
+        const hand1X = standHand1X + p * (lieHand1X - standHand1X);
+        const hand1Y = Math.min(groundY - 2, standHand1Y + p * (lieHand1Y - standHand1Y));
+        const hand2X = standHand2X + p * (lieHand2X - standHand2X);
+        const hand2Y = Math.min(groundY - 2, standHand2Y + p * (lieHand2Y - standHand2Y));
+
+        // Feet transition smoothly from standing stance to resting extended on ground
+        const standFoot1X = actualX - 12;
+        const standFoot1Y = groundY;
+        const standFoot2X = actualX + 8;
+        const standFoot2Y = groundY;
+
+        const lieFoot1X = lieWaistX + 26 * facing;
+        const lieFoot1Y = groundY - 2;
+        const lieFoot2X = lieWaistX + 22 * facing;
+        const lieFoot2Y = groundY - 4;
+
+        const foot1X = standFoot1X + p * (lieFoot1X - standFoot1X);
+        const foot1Y = (1 - p) * standFoot1Y + p * lieFoot1Y;
+        const foot2X = standFoot2X + p * (lieFoot2X - standFoot2X);
+        const foot2Y = (1 - p) * standFoot2Y + p * lieFoot2Y;
+
+        // --- DRAW INTACT ENEMY ---
+        // Head with blue face
+        ctx.fillStyle = '#4169E1';
+        ctx.beginPath();
+        ctx.arc(headX, headY, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Eye (mirrored)
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(eyeX, eyeY, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Torso (Spine)
+        ctx.beginPath();
+        ctx.moveTo(neckX, neckY);
+        ctx.lineTo(waistX, waistY);
+        ctx.stroke();
+
+        // Arms (attached to shoulders)
+        ctx.beginPath();
+        ctx.moveTo(sh1X, sh1Y);
+        ctx.lineTo(hand1X, hand1Y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(sh2X, sh2Y);
+        ctx.lineTo(hand2X, hand2Y);
+        ctx.stroke();
+
+        // Legs (attached to waist)
+        ctx.beginPath();
+        ctx.moveTo(waistX, waistY);
+        ctx.lineTo(foot1X, foot1Y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(waistX, waistY);
+        ctx.lineTo(foot2X, foot2Y);
+        ctx.stroke();
+      }
+
       draw() {
         // If dead, only draw death particles
         if (this.isDead) {
           this.drawDeathParticles();
           return;
         }
-        
+
         ctx.save(); // Save canvas state
-        
+
         // Apply hit offset to position
         const actualX = this.x + (this.hitOffset || 0);
-        
+
         // Apply rotation for tumble
         if (this.currentMove === 'tumble') {
           ctx.translate(actualX, this.baseY + 30); // Rotate around center of body
           ctx.rotate(this.rotation);
           ctx.translate(-actualX, -(this.baseY + 30)); // Translate back
         }
-        
+
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 3;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        
+
         const waistX = actualX;
         const waistY = this.waistY + this.jumpOffset;
         let upperBodyX = actualX + (this.swayOffsetX || 0);
         let upperBodyY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset;
-        
-        // Adjust position for lieDown (3 stages: sitting -> partially lying -> fully down) - mirrored
         if (this.currentMove === 'lieDown') {
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3); // Stage 1, 2, or 3
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - body angled back, head higher (mirrored)
-            upperBodyX = actualX - 10; // Mirror: negative offset
-            upperBodyY = this.baseY + 55 + 15 - (lieDownProgress / 0.33) * 10; // Gradually lower
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - body more horizontal (mirrored)
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33; // 0 to 1 within stage 2
-            upperBodyX = actualX - 10 - stage2Progress * 5; // Mirror: move forward (negative)
-            upperBodyY = this.baseY + 55 + 5 - stage2Progress * 5; // Lower to ground
-          } else {
-            // Stage 3: Fully down - body horizontal on ground (mirrored)
-            upperBodyX = actualX - 15; // Mirror: negative offset for left-facing
-            upperBodyY = this.baseY + 55 + 25 - 5; // On ground level
-          }
-        }
-        
-        // Head with blue face
-        ctx.fillStyle = '#4169E1'; // Blue face
-        ctx.beginPath();
-        ctx.arc(upperBodyX, upperBodyY, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        
-        // Eye (mirrored - on left side since facing left)
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(upperBodyX - 3, upperBodyY, 2, 0, Math.PI * 2); // Mirror: negative X offset
-        ctx.fill();
-        
-        // Body - 3 stages for lieDown, vertical otherwise (mirrored)
-        let actualWaistX = waistX;
-        let actualWaistY = waistY;
-        if (this.currentMove === 'lieDown') {
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - body angled back (mirrored)
-            const stage1Progress = lieDownProgress / 0.33; // 0 to 1 within stage 1
-            const angle = Math.PI / 4 - stage1Progress * (Math.PI / 4); // 45 degrees to 0 degrees
-            const bodyLength = 35;
-            actualWaistX = upperBodyX - Math.cos(angle) * bodyLength; // Mirror: negative
-            actualWaistY = upperBodyY + Math.sin(angle) * bodyLength;
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX - 12, upperBodyY); // Mirror: negative offset
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - body transitioning to horizontal (mirrored)
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33; // 0 to 1 within stage 2
-            actualWaistX = upperBodyX - 35 - stage2Progress * 10; // Mirror: gradually extend horizontally (negative)
-            actualWaistY = upperBodyY + (1 - stage2Progress) * 5; // Gradually lower to same level
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX - 12, upperBodyY); // Mirror: negative offset
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          } else {
-            // Stage 3: Fully down - body horizontal (mirrored)
-            actualWaistX = upperBodyX - 45; // Mirror: negative offset
-            actualWaistY = upperBodyY;
-            ctx.beginPath();
-            ctx.moveTo(upperBodyX - 12, upperBodyY); // Mirror: negative offset
-            ctx.lineTo(actualWaistX, actualWaistY);
-            ctx.stroke();
-          }
+          this.drawLieDown();
         } else {
+          // Head with blue face
+          ctx.fillStyle = '#4169E1'; // Blue face
+          ctx.beginPath();
+          ctx.arc(upperBodyX, upperBodyY, 12, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Eye (mirrored - on left side since facing left)
+          ctx.fillStyle = '#000000';
+          ctx.beginPath();
+          ctx.arc(upperBodyX - 3, upperBodyY, 2, 0, Math.PI * 2); // Mirror: negative X offset
+          ctx.fill();
+
           // Body vertical normally
           ctx.beginPath();
           ctx.moveTo(upperBodyX, upperBodyY + 12);
           ctx.lineTo(waistX, waistY);
           ctx.stroke();
-        }
-        
-        // Draw karate move based on current move (mirrored)
-        this.drawKarateMove(upperBodyX, upperBodyY, waistX, waistY);
-        
-        // Legs - different behavior for different moves (mirrored)
-        if (this.currentMove === 'kick' || this.currentMove === 'spinKick') {
-          const moveFrame = this.moveTimer / this.moveDuration;
-          const kickIntensity = Math.sin(moveFrame * Math.PI);
-          
-          if (this.currentMove === 'spinKick') {
-            // Spin kick - leg extends outward and rotates (mirrored)
-            const spinAngle = moveFrame * Math.PI * 2;
-            const kickLength = 30 + kickIntensity * 20;
-            const kickX = waistX - Math.cos(spinAngle) * kickLength; // Mirror: negative
-            const kickY = waistY + Math.sin(spinAngle) * kickLength;
-            
-            // Supporting leg
+
+          // Draw karate move based on current move (mirrored)
+          this.drawKarateMove(upperBodyX, upperBodyY, waistX, waistY);
+
+          // Legs - different behavior for different moves (mirrored)
+          if (this.currentMove === 'kick' || this.currentMove === 'spinKick') {
+            const moveFrame = this.moveTimer / this.moveDuration;
+            const kickIntensity = Math.sin(moveFrame * Math.PI);
+
+            if (this.currentMove === 'spinKick') {
+              // Spin kick - leg extends outward and rotates (mirrored)
+              const spinAngle = moveFrame * Math.PI * 2;
+              const kickLength = 30 + kickIntensity * 20;
+              const kickX = waistX - Math.cos(spinAngle) * kickLength; // Mirror: negative
+              const kickY = waistY + Math.sin(spinAngle) * kickLength;
+
+              // Supporting leg
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX + 8, waistY + 25); // Mirror: positive offset
+              ctx.stroke();
+
+              // Spinning leg
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(kickX, kickY);
+              ctx.stroke();
+            } else {
+              // Regular kick (mirrored)
+              // Back leg (supporting leg)
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX + 8, waistY + 25); // Mirror: positive offset
+              ctx.stroke();
+
+              // Front leg kicks forward and up (mirrored)
+              ctx.beginPath();
+              ctx.moveTo(waistX, waistY);
+              ctx.lineTo(waistX - 20 - kickIntensity * 25, waistY + 15 - kickIntensity * 20); // Mirror: negative
+              ctx.stroke();
+            }
+          } else if (this.currentMove === 'jump') {
+            // Jump - legs tucked up (mirrored)
+            const moveFrame = this.moveTimer / this.moveDuration;
+            const tuckAmount = Math.sin(moveFrame * Math.PI) * 15;
+
+            // Front leg (mirrored)
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX + 8, waistY + 25); // Mirror: positive offset
+            ctx.lineTo(waistX - 8, waistY + 15 - tuckAmount); // Mirror: negative
             ctx.stroke();
-            
-            // Spinning leg
+
+            // Back leg (mirrored)
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(kickX, kickY);
+            ctx.lineTo(waistX + 6, waistY + 15 - tuckAmount); // Mirror: positive
+            ctx.stroke();
+          } else if (this.currentMove === 'tumble') {
+            // Tumble - legs extended during rotation (mirrored)
+            ctx.beginPath();
+            ctx.moveTo(waistX, waistY);
+            ctx.lineTo(waistX - 10, waistY + 20); // Mirror: negative
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(waistX, waistY);
+            ctx.lineTo(waistX + 10, waistY + 20); // Mirror: positive
             ctx.stroke();
           } else {
-            // Regular kick (mirrored)
-            // Back leg (supporting leg)
+            // Normal legs - only animate when moving (mirrored)
+            const legOffset = this.isMoving ? Math.sin(this.frame * 2) * 8 : 0;
+
+            // Front leg (mirrored)
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX + 8, waistY + 25); // Mirror: positive offset
+            ctx.lineTo(waistX - 12 - legOffset, waistY + 25); // Mirror: negative
             ctx.stroke();
-            
-            // Front leg kicks forward and up (mirrored)
+
+            // Back leg (mirrored)
             ctx.beginPath();
             ctx.moveTo(waistX, waistY);
-            ctx.lineTo(waistX - 20 - kickIntensity * 25, waistY + 15 - kickIntensity * 20); // Mirror: negative
+            ctx.lineTo(waistX + 8 + legOffset, waistY + 25); // Mirror: positive
             ctx.stroke();
           }
-        } else if (this.currentMove === 'jump') {
-          // Jump - legs tucked up (mirrored)
-          const moveFrame = this.moveTimer / this.moveDuration;
-          const tuckAmount = Math.sin(moveFrame * Math.PI) * 15;
-          
-          // Front leg (mirrored)
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 8, waistY + 15 - tuckAmount); // Mirror: negative
-          ctx.stroke();
-          
-          // Back leg (mirrored)
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 6, waistY + 15 - tuckAmount); // Mirror: positive
-          ctx.stroke();
-        } else if (this.currentMove === 'tumble') {
-          // Tumble - legs extended during rotation (mirrored)
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 10, waistY + 20); // Mirror: negative
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 10, waistY + 20); // Mirror: positive
-          ctx.stroke();
-        } else if (this.currentMove === 'lieDown') {
-          // Lie down - legs 3 stages (mirrored)
-          const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // Prevent division by zero
-          const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-          
-          // Use the waist position calculated in body drawing
-          const lieDownWaistX = actualWaistX;
-          const lieDownWaistY = actualWaistY;
-          
-          if (stage === 1) {
-            // Stage 1: Sitting - legs bent in front (mirrored)
-            const stage1Progress = lieDownProgress / 0.33;
-            // Left leg - bent forward (mirrored)
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 15 + stage1Progress * 10, lieDownWaistY + 20 - stage1Progress * 15); // Mirror: negative/positive
-            ctx.stroke();
-            // Right leg - bent forward (mirrored)
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 18 + stage1Progress * 12, lieDownWaistY + 18 - stage1Progress * 12); // Mirror: negative/positive
-            ctx.stroke();
-          } else if (stage === 2) {
-            // Stage 2: Partially lying - legs extending back (mirrored)
-            const stage2Progress = (lieDownProgress - 0.33) / 0.33;
-            // Left leg - extending back (mirrored)
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 5 - stage2Progress * 15, lieDownWaistY + 5 + stage2Progress * 0); // Mirror: negative
-            ctx.stroke();
-            // Right leg - extending back (mirrored)
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 6 - stage2Progress * 12, lieDownWaistY + 8 + stage2Progress * 0); // Mirror: negative
-            ctx.stroke();
-          } else {
-            // Stage 3: Fully down - legs extended horizontally behind (mirrored)
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 20, lieDownWaistY + 5); // Mirror: negative
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(lieDownWaistX, lieDownWaistY);
-            ctx.lineTo(lieDownWaistX - 18, lieDownWaistY + 8); // Mirror: negative
-            ctx.stroke();
-          }
-        } else {
-          // Normal legs - only animate when moving (mirrored)
-          const legOffset = this.isMoving ? Math.sin(this.frame * 2) * 8 : 0;
-          
-          // Front leg (mirrored)
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX - 12 - legOffset, waistY + 25); // Mirror: negative
-          ctx.stroke();
-          
-          // Back leg (mirrored)
-          ctx.beginPath();
-          ctx.moveTo(waistX, waistY);
-          ctx.lineTo(waistX + 8 + legOffset, waistY + 25); // Mirror: positive
-          ctx.stroke();
         }
-        
+
         ctx.restore(); // Restore canvas state
-        
+
         // Draw sound effect text above character's head (same as fighter)
         if (this.soundText) {
           // Calculate fade: persist for 1 second, then fade out
@@ -2022,31 +2061,31 @@
             const fadeProgress = (this.soundTimer - this.soundDuration) / this.soundFadeDuration;
             fadeAlpha = 1 - fadeProgress; // Fade out after persistence
           }
-          
+
           // Calculate text position relative to character (accounting for jump offset)
           const textX = this.x + (this.swayOffsetX || 0);
           const textY = (this.baseY + (this.swayOffsetY || 0) + this.jumpOffset) - 30;
-          
+
           ctx.save();
           // Black typewriter font (monospace)
           ctx.font = 'bold 18px "Courier New", "Courier", monospace';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          
+
           // Draw black text (typewriter style)
           ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;
           ctx.fillText(this.soundText, textX, textY);
-          
+
           ctx.restore();
         }
-        
+
         // Draw health bar for enemy
         this.drawHealthBar();
-        
+
         // Draw lava projectiles
         this.drawLava();
       }
-      
+
       drawParticles() {
         // Draw particles (called separately so they appear above everything)
         ctx.imageSmoothingEnabled = false;
@@ -2056,34 +2095,34 @@
           const blueValue = 150;
           ctx.fillStyle = `rgb(0, ${greenValue}, ${blueValue})`;
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
-          
+
           // Add bright outline for extra visibility
           ctx.strokeStyle = `rgb(0, 255, 200)`;
           ctx.lineWidth = 1;
           ctx.strokeRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       shootLightning() {
         // Shoot 2 lightning bolts from the sword tip
         const actualX = this.x + (this.hitOffset || 0);
         const upperBodyX = actualX + (this.swayOffsetX || 0);
         const upperBodyY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset;
-        
+
         // Calculate sword tip position (when sword is extended)
         const swordTipX = upperBodyX - 20 - 25 - 20; // Left-facing, extended sword
         const swordTipY = upperBodyY + 5;
-        
+
         // Target fighter's head
         const targetX = this.fighter.x;
         const targetY = this.fighter.baseY - 30; // Head level
-        
+
         // Create 2 lightning bolts with slight spread
         for (let i = 0; i < 2; i++) {
           const spread = (i - 0.5) * 30; // Spread them apart
           const endX = targetX + spread;
           const endY = targetY + (Math.random() - 0.5) * 20; // Slight vertical variation
-          
+
           this.lightningBolts.push({
             startX: swordTipX,
             startY: swordTipY,
@@ -2095,25 +2134,25 @@
           });
         }
       }
-      
+
       updateLightningBolts() {
         for (let i = this.lightningBolts.length - 1; i >= 0; i--) {
           const bolt = this.lightningBolts[i];
-          
+
           // Update progress
           bolt.progress += bolt.speed;
           bolt.life--;
-          
+
           // Calculate current position
           const currentX = bolt.startX + (bolt.endX - bolt.startX) * bolt.progress;
           const currentY = bolt.startY + (bolt.endY - bolt.startY) * bolt.progress;
-          
+
           // Check collision with fighter
           if (!this.fighter.isDead && bolt.progress > 0.3 && bolt.progress < 1.0) {
             const headX = this.fighter.x;
             const headY = this.fighter.baseY - 30;
             const distance = Math.sqrt(Math.pow(currentX - headX, 2) + Math.pow(currentY - headY, 2));
-            
+
             if (distance < 25) {
               // Hit fighter
               this.fighter.health = Math.max(0, this.fighter.health - 10); // Lightning damage
@@ -2123,43 +2162,43 @@
               continue;
             }
           }
-          
+
           // Remove if completed or expired
           if (bolt.progress >= 1.0 || bolt.life <= 0) {
             this.lightningBolts.splice(i, 1);
           }
         }
       }
-      
+
       drawLightningBolts() {
         // Draw lightning bolts
         for (const bolt of this.lightningBolts) {
           const currentX = bolt.startX + (bolt.endX - bolt.startX) * bolt.progress;
           const currentY = bolt.startY + (bolt.endY - bolt.startY) * bolt.progress;
-          
+
           // Draw jagged green lightning bolt with glow
           ctx.strokeStyle = '#00FF00'; // Green lightning
           ctx.lineWidth = 4;
           ctx.shadowBlur = 15;
           ctx.shadowColor = '#00FF00';
-          
+
           ctx.beginPath();
           ctx.moveTo(bolt.startX, bolt.startY);
-          
+
           // Create jagged lightning path
           const segments = 12;
           let prevX = bolt.startX;
           let prevY = bolt.startY;
-          
+
           for (let i = 1; i <= segments; i++) {
             const segProgress = i / segments;
             const baseX = bolt.startX + (currentX - bolt.startX) * segProgress;
             const baseY = bolt.startY + (currentY - bolt.startY) * segProgress;
-            
+
             // Add jagged offset
             const offsetX = (Math.sin(segProgress * Math.PI * 4) * 8) + (Math.random() - 0.5) * 6;
             const offsetY = (Math.cos(segProgress * Math.PI * 3) * 6) + (Math.random() - 0.5) * 6;
-            
+
             const segX = baseX + offsetX;
             const segY = baseY + offsetY;
             ctx.lineTo(segX, segY);
@@ -2168,33 +2207,33 @@
           }
           ctx.stroke();
         }
-        
+
         ctx.shadowBlur = 0;
       }
-      
+
       // Breathe fire (blue and gold)
       breathFire() {
         const actualX = this.x + (this.hitOffset || 0);
         const upperBodyX = actualX + (this.swayOffsetX || 0);
         const upperBodyY = this.baseY + (this.swayOffsetY || 0) + this.jumpOffset;
-        
+
         // Fire comes from enemy's head/mouth area
         const fireStartX = upperBodyX - 10; // Left-facing enemy
         const fireStartY = upperBodyY - 5; // Head level
-        
+
         // Target fighter
         const targetX = this.fighter.x;
         const targetY = this.fighter.baseY - 30; // Head level
-        
+
         // Create blue and gold fire particles
         for (let i = 0; i < 5; i++) {
           const angle = Math.atan2(targetY - fireStartY, targetX - fireStartX) + (Math.random() - 0.5) * 0.4;
           const speed = 6 + Math.random() * 4;
-          
+
           // Alternate between blue and gold, or random mix
           const isGold = Math.random() > 0.5;
           const color = isGold ? '#FFD700' : '#4169E1'; // Gold or blue
-          
+
           this.fireBreath.push({
             x: fireStartX,
             y: fireStartY,
@@ -2207,18 +2246,18 @@
           });
         }
       }
-      
+
       // Update fire breath particles
       updateFireBreath(fighter) {
         for (let i = this.fireBreath.length - 1; i >= 0; i--) {
           const fire = this.fireBreath[i];
-          
+
           fire.x += fire.vx;
           fire.y += fire.vy;
           fire.vy += 0.2; // Slight gravity
           fire.vx *= 0.97; // Slow down
           fire.life--;
-          
+
           // Evaporate water particles on collision
           if (fighter.waterParticles && fighter.waterParticles.length > 0) {
             for (let j = fighter.waterParticles.length - 1; j >= 0; j--) {
@@ -2230,13 +2269,13 @@
               }
             }
           }
-          
+
           // Check collision with fighter
           if (!fighter.isDead) {
             const headX = fighter.x;
             const headY = fighter.baseY - 30;
             const distance = Math.sqrt(Math.pow(fire.x - headX, 2) + Math.pow(fire.y - headY, 2));
-            
+
             if (distance < 25) {
               // Hit fighter - deal 50% damage (same as trident)
               fighter.health = Math.max(0, fighter.health - fighter.maxHealth * 0.5);
@@ -2246,14 +2285,14 @@
               continue;
             }
           }
-          
+
           // Remove if expired
           if (fire.life <= 0 || fire.y > canvas.height || fire.x < 0 || fire.x > canvas.width) {
             this.fireBreath.splice(i, 1);
           }
         }
       }
-      
+
       // Draw fire breath particles
       drawFireBreath() {
         ctx.save();
@@ -2269,24 +2308,24 @@
         ctx.restore();
         ctx.shadowBlur = 0;
       }
-      
+
       drawHealthBar() {
         // Draw health bar in top right corner (lowered by 20 pixels)
         const barWidth = 120;
         const barHeight = 20;
         const barX = canvas.width - barWidth - 10;
         const barY = 30; // Lowered by 20 pixels (was 10)
-        
+
         // Label (separated by 5 pixels from bar)
         ctx.fillStyle = '#000000';
         ctx.font = 'bold 14px Arial';
         ctx.textAlign = 'right';
         ctx.fillText('Enemy', barX + barWidth, barY - 7); // Separated by 5 pixels (was -2, now -7)
-        
+
         // Background (empty/red)
         ctx.fillStyle = '#FF0000';
         ctx.fillRect(barX, barY, barWidth, barHeight);
-        
+
         // Health bar color: Blue until < 20%, then Red, Empty at 0
         const healthPercent = this.health / this.maxHealth;
         let healthColor;
@@ -2300,27 +2339,27 @@
           // Empty (0%)
           healthColor = '#000000'; // Black/Empty
         }
-        
+
         ctx.fillStyle = healthColor;
         ctx.fillRect(barX, barY, barWidth * healthPercent, barHeight);
-        
+
         // Border
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 2;
         ctx.strokeRect(barX, barY, barWidth, barHeight);
-        
+
         // Health text below the bar
         ctx.fillStyle = '#000000';
         ctx.font = '12px Arial';
         ctx.textAlign = 'right';
         ctx.fillText(`${Math.max(0, Math.floor(this.health))}/${this.maxHealth}`, barX + barWidth, barY + barHeight + 15);
       }
-      
+
       drawKarateMove(upperBodyX, upperBodyY, waistX, waistY) {
         const moveFrame = this.moveTimer / this.moveDuration; // 0 to 1
         const intensity = Math.sin(moveFrame * Math.PI); // Smooth animation curve
-        
-        switch(this.currentMove) {
+
+        switch (this.currentMove) {
           case 'punch':
             // Right arm punches forward (mirrored - left-facing)
             ctx.beginPath();
@@ -2333,7 +2372,7 @@
             ctx.lineTo(upperBodyX - 10, upperBodyY + 15); // Mirror: negative
             ctx.stroke();
             break;
-            
+
           case 'kick':
             // Arms up for balance (mirrored)
             ctx.beginPath();
@@ -2345,7 +2384,7 @@
             ctx.lineTo(upperBodyX - 20, upperBodyY + 8); // Mirror: negative
             ctx.stroke();
             break;
-            
+
           case 'spinKick':
             // Arms spread for balance during spin (mirrored)
             const spinFrame = this.moveTimer / this.moveDuration;
@@ -2355,7 +2394,7 @@
             const leftArmY = upperBodyY + 15 + Math.sin(spinAngle + Math.PI / 2) * armLength;
             const rightArmX = upperBodyX - Math.cos(spinAngle - Math.PI / 2) * armLength; // Mirror: negative
             const rightArmY = upperBodyY + 20 + Math.sin(spinAngle - Math.PI / 2) * armLength;
-            
+
             ctx.beginPath();
             ctx.moveTo(upperBodyX, upperBodyY + 20);
             ctx.lineTo(leftArmX, leftArmY);
@@ -2365,7 +2404,7 @@
             ctx.lineTo(rightArmX, rightArmY);
             ctx.stroke();
             break;
-            
+
           case 'jump':
             // Arms up during jump (mirrored)
             ctx.beginPath();
@@ -2377,7 +2416,7 @@
             ctx.lineTo(upperBodyX - 22, upperBodyY - 3); // Mirror: negative
             ctx.stroke();
             break;
-            
+
           case 'tumble':
             // Arms extended during tumble (mirrored)
             ctx.beginPath();
@@ -2389,51 +2428,11 @@
             ctx.lineTo(upperBodyX + 20, upperBodyY + 15); // Mirror: positive
             ctx.stroke();
             break;
-            
+
           case 'lieDown':
-            // Arms attached to body - 3 stages (mirrored)
-            const lieDownProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0; // 0 to 1, prevent division by zero
-            const stage = lieDownProgress < 0.33 ? 1 : (lieDownProgress < 0.66 ? 2 : 3);
-            
-            if (stage === 1) {
-              // Stage 1: Sitting - arms supporting body (behind/at sides) (mirrored)
-              const stage1Progress = lieDownProgress / 0.33;
-              // Left arm - supporting behind (mirrored)
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 15); // Mirror: negative offset
-              ctx.lineTo(upperBodyX - 8 + stage1Progress * 5, upperBodyY + 20 + stage1Progress * 3); // Mirror: positive
-              ctx.stroke();
-              // Right arm - supporting behind (mirrored)
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 18); // Mirror: negative offset
-              ctx.lineTo(upperBodyX - 6 + stage1Progress * 5, upperBodyY + 22 + stage1Progress * 3); // Mirror: positive
-              ctx.stroke();
-            } else if (stage === 2) {
-              // Stage 2: Partially lying - arms transitioning to sides (mirrored)
-              const stage2Progress = (lieDownProgress - 0.33) / 0.33;
-              // Left arm - transitioning (mirrored)
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 15); // Mirror: negative offset
-              ctx.lineTo(upperBodyX - 3 + stage2Progress * 8, upperBodyY + 23 + (1 - stage2Progress) * 2); // Mirror: positive
-              ctx.stroke();
-              // Right arm - transitioning (mirrored)
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 18); // Mirror: negative offset
-              ctx.lineTo(upperBodyX - 1 + stage2Progress * 8, upperBodyY + 25 + (1 - stage2Progress) * 3); // Mirror: positive
-              ctx.stroke();
-            } else {
-              // Stage 3: Fully down - arms at sides (mirrored)
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 15); // Mirror: negative offset
-              ctx.lineTo(upperBodyX + 5, upperBodyY + 25); // Mirror: positive
-              ctx.stroke();
-              ctx.beginPath();
-              ctx.moveTo(upperBodyX - 12, upperBodyY + 18); // Mirror: negative offset
-              ctx.lineTo(upperBodyX + 2, upperBodyY + 28); // Mirror: positive
-              ctx.stroke();
-            }
+            // Lie down arms are drawn directly in drawLieDown
             break;
-            
+
           case 'block':
             // Both arms up blocking (mirrored)
             ctx.beginPath();
@@ -2445,7 +2444,7 @@
             ctx.lineTo(upperBodyX - 15 - intensity * 5, upperBodyY + 5); // Mirror: negative
             ctx.stroke();
             break;
-            
+
           case 'uppercut':
             // Right arm uppercut (mirrored)
             ctx.beginPath();
@@ -2458,7 +2457,7 @@
             ctx.lineTo(upperBodyX - 12, upperBodyY + 8); // Mirror: negative
             ctx.stroke();
             break;
-            
+
           case 'sword':
             // Sword attack - arm swings sword forward (left, since enemy faces left)
             ctx.strokeStyle = '#000000';
@@ -2488,12 +2487,12 @@
             ctx.strokeStyle = '#000000';
             ctx.lineWidth = 1;
             break;
-            
+
           case 'drowning':
             // Drowning animation - hands over head, frozen
             const drowningProgress = this.moveDuration > 0 ? this.moveTimer / this.moveDuration : 0;
             const bobAmount = Math.sin(drowningProgress * Math.PI * 4) * 3; // Slight bobbing motion
-            
+
             // Both arms up over head (mirrored)
             ctx.beginPath();
             ctx.moveTo(upperBodyX, upperBodyY + 20);
@@ -2504,7 +2503,7 @@
             ctx.lineTo(upperBodyX - 12, upperBodyY - 12 + bobAmount); // Mirror: negative, up over head
             ctx.stroke();
             break;
-            
+
           case 'ready':
           default:
             // Ready stance - arms in guard position (mirrored)
@@ -2519,49 +2518,49 @@
             break;
         }
       }
-      
+
       triggerRandomAction() {
         if (this.currentMove !== 'ready') return; // Don't interrupt current move
-        
+
         // Only sword attacks for enemy
         this.currentMove = 'sword';
         this.moveTimer = 0;
         this.moveDuration = 40 + Math.random() * 40;
-        
+
         // Trigger sound effects for sword attack
         this.triggerSoundEffect(this.currentMove);
       }
-      
+
       // Trigger sound effect for moves (same as fighter)
       triggerSoundEffect(move) {
         // Only trigger on actions, not on 'ready' stance
         if (move === 'ready') {
           return;
         }
-        
+
         // Only trigger sound effects 1 out of 5 times (20% chance)
         if (Math.random() > 0.2) {
           return;
         }
-        
+
         // Expanded sound effects - same as fighter
         const allSoundEffects = [
           'Hiyahhh!', 'Hya!', 'Hiya!', 'Hah!', 'Hup!', 'Hyaa!', 'Upp!', 'Whoa!',
           'Hiyah!', 'Whaa!', 'Yah!', 'Hoo!', 'Hahh!', 'Hyah!', 'Wah!', 'Hooah!',
           'Yahh!', 'Hiyahh!', 'Hyaah!', 'Whaah!', 'Hooahh!', 'Yahhh!', 'Hiyahhhh!', 'Hyaaa!'
         ];
-        
+
         // Pick a random sound effect
         this.soundText = allSoundEffects[Math.floor(Math.random() * allSoundEffects.length)];
         this.soundTimer = 0;
       }
-      
+
       explode() {
         // Create death explosion particles in slow motion
         if (this.isDead) return; // Already exploded
         this.isDead = true;
         this.deathTimer = 0;
-        
+
         // Create many particles for explosion
         const particleCount = 100;
         const centerX = this.x;
@@ -2581,7 +2580,7 @@
           });
         }
       }
-      
+
       updateDeathParticles() {
         const groundLevel = this.baseY + 55 + 25; // Same as fighter - waist + leg length
         for (let i = this.deathParticles.length - 1; i >= 0; i--) {
@@ -2591,7 +2590,7 @@
             p.y += p.vy;
             p.vy += 0.1; // Slow gravity for slow motion
             p.vx *= 0.98;
-            
+
             if (p.y >= groundLevel - p.size) {
               p.y = groundLevel - p.size;
               p.vy = 0;
@@ -2606,7 +2605,7 @@
         }
         this.deathTimer++;
       }
-      
+
       drawDeathParticles() {
         ctx.imageSmoothingEnabled = false;
         for (const p of this.deathParticles) {
@@ -2614,7 +2613,7 @@
           ctx.fillRect(Math.floor(p.x), Math.floor(p.y), Math.ceil(p.size), Math.ceil(p.size));
         }
       }
-      
+
       shootCannonball() {
         const startX = this.x + this.size / 2;
         const startY = this.fixedBaseY + this.offsetY;
@@ -2630,7 +2629,7 @@
           life: 600 // Increased lifetime for farther travel
         });
       }
-      
+
       updateCannonballs() {
         for (let i = this.cannonballs.length - 1; i >= 0; i--) {
           const ball = this.cannonballs[i];
@@ -2638,7 +2637,7 @@
           ball.y += ball.vy;
           ball.vy += 0.2; // Gravity
           ball.life--;
-          
+
           // Check collision with fighter's head
           const headY = this.fighter.baseY - 30;
           const distance = Math.sqrt(Math.pow(ball.x - this.fighter.x, 2) + Math.pow(ball.y - headY, 2));
@@ -2647,13 +2646,13 @@
             this.cannonballs.splice(i, 1);
             continue;
           }
-          
+
           if (ball.life <= 0 || ball.y > canvas.height) {
             this.cannonballs.splice(i, 1);
           }
         }
       }
-      
+
       drawCannonballs() {
         ctx.fillStyle = '#000000';
         ctx.font = 'bold 24px Arial';
@@ -2664,40 +2663,40 @@
         }
       }
     }
-    
+
     // Create the stick figure - starting from left side
     // Position fighter at ground level (canvas.height - 50 for ground line, minus character height)
     const fighter = new StickFigure(canvas.width / 2, canvas.height - 100);
-    
+
     // Create the enemy
     const enemy = new Enemy(fighter);
     // Initialize enemy position (start to the right of fighter)
     enemy.x = fighter.x + 50;
-    
+
     // Game state
     let gameState = 'playing'; // 'playing', 'death', 'gameOver'
     let deathTimer = 0;
     let gameOverTimer = 0;
     const deathDisplayDuration = 300; // 5 seconds at 60fps
     const gameOverDisplayDuration = 300; // 5 seconds at 60fps
-    
+
     // Static cityscape data (generated once, drawn every frame)
     let cityscapeBuildings = [];
     let cityscapeClouds = [];
-    
+
     // Function to generate static cityscape
     function generateCityscape() {
       const groundY = canvas.height - 50;
       const buildingCount = 25; // Increased from 8 to 25 for more buildings
       cityscapeBuildings = [];
-      
+
       for (let i = 0; i < buildingCount; i++) {
         const x = (canvas.width / buildingCount) * i + (Math.random() - 0.5) * (canvas.width / buildingCount);
         const width = 20 + Math.random() * 50;
         const height = 40 + Math.random() * 180;
         const y = groundY - height;
         const alpha = 0.3 + Math.random() * 0.4; // Random alpha between 0.3 and 0.7
-        
+
         // Generate windows for this building (static)
         const windows = [];
         for (let wy = y + 10; wy < groundY - 5; wy += 15) {
@@ -2707,7 +2706,7 @@
             }
           }
         }
-        
+
         cityscapeBuildings.push({
           x: x,
           y: y,
@@ -2717,7 +2716,7 @@
           alpha: alpha
         });
       }
-      
+
       // Generate clouds
       cityscapeClouds = [];
       const cloudCount = 8;
@@ -2730,10 +2729,10 @@
         });
       }
     }
-    
+
     // Generate initial cityscape
     generateCityscape();
-    
+
     // Replay button
     const replayButton = {
       x: canvas.width / 2 - 90,
@@ -2742,14 +2741,14 @@
       height: 40,
       visible: false
     };
-    
+
     // Keyboard event listeners - use window instead of document for better compatibility
     window.addEventListener('keydown', (e) => {
       // Prevent input when not playing
       if (gameState !== 'playing') {
         return;
       }
-      
+
       // Set fighter keys for movement (only WASD keys, not arrow keys)
       const keyLower = e.key.toLowerCase();
       const fighterMovementKeys = ['a', 'd']; // Only movement keys go in fighter.keys
@@ -2757,12 +2756,12 @@
         fighter.keys[keyLower] = true;
         fighter.keys[e.key] = true; // Also store original case
       }
-      
+
       // Set enemy keys for movement (only arrow keys)
       if (!enemy.isDead && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
         enemy.keys[e.key] = true;
       }
-      
+
       // Fighter controls (only if not dead and not stunned)
       if (!fighter.isDead && fighter.stunnedTimer === 0) {
         // W key triggers jump for fighter
@@ -2777,7 +2776,7 @@
           }
           return;
         }
-        
+
         // S key triggers lie down for fighter
         if (e.key === 's' || e.key === 'S') {
           e.preventDefault();
@@ -2789,21 +2788,21 @@
           }
           return;
         }
-        
+
         // X key triggers random action for fighter
         if (e.key === 'x' || e.key === 'X') {
           e.preventDefault();
           fighter.triggerRandomAction();
           return;
         }
-        
+
         // Z key triggers radioactive vomit for fighter
         if (e.key === 'z' || e.key === 'Z') {
           e.preventDefault();
           fighter.shootRadioactiveVomit(enemy);
           return;
         }
-        
+
         // Q key triggers trident water attack for fighter
         if (e.key === 'q' || e.key === 'Q') {
           e.preventDefault();
@@ -2811,7 +2810,7 @@
           return;
         }
       }
-      
+
       // Enemy controls: Arrow keys and spacebar (independent of fighter state)
       if (!enemy.isDead) {
         // Up arrow triggers jump for enemy
@@ -2825,7 +2824,7 @@
           }
           return;
         }
-        
+
         // Down arrow triggers lie down for enemy
         if (e.key === 'ArrowDown') {
           e.preventDefault();
@@ -2836,42 +2835,42 @@
           }
           return;
         }
-        
+
         // Left arrow - track key for continuous movement
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
           enemy.keys['ArrowLeft'] = true;
           return;
         }
-        
+
         // Right arrow - track key for continuous movement
         if (e.key === 'ArrowRight') {
           e.preventDefault();
           enemy.keys['ArrowRight'] = true;
           return;
         }
-        
+
         // Spacebar triggers random action for enemy
         if (e.key === ' ') {
           e.preventDefault();
           enemy.triggerRandomAction();
           return;
         }
-        
+
         // "/" key triggers lava attack for enemy
         if (e.key === '/' || e.key === '?') {
           e.preventDefault();
           enemy.shootLava();
           return;
         }
-        
+
         // "o" key triggers lightning bolt attack for enemy
         if (e.key === 'o' || e.key === 'O') {
           e.preventDefault();
           enemy.shootLightning();
           return;
         }
-        
+
         // "j" key triggers fire breath attack for enemy
         if (e.key === 'j' || e.key === 'J') {
           e.preventDefault();
@@ -2880,10 +2879,10 @@
         }
       }
     });
-    
+
     document.addEventListener('keyup', (e) => {
       const keyLower = e.key.toLowerCase();
-      
+
       // Clear fighter movement keys (only a and d)
       if (keyLower === 'a' || keyLower === 'd') {
         if (fighter.keys.hasOwnProperty(keyLower)) {
@@ -2893,26 +2892,26 @@
           fighter.keys[e.key] = false;
         }
       }
-      
+
       // Reset Z key flag so it can be pressed again
       if (e.key === 'z' || e.key === 'Z') {
         fighter.zKeyPressed = false;
       }
-      
+
       // Clear enemy arrow keys for continuous movement
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         enemy.keys[e.key] = false;
       }
     });
-    
+
     // Focus canvas on load so keyboard events work
     canvas.focus();
-    
+
     // Function to reset game (called by replay button or keyboard)
     function resetGame() {
       // Regenerate cityscape for variety
       generateCityscape();
-      
+
       fighter.health = 100;
       fighter.isDead = false;
       fighter.deathParticles = [];
@@ -2944,7 +2943,7 @@
       gameOverTimer = 0;
       replayButton.visible = false;
     }
-    
+
     // Add keyboard control for replay (R key)
     window.addEventListener('keydown', (e) => {
       if ((e.key === 'r' || e.key === 'R') && replayButton.visible) {
@@ -2952,34 +2951,34 @@
         resetGame();
       }
     });
-    
+
     // Add mouse click control for replay button
     canvas.addEventListener('click', (e) => {
       if (!replayButton.visible) return;
-      
+
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       // Check if click is within replay button bounds
       if (x >= replayButton.x && x <= replayButton.x + replayButton.width &&
-          y >= replayButton.y && y <= replayButton.y + replayButton.height) {
+        y >= replayButton.y && y <= replayButton.y + replayButton.height) {
         resetGame();
       }
     });
-    
+
     // Animation loop
     function animate() {
       // Clear the canvas with white background
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
+
       const groundY = canvas.height - 50;
-      
+
       // Draw sky (very light blue - 50% lighter)
       ctx.fillStyle = '#C3E6F5'; // Very light sky blue (50% lighter than #87CEEB)
       ctx.fillRect(0, 0, canvas.width, groundY);
-      
+
       // Draw clouds (white, semi-transparent)
       ctx.fillStyle = '#FFFFFF';
       for (const cloud of cityscapeClouds) {
@@ -2993,19 +2992,19 @@
         ctx.fill();
       }
       ctx.globalAlpha = 1.0; // Reset alpha
-      
+
       // Draw static city silhouettes with alpha transparency
       ctx.strokeStyle = '#E8E8E8';
       ctx.lineWidth = 1;
-      
+
       // Draw static buildings (same every frame) with alpha
       for (const building of cityscapeBuildings) {
         ctx.globalAlpha = building.alpha;
         ctx.fillStyle = '#E8E8E8'; // Grey buildings
-        
+
         // Building rectangle
         ctx.fillRect(building.x, building.y, building.width, building.height);
-        
+
         // Draw windows (very faint, with slightly higher alpha)
         ctx.globalAlpha = Math.min(1.0, building.alpha + 0.2);
         ctx.fillStyle = '#F0F0F0';
@@ -3014,7 +3013,7 @@
         }
       }
       ctx.globalAlpha = 1.0; // Reset alpha
-      
+
       // Draw ground line (very light)
       ctx.strokeStyle = '#E0E0E0';
       ctx.lineWidth = 1;
@@ -3022,7 +3021,7 @@
       ctx.moveTo(0, groundY);
       ctx.lineTo(canvas.width, groundY);
       ctx.stroke();
-      
+
       // Check for death and update game state
       if (gameState === 'playing') {
         if (fighter.isDead || enemy.isDead) {
@@ -3041,7 +3040,7 @@
           replayButton.visible = true;
         }
       }
-      
+
       // Update and draw enemy first (so fighter appears in front)
       if (gameState === 'playing' || enemy.isDead || fighter.isDead) {
         enemy.update();
@@ -3050,7 +3049,7 @@
       if (!enemy.isDead && gameState === 'playing') {
         enemy.drawHealthBar();
       }
-      
+
       // Update and draw fighter (moving and doing karate moves)
       if (gameState === 'playing' || fighter.isDead || enemy.isDead) {
         fighter.update(enemy);
@@ -3060,10 +3059,10 @@
         // Draw health bar only if not dead
         fighter.drawHealthBar();
       }
-      
+
       // Draw yellow particles from fighter
       fighter.drawYellowParticles();
-      
+
       // Draw stun indicator if fighter is stunned
       if (fighter.stunnedTimer > 0 && !fighter.isDead) {
         ctx.fillStyle = '#FF0000';
@@ -3071,31 +3070,31 @@
         ctx.textAlign = 'center';
         ctx.fillText('STUNNED!', fighter.x, fighter.baseY - 80);
       }
-      
+
       // Draw knives
       fighter.drawKnives();
-      
+
       // Draw radioactive vomit from fighter
       fighter.drawRadioactiveVomit();
-      
+
       // Draw persistent vomit particles
       fighter.drawVomitParticles();
-      
+
       // Draw water particles from trident attack
       fighter.drawWaterParticles();
-      
+
       // Draw lava from enemy
       enemy.drawLava();
-      
+
       // Draw persistent lava particles
       enemy.drawLavaParticles();
-      
+
       // Draw lightning bolts from enemy
       enemy.drawLightningBolts();
-      
+
       // Draw fire breath from enemy
       enemy.drawFireBreath();
-      
+
       // Draw death text
       if (gameState === 'death') {
         ctx.fillStyle = '#FF0000';
@@ -3106,7 +3105,7 @@
         ctx.strokeText('DEATH!', canvas.width / 2, canvas.height / 2 - 50);
         ctx.fillText('DEATH!', canvas.width / 2, canvas.height / 2 - 50);
       }
-      
+
       // Draw game over text
       if (gameState === 'gameOver') {
         ctx.fillStyle = '#FFFFFF';
@@ -3117,25 +3116,25 @@
         ctx.strokeText('GAME OVER', canvas.width / 2, canvas.height / 2 - 50);
         ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 50);
       }
-      
+
       // Draw replay button
       if (replayButton.visible) {
         // Button background
         ctx.fillStyle = '#4CAF50';
         ctx.fillRect(replayButton.x, replayButton.y, replayButton.width, replayButton.height);
-        
+
         // Button border
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 2;
         ctx.strokeRect(replayButton.x, replayButton.y, replayButton.width, replayButton.height);
-        
+
         // Button text (same font as health bar labels)
         ctx.fillStyle = '#FFFFFF';
         ctx.font = 'bold 14px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('REPLAY (Press R)', replayButton.x + replayButton.width / 2, replayButton.y + replayButton.height / 2 + 5);
       }
-      
+
       // Update control instructions in HTML (only when playing)
       if (gameState === 'playing') {
         const controlsDiv = document.getElementById('controls');
@@ -3148,22 +3147,23 @@
           controlsDiv.innerHTML = '';
         }
       }
-      
+
       // Continue animation
       requestAnimationFrame(animate);
     }
-    
+
     // Focus canvas on load so keyboard events work
     canvas.focus();
-    
+
     // Set date and version number
     const versionInfo = document.getElementById('version-info');
     const today = new Date();
     const dateString = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    versionInfo.textContent = `${dateString} - v0.01`;
-    
+    versionInfo.textContent = `${dateString} - v0.02`;
+
     // Start the animation
     animate();
   </script>
 </body>
+
 </html>
