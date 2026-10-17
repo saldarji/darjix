@@ -39,6 +39,14 @@ export default function Sidebar() {
             </p>
           </li>
           <li>
+            <Link href="/battle-tank-game" className="font-medium text-black hover:underline text-sm block">
+              Battle Tank Game
+            </Link>
+            <p className="text-xs text-gray-500 mt-1">
+              Designed and created by Jasper (age 12) with help from Dad (age old) and with Gemini 3.8 Flash and Antigravity.
+            </p>
+          </li>
+          <li>
             <Link href="/archive" className="font-medium text-black hover:underline text-sm block">
               Archive
             </Link>

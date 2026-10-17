@@ -308,6 +308,20 @@ function copySycMemberData() {
   }
 }
 
+function copyBattleTankGame() {
+  const src = path.join(__dirname, '../battle-tank-game.html');
+  const destDir = path.join(__dirname, '../public/battle-tank-game');
+  const destIndex = path.join(destDir, 'index.html');
+  const destHtml = path.join(__dirname, '../public/battle-tank-game.html');
+
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(destDir, { recursive: true });
+    fs.copyFileSync(src, destIndex);
+    fs.copyFileSync(src, destHtml);
+    console.log('✅ Copied Battle Tank Game to /public/battle-tank-game and /public/battle-tank-game.html');
+  }
+}
+
 async function run() {
   console.log('🚀 Building static experiment pages...');
   try {
@@ -322,6 +336,7 @@ async function run() {
   buildArchiveIndex();
   buildHoroscopes();
   copyArchiveFiles();
+  copyBattleTankGame();
   copySycEvents();
   copySycMemberData();
   console.log('🎉 Static experiment pages ready!');
