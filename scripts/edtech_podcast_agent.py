@@ -12,12 +12,6 @@ import requests
 from datetime import datetime, timedelta, timezone
 from google import genai
 
-# Load environment variables from .env file if it exists
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass  # dotenv not installed, use environment variables directly
 
 def fetch_itunes_episodes(keyword, limit=25):
     """Fetch podcast episodes from iTunes Search API"""
@@ -136,9 +130,14 @@ Episodes:
 Selected Episode Indices JSON:"""
 
     try:
+        # Enforce that Gemini API runs only in GitHub Actions CI/CD to prevent local credential exposure
+        if os.environ.get('GITHUB_ACTIONS') != 'true':
+            print("🔒 Local environment detected: Gemini API calls are disabled locally. Using candidate fallback...")
+            return candidates[:max_selected]
+
         api_key = os.environ.get('GEMINI_API_KEY')
         if not api_key:
-            print("⚠️  GEMINI_API_KEY not set. Falling back to top candidates...")
+            print("⚠️  GEMINI_API_KEY not set in CI environment. Falling back to top candidates...")
             return candidates[:max_selected]
 
         client = genai.Client(api_key=api_key)
@@ -312,8 +311,8 @@ def main():
     }
     
     # Log Gemini model info
-    if not os.environ.get('GEMINI_API_KEY'):
-        print("⚠️  GEMINI_API_KEY not set in local environment. Will fallback to top iTunes candidates.")
+    if os.environ.get('GITHUB_ACTIONS') != 'true':
+        print("🔒 Local environment: Gemini API execution is restricted to GitHub Actions CI/CD.")
     
     print(f"📋 Using model: {config['model']}")
     print(f"📊 Keywords: {', '.join(config['keywords'])}")

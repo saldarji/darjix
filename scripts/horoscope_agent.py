@@ -17,12 +17,6 @@ import requests
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import horoscope_lucky
 
-try:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-except ImportError:
-    pass
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = REPO_ROOT / "_data" / "horoscopes.json"
@@ -177,9 +171,12 @@ def extract_json(text: str) -> dict:
 
 
 def run_model(prompt: str) -> dict:
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        raise RuntimeError("Security Policy: Running Gemini API operations locally is disabled. This script must be executed in GitHub Actions CI/CD.")
+
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
+        raise ValueError("GEMINI_API_KEY environment variable not set in CI environment")
 
     client = genai.Client(api_key=api_key)
     config = types.GenerateContentConfig(

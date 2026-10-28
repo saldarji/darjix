@@ -15,12 +15,6 @@ import feedparser
 from datetime import datetime, timedelta, timezone
 from urllib.parse import quote
 
-# Load environment variables from .env file if it exists
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
 
 try:
     from google import genai
@@ -159,9 +153,14 @@ def select_and_summarize_stories(candidates, max_selected=8):
     if not candidates:
         return []
 
+    # Enforce that Gemini API runs only in GitHub Actions CI/CD to prevent local credential exposure
+    if os.environ.get('GITHUB_ACTIONS') != 'true':
+        print("🔒 Local environment detected: Gemini API calls are disabled locally. Using candidate fallback...")
+        return fallback_selection(candidates, max_selected)
+
     api_key = os.environ.get('GEMINI_API_KEY')
     if not api_key or genai is None:
-        print("⚠️  GEMINI_API_KEY not set or google-genai SDK unavailable. Using candidate fallback...")
+        print("⚠️  GEMINI_API_KEY not set in CI environment or google-genai SDK unavailable. Using candidate fallback...")
         return fallback_selection(candidates, max_selected)
 
     # Sample top 40 candidates

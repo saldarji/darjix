@@ -17,12 +17,6 @@ from pathlib import Path
 from google import genai
 from google.genai import types
 
-try:
-    from dotenv import load_dotenv
-
-    load_dotenv()
-except ImportError:
-    pass
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = REPO_ROOT / "_data" / "horoscopes.json"
@@ -73,9 +67,12 @@ def generate_lucky_comment(story: dict, numbers: list[int]) -> str:
     if len(numbers) != 6:
         raise ValueError("numbers must be 6 ints (5 main + Powerball)")
     
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        raise RuntimeError("Security Policy: Running Gemini API operations locally is disabled. This script must be executed in GitHub Actions CI/CD.")
+
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
+        raise ValueError("GEMINI_API_KEY environment variable not set in CI environment")
 
     prompt = _build_lucky_prompt(story, numbers)
     raw = ""

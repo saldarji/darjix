@@ -32,12 +32,6 @@ import base64
 import time
 from pathlib import Path
 
-# Load environment variables from .env file if it exists
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
 
 # Try to import Google Gemini API
 try:
@@ -68,11 +62,13 @@ def generate_alt_text_gemini(image_path):
             "Install it with: pip install google-genai"
         )
     
+    if os.environ.get("GITHUB_ACTIONS") != "true":
+        raise RuntimeError("Security Policy: Running Gemini API operations locally is disabled. This script must be executed in GitHub Actions CI/CD.")
+
     api_key = os.environ.get('GEMINI_API_KEY')
     if not api_key:
         raise ValueError(
-            "GEMINI_API_KEY environment variable not set. "
-            "Get your API key at: https://ai.google.dev/"
+            "GEMINI_API_KEY environment variable not set in CI environment."
         )
     
     print(f"🖼️  Processing image: {image_path}")
