@@ -6,7 +6,7 @@ import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/aut
 import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs, query, orderBy } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Post, PhotoItem } from "@/lib/types";
-import { LogIn, LogOut, Plus, Trash2, Edit3, Rocket, RefreshCw } from "lucide-react";
+import { LogIn, LogOut, Plus, Trash2, Edit3, Rocket, RefreshCw, Sparkles, Undo2 } from "lucide-react";
 
 export default function AdminPage() {
   const [user, setUser] = useState<User | null>(null);
@@ -22,6 +22,8 @@ export default function AdminPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [statusMsg, setStatusMsg] = useState("");
   const [rebuilding, setRebuilding] = useState(false);
+  const [rewritingWithGemini, setRewritingWithGemini] = useState(false);
+  const [previousDraft, setPreviousDraft] = useState<{ title: string; content: string } | null>(null);
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleTriggerRebuild = async () => {
@@ -61,6 +63,116 @@ export default function AdminPage() {
     } finally {
       setRebuilding(false);
     }
+  };
+
+  const handleRewriteWithGemini = async () => {
+    if (!title.trim() && !content.trim()) {
+      setStatusMsg("⚠️ Please enter a title or draft notes before rewriting with Gemini.");
+      return;
+    }
+
+    let apiKey =
+      process.env.NEXT_PUBLIC_GEMINI_API_KEY ||
+      localStorage.getItem("gemini_api_key");
+    if (!apiKey) {
+      apiKey = prompt("Please enter your Google Gemini API Key to rewrite posts:");
+      if (!apiKey) return;
+      localStorage.setItem("gemini_api_key", apiKey.trim());
+    }
+
+    setRewritingWithGemini(true);
+    setStatusMsg("✨ Sending draft to Gemini to rewrite as an engaging blog post...");
+
+    // Save previous draft for instant undo
+    setPreviousDraft({ title, content });
+
+    const promptText = `You are an expert editorial writer for Sal Darji's personal blog (darjix.com).
+Your task is to take the author's draft title and raw notes/text and rewrite them into a compelling, clear, well-structured, and engaging blog post in Markdown format.
+
+Author's Draft Title:
+${title.trim() || "(Untitled draft)"}
+
+Author's Draft Notes/Text:
+${content.trim() || "(No body text provided - expand on the title into a thoughtful post)"}
+
+Guidelines:
+1. Polish the structure with clean Markdown (use ## or ### subheadings, bullet points where helpful, bold emphasis, and smooth, readable paragraphs).
+2. Maintain an authentic, first-person perspective suitable for a tech executive / product leader (thoughtful, insightful, conversational yet professional, avoiding overly generic corporate jargon).
+3. If the input title is rough, incomplete, or can be improved, provide an improved, punchy blog post title.
+4. Output your response as a valid JSON object with EXACTLY this structure:
+{
+  "title": "Refined Blog Post Title",
+  "content": "Full rewritten blog post in Markdown format..."
+}`;
+
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [{ text: promptText }],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              responseMimeType: "application/json",
+            },
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        if (res.status === 400 || res.status === 403) {
+          localStorage.removeItem("gemini_api_key");
+        }
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error?.message || `Gemini API returned status ${res.status}`);
+      }
+
+      const data = await res.json();
+      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!rawText) {
+        throw new Error("No response content received from Gemini.");
+      }
+
+      let parsedTitle = "";
+      let parsedContent = "";
+      try {
+        const parsed = JSON.parse(rawText);
+        parsedTitle = parsed.title || "";
+        parsedContent = parsed.content || "";
+      } catch (jsonErr) {
+        parsedContent = rawText;
+      }
+
+      if (parsedTitle && parsedTitle.trim()) {
+        setTitle(parsedTitle.trim());
+      }
+      if (parsedContent && parsedContent.trim()) {
+        setContent(parsedContent.trim());
+      }
+
+      setStatusMsg("✨ Blog post successfully rewritten by Gemini! Click 'Undo Rewrite' if you wish to restore your original draft.");
+    } catch (err: any) {
+      console.error("Gemini rewrite error:", err);
+      setStatusMsg(`⚠️ Error rewriting with Gemini: ${err.message}`);
+    } finally {
+      setRewritingWithGemini(false);
+    }
+  };
+
+  const handleUndoRewrite = () => {
+    if (!previousDraft) return;
+    setTitle(previousDraft.title);
+    setContent(previousDraft.content);
+    setPreviousDraft(null);
+    setStatusMsg("Restored your previous draft notes.");
   };
 
   const insertMarkdown = (action: string) => {
@@ -270,6 +382,7 @@ export default function AdminPage() {
     setLayout("post");
     setImages([]);
     setEditingId(null);
+    setPreviousDraft(null);
   };
 
   const handleEdit = (post: Post) => {
@@ -449,8 +562,35 @@ export default function AdminPage() {
             )}
 
             <div>
-              <div className="flex justify-between items-center mb-1">
-                <label className="block text-sm font-medium text-black">Markdown Body</label>
+              <div className="flex flex-wrap justify-between items-center gap-2 mb-1">
+                <div className="flex items-center space-x-2">
+                  <label className="block text-sm font-medium text-black">Markdown Body</label>
+                  <button
+                    type="button"
+                    onClick={handleRewriteWithGemini}
+                    disabled={rewritingWithGemini}
+                    className="inline-flex items-center space-x-1.5 px-3 py-1 text-xs font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded hover:from-purple-700 hover:to-indigo-700 transition shadow-sm disabled:opacity-50"
+                    title="Send title and notes to Gemini to rewrite as a formatted blog post"
+                  >
+                    {rewritingWithGemini ? (
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                    )}
+                    <span>{rewritingWithGemini ? "Rewriting with Gemini..." : "Rewrite with Gemini"}</span>
+                  </button>
+                  {previousDraft && (
+                    <button
+                      type="button"
+                      onClick={handleUndoRewrite}
+                      className="inline-flex items-center space-x-1 px-2.5 py-1 text-xs text-gray-700 border border-gray-300 rounded hover:bg-gray-100 transition"
+                      title="Undo rewrite and restore your original draft"
+                    >
+                      <Undo2 className="w-3.5 h-3.5" />
+                      <span>Undo</span>
+                    </button>
+                  )}
+                </div>
                 <span className="text-xs text-gray-400 font-mono">Markdown formatted</span>
               </div>
               
@@ -540,18 +680,46 @@ export default function AdminPage() {
               />
             </div>
 
-            <div className="flex space-x-3">
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-black text-white text-sm font-medium hover:bg-gray-800 transition"
+                className="px-6 py-2.5 bg-black text-white text-sm font-medium hover:bg-gray-800 transition rounded"
               >
                 {editingId ? "Update Post" : "Publish Post"}
               </button>
+
+              <button
+                type="button"
+                onClick={handleRewriteWithGemini}
+                disabled={rewritingWithGemini}
+                className="px-4 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-medium hover:from-purple-700 hover:to-indigo-700 transition rounded inline-flex items-center space-x-2 disabled:opacity-50 shadow-sm"
+                title="Send title and notes to Gemini to rewrite as a formatted blog post"
+              >
+                {rewritingWithGemini ? (
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Sparkles className="w-4 h-4 text-yellow-300" />
+                )}
+                <span>{rewritingWithGemini ? "Rewriting with Gemini..." : "Rewrite with Gemini"}</span>
+              </button>
+
+              {previousDraft && (
+                <button
+                  type="button"
+                  onClick={handleUndoRewrite}
+                  className="px-3 py-2.5 border border-gray-300 text-sm font-medium hover:bg-gray-100 transition rounded inline-flex items-center space-x-1.5 text-gray-700"
+                  title="Undo rewrite and restore previous notes"
+                >
+                  <Undo2 className="w-4 h-4" />
+                  <span>Undo Rewrite</span>
+                </button>
+              )}
+
               {editingId && (
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-4 py-2.5 border border-gray-300 text-sm font-medium hover:bg-gray-100"
+                  className="px-4 py-2.5 border border-gray-300 text-sm font-medium hover:bg-gray-100 transition rounded"
                 >
                   Cancel Edit
                 </button>

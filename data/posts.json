@@ -1,5 +1,17 @@
 [
   {
+    "id": "TSSbYwuAo42rgLMrowvy",
+    "title": "Token Apocalypse",
+    "slug": "token-apocalypse",
+    "date": "2026-10-27T14:28:00.396Z",
+    "layout": "post",
+    "published": true,
+    "content": "The \"token apocalypse\" refers to the possibility, or certainty, that token prices will skyrocket when the true unsubsidized costs of token usage is passed to the user. \n\n## Key Causes and Drivers\n\n- End of Subsidies: AI providers initially offered cheap or flat-rate access backed by venture capital to drive habit-forming adoption ($280–$600 per user per month in hidden subsidies). As these subsidies taper off or companies face post-IPO pricing realities, real costs are hitting corporate balance sheets.\n- Agentic Over-Consumption: Autonomous AI agents and multi-step coding tools (like Claude Code and Cursor) consume 5 to 30 times more tokens per task than simple queries.\n- Trivial Use Cases: Leaked enterprise reports (such as from Accenture) show that a large portion of token burn comes from non-technical employees using expensive frontier models for basic, low-value tasks like converting PDFs into slides.\n- Jevons Paradox: While per-token compute prices have dropped significantly since 2023, total usage has exploded far faster than unit prices fell, ballooning overall bills.\n\n## Corporate Response\n\n- Hard Caps and Rationing: Companies like Uber capped or restricted employee access to tools like Claude Code and Cursor after exhausting entire quarterly AI budgets in months. Walmart and other major firms have similarly clamped down on unrestricted AI tool use.\n- Pivoting to Open-Weight Models: Organizations are shifting routine enterprise workloads away from expensive frontier models (like OpenAI and Anthropic) to cheaper open-weight or open-source alternatives.\n- Per-Token Billing Shifts: Platforms like GitHub transitioned away from flat-rate subscriptions to strict per-token charging models.",
+    "images": null,
+    "created_at": "2026-10-27T14:28:00.396Z",
+    "updated_at": "2026-10-27T14:28:00.396Z"
+  },
+  {
     "id": "toau28B8vEbNU40wYRhD",
     "title": "Cognitive Trap or Augmented Self-Efficacy?",
     "slug": "cognitive-trap-or-augmented-self-efficacy",
@@ -208,9 +220,9 @@
     "content": "",
     "images": [
       {
-        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused.",
         "url": "/assets/images/image posts/IMG_4346.jpeg",
-        "caption": "Paul Tesluk speaking @ AIxED Conference"
+        "caption": "Paul Tesluk speaking @ AIxED Conference",
+        "alt_text": "A grayscale image shows a man in a suit speaking at the 'AI in Education Summit.' He holds a microphone, gesturing with his free hand, engaging an unseen audience whose heads are visible in the foreground. The mood is professional and focused."
       },
       {
         "alt_text": "A crisp black-and-white shot shows two bald men on a dimly lit stage. The right man, wearing glasses and a light suit, animatedly speaks into a microphone. The left man, in a dark suit, smiles while attentively listening. Dark drapes backdrop a professional, engaging discussion, with audience heads...",
@@ -218,13 +230,13 @@
         "caption": "Usama Fayyad from Northeastern University and Hamit Hamutcu, Founder AIxED @ AIxED Conference"
       },
       {
+        "url": "/assets/images/image posts/IMG_4358.jpeg",
         "alt_text": "A man with messy hair, in a dark suit, speaks passionately into a microphone from a podium at an 'AI in Education Summit.' The black and white image, shot from behind the audience, creates a focused, professional atmosphere for the engaging presentation.",
-        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference",
-        "url": "/assets/images/image posts/IMG_4358.jpeg"
+        "caption": "Sam Paddock, CEO Next Gen Learning @ AIxED Conference"
       },
       {
-        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation.",
         "url": "/assets/images/image posts/IMG_4363.jpeg",
+        "alt_text": "A grayscale image captures a confident woman speaking into a microphone on stage, dressed in a t-shirt, jeans, and boots. Dark curtains backdrop her as audience members, some with laptops, listen intently in the foreground. The scene is a focused presentation.",
         "caption": "Gabriela Torres presenting Sundai club @ AIxED Conference"
       }
     ],
