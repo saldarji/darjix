@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { auth, googleProvider, db, storage } from "@/lib/firebase";
+import { auth, googleProvider, db, storage, functions } from "@/lib/firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, User } from "firebase/auth";
+import { httpsCallable } from "firebase/functions";
 import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs, query, orderBy } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Post, PhotoItem } from "@/lib/types";
@@ -71,91 +72,26 @@ export default function AdminPage() {
       return;
     }
 
-    let apiKey =
-      process.env.NEXT_PUBLIC_GEMINI_API_KEY ||
-      localStorage.getItem("gemini_api_key");
-    if (!apiKey) {
-      apiKey = prompt("Please enter your Google Gemini API Key to rewrite posts:");
-      if (!apiKey) return;
-      localStorage.setItem("gemini_api_key", apiKey.trim());
-    }
-
     setRewritingWithGemini(true);
-    setStatusMsg("✨ Sending draft to Gemini to rewrite as an engaging blog post...");
+    setStatusMsg("✨ Sending draft to Gemini (via secure Cloud Function) to rewrite as an engaging blog post...");
 
     // Save previous draft for instant undo
     setPreviousDraft({ title, content });
 
-    const promptText = `You are an expert editorial writer for Sal Darji's personal blog (darjix.com).
-Your task is to take the author's draft title and raw notes/text and rewrite them into a compelling, clear, well-structured, and engaging blog post in Markdown format.
-
-Author's Draft Title:
-${title.trim() || "(Untitled draft)"}
-
-Author's Draft Notes/Text:
-${content.trim() || "(No body text provided - expand on the title into a thoughtful post)"}
-
-Guidelines:
-1. Polish the structure with clean Markdown (use ## or ### subheadings, bullet points where helpful, bold emphasis, and smooth, readable paragraphs).
-2. Maintain an authentic, first-person perspective suitable for a tech executive / product leader (thoughtful, insightful, conversational yet professional, avoiding overly generic corporate jargon).
-3. If the input title is rough, incomplete, or can be improved, provide an improved, punchy blog post title.
-4. Output your response as a valid JSON object with EXACTLY this structure:
-{
-  "title": "Refined Blog Post Title",
-  "content": "Full rewritten blog post in Markdown format..."
-}`;
-
     try {
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [{ text: promptText }],
-              },
-            ],
-            generationConfig: {
-              temperature: 0.7,
-              responseMimeType: "application/json",
-            },
-          }),
-        }
+      const rewriteFn = httpsCallable<{ title: string; content: string }, { title: string; content: string }>(
+        functions,
+        "rewritePostWithGemini"
       );
 
-      if (!res.ok) {
-        if (res.status === 400 || res.status === 403) {
-          localStorage.removeItem("gemini_api_key");
-        }
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(errData.error?.message || `Gemini API returned status ${res.status}`);
-      }
+      const res = await rewriteFn({ title, content });
+      const { title: newTitle, content: newContent } = res.data;
 
-      const data = await res.json();
-      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!rawText) {
-        throw new Error("No response content received from Gemini.");
+      if (newTitle && newTitle.trim()) {
+        setTitle(newTitle.trim());
       }
-
-      let parsedTitle = "";
-      let parsedContent = "";
-      try {
-        const parsed = JSON.parse(rawText);
-        parsedTitle = parsed.title || "";
-        parsedContent = parsed.content || "";
-      } catch (jsonErr) {
-        parsedContent = rawText;
-      }
-
-      if (parsedTitle && parsedTitle.trim()) {
-        setTitle(parsedTitle.trim());
-      }
-      if (parsedContent && parsedContent.trim()) {
-        setContent(parsedContent.trim());
+      if (newContent && newContent.trim()) {
+        setContent(newContent.trim());
       }
 
       setStatusMsg("✨ Blog post successfully rewritten by Gemini! Click 'Undo Rewrite' if you wish to restore your original draft.");
