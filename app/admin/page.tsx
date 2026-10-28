@@ -97,7 +97,14 @@ export default function AdminPage() {
       setStatusMsg("✨ Blog post successfully rewritten by Gemini! Click 'Undo Rewrite' if you wish to restore your original draft.");
     } catch (err: any) {
       console.error("Gemini rewrite error:", err);
-      setStatusMsg(`⚠️ Error rewriting with Gemini: ${err.message}`);
+      let errorDetails = err.message || "Unknown error";
+      if (err.details) {
+        errorDetails += typeof err.details === "string" ? ` - ${err.details}` : ` - ${JSON.stringify(err.details)}`;
+      }
+      if (err.code) {
+        errorDetails = `[${err.code}] ${errorDetails}`;
+      }
+      setStatusMsg(`⚠️ Error rewriting with Gemini: ${errorDetails}`);
     } finally {
       setRewritingWithGemini(false);
     }

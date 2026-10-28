@@ -13,6 +13,7 @@ export const rewritePostWithGemini = onCall(
     cors: ["https://darjix.com", "http://localhost:3000", "http://localhost:3001"],
     timeoutSeconds: 60,
     maxInstances: 5,
+    invoker: "public",
   },
   async (request) => {
     // 1. Enforce authentication
@@ -84,16 +85,16 @@ Guidelines:
 
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
-        throw new HttpsError(
-          "internal",
-          errData.error?.message || `Gemini API returned status ${response.status}`
-        );
+        const errMsg = errData.error?.message || `Gemini API returned HTTP status ${response.status}`;
+        console.error("Gemini API call failed:", errMsg);
+        throw new HttpsError("failed-precondition", `Gemini API Error: ${errMsg}`);
       }
 
       const data = await response.json();
       const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!rawText) {
-        throw new HttpsError("internal", "No content received from Gemini.");
+        console.error("Gemini returned empty candidate:", JSON.stringify(data));
+        throw new HttpsError("unavailable", "No content received from Gemini.");
       }
 
       let parsedTitle = "";
@@ -111,10 +112,14 @@ Guidelines:
         content: parsedContent.trim() || rawText,
       };
     } catch (err: any) {
+      console.error("rewritePostWithGemini handler error:", err);
       if (err instanceof HttpsError) {
         throw err;
       }
-      throw new HttpsError("internal", err.message || "Failed to rewrite post with Gemini.");
+      throw new HttpsError(
+        "failed-precondition",
+        err.message || "Failed to rewrite post with Gemini."
+      );
     }
   }
 );
