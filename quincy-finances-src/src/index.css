@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-color: #be123c;
+  --brand-blue: #1d4ed8;
+  --in-oklab: ;
+  --in-oklch: ;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-color: #f43f5e;
+    --brand-blue: #60a5fa;
+  }
+}
+
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+    --in-oklch: in oklch;
+  }
+}
+
+body {
+  accent-color: var(--brand-color);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+}
+
+/* Fallback for older browsers without accent-color per modern-web-guidance */
+@supports not (accent-color: var(--brand-color)) {
+  input[type="checkbox"].visually-hidden {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(
+      to right,
+      var(--brand-color, #be123c) var(--progress, 50%),
+      #cbd5e1 var(--progress, 50%)
+    );
+    border-radius: 4px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--brand-color, #be123c);
+    cursor: pointer;
+    margin-top: -5px;
+  }
+
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--brand-color, #be123c);
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-progress {
+    background-color: var(--brand-color, #be123c);
+    height: 8px;
+    border-radius: 4px;
+  }
+}
+
+/* Typography & Layout Best Practices */
+h1, h2, h3, th {
+  text-wrap: balance;
+}
+
+p, blockquote, li {
+  text-wrap: pretty;
+  line-height: 1.6;
+}
+
+.fluid-hero-title {
+  font-size: clamp(2.15rem, 1.35rem + 3.2vw, 3.85rem);
+  line-height: 1.08;
+}
+
+.fluid-section-title {
+  font-size: clamp(1.65rem, 1.15rem + 1.8vw, 2.5rem);
+  line-height: 1.18;
+}
+
+/* Accessible Focus Rings */
+:where(button, a, input, select, summary):focus-visible {
+  outline: 2px solid var(--brand-color);
+  outline-offset: 3px;
+}
+
+/* Minimum Touch Targets (WCAG 2.5.8 AA) */
+button, summary, input[type="range"], select {
+  min-block-size: 28px;
+  min-inline-size: 28px;
+  touch-action: pan-y;
+}
+
+/* Disclosure (<details> / <summary>) styling with explicit directional indicator */
+details.methodology-drawer > summary {
+  list-style: none;
+}
+details.methodology-drawer > summary::-webkit-details-marker {
+  display: none;
+}
+details.methodology-drawer > summary::after {
+  content: "▾" / "";
+  display: inline-block;
+  margin-inline-start: 0.5rem;
+  transition: transform 0.2s ease;
+}
+details.methodology-drawer[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+/* Render optimization for heavy sections */
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 48rem;
+}
+
+/* Reduced motion handling via custom property */
+@property --animation-reduced {
+  syntax: "*";
+  inherits: false;
+  initial-value: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: var(--animation-reduced) !important;
+    transition-duration: 0.05s !important;
+  }
+}
