@@ -27,7 +27,16 @@ export interface AnnualDebtScheduleRow {
 }
 
 export interface PeerCityProfile {
-  city: 'Quincy' | 'Cambridge' | 'Somerville' | 'Medford';
+  city:
+    | 'Quincy'
+    | 'Cambridge'
+    | 'Somerville'
+    | 'Medford'
+    | 'Brockton'
+    | 'Lynn'
+    | 'Springfield'
+    | 'New Bedford';
+  peerGroup: 'Subject City' | 'Inner-Core Metro' | 'MA Gateway Cities';
   Archetype: string;
   population: number;
   operatingBudgetM: number;
@@ -178,6 +187,7 @@ export const QUINCY_MATURITY_SCHEDULE: AnnualDebtScheduleRow[] = [
 export const PEER_CITIES_COMPARISON: PeerCityProfile[] = [
   {
     city: 'Quincy',
+    peerGroup: 'Subject City',
     Archetype: 'High-Leverage Growth & Pension Bonding',
     population: 101636,
     operatingBudgetM: 478.5,
@@ -193,10 +203,11 @@ export const PEER_CITIES_COMPARISON: PeerCityProfile[] = [
     narrativeSummary:
       'Quincy has aggressively used municipal debt to remake Quincy Center (DIF), replace schools, and bond its entire pension liability ($475M POB), while carrying over $500M in short-term BANs.',
     taxpayerTakeaway:
-      'Highest debt-service bite in the peer group (~18.6% of budget) and lowest reserve cushion relative to short-term BAN exposure.',
+      'Highest debt-service bite in the 8-city comparison (~18.6% of budget) and lowest reserve cushion relative to short-term BAN exposure.',
   },
   {
     city: 'Cambridge',
+    peerGroup: 'Inner-Core Metro',
     Archetype: 'AAA Biotech Commercial Fortress',
     population: 118488,
     operatingBudgetM: 926.0,
@@ -216,6 +227,7 @@ export const PEER_CITIES_COMPARISON: PeerCityProfile[] = [
   },
   {
     city: 'Somerville',
+    peerGroup: 'Inner-Core Metro',
     Archetype: 'Managed Transit & School Expansion',
     population: 81045,
     operatingBudgetM: 362.0,
@@ -235,6 +247,7 @@ export const PEER_CITIES_COMPARISON: PeerCityProfile[] = [
   },
   {
     city: 'Medford',
+    peerGroup: 'Inner-Core Metro',
     Archetype: 'Historically Debt-Averse / Infrastructure Catch-Up',
     population: 59659,
     operatingBudgetM: 212.0,
@@ -251,6 +264,86 @@ export const PEER_CITIES_COMPARISON: PeerCityProfile[] = [
       'Represents the opposite end of the municipal spectrum: decades of minimal borrowing kept debt service under 5% of the budget, but left deferred maintenance in schools, fire stations, and roads.',
     taxpayerTakeaway:
       'Illustrates the trade-off of under-borrowing: low financial debt on paper, but high physical "infrastructure debt" now requiring Prop 2½ overrides.',
+  },
+  {
+    city: 'Brockton',
+    peerGroup: 'MA Gateway Cities',
+    Archetype: 'Fellow POB Issuer Under Budget Strain',
+    population: 105643,
+    operatingBudgetM: 480.5,
+    totalDirectAndShortTermDebtM: 485.0,
+    shortTermBanExposureM: 28.0,
+    pobOutstandingM: 300.0,
+    annualDebtServiceM: 33.6,
+    debtServicePctOfBudget: 7.0,
+    debtPerCapita: 4591,
+    debtPctOfEQV: 3.85,
+    freeCashAndStabilizationM: 24.5,
+    bondRating: 'AA- (S&P, Stable)',
+    narrativeSummary:
+      'Like Quincy, Brockton issued a major Pension Obligation Bond ($300M in 2021 plus a ~$59M follow-on authorization) and operates on a nearly identical ~$480M budget scale, though it relies far less on short-term BANs.',
+    taxpayerTakeaway:
+      'Closest structural peer to Quincy on pension bonding—yet Brockton’s debt per capita ($4,591) is under 1/3 of Quincy’s, though school deficits forced heavy reserve draws.',
+  },
+  {
+    city: 'Lynn',
+    peerGroup: 'MA Gateway Cities',
+    Archetype: 'Post-Oversight Fiscal Turnaround (~102k Twin)',
+    population: 102300,
+    operatingBudgetM: 517.3,
+    totalDirectAndShortTermDebtM: 108.0,
+    shortTermBanExposureM: 15.0,
+    pobOutstandingM: 0.0,
+    annualDebtServiceM: 14.5,
+    debtServicePctOfBudget: 2.8,
+    debtPerCapita: 1056,
+    debtPctOfEQV: 0.95,
+    freeCashAndStabilizationM: 35.0,
+    bondRating: 'AA / A1 (Moody’s)',
+    narrativeSummary:
+      'Nearly identical in population to Quincy (~102,300 vs. 101,636) with a slightly larger $517.3M FY25 operating budget. After exiting state fiscal oversight, Lynn paid off deficit bonds and rebuilt ~$30M+ in reserves before new school borrowing.',
+    taxpayerTakeaway:
+      'Carries ~1/15th of Quincy’s total debt footprint ($108M vs. $1,618M) and spends just 2.8% of its operating budget on debt service.',
+  },
+  {
+    city: 'Springfield',
+    peerGroup: 'MA Gateway Cities',
+    Archetype: 'Large-Scale Discipline & Reserve Builder',
+    population: 154702,
+    operatingBudgetM: 928.7,
+    totalDirectAndShortTermDebtM: 235.0,
+    shortTermBanExposureM: 12.0,
+    pobOutstandingM: 0.0,
+    annualDebtServiceM: 22.3,
+    debtServicePctOfBudget: 2.4,
+    debtPerCapita: 1519,
+    debtPctOfEQV: 1.70,
+    freeCashAndStabilizationM: 90.3,
+    bondRating: 'AA- (S&P, Stable)',
+    narrativeSummary:
+      'Massachusetts’ 3rd-largest city operates a $928.7M FY25 budget—nearly double Quincy’s—while keeping permanent GO principal modest (~$223M–$241M) on a declining debt curve and balancing 10 straight budgets without tapping reserves.',
+    taxpayerTakeaway:
+      'With 52% more residents than Quincy, Springfield holds 2.5x more in stabilization & free cash ($90.3M) while spending just 2.4% of its budget on debt service.',
+  },
+  {
+    city: 'New Bedford',
+    peerGroup: 'MA Gateway Cities',
+    Archetype: 'Low-Bonding Budget Twin (Unfunded OPEB Trade-Off)',
+    population: 101834,
+    operatingBudgetM: 478.7,
+    totalDirectAndShortTermDebtM: 185.0,
+    shortTermBanExposureM: 40.8,
+    pobOutstandingM: 0.0,
+    annualDebtServiceM: 12.7,
+    debtServicePctOfBudget: 2.7,
+    debtPerCapita: 1817,
+    debtPctOfEQV: 1.65,
+    freeCashAndStabilizationM: 26.0,
+    bondRating: 'AA- (S&P) / AA+ Enhanced',
+    narrativeSummary:
+      'Almost an exact population and general-fund twin to Quincy (101,834 residents; $478.7M FY25 General Fund), New Bedford caps debt service well below its 10% ceiling (~$12.7M/yr) while carrying unfunded pension ($387M) and OPEB ($500M) liabilities rather than issuing POBs.',
+    taxpayerTakeaway:
+      'Demonstrates the POB contrast: New Bedford keeps bonded debt service at 2.7% of its budget (~$12.7M vs. Quincy’s $88.8M), leaving pension/OPEB costs on an actuarial schedule instead of rigid bond payments.',
   },
 ];
 

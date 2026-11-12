@@ -180,7 +180,8 @@ export function App() {
                   Annual Debt Books, Official Statements for General Obligation Bonds & BANs, and
                   FY2025–FY2026 Operating Budget filings; (2) Massachusetts Department of Revenue
                   Division of Local Services (DLS) Municipal Finance Trend Dashboard & Category 6
-                  Debt Service Databank for Quincy, Cambridge, Somerville, and Medford; and (3)
+                  Debt Service Databank for Quincy, Cambridge, Somerville, Medford, Brockton, Lynn,
+                  Springfield, and New Bedford; and (3)
                   Federal Reserve Economic Data (FRED) and Congressional Budget Office (CBO) federal
                   net interest baselines.
                 </p>
@@ -221,14 +222,35 @@ export function App() {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
-          <div className="flex items-center gap-2">
-            <Landmark className="w-4 h-4 text-amber-400" aria-hidden="true" />
-            <span>City of Quincy Municipal Debt & Taxpayer Risk Infographic</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+            <div className="flex items-center gap-2">
+              <Landmark className="w-4 h-4 text-amber-400" aria-hidden="true" />
+              <span>City of Quincy Municipal Debt & Taxpayer Risk Infographic</span>
+            </div>
+            <div className="text-slate-400">
+              Built for civic transparency & public financial literacy • Neutral analysis with
+              explicit taxpayer risk modeling
+            </div>
           </div>
-          <div className="text-slate-400">
-            Built for civic transparency & public financial literacy • Neutral analysis with explicit
-            taxpayer risk modeling
+
+          <div className="mt-5 pt-4 border-t border-slate-800 text-xs text-slate-300 leading-relaxed text-center sm:text-left">
+            <strong className="text-amber-400 font-mono uppercase tracking-wider mr-1.5">
+              Disclaimer:
+            </strong>
+            This site was made with Gemini (AI) using publicly available municipal and state
+            financial disclosures. If you notice any issues with the data or calculations, please
+            contact me using the form on the{' '}
+            <a
+              href="https://darjix.com/contact"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 underline hover:text-amber-300 font-medium inline-flex items-center gap-1"
+            >
+              <span>contact page</span>
+              <ExternalLink className="w-3 h-3" aria-hidden="true" />
+            </a>{' '}
+            (<span className="font-mono text-slate-400">https://darjix.com/contact</span>).
           </div>
         </div>
       </footer>
