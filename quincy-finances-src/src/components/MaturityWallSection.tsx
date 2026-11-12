@@ -154,74 +154,151 @@ export const MaturityWallSection: React.FC = () => {
           </div>
 
           {/* Interactive Bar Chart (FY2025 - FY2045) */}
-          <div
-            className="grid grid-cols-21 gap-1.5 sm:gap-2 items-end h-72 pt-8 pb-2 px-2 bg-stone-50 rounded-xl border border-stone-200 overflow-x-auto"
-            role="img"
-            aria-label="Stacked bar chart of Quincy's annual debt service from FY2025 to FY2045 across Capital Bonds, Pension Bonds, DIF, and Short-Term BAN refinancing."
-          >
-            {QUINCY_MATURITY_SCHEDULE.map((row) => {
-              const coreCapitalM =
-                row.goBondPrincipalM + row.goBondInterestM + row.enterpriseDebtServiceM;
-              const pobM = row.pobPrincipalM + row.pobInterestM;
-              const difM = row.difDebtServiceM;
-              const banOverlayM =
-                viewMode === 'ban-cliff'
-                  ? row.shortTermBanMaturityM
-                  : viewMode === 'amortized-projection' && row.fiscalYear >= 2026
-                  ? annualBanConversionDebtServiceM
-                  : 0;
+          {(() => {
+            const maxScaleM = viewMode === 'ban-cliff' ? 420 : 140;
+            const yAxisTicks = [1, 0.75, 0.5, 0.25, 0].map((frac) =>
+              Math.round(maxScaleM * frac)
+            );
 
-              const totalBarM = coreCapitalM + pobM + difM + banOverlayM;
-              const maxScaleM = viewMode === 'ban-cliff' ? 420 : 140;
+            return (
+              <div
+                className="bg-stone-50 rounded-xl border border-stone-200 px-3 sm:px-4 pb-3 pt-2 overflow-x-auto"
+                role="img"
+                aria-label="Stacked bar chart of Quincy's annual debt service from FY2025 to FY2045 across Capital Bonds, Pension Bonds, DIF, and Short-Term BAN refinancing."
+              >
+                <div className="min-w-[680px] pt-8">
+                  <div className="flex items-stretch">
+                    {/* Y-Axis Scale Labels */}
+                    <div
+                      aria-hidden="true"
+                      className="w-12 shrink-0 h-56 flex flex-col justify-between items-end pr-2.5 text-[10px] font-mono text-slate-500 select-none"
+                    >
+                      {yAxisTicks.map((tick) => (
+                        <span key={tick} className="leading-none -translate-y-1/2 first:translate-y-0 last:translate-y-1/2">
+                          ${tick}M
+                        </span>
+                      ))}
+                    </div>
 
-              const coreHeightPct = (coreCapitalM / maxScaleM) * 100;
-              const pobHeightPct = (pobM / maxScaleM) * 100;
-              const difHeightPct = (difM / maxScaleM) * 100;
-              const banHeightPct = (banOverlayM / maxScaleM) * 100;
-
-              return (
-                <div
-                  key={row.fiscalYear}
-                  className="flex flex-col items-center h-full justify-end group relative min-w-[28px]"
-                >
-                  {/* Hover Tooltip */}
-                  <div className="opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity absolute -top-6 z-20 bg-slate-900 text-white text-[10px] font-mono px-2 py-1 rounded shadow whitespace-nowrap">
-                    FY{String(row.fiscalYear).slice(2)}: ${totalBarM.toFixed(1)}M
-                  </div>
-
-                  {/* Stacked Bar */}
-                  <div className="w-full flex flex-col justify-end h-full rounded-t overflow-hidden">
-                    {banOverlayM > 0 && (
+                    {/* Plot Area: Gridlines + 21 Stacked Columns */}
+                    <div className="flex-1 relative h-56">
+                      {/* Horizontal Gridlines */}
                       <div
-                        style={{ height: `${banHeightPct}%` }}
-                        className="w-full bg-rose-600 border-b border-white/20 transition-all duration-300"
-                        title={`FY${row.fiscalYear} BAN Refinancing / Rollover: $${banOverlayM.toFixed(1)}M`}
-                      />
-                    )}
-                    <div
-                      style={{ height: `${difHeightPct}%` }}
-                      className="w-full bg-teal-700 border-b border-white/20 transition-all duration-300"
-                      title={`FY${row.fiscalYear} DIF Debt Service: $${difM.toFixed(1)}M`}
-                    />
-                    <div
-                      style={{ height: `${pobHeightPct}%` }}
-                      className="w-full bg-amber-500 border-b border-white/20 transition-all duration-300"
-                      title={`FY${row.fiscalYear} Pension Bonds (POB): $${pobM.toFixed(1)}M`}
-                    />
-                    <div
-                      style={{ height: `${coreHeightPct}%` }}
-                      className="w-full bg-blue-700 transition-all duration-300"
-                      title={`FY${row.fiscalYear} Core Capital & Enterprise: $${coreCapitalM.toFixed(1)}M`}
-                    />
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 flex flex-col justify-between"
+                      >
+                        {yAxisTicks.map((tick, i) => (
+                          <div
+                            key={tick}
+                            className={`w-full ${
+                              i === yAxisTicks.length - 1
+                                ? 'border-b border-slate-400'
+                                : 'border-t border-dashed border-stone-300/80'
+                            }`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* 21 Vertical Bar Columns */}
+                      <div className="relative z-10 flex items-end gap-1 sm:gap-1.5 h-full px-1">
+                        {QUINCY_MATURITY_SCHEDULE.map((row, idx) => {
+                          const coreCapitalM =
+                            row.goBondPrincipalM + row.goBondInterestM + row.enterpriseDebtServiceM;
+                          const pobM = row.pobPrincipalM + row.pobInterestM;
+                          const difM = row.difDebtServiceM;
+                          const banOverlayM =
+                            viewMode === 'ban-cliff'
+                              ? row.shortTermBanMaturityM
+                              : viewMode === 'amortized-projection' && row.fiscalYear >= 2026
+                              ? annualBanConversionDebtServiceM
+                              : 0;
+
+                          const totalBarM = coreCapitalM + pobM + difM + banOverlayM;
+                          const totalHeightPct = Math.min(100, (totalBarM / maxScaleM) * 100);
+
+                          const banPctOfBar = totalBarM > 0 ? (banOverlayM / totalBarM) * 100 : 0;
+                          const difPctOfBar = totalBarM > 0 ? (difM / totalBarM) * 100 : 0;
+                          const pobPctOfBar = totalBarM > 0 ? (pobM / totalBarM) * 100 : 0;
+                          const corePctOfBar = totalBarM > 0 ? (coreCapitalM / totalBarM) * 100 : 0;
+
+                          const tooltipAlignClass =
+                            idx <= 1
+                              ? 'left-0'
+                              : idx >= QUINCY_MATURITY_SCHEDULE.length - 2
+                              ? 'right-0'
+                              : 'left-1/2 -translate-x-1/2';
+
+                          return (
+                            <div
+                              key={row.fiscalYear}
+                              className="flex-1 min-w-0 h-full flex flex-col justify-end items-center group relative"
+                            >
+                              {/* Hover Tooltip */}
+                              <div
+                                className={`opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity absolute -top-7 ${tooltipAlignClass} z-20 bg-slate-900 text-white text-[10px] font-mono px-2 py-1 rounded shadow whitespace-nowrap`}
+                              >
+                                FY{String(row.fiscalYear).slice(2)}: ${totalBarM.toFixed(1)}M
+                              </div>
+
+                              {/* Stacked Bar */}
+                              <div
+                                style={{ height: `${totalHeightPct}%` }}
+                                className="w-full max-w-[32px] flex flex-col rounded-t overflow-hidden transition-all duration-300 shadow-sm group-hover:brightness-110"
+                              >
+                                {banOverlayM > 0 && (
+                                  <div
+                                    style={{ height: `${banPctOfBar}%` }}
+                                    className="w-full bg-rose-600 border-b border-white/25 transition-all duration-300"
+                                    title={`FY${row.fiscalYear} BAN Refinancing / Rollover: $${banOverlayM.toFixed(1)}M`}
+                                  />
+                                )}
+                                {difM > 0 && (
+                                  <div
+                                    style={{ height: `${difPctOfBar}%` }}
+                                    className="w-full bg-teal-700 border-b border-white/25 transition-all duration-300"
+                                    title={`FY${row.fiscalYear} DIF Debt Service: $${difM.toFixed(1)}M`}
+                                  />
+                                )}
+                                {pobM > 0 && (
+                                  <div
+                                    style={{ height: `${pobPctOfBar}%` }}
+                                    className="w-full bg-amber-500 border-b border-white/25 transition-all duration-300"
+                                    title={`FY${row.fiscalYear} Pension Bonds (POB): $${pobM.toFixed(1)}M`}
+                                  />
+                                )}
+                                {coreCapitalM > 0 && (
+                                  <div
+                                    style={{ height: `${corePctOfBar}%` }}
+                                    className="w-full bg-blue-700 transition-all duration-300"
+                                    title={`FY${row.fiscalYear} Core Capital & Enterprise: $${coreCapitalM.toFixed(1)}M`}
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
 
-                  <span className="text-[10px] font-mono text-slate-600 mt-1.5">
-                    ’{String(row.fiscalYear).slice(2)}
-                  </span>
+                  {/* X-Axis Year Labels */}
+                  <div className="flex items-center mt-2">
+                    <div className="w-12 shrink-0" aria-hidden="true" />
+                    <div className="flex-1 flex gap-1 sm:gap-1.5 px-1">
+                      {QUINCY_MATURITY_SCHEDULE.map((row) => (
+                        <span
+                          key={row.fiscalYear}
+                          className="flex-1 min-w-0 text-center text-[10px] font-mono text-slate-600"
+                        >
+                          ’{String(row.fiscalYear).slice(2)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })()}
 
           {/* Annotation Callouts Under Timeline */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
