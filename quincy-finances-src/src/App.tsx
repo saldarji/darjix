@@ -80,7 +80,7 @@ export function App() {
           <div className="flex items-center gap-2">
             <a
               href="#step-4"
-              className="px-3 py-1.5 rounded-lg bg-rose-800 text-white font-mono text-xs font-semibold hover:bg-rose-900 transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg bg-civic-crimson text-slate-900 font-mono text-xs font-bold hover:bg-rose-400 transition-colors flex items-center gap-1.5"
             >
               <ShieldAlert className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Run Rate Simulator</span>

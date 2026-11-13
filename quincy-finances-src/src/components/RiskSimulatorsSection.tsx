@@ -97,7 +97,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                         onClick={() => handlePresetClick(preset)}
                         className={`p-3 rounded-xl border text-left transition-all ${
                           active
-                            ? 'bg-rose-900 text-white border-rose-950 shadow-sm'
+                            ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
                             : 'bg-stone-50 text-slate-900 border-stone-300 hover:bg-stone-100'
                         }`}
                       >
@@ -246,14 +246,14 @@ export const RiskSimulatorsSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-rose-900 text-white">
-                    <span className="text-xs font-mono text-rose-200 block">
+                  <div className="p-3.5 rounded-xl bg-slate-900 text-white">
+                    <span className="text-xs font-mono text-slate-300 block">
                       Total Lifetime Interest Paid
                     </span>
-                    <span className="text-2xl font-mono font-bold text-amber-300">
+                    <span className="text-2xl font-mono font-bold text-amber-400">
                       ${banSim.totalLifetimeInterestM.toFixed(0)}M
                     </span>
-                    <span className="text-[11px] font-mono text-rose-100 block mt-0.5">
+                    <span className="text-[11px] font-mono text-rose-300 block mt-0.5">
                       {banSim.extraLifetimeInterestVs2021M >= 0 ? '+' : ''}
                       ${banSim.extraLifetimeInterestVs2021M.toFixed(0)}M extra interest vs. 2021
                     </span>
@@ -359,12 +359,12 @@ export const RiskSimulatorsSection: React.FC = () => {
           {/* SIMULATOR B: QUINCY CENTER DIF BREAKEVEN */}
           <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
             <div>
-              <div className="bg-teal-900 text-white px-6 py-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-teal-200 block">
+              <div className="bg-slate-900 text-white px-6 py-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-teal-400 block">
                   Simulator B • The “Quincy Center Bet” ($210M DIF Exposure)
                 </span>
                 <h3 className="text-xl font-serif font-bold flex items-center gap-2 mt-0.5">
-                  <Building className="w-5 h-5 text-teal-300" aria-hidden="true" />
+                  <Building className="w-5 h-5 text-teal-400" aria-hidden="true" />
                   Will Downtown Commercial Growth Pay for Its Own Debt?
                 </h3>
               </div>
@@ -489,12 +489,12 @@ export const RiskSimulatorsSection: React.FC = () => {
           {/* SIMULATOR C: $475M PENSION BOND ARBITRAGE TRACKER */}
           <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
             <div>
-              <div className="bg-amber-900 text-white px-6 py-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-amber-200 block">
+              <div className="bg-slate-900 text-white px-6 py-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block">
                   Simulator C • The $475M Pension Obligation Bond (POB) Gamble
                 </span>
                 <h3 className="text-xl font-serif font-bold flex items-center gap-2 mt-0.5">
-                  <TrendingUp className="w-5 h-5 text-amber-300" aria-hidden="true" />
+                  <TrendingUp className="w-5 h-5 text-amber-400" aria-hidden="true" />
                   Pension Market Returns vs. Locked-In $37.2M/Yr Bond Payments
                 </h3>
               </div>

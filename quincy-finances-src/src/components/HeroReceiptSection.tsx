@@ -119,12 +119,12 @@ export const HeroReceiptSection: React.FC = () => {
                   ~44,800 households
                 </span>
               </div>
-              <div className="p-3.5 rounded-lg bg-rose-900 text-white">
-                <dt className="text-xs font-mono uppercase text-rose-200">Share of Budget</dt>
-                <dd className="text-2xl font-mono font-bold text-white mt-1">
+              <div className="p-3.5 rounded-lg bg-civic-crimson text-slate-900">
+                <dt className="text-xs font-mono uppercase text-slate-900/80 font-semibold">Share of Budget</dt>
+                <dd className="text-2xl font-mono font-bold text-slate-900 mt-1">
                   {debtSharePct.toFixed(1)}%
                 </dd>
-                <span className="text-[11px] text-rose-200 block mt-0.5">
+                <span className="text-[11px] text-slate-900/85 font-medium block mt-0.5">
                   $88.8M of $478.5M budget
                 </span>
               </div>

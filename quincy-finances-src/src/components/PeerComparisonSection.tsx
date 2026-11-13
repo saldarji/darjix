@@ -170,11 +170,11 @@ export const PeerComparisonSection: React.FC = () => {
 
               const barColor = isQuincy
                 ? currentMetric.higherIsRiskier
-                  ? 'bg-rose-700'
-                  : 'bg-amber-600'
+                  ? 'bg-rose-500'
+                  : 'bg-amber-500'
                 : currentMetric.higherIsRiskier
                 ? 'bg-slate-700'
-                : 'bg-teal-700';
+                : 'bg-teal-500';
 
               return (
                 <div
