@@ -44,7 +44,7 @@ export const RiskSimulatorsSection: React.FC = () => {
   return (
     <section id="step-4" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-10">
+        <div className="mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
             Step 4 • Interactive Taxpayer Risk Lab (3 Live Simulators)
           </span>

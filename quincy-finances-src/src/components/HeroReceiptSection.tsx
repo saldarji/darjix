@@ -41,7 +41,7 @@ export const HeroReceiptSection: React.FC = () => {
             </span>
           </div>
 
-          <div className="max-w-4xl space-y-6">
+          <div className="space-y-6">
             <h1 className="fluid-hero-title font-serif font-bold text-slate-900 tracking-tight">
               The $1.62 Billion Tab: Inside the City of Presidents’ Debt Machine
             </h1>
@@ -138,7 +138,7 @@ export const HeroReceiptSection: React.FC = () => {
       ===================================================================== */}
       <section id="step-1" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
+          <div className="mb-10">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
               Step 1 • Your Household Debt Receipt
             </span>

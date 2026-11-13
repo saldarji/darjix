@@ -82,7 +82,7 @@ export const PeerComparisonSection: React.FC = () => {
   return (
     <section id="step-5" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-8">
+        <div className="mb-8">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
             Step 5 • Regional & Gateway City Peer Comparison (MA DOR DLS Databank)
           </span>

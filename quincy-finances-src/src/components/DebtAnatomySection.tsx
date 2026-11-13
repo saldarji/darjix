@@ -8,7 +8,7 @@ export const DebtAnatomySection: React.FC = () => {
   return (
     <section id="step-2" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-10">
+        <div className="mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
             Step 2 • Anatomy of the Liabilities
           </span>

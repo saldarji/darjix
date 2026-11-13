@@ -59,7 +59,7 @@ export const ConclusionSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl mb-10">
+        <div className="mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
             Step 7 • Conclusion & Actionable Next Steps
           </span>
