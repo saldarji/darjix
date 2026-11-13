@@ -99,7 +99,7 @@ body {
 
 /* Typography & Layout Best Practices */
 h1, h2, h3, th {
-  text-wrap: balance;
+  text-wrap: normal;
 }
 
 p, blockquote, li {

@@ -397,11 +397,14 @@ export const US_TREASURY_BENCHMARKS = {
     usPopulationMillions: 336.5,
     usDebtPerCapita: 107578,
     usFederalOutlaysTrillions: 6.9,
+    usFederalRevenueTrillions: 4.92, // FY2024 federal tax receipts (~$4.92T)
+    usDebtToRevenueRatio: 7.36, // $36.2T / $4.92T
     usNetInterestBillions: 1120, // ~$1.12T net interest
     usInterestPctOfOutlays: 16.2, // ~16.2% of federal budget
     usShortTermTBillSharePct: 31.8, // ~31.8% of marketable debt maturing < 12 months
     quincyInterestAndPrincipalPctOfBudget: 18.6, // $88.8M / $478.5M
     quincyUnfundedBanPlusDebtSchedulePct: 22.8, // Once $508M BANs are permanently amortized
     quincyShortTermBanSharePct: 31.4, // $508M / $1,618M comprehensive debt
+    quincyDebtToRevenueRatio: 3.38, // $1,618M / $478.5M annual operating budget/revenues
   },
 };

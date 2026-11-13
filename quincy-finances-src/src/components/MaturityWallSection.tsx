@@ -15,15 +15,18 @@ export const MaturityWallSection: React.FC = () => {
   return (
     <section id="step-3" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
+        <div className="mb-4">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
+            Step 3 • When the Bills Come Due (FY2025–FY2045)
+          </span>
+          <h2 className="fluid-section-title font-serif font-bold text-slate-900">
+            When the Bills Come Due: The $508M Short-Term Loan “Cliff”
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
           <div className="lg:col-span-8">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-              Step 3 • When the Bills Come Due (FY2025–FY2045)
-            </span>
-            <h2 className="fluid-section-title font-serif font-bold text-slate-900">
-              When the Bills Come Due: The $508M Short-Term Loan “Cliff”
-            </h2>
-            <p className="mt-3 text-slate-700 text-base sm:text-lg">
+            <p className="text-slate-700 text-base sm:text-lg">
               Typical city debt charts only show <em>already locked-in</em> long-term loans, which
               makes future payments look like they steadily shrink. That view leaves out{' '}
               <strong className="text-rose-800">~$508M in short-term bridge loans (BANs)</strong>{' '}
