@@ -31,14 +31,6 @@ export default function Sidebar() {
             </p>
           </li>
           <li>
-            <Link href="/sycmembertv" className="font-medium text-black hover:underline text-sm block">
-              SYC Member TV
-            </Link>
-            <p className="text-xs text-gray-500 mt-1">
-              Animated HD TV Display with Member Listings by Class & Slides
-            </p>
-          </li>
-          <li>
             <Link href="/battle-tank-game" className="font-medium text-black hover:underline text-sm block">
               Battle Tank Game
             </Link>
