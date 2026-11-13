@@ -71,7 +71,11 @@ export function App() {
             <div className="flex items-center gap-6">
               <a
                 href="https://darjix.com/"
-                className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-wider shrink-0"
+                className="text-[28.125px] leading-[33.75px] font-bold text-black tracking-wider shrink-0"
+                style={{
+                  fontFamily:
+                    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                }}
               >
                 DARJIX
               </a>
@@ -91,7 +95,7 @@ export function App() {
               </span>
               <a
                 href="#step-4"
-                className="px-3 py-1.5 rounded-lg bg-civic-crimson text-slate-900 font-mono text-xs font-bold hover:bg-rose-400 transition-colors flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-lg bg-civic-crimson text-paper-50 font-mono text-xs font-bold hover:bg-rose-700 transition-colors flex items-center gap-1.5"
               >
                 <ShieldAlert className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Run Rate Simulator</span>

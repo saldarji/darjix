@@ -54,7 +54,7 @@ export const MaturityWallSection: React.FC = () => {
                   <Eye className="w-3.5 h-3.5 text-amber-400" aria-hidden="true" />
                   1. Realistic: Bonded Debt + Amortized BANs
                 </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-civic-crimson text-slate-900 font-bold">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-civic-crimson text-paper-50 font-bold">
                   +${annualBanConversionDebtServiceM.toFixed(1)}M/yr
                 </span>
               </button>
