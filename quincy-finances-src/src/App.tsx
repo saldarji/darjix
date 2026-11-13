@@ -69,12 +69,9 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
           <a
             href="#introduction"
-            className="flex items-center gap-2.5 font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
+            className="font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
           >
-            <span className="w-7 h-7 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center font-mono text-xs font-bold">
-              Q
-            </span>
-            <span>Quincy Debt & Taxpayer Risk Atlas</span>
+            <span>Quincy’s $1.6B Debt, Explained</span>
           </a>
 
           <div className="flex items-center gap-2">

@@ -217,6 +217,77 @@ export const ConclusionSection: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Budget & Policy Choices Residents Can Advocate For */}
+        <div className="mt-8 bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] p-6">
+          <div className="border-b border-stone-200 pb-4 mb-5">
+            <span className="text-xs font-mono uppercase tracking-wider font-bold text-teal-800 block">
+              Policy & Budget Trade-offs
+            </span>
+            <h3 className="text-xl font-serif font-bold text-slate-900 mt-0.5">
+              Bigger Budget Choices Residents Can Advocate For
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-700 mt-1">
+              Beyond tracking upcoming bond votes, residents can push City Council and the
+              Mayor’s office on how Quincy balances spending, taxes, and long-term borrowing:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-xl bg-stone-50 border border-stone-300">
+              <span className="text-xs font-mono uppercase font-bold text-rose-800 block mb-1">
+                1. Smarter Spending
+              </span>
+              <h4 className="font-semibold text-slate-900 text-sm mb-1">
+                Prioritize Core Needs & Pause New Borrowing
+              </h4>
+              <p className="text-xs text-slate-700">
+                Focus capital dollars on essential school, water, and road maintenance while pausing
+                discretionary projects until the $508M in short-term bridge loans is locked in.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-stone-50 border border-stone-300">
+              <span className="text-xs font-mono uppercase font-bold text-blue-800 block mb-1">
+                2. Revenue & Tax Options
+              </span>
+              <h4 className="font-semibold text-slate-900 text-sm mb-1">
+                Honest Conversations About Taxes & Exclusions
+              </h4>
+              <p className="text-xs text-slate-700">
+                Evaluate targeted revenue options—such as voter-approved Proposition 2½ debt
+                exclusions for major schools or reviewing commercial/residential tax shares—rather
+                than silently squeezing school and city operating budgets.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-stone-50 border border-stone-300">
+              <span className="text-xs font-mono uppercase font-bold text-teal-800 block mb-1">
+                3. Pay-As-You-Go Capital
+              </span>
+              <h4 className="font-semibold text-slate-900 text-sm mb-1">
+                Stop Borrowing for Routine Expenses
+              </h4>
+              <p className="text-xs text-slate-700">
+                Fund recurring purchases like vehicles, IT upgrades, and routine street paving out
+                of annual cash budgets instead of adding 10–20 years of interest costs.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-stone-50 border border-stone-300">
+              <span className="text-xs font-mono uppercase font-bold text-amber-800 block mb-1">
+                4. Reserve & Debt Rules
+              </span>
+              <h4 className="font-semibold text-slate-900 text-sm mb-1">
+                Enforce Clear Debt & Reserve Targets
+              </h4>
+              <p className="text-xs text-slate-700">
+                Adopt a public ceiling on annual debt payments as a share of the budget and dedicate
+                a fixed share of yearly revenue to rebuilding Free Cash and Stabilization reserves.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

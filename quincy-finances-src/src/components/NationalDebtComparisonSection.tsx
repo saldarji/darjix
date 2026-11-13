@@ -1,6 +1,6 @@
 import React from 'react';
 import { US_TREASURY_BENCHMARKS } from '../data/quincyFinancesData';
-import { AlertOctagon, Globe2, Landmark, Printer, RefreshCw, Scale } from 'lucide-react';
+import { AlertOctagon, Globe2, Landmark, Printer, RefreshCw } from 'lucide-react';
 
 export const NationalDebtComparisonSection: React.FC = () => {
   const macro = US_TREASURY_BENCHMARKS.usNationalDebtComparison;
@@ -189,75 +189,6 @@ export const NationalDebtComparisonSection: React.FC = () => {
               <span>US National Debt Per Capita: $107,578</span>
               <span className="font-bold text-rose-800">
                 Quincy Municipal Debt Per Capita: $15,919
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Comparison 3: Total Debt vs. Annual Revenues (Taxes) */}
-        <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] p-6">
-          <div className="flex items-start justify-between gap-4 border-b border-stone-200 pb-4 mb-5">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-blue-800 font-bold block">
-                Comparison 3 • Total Debt vs. Annual Revenues (Taxes)
-              </span>
-              <h3 className="text-xl font-serif font-bold text-slate-900 mt-0.5">
-                How Many Years of Tax Revenue Would It Take to Pay Off All Debt?
-              </h3>
-            </div>
-            <Scale className="w-7 h-7 text-blue-700 shrink-0 mt-1" aria-hidden="true" />
-          </div>
-
-          <p className="text-sm text-slate-700 mb-6">
-            Comparing total debt against annual revenue (taxes and fees collected each year) shows
-            how heavy the overall debt load is relative to income. Because the US Federal Government
-            carries <strong>${macro.usTotalPublicDebtTrillions}T</strong> in debt against{' '}
-            <strong>${macro.usFederalRevenueTrillions}T</strong> in annual tax receipts, its
-            debt-to-revenue ratio is more than double Quincy’s—though unlike Washington, Quincy
-            cannot run deficits or print money to bridge the gap.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono">
-            <div className="p-4 rounded-xl bg-stone-100 border border-stone-300">
-              <div className="flex justify-between items-baseline text-xs mb-2">
-                <span className="font-bold text-slate-800">
-                  US Federal Government (Debt / Annual Tax Revenue)
-                </span>
-                <span className="text-lg font-bold text-slate-900">
-                  {macro.usDebtToRevenueRatio.toFixed(2)}× (736%)
-                </span>
-              </div>
-              <div className="h-5 w-full bg-white rounded-lg overflow-hidden border border-stone-300 mb-2">
-                <div
-                  style={{ width: '100%' }}
-                  className="h-full bg-slate-700"
-                />
-              </div>
-              <span className="text-[11px] text-slate-600 block">
-                ${macro.usTotalPublicDebtTrillions}T total national debt ÷ $
-                {macro.usFederalRevenueTrillions}T annual federal tax revenue
-              </span>
-            </div>
-
-            <div className="p-4 rounded-xl bg-blue-50 border border-blue-300">
-              <div className="flex justify-between items-baseline text-xs mb-2">
-                <span className="font-bold text-blue-900">
-                  City of Quincy (Total Debt / Annual City Revenue)
-                </span>
-                <span className="text-lg font-bold text-blue-800">
-                  {macro.quincyDebtToRevenueRatio.toFixed(2)}× (338%)
-                </span>
-              </div>
-              <div className="h-5 w-full bg-white rounded-lg overflow-hidden border border-blue-300 mb-2">
-                <div
-                  style={{
-                    width: `${(macro.quincyDebtToRevenueRatio / macro.usDebtToRevenueRatio) * 100}%`,
-                  }}
-                  className="h-full bg-blue-500"
-                />
-              </div>
-              <span className="text-[11px] text-blue-900 block">
-                $1,618M total debt footprint ÷ $478.5M annual operating budget/revenues
               </span>
             </div>
           </div>

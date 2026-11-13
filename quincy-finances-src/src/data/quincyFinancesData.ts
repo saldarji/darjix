@@ -89,7 +89,7 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
       'Public Safety Headquarters & Fire Station Renovations',
       'Roadway, Seawall & Municipal Facility Bridge Notes',
     ],
-    colorHex: '#e76e50', // Coral alert
+    colorHex: '#F1562E', // Bright Orange alert
   },
   {
     id: 'pension-obligation-bonds',
