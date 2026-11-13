@@ -16,10 +16,10 @@ export const NationalDebtComparisonSection: React.FC = () => {
             Quincy vs. The $36 Trillion US National Debt: Who Spends More of Their Budget on Debt?
           </h2>
           <p className="mt-3 text-slate-700 text-base sm:text-lg">
-            National headlines frequently warn that net interest on the US National Debt has surged
-            past defense spending to consume <strong>~16.2% of all federal outlays</strong>. Yet
-            when we compare the City of Quincy’s operating budget side-by-side with Uncle Sam’s, two
-            startling parallels emerge.
+            National headlines often warn that interest on the US National Debt has surged past
+            defense spending to take up <strong>~16.2% of all federal spending</strong>. Yet when we
+            put Quincy’s city budget side-by-side with Uncle Sam’s, two eye-opening comparisons stand
+            out.
           </p>
         </div>
 
@@ -41,9 +41,10 @@ export const NationalDebtComparisonSection: React.FC = () => {
               </div>
 
               <p className="text-sm text-slate-700 mb-6">
-                Even before permanently bonding its $508M in short-term BANs, the City of Quincy
-                devotes a <strong>larger percentage of its operating budget</strong> to debt service
-                than the US Federal Government devotes to net interest on the $36.2T national debt:
+                Even before locking in its $508M in short-term bridge loans, the City of Quincy
+                spends a <strong>larger share of its operating budget</strong> paying off debt and
+                interest than the US Federal Government spends on interest for the $36.2T national
+                debt:
               </p>
 
               {/* Visual Bar Gauges */}

@@ -89,7 +89,7 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
       'Public Safety Headquarters & Fire Station Renovations',
       'Roadway, Seawall & Municipal Facility Bridge Notes',
     ],
-    colorHex: '#be123c', // Crimson alert
+    colorHex: '#e76e50', // Coral alert
   },
   {
     id: 'pension-obligation-bonds',
@@ -110,7 +110,7 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
       'Series 2021 Taxable General Obligation Pension Bonds ($465.3M–$475M total structure)',
       '$37.2M mandatory annual operating budget appropriation',
     ],
-    colorHex: '#d97706', // Amber / Gold warning
+    colorHex: '#f2c150', // Warm Gold warning
   },
   {
     id: 'general-capital-bonds',
@@ -132,7 +132,7 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
       'MWRA / MCWT Clean Water & Sewer Infrastructure Loans',
       'Coastal Seawall & Flood Mitigation Bonds',
     ],
-    colorHex: '#1d4ed8', // Civic Blue
+    colorHex: '#3182ed', // Bright Blue
   },
   {
     id: 'quincy-center-dif',
@@ -154,7 +154,7 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
       'Downtown Quincy Center Utility & Streetscape Overhaul',
       'DIF Short-Term Notes Awaiting Permanent Takeout',
     ],
-    colorHex: '#0f766e', // Teal
+    colorHex: '#2ab7a6', // Teal
   },
 ];
 

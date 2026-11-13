@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --brand-color: #be123c;
-  --brand-blue: #1d4ed8;
+  --brand-color: #e76e50;
+  --brand-blue: #3182ed;
   --in-oklab: ;
   --in-oklch: ;
   color-scheme: light dark;
@@ -12,8 +12,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand-color: #f43f5e;
-    --brand-blue: #60a5fa;
+    --brand-color: #e76e50;
+    --brand-blue: #3182ed;
   }
 }
 
@@ -58,8 +58,8 @@ body {
     height: 8px;
     background: linear-gradient(
       to right,
-      var(--brand-color, #be123c) var(--progress, 50%),
-      #cbd5e1 var(--progress, 50%)
+      var(--brand-color, #e76e50) var(--progress, 50%),
+      #cfdbe5 var(--progress, 50%)
     );
     border-radius: 4px;
   }
@@ -70,7 +70,7 @@ body {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    background: var(--brand-color, #be123c);
+    background: var(--brand-color, #e76e50);
     cursor: pointer;
     margin-top: -5px;
   }
@@ -78,7 +78,7 @@ body {
   input[type="range"]::-moz-range-track {
     width: 100%;
     height: 8px;
-    background: #cbd5e1;
+    background: #cfdbe5;
     border-radius: 4px;
   }
 
@@ -86,12 +86,12 @@ body {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    background: var(--brand-color, #be123c);
+    background: var(--brand-color, #e76e50);
     cursor: pointer;
   }
 
   input[type="range"]::-moz-range-progress {
-    background-color: var(--brand-color, #be123c);
+    background-color: var(--brand-color, #e76e50);
     height: 8px;
     border-radius: 4px;
   }

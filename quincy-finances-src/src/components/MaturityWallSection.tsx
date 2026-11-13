@@ -21,13 +21,14 @@ export const MaturityWallSection: React.FC = () => {
               Step 3 • When the Bills Come Due (FY2025–FY2045)
             </span>
             <h2 className="fluid-section-title font-serif font-bold text-slate-900">
-              The Maturity Wall & The $508M Short-Term “BAN Cliff”
+              When the Bills Come Due: The $508M Short-Term Loan “Cliff”
             </h2>
             <p className="mt-3 text-slate-700 text-base sm:text-lg">
-              Standard municipal debt schedules only plot <em>already-bonded</em> long-term debt,
-              making future payments look like they gently decline. That view omits{' '}
-              <strong className="text-rose-800">~$508M in short-term Bond Anticipation Notes (BANs)</strong>{' '}
-              that mature within 12–18 months and must be rolled over or permanently bonded.
+              Typical city debt charts only show <em>already locked-in</em> long-term loans, which
+              makes future payments look like they steadily shrink. That view leaves out{' '}
+              <strong className="text-rose-800">~$508M in short-term bridge loans (BANs)</strong>{' '}
+              that come due within 12–18 months and must be renewed or converted into permanent
+              25-year loans.
             </p>
           </div>
 

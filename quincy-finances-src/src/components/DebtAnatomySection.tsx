@@ -13,14 +13,14 @@ export const DebtAnatomySection: React.FC = () => {
             Step 2 • Anatomy of the Liabilities
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
-            Not All Municipal Debt Is Created Equal: The Four Pillars of Quincy’s $1.62B Footprint
+            Not All City Debt Is the Same: The Four Buckets of Quincy’s $1.62B Total
           </h2>
           <p className="mt-3 text-slate-700 text-base sm:text-lg">
-            In standard municipal finance, cities issue long-term fixed-rate bonds for schools, water
-            mains, and roads. Quincy’s portfolio is unusual because{' '}
-            <strong>more than 60% of its total debt footprint</strong> sits outside traditional capital
-            bonds—split between short-term variable-rate notes (BANs) and speculative Pension
-            Obligation Bonds (POBs).
+            Usually, cities borrow with long-term, fixed-rate loans to build schools, water mains,
+            and roads. Quincy is unusual because{' '}
+            <strong>more than 60% of its total borrowing</strong> is outside those everyday projects—split
+            between short-term variable-rate bridge loans (called BANs) and big loans taken out to
+            invest in the city pension fund (Pension Obligation Bonds).
           </p>
         </div>
 

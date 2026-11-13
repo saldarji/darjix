@@ -49,12 +49,13 @@ export const RiskSimulatorsSection: React.FC = () => {
             Step 4 • Interactive Taxpayer Risk Lab (3 Live Simulators)
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
-            Stress-Test Quincy’s Balance Sheet: Interest Rates, Downtown Growth & Pension Returns
+            Test Quincy’s Budget: Interest Rates, Downtown Growth & Pension Returns
           </h2>
           <p className="mt-3 text-slate-700 text-base sm:text-lg">
-            Because Quincy relies heavily on short-term BAN rollovers, tax-increment projections, and
-            pension arbitrage, its future tax burden depends on macroeconomic variables the city
-            cannot control. Use the three calculators below to model the impact on taxpayers.
+            Because Quincy relies heavily on renewing short-term bridge loans, betting on new
+            downtown tax revenue, and investing borrowed money for pensions, future tax bills depend
+            on market forces the city cannot control. Use the three calculators below to see how
+            changes affect taxpayers.
           </p>
         </div>
 
@@ -370,9 +371,9 @@ export const RiskSimulatorsSection: React.FC = () => {
 
               <div className="p-6 space-y-5">
                 <p className="text-xs sm:text-sm text-slate-700">
-                  District Improvement Financing (DIF) pledges new downtown property tax growth to
-                  repay ~$210M in Quincy Center garages and infrastructure. If commercial growth or
-                  occupancy lags, <strong>residential taxpayers citywide must cover the gap</strong>.
+                  The city’s downtown financing plan (DIF) counts on new Quincy Center property taxes
+                  to pay off ~$210M in garages and street upgrades. If new buildings or tenants lag
+                  behind schedule, <strong>homeowners and businesses citywide must cover the shortfall</strong>.
                 </p>
 
                 <div className="space-y-4 bg-stone-100 p-4 rounded-xl border border-stone-200">
@@ -500,9 +501,9 @@ export const RiskSimulatorsSection: React.FC = () => {
 
               <div className="p-6 space-y-5">
                 <p className="text-xs sm:text-sm text-slate-700">
-                  Quincy borrowed $475M at ~2.89% in late 2021 to invest in the Quincy Retirement
-                  System (assumed 7.0% target return). Test what happens through 2040 if actual
-                  compounded returns fall short of the 7.0% actuarial target:
+                  Quincy borrowed $475M at ~2.89% interest in late 2021 to invest in the city pension
+                  fund, aiming for a 7.0% annual return. Test what happens through 2040 if actual
+                  investment returns fall short of that 7.0% target:
                 </p>
 
                 <div className="bg-stone-100 p-4 rounded-xl border border-stone-200">
