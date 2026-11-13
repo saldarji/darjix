@@ -67,15 +67,28 @@ export function App() {
       {/* Sticky Top Header & Step Navigation */}
       <div className="sticky top-0 z-40">
         <header className="bg-paper-50/95 backdrop-blur border-b border-stone-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
-            <a
-              href="#introduction"
-              className="font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
-            >
-              <span>Quincy’s $1.6B Debt, Explained</span>
-            </a>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-6">
+              <a
+                href="https://darjix.com/"
+                className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-wider shrink-0"
+              >
+                DARJIX
+              </a>
+              <div className="hidden sm:flex items-center gap-5 text-sm font-medium text-slate-600">
+                <a href="https://darjix.com/about" className="hover:text-slate-900 transition-colors">
+                  About
+                </a>
+                <a href="https://darjix.com/contact" className="hover:text-slate-900 transition-colors">
+                  Contact
+                </a>
+              </div>
+            </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
+              <span className="hidden md:inline-block text-xs font-mono text-slate-600">
+                Updated: Nov 13, 2026
+              </span>
               <a
                 href="#step-4"
                 className="px-3 py-1.5 rounded-lg bg-civic-crimson text-slate-900 font-mono text-xs font-bold hover:bg-rose-400 transition-colors flex items-center gap-1.5"
@@ -238,8 +251,7 @@ export function App() {
               <span>City of Quincy Municipal Debt & Taxpayer Risk Infographic</span>
             </div>
             <div className="text-slate-400">
-              Built for civic transparency & public financial literacy • Neutral analysis with
-              explicit taxpayer risk modeling
+              Updated: November 13, 2026 • Built for civic transparency & public financial literacy
             </div>
           </div>
 
