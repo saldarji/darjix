@@ -43,7 +43,7 @@ export const HeroReceiptSection: React.FC = () => {
 
           <div className="space-y-6">
             <h1 className="fluid-hero-title font-serif font-bold text-slate-900 tracking-tight">
-              The $1.62 Billion Tab: Inside the City of Presidents’ Debt Machine
+              The $1.62 Billion Tab: Inside Quincy’s Debt Machine
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-normal">

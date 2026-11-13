@@ -64,48 +64,50 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-paper-50 text-slate-900 flex flex-col">
-      {/* Top Editorial Header */}
-      <header className="sticky top-0 z-40 bg-paper-50/95 backdrop-blur border-b border-stone-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
-          <a
-            href="#introduction"
-            className="font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
-          >
-            <span>Quincy’s $1.6B Debt, Explained</span>
-          </a>
-
-          <div className="flex items-center gap-2">
+      {/* Sticky Top Header & Step Navigation */}
+      <div className="sticky top-0 z-40">
+        <header className="bg-paper-50/95 backdrop-blur border-b border-stone-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
             <a
-              href="#step-4"
-              className="px-3 py-1.5 rounded-lg bg-civic-crimson text-slate-900 font-mono text-xs font-bold hover:bg-rose-400 transition-colors flex items-center gap-1.5"
+              href="#introduction"
+              className="font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
             >
-              <ShieldAlert className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Run Rate Simulator</span>
+              <span>Quincy’s $1.6B Debt, Explained</span>
             </a>
-          </div>
-        </div>
-      </header>
 
-      {/* Standard Step-by-Step Analysis Navigation Bar (Below Header) */}
-      <nav
-        aria-label="Analysis steps"
-        className="bg-paper-100 border-b border-stone-300"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-          <ol className="flex items-center gap-1.5 overflow-x-auto lg:flex-wrap text-xs font-mono">
-            {navItems.map((item) => (
-              <li key={item.href} className="shrink-0">
-                <a
-                  href={item.href}
-                  className="inline-block px-3 py-1.5 rounded-lg bg-white border border-stone-300 text-slate-800 font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors whitespace-nowrap"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </nav>
+            <div className="flex items-center gap-2">
+              <a
+                href="#step-4"
+                className="px-3 py-1.5 rounded-lg bg-civic-crimson text-slate-900 font-mono text-xs font-bold hover:bg-rose-400 transition-colors flex items-center gap-1.5"
+              >
+                <ShieldAlert className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Run Rate Simulator</span>
+              </a>
+            </div>
+          </div>
+        </header>
+
+        {/* Standard Step-by-Step Analysis Navigation Bar (Below Header) */}
+        <nav
+          aria-label="Analysis steps"
+          className="bg-paper-100/95 backdrop-blur border-b border-stone-300"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+            <ol className="flex items-center gap-1.5 overflow-x-auto lg:flex-wrap text-xs font-mono">
+              {navItems.map((item) => (
+                <li key={item.href} className="shrink-0">
+                  <a
+                    href={item.href}
+                    className="inline-block px-3 py-1.5 rounded-lg bg-white border border-stone-300 text-slate-800 font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors whitespace-nowrap"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+      </div>
 
       {/* Main Content */}
       <main className="flex-grow">
