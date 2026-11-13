@@ -66,24 +66,27 @@ export function App() {
     <div className="min-h-screen bg-paper-50 text-slate-900 flex flex-col">
       {/* Sticky Top Header & Step Navigation */}
       <div className="sticky top-0 z-40">
-        <header className="bg-paper-50/95 backdrop-blur border-b border-stone-300">
+        <header
+          className="bg-paper-50/95 backdrop-blur border-b border-stone-300"
+          style={{
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+            fontFeatureSettings: 'normal',
+          }}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <a
                 href="https://darjix.com/"
                 className="text-[28.125px] leading-[33.75px] font-bold text-black tracking-wider shrink-0"
-                style={{
-                  fontFamily:
-                    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-                }}
               >
                 DARJIX
               </a>
-              <div className="hidden sm:flex items-center gap-5 text-sm font-medium text-slate-600">
-                <a href="https://darjix.com/about" className="hover:text-slate-900 transition-colors">
+              <div className="hidden sm:flex items-center gap-6 text-[13.125px] font-medium text-slate-600">
+                <a href="https://darjix.com/about" className="hover:text-black transition-colors">
                   About
                 </a>
-                <a href="https://darjix.com/contact" className="hover:text-slate-900 transition-colors">
+                <a href="https://darjix.com/contact" className="hover:text-black transition-colors">
                   Contact
                 </a>
               </div>
