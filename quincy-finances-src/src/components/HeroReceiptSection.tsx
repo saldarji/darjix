@@ -29,7 +29,7 @@ export const HeroReceiptSection: React.FC = () => {
   );
 
   return (
-    <section id="act-1" className="py-12 md:py-16 border-b border-stone-300">
+    <section id="introduction" className="py-12 md:py-16 border-b border-stone-300 scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Kicker */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -134,17 +134,18 @@ export const HeroReceiptSection: React.FC = () => {
 
           {/* Right Column: Interactive Taxpayer Receipt */}
           <aside
+            id="step-1"
             aria-label="Interactive Quincy Taxpayer Debt Receipt"
-            className="lg:col-span-5 bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] p-6"
+            className="lg:col-span-5 bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] p-6 scroll-mt-28"
           >
             <div className="border-b-2 border-dashed border-slate-300 pb-4 mb-4 flex items-center justify-between">
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-slate-500 block">
-                  City of Quincy • Annual Tax Allocation
+                <span className="text-xs font-mono uppercase tracking-widest text-rose-800 font-bold block">
+                  Step 1 • Annual Tax Allocation
                 </span>
                 <h2 className="text-xl font-serif font-bold text-slate-900 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-rose-700" aria-hidden="true" />
-                  Your Household Debt Receipt
+                  1. Your Household Debt Receipt
                 </h2>
               </div>
               <span className="px-2.5 py-1 bg-slate-100 text-slate-800 font-mono text-xs font-semibold rounded">

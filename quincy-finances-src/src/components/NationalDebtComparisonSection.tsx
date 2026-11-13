@@ -6,11 +6,11 @@ export const NationalDebtComparisonSection: React.FC = () => {
   const macro = US_TREASURY_BENCHMARKS.usNationalDebtComparison;
 
   return (
-    <section id="act-6" className="py-14 md:py-20 border-b border-stone-300 cv-section">
+    <section id="step-6" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-            Act VI • Macro Perspective: Municipal Balance Sheet vs. Federal Treasury
+            Step 6 • Macro Perspective: Municipal Balance Sheet vs. Federal Treasury
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
             Quincy vs. The $36 Trillion US National Debt: Who Spends More of Their Budget on Debt?

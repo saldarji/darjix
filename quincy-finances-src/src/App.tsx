@@ -5,18 +5,21 @@ import { MaturityWallSection } from './components/MaturityWallSection';
 import { RiskSimulatorsSection } from './components/RiskSimulatorsSection';
 import { PeerComparisonSection } from './components/PeerComparisonSection';
 import { NationalDebtComparisonSection } from './components/NationalDebtComparisonSection';
+import { ConclusionSection } from './components/ConclusionSection';
 import { BookOpen, ExternalLink, Landmark, Scale, ShieldAlert } from 'lucide-react';
 
 export function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const navItems = [
-    { href: '#act-1', label: 'I. Household Receipt' },
-    { href: '#act-2', label: 'II. Debt Anatomy' },
-    { href: '#act-3', label: 'III. Maturity Wall & BANs' },
-    { href: '#act-4', label: 'IV. Rate & Risk Simulators' },
-    { href: '#act-5', label: 'V. Peer Cities' },
-    { href: '#act-6', label: 'VI. US Debt Comparison' },
+    { href: '#introduction', label: 'Introduction' },
+    { href: '#step-1', label: '1. Your Household Debt Receipt' },
+    { href: '#step-2', label: '2. Anatomy of the Liabilities' },
+    { href: '#step-3', label: '3. Maturity Wall & BAN Cliff' },
+    { href: '#step-4', label: '4. Rate & Risk Simulators' },
+    { href: '#step-5', label: '5. Peer City Comparison' },
+    { href: '#step-6', label: '6. US Debt Comparison' },
+    { href: '#conclusion', label: '7. Conclusion & Action Items' },
   ];
 
   const glossaryTerms = [
@@ -61,11 +64,11 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-paper-50 text-slate-900 flex flex-col">
-      {/* Top Sticky Editorial Navigation */}
+      {/* Top Editorial Header */}
       <header className="sticky top-0 z-40 bg-paper-50/95 backdrop-blur border-b border-stone-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
           <a
-            href="#act-1"
+            href="#introduction"
             className="flex items-center gap-2.5 font-serif font-bold text-slate-900 text-base sm:text-lg shrink-0"
           >
             <span className="w-7 h-7 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center font-mono text-xs font-bold">
@@ -74,24 +77,9 @@ export function App() {
             <span>Quincy Debt & Taxpayer Risk Atlas</span>
           </a>
 
-          <nav aria-label="Section navigation" className="hidden xl:block">
-            <ul className="flex items-center gap-1">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-700 hover:bg-stone-200/80 hover:text-slate-900 transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
           <div className="flex items-center gap-2">
             <a
-              href="#act-4"
+              href="#step-4"
               className="px-3 py-1.5 rounded-lg bg-rose-800 text-white font-mono text-xs font-semibold hover:bg-rose-900 transition-colors flex items-center gap-1.5"
             >
               <ShieldAlert className="w-3.5 h-3.5" aria-hidden="true" />
@@ -101,6 +89,27 @@ export function App() {
         </div>
       </header>
 
+      {/* Standard Step-by-Step Analysis Navigation Bar (Below Header) */}
+      <nav
+        aria-label="Analysis steps"
+        className="bg-paper-100 border-b border-stone-300"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+          <ol className="flex items-center gap-1.5 overflow-x-auto lg:flex-wrap text-xs font-mono">
+            {navItems.map((item) => (
+              <li key={item.href} className="shrink-0">
+                <a
+                  href={item.href}
+                  className="inline-block px-3 py-1.5 rounded-lg bg-white border border-stone-300 text-slate-800 font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors whitespace-nowrap"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+
       {/* Main Content */}
       <main className="flex-grow">
         <HeroReceiptSection />
@@ -109,6 +118,7 @@ export function App() {
         <RiskSimulatorsSection />
         <PeerComparisonSection />
         <NationalDebtComparisonSection />
+        <ConclusionSection />
 
         {/* Municipal Finance Glossary & Methodology Search Section */}
         <section id="methodology" className="py-14 bg-stone-100 border-b border-stone-300">

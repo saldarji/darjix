@@ -13,12 +13,12 @@ export const MaturityWallSection: React.FC = () => {
   const annualBanConversionDebtServiceM = calculateAnnualAmortizationM(508, assumedRefiRate, 25);
 
   return (
-    <section id="act-3" className="py-14 md:py-20 border-b border-stone-300 cv-section">
+    <section id="step-3" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
           <div className="lg:col-span-8">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-              Act III • When the Bills Come Due (FY2025–FY2045)
+              Step 3 • When the Bills Come Due (FY2025–FY2045)
             </span>
             <h2 className="fluid-section-title font-serif font-bold text-slate-900">
               The Maturity Wall & The $508M Short-Term “BAN Cliff”

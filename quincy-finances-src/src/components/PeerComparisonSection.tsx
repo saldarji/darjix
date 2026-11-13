@@ -80,11 +80,11 @@ export const PeerComparisonSection: React.FC = () => {
   );
 
   return (
-    <section id="act-5" className="py-14 md:py-20 border-b border-stone-300 cv-section">
+    <section id="step-5" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-8">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-            Act V • Regional & Gateway City Peer Comparison (MA DOR DLS Databank)
+            Step 5 • Regional & Gateway City Peer Comparison (MA DOR DLS Databank)
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
             City Showdown: Quincy vs. Greater Boston Peers & MA Gateway Cities

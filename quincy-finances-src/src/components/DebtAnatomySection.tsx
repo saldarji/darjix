@@ -6,11 +6,11 @@ export const DebtAnatomySection: React.FC = () => {
   const [selectedBucket, setSelectedBucket] = useState<DebtBucket>(QUINCY_DEBT_BUCKETS[0]);
 
   return (
-    <section id="act-2" className="py-14 md:py-20 border-b border-stone-300 cv-section">
+    <section id="step-2" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-            Act II • Anatomy of the Liabilities
+            Step 2 • Anatomy of the Liabilities
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
             Not All Municipal Debt Is Created Equal: The Four Pillars of Quincy’s $1.62B Footprint
@@ -209,7 +209,7 @@ export const DebtAnatomySection: React.FC = () => {
                   </strong>
                 </span>
                 <a
-                  href="#act-4"
+                  href="#step-4"
                   className="underline font-bold hover:text-rose-700"
                 >
                   Stress-test in Simulator →

@@ -42,11 +42,11 @@ export const RiskSimulatorsSection: React.FC = () => {
   };
 
   return (
-    <section id="act-4" className="py-14 md:py-20 border-b border-stone-300 cv-section">
+    <section id="step-4" className="py-14 md:py-20 border-b border-stone-300 scroll-mt-28 cv-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-rose-800 block mb-2">
-            Act IV • Interactive Taxpayer Risk Lab (3 Live Simulators)
+            Step 4 • Interactive Taxpayer Risk Lab (3 Live Simulators)
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
             Stress-Test Quincy’s Balance Sheet: Interest Rates, Downtown Growth & Pension Returns

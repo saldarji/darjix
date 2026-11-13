@@ -24,6 +24,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   accent-color: var(--brand-color);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
@@ -157,6 +161,9 @@ details.methodology-drawer[open] > summary::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
   * {
     animation: var(--animation-reduced) !important;
     transition-duration: 0.05s !important;
