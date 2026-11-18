@@ -27,12 +27,13 @@ export const RiskSimulatorsSection: React.FC = () => {
   // Simulator B State: Quincy Center DIF Breakeven
   const [difGrowthRate, setDifGrowthRate] = useState<number>(2.5);
   const [difOccupancyPct, setDifOccupancyPct] = useState<number>(88);
+  const [difBondRate, setDifBondRate] = useState<number>(3.85);
 
   // Simulator C State: $475M Pension Bond Arbitrage
   const [pobMarketReturn, setPobMarketReturn] = useState<number>(6.2);
 
   const banSim = simulateBanRefinancing(banPrincipalToBondM, banRefiRate, amortizationYears, 2.15);
-  const difSim = simulateQuincyCenterDif(difGrowthRate, banRefiRate, difOccupancyPct);
+  const difSim = simulateQuincyCenterDif(difGrowthRate, difBondRate, difOccupancyPct);
   const pobSim = simulatePobArbitrage(pobMarketReturn);
 
   const handlePresetClick = (preset: (typeof US_TREASURY_BENCHMARKS.presets)[number]) => {
@@ -426,6 +427,30 @@ export const RiskSimulatorsSection: React.FC = () => {
                       <span>98% (Full Lease-Up)</span>
                     </div>
                   </div>
+
+                  <div>
+                    <div className="flex justify-between text-xs font-mono font-bold mb-1">
+                      <label htmlFor="dif-rate-slider">
+                        DIF Bond Financing Rate:
+                      </label>
+                      <span className="text-teal-900">{difBondRate.toFixed(2)}%</span>
+                    </div>
+                    <input
+                      id="dif-rate-slider"
+                      type="range"
+                      min={1.5}
+                      max={7.5}
+                      step={0.05}
+                      value={difBondRate}
+                      onChange={(e) => setDifBondRate(Number(e.target.value))}
+                      className="w-full cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[10px] font-mono text-slate-600">
+                      <span>1.50% (2021 Low)</span>
+                      <span>3.85% (DIF Avg)</span>
+                      <span>7.50% (Stress)</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 font-mono">
@@ -437,7 +462,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                       ${difSim.requiredAnnualDifDebtServiceM.toFixed(2)}M/yr
                     </span>
                     <span className="text-[10px] text-slate-600 block">
-                      (at {banRefiRate.toFixed(2)}% bond rate)
+                      (at {difBondRate.toFixed(2)}% bond rate)
                     </span>
                   </div>
 
