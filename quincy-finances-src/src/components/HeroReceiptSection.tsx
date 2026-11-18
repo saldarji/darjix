@@ -43,7 +43,7 @@ export const HeroReceiptSection: React.FC = () => {
 
           <div className="space-y-6">
             <h1 className="fluid-hero-title font-serif font-bold text-slate-900 tracking-tight">
-              The $1.62 Billion Tab: Inside Quincy’s Debt Machine
+              The $1.8 Billion Tab: Inside Quincy’s Debt Machine
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-normal">
@@ -99,7 +99,7 @@ export const HeroReceiptSection: React.FC = () => {
             <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               <div className="p-3.5 rounded-lg bg-slate-900 text-white">
                 <dt className="text-xs font-mono uppercase text-slate-300">Total Debt Footprint</dt>
-                <dd className="text-2xl font-mono font-bold text-amber-400 mt-1">$1.80B</dd>
+                <dd className="text-2xl font-mono font-bold text-amber-400 mt-1">$1.8B</dd>
                 <span className="text-[11px] text-slate-300 block mt-0.5">
                   May 2026 (+$200M vs. $1.62B FY25)
                 </span>

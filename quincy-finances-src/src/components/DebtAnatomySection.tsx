@@ -13,7 +13,7 @@ export const DebtAnatomySection: React.FC = () => {
             Step 2 • Anatomy of the Liabilities
           </span>
           <h2 className="fluid-section-title font-serif font-bold text-slate-900">
-            Not All City Debt Is the Same: The Four Buckets of Quincy’s $1.62B Total
+            Not All City Debt Is the Same: The Four Buckets of Quincy’s Debt ($1.8B as of May 2026)
           </h2>
           <p className="mt-3 text-slate-700 text-base sm:text-lg">
             Usually, cities borrow with long-term, fixed-rate loans to build schools, water mains,

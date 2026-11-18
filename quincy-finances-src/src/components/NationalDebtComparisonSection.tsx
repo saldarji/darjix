@@ -164,7 +164,7 @@ export const NationalDebtComparisonSection: React.FC = () => {
                     {macro.quincyShortTermBanSharePct}%
                   </span>
                   <span className="text-[11px] text-rose-900 block mt-1">
-                    $508M of $1.62B Footprint
+                    $508M of $1.8B Footprint
                   </span>
                 </div>
               </div>
