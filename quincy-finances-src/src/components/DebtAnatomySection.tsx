@@ -26,7 +26,7 @@ export const DebtAnatomySection: React.FC = () => {
 
         {/* Interactive Proportional Marimekko / Stacked Bar Selector */}
         <div className="bg-white p-6 rounded-2xl border border-stone-300 shadow-sm mb-8">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span className="text-xs font-mono uppercase tracking-wider font-semibold text-slate-600 flex items-center gap-1.5">
               <Layers className="w-4 h-4 text-slate-700" aria-hidden="true" />
               Click Any Segment Below to Inspect Rationale vs. Taxpayer Risk ($1,618M Total)

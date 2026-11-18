@@ -63,7 +63,7 @@ export const RiskSimulatorsSection: React.FC = () => {
         {/* =====================================================================
             SIMULATOR A: T-BILL & BAN REFINANCING SIMULATOR
         ===================================================================== */}
-        <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] overflow-hidden mb-12">
+        <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] sm:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] overflow-hidden mb-12">
           <div className="bg-slate-900 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block">
@@ -80,7 +80,7 @@ export const RiskSimulatorsSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
             {/* Left Controls */}
             <div className="lg:col-span-6 space-y-6">
               {/* Rate Regime Presets */}
@@ -88,7 +88,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                 <span className="text-xs font-mono uppercase font-bold text-slate-700 block mb-2">
                   1. Choose a US Treasury / Macro Interest Rate Regime:
                 </span>
-                <div className="grid grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {US_TREASURY_BENCHMARKS.presets.map((preset) => {
                     const active = selectedPresetId === preset.id;
                     return (
@@ -233,7 +233,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                   {banRefiRate.toFixed(2)}%
                 </h4>
 
-                <div className="grid grid-cols-2 gap-3 mb-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                   <div className="p-3.5 rounded-xl bg-white border border-stone-300">
                     <span className="text-xs font-mono text-slate-600 block">
                       New Annual Payment (P&I)
@@ -306,7 +306,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                     {Math.max(0, banSim.extraAnnualCostVs2021M).toFixed(1)}M/yr Rate Penalty Could Buy
                     Every Year:
                   </span>
-                  <div className="grid grid-cols-3 gap-2 text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center">
                     <div className="p-2.5 rounded-lg bg-white border border-amber-200">
                       <GraduationCap
                         className="w-5 h-5 text-amber-800 mx-auto mb-1"
@@ -358,7 +358,7 @@ export const RiskSimulatorsSection: React.FC = () => {
         ===================================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* SIMULATOR B: QUINCY CENTER DIF BREAKEVEN */}
-          <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
+          <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] sm:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
             <div>
               <div className="bg-slate-900 text-white px-6 py-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-teal-400 block">
@@ -453,7 +453,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 font-mono">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono">
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
                     <span className="text-[11px] text-slate-600 block">
                       Required DIF Debt Service
@@ -512,7 +512,7 @@ export const RiskSimulatorsSection: React.FC = () => {
           </div>
 
           {/* SIMULATOR C: $475M PENSION BOND ARBITRAGE TRACKER */}
-          <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
+          <div className="bg-white rounded-2xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] sm:shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] flex flex-col justify-between overflow-hidden">
             <div>
               <div className="bg-slate-900 text-white px-6 py-4">
                 <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block">
@@ -557,7 +557,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                 </div>
 
                 {/* Mini Trajectory Visualization */}
-                <div className="grid grid-cols-3 gap-2.5 font-mono text-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-center">
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
                     <span className="text-[10px] uppercase text-slate-600 block">
                       Fixed Annual Bond Bill

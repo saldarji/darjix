@@ -138,7 +138,7 @@ export const NationalDebtComparisonSection: React.FC = () => {
                 local level:
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div className="p-4 rounded-xl bg-stone-100 border border-stone-300 text-center">
                   <Globe2 className="w-6 h-6 text-slate-700 mx-auto mb-1.5" aria-hidden="true" />
                   <span className="text-xs font-mono uppercase text-slate-600 block">

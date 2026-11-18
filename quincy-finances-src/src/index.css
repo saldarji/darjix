@@ -26,11 +26,19 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   accent-color: var(--brand-color);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+  overflow-x: clip;
+}
+
+@media (pointer: coarse) {
+  input[type="range"] {
+    min-height: 36px;
+  }
 }
 
 /* Fallback for older browsers without accent-color per modern-web-guidance */
