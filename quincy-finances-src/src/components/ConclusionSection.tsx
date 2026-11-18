@@ -67,11 +67,13 @@ export const ConclusionSection: React.FC = () => {
             The Bottom Line for Quincy—and Concrete Steps Residents & Leaders Can Take
           </h2>
           <p className="mt-3 text-slate-700 text-base sm:text-lg">
-            Quincy’s $1.62B debt footprint bought real physical assets—new schools, seawalls, public
+            Quincy’s debt footprint ($1.62B in FY2025, rising to $1.8B as of May 2026 after $200M
+            in additional borrowing) bought real physical assets—new schools, seawalls, public
             safety facilities, and a transformed downtown. At the same time, concentrating{' '}
-            <strong>$508M in short-term BANs</strong> alongside a rigid{' '}
-            <strong>$37.2M/year pension bond bill</strong> leaves far less margin for error if
-            interest rates stay elevated or commercial growth slows.
+            <strong>$508M in short-term BANs</strong> (including ~$330M in short-term DIF debt)
+            alongside a rigid <strong>$37.2M/year pension bond bill</strong> and an S&amp;P Global
+            bond rating downgrade leaves far less margin for error if interest rates stay elevated
+            or commercial growth slows.
           </p>
         </div>
 

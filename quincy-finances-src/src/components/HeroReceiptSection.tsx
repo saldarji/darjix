@@ -37,7 +37,7 @@ export const HeroReceiptSection: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
             <span className="text-xs font-mono text-slate-600">
-              Sources: Quincy Office of Municipal Finance • MA DOR DLS Databank • US Treasury
+              Sources: Quincy Office of Municipal Finance • MA DOR DLS Databank • US Treasury • The Patriot Ledger (May 2026)
             </span>
           </div>
 
@@ -60,8 +60,11 @@ export const HeroReceiptSection: React.FC = () => {
               <strong className="font-semibold text-rose-800">
                 $508M in short-term construction “bridge loans”
               </strong>{' '}
-              (called BANs), the city’s total debt footprint now rivals far larger metropolitan
-              budgets.
+              (called BANs), the city’s FY2025 debt footprint reached $1.62B—and grew by another{' '}
+              <strong className="font-semibold text-slate-900">
+                $200M to $1.8B as of May 2026
+              </strong>{' '}
+              (The Patriot Ledger).
             </p>
 
             {/* Dual Framing: Rationale vs. Explicit Taxpayer Risk */}
@@ -96,9 +99,9 @@ export const HeroReceiptSection: React.FC = () => {
             <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               <div className="p-3.5 rounded-lg bg-slate-900 text-white">
                 <dt className="text-xs font-mono uppercase text-slate-300">Total Debt Footprint</dt>
-                <dd className="text-2xl font-mono font-bold text-amber-400 mt-1">$1.62B</dd>
+                <dd className="text-2xl font-mono font-bold text-amber-400 mt-1">$1.80B</dd>
                 <span className="text-[11px] text-slate-300 block mt-0.5">
-                  Bonds + Pensions + Bridge Loans + DIF
+                  May 2026 (+$200M vs. $1.62B FY25)
                 </span>
               </div>
               <div className="p-3.5 rounded-lg bg-white border border-stone-300">

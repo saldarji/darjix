@@ -526,9 +526,10 @@ export const RiskSimulatorsSection: React.FC = () => {
 
               <div className="p-6 space-y-5">
                 <p className="text-xs sm:text-sm text-slate-700">
-                  Quincy borrowed $475M at ~2.89% interest in late 2021 to invest in the city pension
-                  fund, aiming for a 7.0% annual return. Test what happens through 2040 if actual
-                  investment returns fall short of that 7.0% target:
+                  After Quincy’s unfunded pension liability grew from $165.2M (2007) to $426.7M
+                  (2021), the city borrowed $475M in Dec. 2021 ($575M with interest) to invest in
+                  the pension fund. Following a $90M loss in 2022, the fund is ~95–96% funded in
+                  May 2026, and the board raised its return target from 6.75% to 7.25%:
                 </p>
 
                 <div className="bg-stone-100 p-4 rounded-xl border border-stone-200">
@@ -550,7 +551,7 @@ export const RiskSimulatorsSection: React.FC = () => {
                   />
                   <div className="flex justify-between text-[10px] font-mono text-slate-600 mt-1">
                     <span>2.89% (Bond Interest Cost)</span>
-                    <span>7.0% (Actuarial Target)</span>
+                    <span>7.25% (2026 Target)</span>
                     <span>9.0% (Bull Market)</span>
                   </div>
                 </div>

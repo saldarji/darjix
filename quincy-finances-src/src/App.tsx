@@ -205,14 +205,16 @@ export function App() {
                 </p>
                 <p>
                   All figures in this interactive investigation are synthesized from publicly
-                  available municipal disclosures: (1) City of Quincy Office of Municipal Finance
-                  Annual Debt Books, Official Statements for General Obligation Bonds & BANs, and
-                  FY2025–FY2026 Operating Budget filings; (2) Massachusetts Department of Revenue
-                  Division of Local Services (DLS) Municipal Finance Trend Dashboard & Category 6
-                  Debt Service Databank for Quincy, Cambridge, Somerville, Medford, Brockton, Lynn,
-                  Springfield, and New Bedford; and (3)
-                  Federal Reserve Economic Data (FRED) and Congressional Budget Office (CBO) federal
-                  net interest baselines.
+                  available municipal disclosures and local reporting: (1) City of Quincy Office of
+                  Municipal Finance Annual Debt Books, Official Statements for General Obligation
+                  Bonds & BANs, and FY2025–FY2026 Operating Budget filings; (2) Massachusetts
+                  Department of Revenue Division of Local Services (DLS) Municipal Finance Trend
+                  Dashboard & Category 6 Debt Service Databank for Quincy, Cambridge, Somerville,
+                  Medford, Brockton, Lynn, Springfield, and New Bedford; (3) Federal Reserve
+                  Economic Data (FRED) and Congressional Budget Office (CBO) federal net interest
+                  baselines; and (4) The Patriot Ledger’s May 4, 2026 reporting on Quincy’s $1.8B
+                  outstanding debt, unfunded pension liability ($165.2M in 2007 to $426.7M in 2021,
+                  95–96% funded in May 2026), and $330M in short-term DIF debt.
                 </p>
               </blockquote>
               <figcaption className="mt-4 pt-3 border-t border-stone-200 flex flex-wrap gap-4 text-xs font-mono text-blue-800">
@@ -241,6 +243,15 @@ export function App() {
                   className="inline-flex items-center gap-1 hover:underline"
                 >
                   <cite>MA DOR Division of Local Services (DLS) Databank</cite>
+                  <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.patriotledger.com/story/news/politics/government/2026/05/04/quincy-ma-debt-city-council-downtown/89879473007/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:underline"
+                >
+                  <cite>The Patriot Ledger: Quincy $1.8B Debt Details (May 4, 2026)</cite>
                   <ExternalLink className="w-3 h-3" aria-hidden="true" />
                 </a>
               </figcaption>

@@ -54,7 +54,10 @@ export interface PeerCityProfile {
 }
 
 export const QUINCY_HEADLINE_METRICS = {
-  comprehensiveDebtFootprintM: 1618.0, // ~$1.62B total exposure across bonded debt, POBs, BANs, and DIF obligations
+  comprehensiveDebtFootprintM: 1618.0, // ~$1.62B FY2025 4-bucket breakdown across bonded debt, POBs, BANs, and DIF obligations
+  may2026ReportedDebtM: 1800.0, // $1.8B total outstanding debt as of May 2026 (+$200M borrowed since May 2025, per The Patriot Ledger)
+  unfundedPensionLiability2007M: 165.2, // Pre-Koch 2007 unfunded pension liability (Pioneer Institute)
+  unfundedPensionLiability2021M: 426.7, // Pre-POB 2021 unfunded pension liability
   population: 101636, // US Census / MA DLS estimate
   households: 44800,
   fy2025OperatingBudgetM: 478.5,
@@ -102,13 +105,13 @@ export const QUINCY_DEBT_BUCKETS: DebtBucket[] = [
     avgRatePercent: 2.89,
     maturityHorizon: 'Fixed through FY2040',
     cityRationale:
-      'Issued in late 2021 to pay off the Quincy Retirement System’s unfunded actuarial liability in one lump sum, betting that long-term pension investment returns (~7.0% target) will exceed the ~2.89% taxable bond interest rate.',
+      'Issued in December 2021 ($575M with interest) after Quincy’s unfunded pension liability grew from $165.2M (2007) to $426.7M (2021), betting long-term market returns (6.75% target, raised to 7.25% in 2026) will beat the ~2.62%–2.89% bond rate.',
     taxpayerRisk:
-      'Market Arbitrage & Budget Rigidity Risk: Turns a flexible actuarial schedule into an unbreakable legal bond obligation of ~$37.2M every year. If financial markets suffer a prolonged downturn and earn less than expected, taxpayers face a "double whammy": paying the fixed $37.2M bond bill PLUS paying new unfunded pension assessments.',
+      'Market Arbitrage & Budget Rigidity Risk: Turns a flexible actuarial schedule into an unbreakable $37.2M/yr bond bill through 2040. After losing $90M in 2022, the system is ~95–96% funded in May 2026, and raising the return assumption from 6.75% to 7.25% cut the FY26 pension assessment from $16M to $9.6M (~$45.8M total FY26 pension cost).',
     riskSeverity: 'High',
     examples: [
-      'Series 2021 Taxable General Obligation Pension Bonds ($465.3M–$475M total structure)',
-      '$37.2M mandatory annual operating budget appropriation',
+      'Series 2021 Taxable General Obligation Pension Bonds ($475M principal / $575M with interest)',
+      '$37.2M mandatory annual POB payment + $9.6M FY26 pension assessment (~$45.8M total)',
     ],
     colorHex: '#f2c150', // Warm Gold warning
   },
