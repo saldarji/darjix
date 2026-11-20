@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { PhotoItem } from "@/lib/types";
+import { PhotoItem, getSafeImageUrl } from "@/lib/types";
 
 interface PhotoGalleryProps {
   images: PhotoItem[];
@@ -23,7 +23,7 @@ export default function PhotoGallery({ images, title }: PhotoGalleryProps) {
   };
 
   const activeImage = images[currentIndex];
-  const activeUrl = activeImage.url ? encodeURI(activeImage.url) : "";
+  const activeUrl = activeImage.url ? getSafeImageUrl(activeImage.url) : "";
 
   return (
     <div className="relative w-full my-4">

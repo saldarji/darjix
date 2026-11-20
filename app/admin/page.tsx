@@ -273,8 +273,9 @@ export default function AdminPage() {
       const uploaded: PhotoItem[] = [];
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
+        const contentType = file.type || "image/png";
         const fileRef = ref(storage, `posts/${Date.now()}_${file.name}`);
-        await uploadBytes(fileRef, file);
+        await uploadBytes(fileRef, file, { contentType });
         const url = await getDownloadURL(fileRef);
         uploaded.push({ url, caption: "", alt_text: file.name });
       }

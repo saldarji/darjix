@@ -5,7 +5,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import fs from "fs";
 import path from "path";
-import { Post } from "@/lib/types";
+import { Post, getSafeImageUrl } from "@/lib/types";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -129,7 +129,7 @@ export default async function PostDetailPage({ params }: PostPageProps) {
             {post.images && post.images.length === 1 && (
               <div className="my-6">
                 <img
-                  src={encodeURI(post.images[0].url)}
+                  src={getSafeImageUrl(post.images[0].url)}
                   alt={post.images[0].alt_text || post.title}
                   className="w-full h-auto rounded border border-gray-200"
                 />
@@ -143,7 +143,7 @@ export default async function PostDetailPage({ params }: PostPageProps) {
             {(!post.images || post.images.length === 0) && post.image && (
               <div className="my-6">
                 <img
-                  src={encodeURI(post.image)}
+                  src={getSafeImageUrl(post.image)}
                   alt={post.alt_text || post.title}
                   className="w-full h-auto rounded border border-gray-200"
                 />

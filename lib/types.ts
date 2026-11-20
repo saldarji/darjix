@@ -21,3 +21,13 @@ export interface Post {
   created_at?: string;
   updated_at?: string;
 }
+
+/**
+ * Encode local asset paths (e.g. spaces) without double-encoding remote URLs
+ * such as Firebase Storage download URLs that already contain `%2F`.
+ */
+export function getSafeImageUrl(url: string): string {
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  return encodeURI(url);
+}

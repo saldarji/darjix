@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Post } from "@/lib/types";
+import { Post, getSafeImageUrl } from "@/lib/types";
 import PhotoGallery from "./PhotoGallery";
 import MarkdownRenderer from "./MarkdownRenderer";
 
@@ -39,7 +39,7 @@ export default function PostCard({ post, isLast }: PostCardProps) {
       {post.images && post.images.length === 1 && (
         <div className="my-4">
           <img
-            src={encodeURI(post.images[0].url)}
+            src={getSafeImageUrl(post.images[0].url)}
             alt={post.images[0].alt_text || post.title}
             className="w-full h-auto rounded border border-gray-200"
           />
@@ -53,7 +53,7 @@ export default function PostCard({ post, isLast }: PostCardProps) {
       {(!post.images || post.images.length === 0) && (post.image || imageUrl) && (
         <div className="my-4">
           <img
-            src={imageUrl || encodeURI(post.image!)}
+            src={imageUrl || getSafeImageUrl(post.image!)}
             alt={post.alt_text || post.title}
             className="w-full h-auto rounded border border-gray-200"
           />
