@@ -1,5 +1,3 @@
-import CalendarBooking from "@/components/CalendarBooking";
-
 export const metadata = {
   title: "About - DARJIX",
   description: "About Sal Darji and DARJIX",
@@ -20,13 +18,36 @@ export default function AboutPage() {
               height="100"
             />
             <p className="text-base text-gray-600">
-              I'm Sal Darji, and this is my space to explore AI and education technology.
+              I&apos;m Sal Darji, a Product Management Executive partnering with organizations on a contract basis to shape product strategy, launch AI-first initiatives, and scale high-performing product teams. <em>(Currently fully booked for engagements.)</em>
             </p>
             <p className="text-base text-gray-600">
-              After two years of successfully running the Boston chapter for AI Tinkerers, I'm embarking on a new adventure building AI products for higher education. This site is where I document what I learn along the way.
+              Over my career, I&apos;ve led product strategy and execution across fintech, healthcare, insurance, edtech, and higher education:
             </p>
 
-            <CalendarBooking />
+            <ul className="list-disc ml-6 text-base text-gray-600 space-y-2">
+              <li>
+                <strong>Asset Management ($1.4T AUM):</strong> Led learning and development initiatives and built enterprise products at scale.
+              </li>
+              <li>
+                <strong>Clinical Trials:</strong> Directed product strategy, planning, and new feature development for clinical trials software leaders—providing hands-on leadership to offshore engineering teams and mentoring junior product staff.
+              </li>
+              <li>
+                <strong>Insurance ($50M Platform):</strong> Advised on product strategy and feature prioritization to sharpen roadmap execution.
+              </li>
+              <li>
+                <strong>AI Startups (DocRouter):</strong> Guided market research, product strategy, and positioning for a pre-revenue, AI-first startup.
+              </li>
+              <li>
+                <strong>Higher Ed &amp; Deep Tech (Northeastern University):</strong> Fostered AI and deep-tech spinouts, created the <em>Spinout Readiness Foundations</em> course, and co-organized <em>Venturium&apos;24</em>, a 20-startup showcase spanning five universities.
+              </li>
+              <li>
+                <strong>EdTech (Series A, Exited):</strong> Led in-depth product marketing research and spearheaded new product development through exit.
+              </li>
+            </ul>
+
+            <p className="text-base text-gray-600">
+              This site is where I share notes on AI, product leadership, and the tools I&apos;m exploring.
+            </p>
 
             <h2 className="text-xl font-bold text-black mt-8 mb-4">What You'll Find Here</h2>
 
