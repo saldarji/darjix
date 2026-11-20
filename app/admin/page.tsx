@@ -257,10 +257,18 @@ export default function AdminPage() {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+    const input = e.target;
+    const files = input.files;
     if (!files || files.length === 0) return;
 
+    if (!user) {
+      setStatusMsg("⚠️ Please sign in before uploading images.");
+      input.value = "";
+      return;
+    }
+
     setUploadingImage(true);
+    setStatusMsg("");
     try {
       const uploaded: PhotoItem[] = [];
       for (let i = 0; i < files.length; i++) {
@@ -274,9 +282,11 @@ export default function AdminPage() {
       setStatusMsg("Images uploaded to Firebase Storage!");
     } catch (err: any) {
       console.error("Image upload failed:", err);
-      setStatusMsg("Image upload failed (Check Firebase Storage configuration).");
+      const code = err?.code ? ` (${err.code})` : "";
+      setStatusMsg(`⚠️ Image upload failed${code}: ${err?.message || "Check Firebase Storage configuration."}`);
     } finally {
       setUploadingImage(false);
+      input.value = "";
     }
   };
 

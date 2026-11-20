@@ -18,6 +18,8 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
+storage.maxUploadRetryTime = 15000;
+storage.maxOperationRetryTime = 15000;
 const functions = getFunctions(app);
 const googleProvider = new GoogleAuthProvider();
 
